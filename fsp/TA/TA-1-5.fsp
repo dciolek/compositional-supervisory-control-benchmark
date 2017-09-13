@@ -1,0 +1,128 @@
+/******************************************************************************
+
+A travel agency sells vacation packages on-line by orchestrating existing
+third-party web-services for different amenities (e.g. car rental, flight
+purchase, hotel booking, etc). We want to synthesize an orchestrator based on
+the requirements for the provision of vacation packages and the protocol
+specification of the web-services.
+
+The protocols for the services may vary, one variant is the number of steps
+required for querying availability; in some cases the process requires a
+multiple steps (e.g. querying for flight destination and dates, and if
+successful following with a selection for class). Another variant is that some
+services may require a reservation step which guarantees a purchase order for
+a short period, while others do not, and hence the purchase may fail (e.g. on
+low availability reservation may be disabled in order to maximize concurrency
+between clients. As a result a race condition between two purchase orders may
+arise, and therefore one order will fail).
+
+The example scales in the following dimensions:
+
+1- Amenities: The number of amenities included in the package.
+2- Steps: The maximum number of steps requierd to query a service.
+
+******************************************************************************/
+
+const N = 1
+const K = 5
+
+const Amenities = N
+const Steps = K
+
+range Amenity   = 0..(Amenities-1)
+range Step  = 0..(Steps-1)
+
+/*****************************************************************************/
+
+Agency = (agency.request -> Processing),
+  Processing = (
+    {agency.fail,agency.succ} -> Agency |
+    query[Amenity] -> Processing ).
+
+
+Service(Sid=0) = (
+  {agency.succ,agency.fail} -> Service |
+  query[Sid] -> (
+    unavailable[Sid] -> query.fail[Sid] -> Service |
+    available[Sid] -> steps[Sid][s:Step] -> query.succ[Sid] -> Selection[s] )),
+  Selection[s:Step] =
+    if (s>0) then (select[Sid] -> Selection[s-1])
+    else Booking,
+  Booking  = (
+    committed[Sid]   -> Reserve |
+    uncommitted[Sid] -> Direct  ),
+  Reserve  = (
+    reserve[Sid] -> (
+      {agency.succ,agency.fail} -> Service |
+      cancel[Sid]   -> Service |
+      purchase[Sid] ->
+        purchase.succ[Sid] -> Service )),
+  Direct  = (
+    order[Sid] -> (
+      {agency.succ,agency.fail} -> Service |
+      cancel[Sid]   -> Service |
+      purchase[Sid] -> (
+        purchase.succ[Sid] -> Service |
+        purchase.fail[Sid] -> Service ) )).
+
+
+ServiceMonitor(Sid=0) = (
+    query[Sid]  -> InQuery          |
+    agency.succ -> ERROR            |
+    agency.fail -> End              ),
+  InQuery = (
+    query.succ[Sid] -> QuerySucces  |
+    query.fail[Sid] -> QueryFail    |
+    agency.succ -> ERROR            |
+    agency.fail -> End              ),
+  QuerySucces = (
+    purchase.succ[Sid] -> Success   |
+    purchase.fail[Sid] -> QueryFail |
+    cancel[Sid]        -> QueryFail |
+    agency.succ -> ERROR            |
+    agency.fail -> End              ),
+  QueryFail = (
+    query[Sid]  -> ERROR            |
+    agency.succ -> ERROR            |
+    agency.fail -> End              ),
+  Success = (
+    query[Sid]  -> ERROR            |
+    agency.succ -> End              |
+    agency.fail -> End              ),
+  End = (end -> ServiceMonitor).
+    
+
+AgencyMonitor = Disallow[0],
+  Disallow[n:0..1] = (
+    agency.fail -> ERROR         |
+    agency.succ -> AgencyMonitor |
+    query.fail[Amenity] -> Allow |
+    order[Amenity] -> if (n==0) then Disallow[1] else Allow |
+    when (n==1) purchase.fail[Amenity] -> Allow ),
+  Allow = (
+    {agency.fail,agency.succ} -> AgencyMonitor |
+    {query.fail[Amenity],order[Amenity],purchase.fail[Amenity]} -> Allow ).
+
+
+/*****************************************************************************/
+
+||Environment = (
+  Agency || AgencyMonitor ||
+  forall [a:Amenity] (Service(a) || ServiceMonitor(a)) ).
+
+
+set Controllable = { query[Amenity], select[Amenity], cancel[Amenity],
+                     purchase[Amenity], agency.succ, agency.fail }
+
+/*****************************************************************************/
+
+fluent F_End = <end, Controllable>
+
+controllerSpec Goal = {
+  liveness = {F_End}
+  reach = {end}
+  controllable = {Controllable}
+}
+
+controller ||Controller = Environment~{Goal}.
+

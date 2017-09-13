@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Automata name="Environment" major="0" minor="1">
+  <Automaton name="Crew(4)" type="Plant">
+    <Events>
+      <Event id="0" label="refuse"/>
+      <Event id="1" label="approve"/>
+      <Event id="2" label="accept.4" controllable="false"/>
+      <Event id="3" label="assign.4"/>
+      <Event id="4" label="reject.4.3" controllable="false"/>
+      <Event id="5" label="reject.4.1" controllable="false"/>
+      <Event id="6" label="end" controllable="false"/>
+      <Event id="7" label="reject.4.2" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="Crew(4)[-1]"/>
+      <State id="0" name="Crew(4)[0]" initial="true"/>
+      <State id="1" name="Crew(4)[1]"/>
+      <State id="2" name="Crew(4)[2]"/>
+      <State id="3" name="Crew(4)[3]"/>
+      <State id="4" name="Crew(4)[4]"/>
+      <State id="5" name="Crew(4)[5]"/>
+      <State id="6" name="Crew(4)[6]"/>
+      <State id="7" name="Crew(4)[7]"/>
+      <State id="8" name="Crew(4)[8]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="3"/>
+      <Transition source="0" dest="-1" event="0"/>
+      <Transition source="0" dest="-1" event="1"/>
+      <Transition source="1" dest="2" event="5"/>
+      <Transition source="1" dest="8" event="2"/>
+      <Transition source="2" dest="3" event="3"/>
+      <Transition source="2" dest="7" event="0"/>
+      <Transition source="2" dest="-1" event="1"/>
+      <Transition source="3" dest="4" event="7"/>
+      <Transition source="3" dest="8" event="2"/>
+      <Transition source="4" dest="5" event="3"/>
+      <Transition source="4" dest="7" event="0"/>
+      <Transition source="4" dest="-1" event="1"/>
+      <Transition source="5" dest="6" event="4"/>
+      <Transition source="5" dest="8" event="2"/>
+      <Transition source="6" dest="-1" event="3"/>
+      <Transition source="6" dest="7" event="0"/>
+      <Transition source="6" dest="-1" event="1"/>
+      <Transition source="7" dest="0" event="6"/>
+      <Transition source="8" dest="-1" event="3"/>
+      <Transition source="8" dest="7" event="0"/>
+      <Transition source="8" dest="7" event="1"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Document" type="Plant">
+    <Events>
+      <Event id="8" label="accept.1" controllable="false"/>
+      <Event id="9" label="accept.0" controllable="false"/>
+      <Event id="1" label="approve"/>
+      <Event id="10" label="reject.3.3" controllable="false"/>
+      <Event id="11" label="accept.5" controllable="false"/>
+      <Event id="2" label="accept.4" controllable="false"/>
+      <Event id="12" label="accept.3" controllable="false"/>
+      <Event id="13" label="accept.2" controllable="false"/>
+      <Event id="14" label="reject.5.3" controllable="false"/>
+      <Event id="4" label="reject.4.3" controllable="false"/>
+      <Event id="0" label="refuse"/>
+      <Event id="15" label="reject.0.3" controllable="false"/>
+      <Event id="16" label="reject.1.3" controllable="false"/>
+      <Event id="17" label="reject.2.3" controllable="false"/>
+      <Event id="6" label="end" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="Document[-1]"/>
+      <State id="0" name="Document[0]" initial="true"/>
+      <State id="1" name="Document[1]"/>
+      <State id="2" name="Document[2]"/>
+      <State id="3" name="Document[3]"/>
+      <State id="4" name="Document[4]"/>
+      <State id="5" name="Document[5]"/>
+      <State id="6" name="Document[6]"/>
+      <State id="7" name="Document[7]"/>
+      <State id="8" name="Document[8]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="3" event="12"/>
+      <Transition source="0" dest="1" event="14"/>
+      <Transition source="0" dest="3" event="9"/>
+      <Transition source="0" dest="1" event="4"/>
+      <Transition source="0" dest="3" event="11"/>
+      <Transition source="0" dest="1" event="17"/>
+      <Transition source="0" dest="2" event="0"/>
+      <Transition source="0" dest="1" event="10"/>
+      <Transition source="0" dest="1" event="16"/>
+      <Transition source="0" dest="1" event="15"/>
+      <Transition source="0" dest="3" event="2"/>
+      <Transition source="0" dest="-1" event="1"/>
+      <Transition source="0" dest="3" event="13"/>
+      <Transition source="0" dest="3" event="8"/>
+      <Transition source="1" dest="1" event="12"/>
+      <Transition source="1" dest="1" event="14"/>
+      <Transition source="1" dest="1" event="9"/>
+      <Transition source="1" dest="1" event="4"/>
+      <Transition source="1" dest="1" event="11"/>
+      <Transition source="1" dest="1" event="17"/>
+      <Transition source="1" dest="2" event="0"/>
+      <Transition source="1" dest="1" event="10"/>
+      <Transition source="1" dest="1" event="16"/>
+      <Transition source="1" dest="1" event="15"/>
+      <Transition source="1" dest="1" event="2"/>
+      <Transition source="1" dest="-1" event="1"/>
+      <Transition source="1" dest="1" event="13"/>
+      <Transition source="1" dest="1" event="8"/>
+      <Transition source="2" dest="0" event="6"/>
+      <Transition source="3" dest="4" event="12"/>
+      <Transition source="3" dest="1" event="14"/>
+      <Transition source="3" dest="4" event="9"/>
+      <Transition source="3" dest="1" event="4"/>
+      <Transition source="3" dest="4" event="11"/>
+      <Transition source="3" dest="1" event="17"/>
+      <Transition source="3" dest="-1" event="0"/>
+      <Transition source="3" dest="1" event="10"/>
+      <Transition source="3" dest="1" event="16"/>
+      <Transition source="3" dest="1" event="15"/>
+      <Transition source="3" dest="4" event="2"/>
+      <Transition source="3" dest="-1" event="1"/>
+      <Transition source="3" dest="4" event="13"/>
+      <Transition source="3" dest="4" event="8"/>
+      <Transition source="4" dest="5" event="12"/>
+      <Transition source="4" dest="1" event="14"/>
+      <Transition source="4" dest="5" event="9"/>
+      <Transition source="4" dest="1" event="4"/>
+      <Transition source="4" dest="5" event="11"/>
+      <Transition source="4" dest="1" event="17"/>
+      <Transition source="4" dest="-1" event="0"/>
+      <Transition source="4" dest="1" event="10"/>
+      <Transition source="4" dest="1" event="16"/>
+      <Transition source="4" dest="1" event="15"/>
+      <Transition source="4" dest="5" event="2"/>
+      <Transition source="4" dest="-1" event="1"/>
+      <Transition source="4" dest="5" event="13"/>
+      <Transition source="4" dest="5" event="8"/>
+      <Transition source="5" dest="6" event="12"/>
+      <Transition source="5" dest="1" event="14"/>
+      <Transition source="5" dest="6" event="9"/>
+      <Transition source="5" dest="1" event="4"/>
+      <Transition source="5" dest="6" event="11"/>
+      <Transition source="5" dest="1" event="17"/>
+      <Transition source="5" dest="-1" event="0"/>
+      <Transition source="5" dest="1" event="10"/>
+      <Transition source="5" dest="1" event="16"/>
+      <Transition source="5" dest="1" event="15"/>
+      <Transition source="5" dest="6" event="2"/>
+      <Transition source="5" dest="-1" event="1"/>
+      <Transition source="5" dest="6" event="13"/>
+      <Transition source="5" dest="6" event="8"/>
+      <Transition source="6" dest="7" event="12"/>
+      <Transition source="6" dest="1" event="14"/>
+      <Transition source="6" dest="7" event="9"/>
+      <Transition source="6" dest="1" event="4"/>
+      <Transition source="6" dest="7" event="11"/>
+      <Transition source="6" dest="1" event="17"/>
+      <Transition source="6" dest="-1" event="0"/>
+      <Transition source="6" dest="1" event="10"/>
+      <Transition source="6" dest="1" event="16"/>
+      <Transition source="6" dest="1" event="15"/>
+      <Transition source="6" dest="7" event="2"/>
+      <Transition source="6" dest="-1" event="1"/>
+      <Transition source="6" dest="7" event="13"/>
+      <Transition source="6" dest="7" event="8"/>
+      <Transition source="7" dest="8" event="12"/>
+      <Transition source="7" dest="1" event="14"/>
+      <Transition source="7" dest="8" event="9"/>
+      <Transition source="7" dest="1" event="4"/>
+      <Transition source="7" dest="8" event="11"/>
+      <Transition source="7" dest="1" event="17"/>
+      <Transition source="7" dest="-1" event="0"/>
+      <Transition source="7" dest="1" event="10"/>
+      <Transition source="7" dest="1" event="16"/>
+      <Transition source="7" dest="1" event="15"/>
+      <Transition source="7" dest="8" event="2"/>
+      <Transition source="7" dest="-1" event="1"/>
+      <Transition source="7" dest="8" event="13"/>
+      <Transition source="7" dest="8" event="8"/>
+      <Transition source="8" dest="8" event="12"/>
+      <Transition source="8" dest="8" event="14"/>
+      <Transition source="8" dest="8" event="9"/>
+      <Transition source="8" dest="8" event="4"/>
+      <Transition source="8" dest="8" event="11"/>
+      <Transition source="8" dest="8" event="17"/>
+      <Transition source="8" dest="-1" event="0"/>
+      <Transition source="8" dest="8" event="10"/>
+      <Transition source="8" dest="8" event="16"/>
+      <Transition source="8" dest="8" event="15"/>
+      <Transition source="8" dest="8" event="2"/>
+      <Transition source="8" dest="2" event="1"/>
+      <Transition source="8" dest="8" event="13"/>
+      <Transition source="8" dest="8" event="8"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Crew(3)" type="Plant">
+    <Events>
+      <Event id="0" label="refuse"/>
+      <Event id="1" label="approve"/>
+      <Event id="18" label="reject.3.2" controllable="false"/>
+      <Event id="10" label="reject.3.3" controllable="false"/>
+      <Event id="12" label="accept.3" controllable="false"/>
+      <Event id="19" label="assign.3"/>
+      <Event id="20" label="reject.3.1" controllable="false"/>
+      <Event id="6" label="end" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="Crew(3)[-1]"/>
+      <State id="0" name="Crew(3)[0]" initial="true"/>
+      <State id="1" name="Crew(3)[1]"/>
+      <State id="2" name="Crew(3)[2]"/>
+      <State id="3" name="Crew(3)[3]"/>
+      <State id="4" name="Crew(3)[4]"/>
+      <State id="5" name="Crew(3)[5]"/>
+      <State id="6" name="Crew(3)[6]"/>
+      <State id="7" name="Crew(3)[7]"/>
+      <State id="8" name="Crew(3)[8]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="19"/>
+      <Transition source="0" dest="-1" event="0"/>
+      <Transition source="0" dest="-1" event="1"/>
+      <Transition source="1" dest="4" event="12"/>
+      <Transition source="1" dest="2" event="20"/>
+      <Transition source="2" dest="3" event="19"/>
+      <Transition source="2" dest="5" event="0"/>
+      <Transition source="2" dest="-1" event="1"/>
+      <Transition source="3" dest="4" event="12"/>
+      <Transition source="3" dest="6" event="18"/>
+      <Transition source="4" dest="-1" event="19"/>
+      <Transition source="4" dest="5" event="0"/>
+      <Transition source="4" dest="5" event="1"/>
+      <Transition source="5" dest="0" event="6"/>
+      <Transition source="6" dest="7" event="19"/>
+      <Transition source="6" dest="5" event="0"/>
+      <Transition source="6" dest="-1" event="1"/>
+      <Transition source="7" dest="4" event="12"/>
+      <Transition source="7" dest="8" event="10"/>
+      <Transition source="8" dest="-1" event="19"/>
+      <Transition source="8" dest="5" event="0"/>
+      <Transition source="8" dest="-1" event="1"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Crew(1)" type="Plant">
+    <Events>
+      <Event id="8" label="accept.1" controllable="false"/>
+      <Event id="0" label="refuse"/>
+      <Event id="21" label="assign.1"/>
+      <Event id="1" label="approve"/>
+      <Event id="16" label="reject.1.3" controllable="false"/>
+      <Event id="22" label="reject.1.2" controllable="false"/>
+      <Event id="23" label="reject.1.1" controllable="false"/>
+      <Event id="6" label="end" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="Crew(1)[-1]"/>
+      <State id="0" name="Crew(1)[0]" initial="true"/>
+      <State id="1" name="Crew(1)[1]"/>
+      <State id="2" name="Crew(1)[2]"/>
+      <State id="3" name="Crew(1)[3]"/>
+      <State id="4" name="Crew(1)[4]"/>
+      <State id="5" name="Crew(1)[5]"/>
+      <State id="6" name="Crew(1)[6]"/>
+      <State id="7" name="Crew(1)[7]"/>
+      <State id="8" name="Crew(1)[8]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="21"/>
+      <Transition source="0" dest="-1" event="0"/>
+      <Transition source="0" dest="-1" event="1"/>
+      <Transition source="1" dest="2" event="23"/>
+      <Transition source="1" dest="8" event="8"/>
+      <Transition source="2" dest="4" event="21"/>
+      <Transition source="2" dest="3" event="0"/>
+      <Transition source="2" dest="-1" event="1"/>
+      <Transition source="3" dest="0" event="6"/>
+      <Transition source="4" dest="5" event="22"/>
+      <Transition source="4" dest="8" event="8"/>
+      <Transition source="5" dest="6" event="21"/>
+      <Transition source="5" dest="3" event="0"/>
+      <Transition source="5" dest="-1" event="1"/>
+      <Transition source="6" dest="7" event="16"/>
+      <Transition source="6" dest="8" event="8"/>
+      <Transition source="7" dest="-1" event="21"/>
+      <Transition source="7" dest="3" event="0"/>
+      <Transition source="7" dest="-1" event="1"/>
+      <Transition source="8" dest="-1" event="21"/>
+      <Transition source="8" dest="3" event="0"/>
+      <Transition source="8" dest="3" event="1"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Crew(2)" type="Plant">
+    <Events>
+      <Event id="24" label="assign.2"/>
+      <Event id="0" label="refuse"/>
+      <Event id="1" label="approve"/>
+      <Event id="13" label="accept.2" controllable="false"/>
+      <Event id="17" label="reject.2.3" controllable="false"/>
+      <Event id="25" label="reject.2.2" controllable="false"/>
+      <Event id="26" label="reject.2.1" controllable="false"/>
+      <Event id="6" label="end" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="Crew(2)[-1]"/>
+      <State id="0" name="Crew(2)[0]" initial="true"/>
+      <State id="1" name="Crew(2)[1]"/>
+      <State id="2" name="Crew(2)[2]"/>
+      <State id="3" name="Crew(2)[3]"/>
+      <State id="4" name="Crew(2)[4]"/>
+      <State id="5" name="Crew(2)[5]"/>
+      <State id="6" name="Crew(2)[6]"/>
+      <State id="7" name="Crew(2)[7]"/>
+      <State id="8" name="Crew(2)[8]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="24"/>
+      <Transition source="0" dest="-1" event="0"/>
+      <Transition source="0" dest="-1" event="1"/>
+      <Transition source="1" dest="7" event="13"/>
+      <Transition source="1" dest="2" event="26"/>
+      <Transition source="2" dest="4" event="24"/>
+      <Transition source="2" dest="3" event="0"/>
+      <Transition source="2" dest="-1" event="1"/>
+      <Transition source="3" dest="0" event="6"/>
+      <Transition source="4" dest="5" event="25"/>
+      <Transition source="4" dest="7" event="13"/>
+      <Transition source="5" dest="6" event="24"/>
+      <Transition source="5" dest="3" event="0"/>
+      <Transition source="5" dest="-1" event="1"/>
+      <Transition source="6" dest="8" event="17"/>
+      <Transition source="6" dest="7" event="13"/>
+      <Transition source="7" dest="-1" event="24"/>
+      <Transition source="7" dest="3" event="0"/>
+      <Transition source="7" dest="3" event="1"/>
+      <Transition source="8" dest="-1" event="24"/>
+      <Transition source="8" dest="3" event="0"/>
+      <Transition source="8" dest="-1" event="1"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Crew(5)" type="Plant">
+    <Events>
+      <Event id="0" label="refuse"/>
+      <Event id="1" label="approve"/>
+      <Event id="11" label="accept.5" controllable="false"/>
+      <Event id="27" label="assign.5"/>
+      <Event id="28" label="reject.5.2" controllable="false"/>
+      <Event id="14" label="reject.5.3" controllable="false"/>
+      <Event id="29" label="reject.5.1" controllable="false"/>
+      <Event id="6" label="end" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="Crew(5)[-1]"/>
+      <State id="0" name="Crew(5)[0]" initial="true"/>
+      <State id="1" name="Crew(5)[1]"/>
+      <State id="2" name="Crew(5)[2]"/>
+      <State id="3" name="Crew(5)[3]"/>
+      <State id="4" name="Crew(5)[4]"/>
+      <State id="5" name="Crew(5)[5]"/>
+      <State id="6" name="Crew(5)[6]"/>
+      <State id="7" name="Crew(5)[7]"/>
+      <State id="8" name="Crew(5)[8]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="-1" event="0"/>
+      <Transition source="0" dest="1" event="27"/>
+      <Transition source="0" dest="-1" event="1"/>
+      <Transition source="1" dest="2" event="29"/>
+      <Transition source="1" dest="8" event="11"/>
+      <Transition source="2" dest="7" event="0"/>
+      <Transition source="2" dest="3" event="27"/>
+      <Transition source="2" dest="-1" event="1"/>
+      <Transition source="3" dest="8" event="11"/>
+      <Transition source="3" dest="4" event="28"/>
+      <Transition source="4" dest="7" event="0"/>
+      <Transition source="4" dest="5" event="27"/>
+      <Transition source="4" dest="-1" event="1"/>
+      <Transition source="5" dest="6" event="14"/>
+      <Transition source="5" dest="8" event="11"/>
+      <Transition source="6" dest="7" event="0"/>
+      <Transition source="6" dest="-1" event="27"/>
+      <Transition source="6" dest="-1" event="1"/>
+      <Transition source="7" dest="0" event="6"/>
+      <Transition source="8" dest="7" event="0"/>
+      <Transition source="8" dest="-1" event="27"/>
+      <Transition source="8" dest="7" event="1"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Crew(0)" type="Plant">
+    <Events>
+      <Event id="30" label="reject.0.2" controllable="false"/>
+      <Event id="0" label="refuse"/>
+      <Event id="31" label="reject.0.1" controllable="false"/>
+      <Event id="9" label="accept.0" controllable="false"/>
+      <Event id="1" label="approve"/>
+      <Event id="32" label="assign.0"/>
+      <Event id="15" label="reject.0.3" controllable="false"/>
+      <Event id="6" label="end" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="Crew(0)[-1]"/>
+      <State id="0" name="Crew(0)[0]" initial="true"/>
+      <State id="1" name="Crew(0)[1]"/>
+      <State id="2" name="Crew(0)[2]"/>
+      <State id="3" name="Crew(0)[3]"/>
+      <State id="4" name="Crew(0)[4]"/>
+      <State id="5" name="Crew(0)[5]"/>
+      <State id="6" name="Crew(0)[6]"/>
+      <State id="7" name="Crew(0)[7]"/>
+      <State id="8" name="Crew(0)[8]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="32"/>
+      <Transition source="0" dest="-1" event="0"/>
+      <Transition source="0" dest="-1" event="1"/>
+      <Transition source="1" dest="4" event="9"/>
+      <Transition source="1" dest="2" event="31"/>
+      <Transition source="2" dest="3" event="32"/>
+      <Transition source="2" dest="5" event="0"/>
+      <Transition source="2" dest="-1" event="1"/>
+      <Transition source="3" dest="6" event="30"/>
+      <Transition source="3" dest="4" event="9"/>
+      <Transition source="4" dest="-1" event="32"/>
+      <Transition source="4" dest="5" event="0"/>
+      <Transition source="4" dest="5" event="1"/>
+      <Transition source="5" dest="0" event="6"/>
+      <Transition source="6" dest="7" event="32"/>
+      <Transition source="6" dest="5" event="0"/>
+      <Transition source="6" dest="-1" event="1"/>
+      <Transition source="7" dest="4" event="9"/>
+      <Transition source="7" dest="8" event="15"/>
+      <Transition source="8" dest="-1" event="32"/>
+      <Transition source="8" dest="5" event="0"/>
+      <Transition source="8" dest="-1" event="1"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Goal" type="Specification">
+    <Events>
+      <Event id="8" label="accept.1" controllable="false"/>
+      <Event id="9" label="accept.0" controllable="false"/>
+      <Event id="18" label="reject.3.2" controllable="false"/>
+      <Event id="10" label="reject.3.3" controllable="false"/>
+      <Event id="11" label="accept.5" controllable="false"/>
+      <Event id="2" label="accept.4" controllable="false"/>
+      <Event id="12" label="accept.3" controllable="false"/>
+      <Event id="13" label="accept.2" controllable="false"/>
+      <Event id="28" label="reject.5.2" controllable="false"/>
+      <Event id="14" label="reject.5.3" controllable="false"/>
+      <Event id="29" label="reject.5.1" controllable="false"/>
+      <Event id="4" label="reject.4.3" controllable="false"/>
+      <Event id="20" label="reject.3.1" controllable="false"/>
+      <Event id="5" label="reject.4.1" controllable="false"/>
+      <Event id="7" label="reject.4.2" controllable="false"/>
+      <Event id="16" label="reject.1.3" controllable="false"/>
+      <Event id="22" label="reject.1.2" controllable="false"/>
+      <Event id="23" label="reject.1.1" controllable="false"/>
+      <Event id="17" label="reject.2.3" controllable="false"/>
+      <Event id="25" label="reject.2.2" controllable="false"/>
+      <Event id="26" label="reject.2.1" controllable="false"/>
+      <Event id="6" label="end" controllable="false"/>
+      <Event id="1" label="approve"/>
+      <Event id="24" label="assign.2"/>
+      <Event id="30" label="reject.0.2" controllable="false"/>
+      <Event id="31" label="reject.0.1" controllable="false"/>
+      <Event id="0" label="refuse"/>
+      <Event id="21" label="assign.1"/>
+      <Event id="32" label="assign.0"/>
+      <Event id="15" label="reject.0.3" controllable="false"/>
+      <Event id="27" label="assign.5"/>
+      <Event id="3" label="assign.4"/>
+      <Event id="19" label="assign.3"/>
+    </Events>
+    <States>
+      <State id="0"  name="init" initial="true"/>
+      <State id="1"  name="goal" accepting="true"/>
+      <State id="-1" name="error"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="0" event="8"/>
+      <Transition source="1" dest="0" event="8"/>
+      <Transition source="0" dest="0" event="9"/>
+      <Transition source="1" dest="0" event="9"/>
+      <Transition source="0" dest="0" event="18"/>
+      <Transition source="1" dest="0" event="18"/>
+      <Transition source="0" dest="0" event="10"/>
+      <Transition source="1" dest="0" event="10"/>
+      <Transition source="0" dest="0" event="11"/>
+      <Transition source="1" dest="0" event="11"/>
+      <Transition source="0" dest="0" event="2"/>
+      <Transition source="1" dest="0" event="2"/>
+      <Transition source="0" dest="0" event="12"/>
+      <Transition source="1" dest="0" event="12"/>
+      <Transition source="0" dest="0" event="13"/>
+      <Transition source="1" dest="0" event="13"/>
+      <Transition source="0" dest="0" event="28"/>
+      <Transition source="1" dest="0" event="28"/>
+      <Transition source="0" dest="0" event="14"/>
+      <Transition source="1" dest="0" event="14"/>
+      <Transition source="0" dest="0" event="29"/>
+      <Transition source="1" dest="0" event="29"/>
+      <Transition source="0" dest="0" event="4"/>
+      <Transition source="1" dest="0" event="4"/>
+      <Transition source="0" dest="0" event="20"/>
+      <Transition source="1" dest="0" event="20"/>
+      <Transition source="0" dest="0" event="5"/>
+      <Transition source="1" dest="0" event="5"/>
+      <Transition source="0" dest="0" event="7"/>
+      <Transition source="1" dest="0" event="7"/>
+      <Transition source="0" dest="0" event="16"/>
+      <Transition source="1" dest="0" event="16"/>
+      <Transition source="0" dest="0" event="22"/>
+      <Transition source="1" dest="0" event="22"/>
+      <Transition source="0" dest="0" event="23"/>
+      <Transition source="1" dest="0" event="23"/>
+      <Transition source="0" dest="0" event="17"/>
+      <Transition source="1" dest="0" event="17"/>
+      <Transition source="0" dest="0" event="25"/>
+      <Transition source="1" dest="0" event="25"/>
+      <Transition source="0" dest="0" event="26"/>
+      <Transition source="1" dest="0" event="26"/>
+      <Transition source="0" dest="1" event="6"/>
+      <Transition source="1" dest="1" event="6"/>
+      <Transition source="0" dest="0" event="1"/>
+      <Transition source="1" dest="0" event="1"/>
+      <Transition source="0" dest="0" event="24"/>
+      <Transition source="1" dest="0" event="24"/>
+      <Transition source="0" dest="0" event="30"/>
+      <Transition source="1" dest="0" event="30"/>
+      <Transition source="0" dest="0" event="31"/>
+      <Transition source="1" dest="0" event="31"/>
+      <Transition source="0" dest="0" event="0"/>
+      <Transition source="1" dest="0" event="0"/>
+      <Transition source="0" dest="0" event="21"/>
+      <Transition source="1" dest="0" event="21"/>
+      <Transition source="0" dest="0" event="32"/>
+      <Transition source="1" dest="0" event="32"/>
+      <Transition source="0" dest="0" event="15"/>
+      <Transition source="1" dest="0" event="15"/>
+      <Transition source="0" dest="0" event="27"/>
+      <Transition source="1" dest="0" event="27"/>
+      <Transition source="0" dest="0" event="3"/>
+      <Transition source="1" dest="0" event="3"/>
+      <Transition source="0" dest="0" event="19"/>
+      <Transition source="1" dest="0" event="19"/>
+    </Transitions>
+  </Automaton>
+</Automata>

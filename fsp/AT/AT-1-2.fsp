@@ -1,0 +1,80 @@
+/******************************************************************************
+
+An airport control tower receives requests from planes trying to land.
+The tower needs to signal them when it is safe to approach the ramps and at
+which height they must perform holding maneuvers. If two airplanes enter
+the same height space or ramp there is a chance a crash may occur.
+
+We want a controller that automatically responds to airplanes requests and
+ensures safe usage of the airport space.
+
+The case study can be scaled in the following dimensions:
+1- Planes: maximum number of simultaneous land requests.
+2- Height: number of spaces above the ground where a plane can hold safely.
+
+******************************************************************************/
+
+const N = 1
+const K = 2
+
+const Planes  = N
+const Heights = K
+
+range Plane  = 0..(Planes-1)
+range Height = 0..(Heights-1)
+
+/*****************************************************************************/
+
+
+Airplane(P=0) = (
+    requestLand[P] -> descend[P][h:Height] -> Holding[h] ),
+  Holding[h:Height] =
+    if (h>0) then (descend[P][h-1] -> Holding[h-1])
+             else (approach[P] -> land[P] -> end -> Airplane).
+
+
+HeightMonitor(H=0) = Empty,
+  Empty = (
+    descend[p:Plane][H] -> Occupied[p] |
+    when (H>0) descend[Plane][H-1] -> Empty ),
+  Occupied[p:Plane] = (
+    foreach [o:Plane]
+      when (p != o) descend[o][H] -> air.crash[H] -> ERROR |
+      when (p == o && H>0) descend[p][H-1] -> Empty |
+      when (p == o && H==0) land[Plane]    -> Empty ).
+
+
+RampMonitor(R=0) = Empty,
+  Empty = (
+    approach[Plane] -> Occupied ),
+  Occupied = (
+    approach[Plane] -> land.crash -> ERROR |
+    land[Plane]     -> Empty ).
+
+
+ResponseMonitor = (
+  requestLand[p:Plane] -> descend[p][Height] -> ResponseMonitor |
+  {descend[Plane][Height], approach[Plane]}  -> ResponseMonitor ).
+
+
+/*****************************************************************************/
+
+||Environment = (
+  ResponseMonitor || RampMonitor ||
+  forall [h:Height] HeightMonitor(h) ||
+  forall [p:Plane]  Airplane(p) ).
+
+set Controllable = {descend[Plane][Height], approach[Plane]}
+
+/*****************************************************************************/
+
+fluent F_End = <end, Controllable>
+
+controllerSpec Goal = {
+  liveness = {F_End}
+  reach = {end}
+  controllable = {Controllable}
+}
+
+controller ||Controller = Environment~{Goal}.
+

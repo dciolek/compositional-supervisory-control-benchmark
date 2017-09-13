@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Automata name="Environment" major="0" minor="1">
+  <Automaton name="Service(1)" type="Plant">
+    <Events>
+      <Event id="0" label="unavailable.1" controllable="false"/>
+      <Event id="1" label="query.fail.1" controllable="false"/>
+      <Event id="2" label="agency.succ"/>
+      <Event id="3" label="query.1"/>
+      <Event id="4" label="order.1" controllable="false"/>
+      <Event id="5" label="purchase.1"/>
+      <Event id="6" label="cancel.1"/>
+      <Event id="7" label="committed.1" controllable="false"/>
+      <Event id="8" label="reserve.1" controllable="false"/>
+      <Event id="9" label="agency.fail"/>
+      <Event id="10" label="available.1" controllable="false"/>
+      <Event id="11" label="steps.1.2" controllable="false"/>
+      <Event id="12" label="steps.1.1" controllable="false"/>
+      <Event id="13" label="select.1"/>
+      <Event id="14" label="steps.1.0" controllable="false"/>
+      <Event id="15" label="uncommitted.1" controllable="false"/>
+      <Event id="16" label="query.succ.1" controllable="false"/>
+      <Event id="17" label="purchase.succ.1" controllable="false"/>
+      <Event id="18" label="purchase.fail.1" controllable="false"/>
+    </Events>
+    <States>
+      <State id="0" name="Service(1)[0]" initial="true"/>
+      <State id="1" name="Service(1)[1]"/>
+      <State id="2" name="Service(1)[2]"/>
+      <State id="3" name="Service(1)[3]"/>
+      <State id="4" name="Service(1)[4]"/>
+      <State id="5" name="Service(1)[5]"/>
+      <State id="6" name="Service(1)[6]"/>
+      <State id="7" name="Service(1)[7]"/>
+      <State id="8" name="Service(1)[8]"/>
+      <State id="9" name="Service(1)[9]"/>
+      <State id="10" name="Service(1)[10]"/>
+      <State id="11" name="Service(1)[11]"/>
+      <State id="12" name="Service(1)[12]"/>
+      <State id="13" name="Service(1)[13]"/>
+      <State id="14" name="Service(1)[14]"/>
+      <State id="15" name="Service(1)[15]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="3"/>
+      <Transition source="0" dest="0" event="9"/>
+      <Transition source="0" dest="0" event="2"/>
+      <Transition source="1" dest="2" event="10"/>
+      <Transition source="1" dest="15" event="0"/>
+      <Transition source="2" dest="11" event="12"/>
+      <Transition source="2" dest="3" event="14"/>
+      <Transition source="2" dest="13" event="11"/>
+      <Transition source="3" dest="4" event="16"/>
+      <Transition source="4" dest="5" event="15"/>
+      <Transition source="4" dest="8" event="7"/>
+      <Transition source="5" dest="6" event="4"/>
+      <Transition source="6" dest="0" event="6"/>
+      <Transition source="6" dest="0" event="9"/>
+      <Transition source="6" dest="0" event="2"/>
+      <Transition source="6" dest="7" event="5"/>
+      <Transition source="7" dest="0" event="17"/>
+      <Transition source="7" dest="0" event="18"/>
+      <Transition source="8" dest="9" event="8"/>
+      <Transition source="9" dest="0" event="6"/>
+      <Transition source="9" dest="0" event="9"/>
+      <Transition source="9" dest="0" event="2"/>
+      <Transition source="9" dest="10" event="5"/>
+      <Transition source="10" dest="0" event="17"/>
+      <Transition source="11" dest="12" event="16"/>
+      <Transition source="12" dest="4" event="13"/>
+      <Transition source="13" dest="14" event="16"/>
+      <Transition source="14" dest="12" event="13"/>
+      <Transition source="15" dest="0" event="1"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="AgencyMonitor" type="Plant">
+    <Events>
+      <Event id="1" label="query.fail.1" controllable="false"/>
+      <Event id="19" label="query.fail.0" controllable="false"/>
+      <Event id="2" label="agency.succ"/>
+      <Event id="4" label="order.1" controllable="false"/>
+      <Event id="20" label="order.0" controllable="false"/>
+      <Event id="18" label="purchase.fail.1" controllable="false"/>
+      <Event id="9" label="agency.fail"/>
+      <Event id="21" label="purchase.fail.0" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="AgencyMonitor[-1]"/>
+      <State id="0" name="AgencyMonitor[0]" initial="true"/>
+      <State id="1" name="AgencyMonitor[1]"/>
+      <State id="2" name="AgencyMonitor[2]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="2" event="1"/>
+      <Transition source="0" dest="2" event="19"/>
+      <Transition source="0" dest="1" event="4"/>
+      <Transition source="0" dest="-1" event="9"/>
+      <Transition source="0" dest="0" event="2"/>
+      <Transition source="0" dest="1" event="20"/>
+      <Transition source="1" dest="2" event="1"/>
+      <Transition source="1" dest="2" event="19"/>
+      <Transition source="1" dest="2" event="21"/>
+      <Transition source="1" dest="2" event="4"/>
+      <Transition source="1" dest="-1" event="9"/>
+      <Transition source="1" dest="2" event="18"/>
+      <Transition source="1" dest="0" event="2"/>
+      <Transition source="1" dest="2" event="20"/>
+      <Transition source="2" dest="2" event="1"/>
+      <Transition source="2" dest="2" event="19"/>
+      <Transition source="2" dest="2" event="21"/>
+      <Transition source="2" dest="2" event="4"/>
+      <Transition source="2" dest="0" event="9"/>
+      <Transition source="2" dest="2" event="18"/>
+      <Transition source="2" dest="0" event="2"/>
+      <Transition source="2" dest="2" event="20"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="ServiceMonitor(0)" type="Plant">
+    <Events>
+      <Event id="19" label="query.fail.0" controllable="false"/>
+      <Event id="2" label="agency.succ"/>
+      <Event id="22" label="query.0"/>
+      <Event id="23" label="cancel.0"/>
+      <Event id="24" label="query.succ.0" controllable="false"/>
+      <Event id="25" label="end" controllable="false"/>
+      <Event id="9" label="agency.fail"/>
+      <Event id="26" label="purchase.succ.0" controllable="false"/>
+      <Event id="21" label="purchase.fail.0" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="ServiceMonitor(0)[-1]"/>
+      <State id="0" name="ServiceMonitor(0)[0]" initial="true"/>
+      <State id="1" name="ServiceMonitor(0)[1]"/>
+      <State id="2" name="ServiceMonitor(0)[2]"/>
+      <State id="3" name="ServiceMonitor(0)[3]"/>
+      <State id="4" name="ServiceMonitor(0)[4]"/>
+      <State id="5" name="ServiceMonitor(0)[5]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="2" event="22"/>
+      <Transition source="0" dest="1" event="9"/>
+      <Transition source="0" dest="-1" event="2"/>
+      <Transition source="1" dest="0" event="25"/>
+      <Transition source="2" dest="5" event="19"/>
+      <Transition source="2" dest="1" event="9"/>
+      <Transition source="2" dest="-1" event="2"/>
+      <Transition source="2" dest="3" event="24"/>
+      <Transition source="3" dest="5" event="21"/>
+      <Transition source="3" dest="1" event="9"/>
+      <Transition source="3" dest="4" event="26"/>
+      <Transition source="3" dest="-1" event="2"/>
+      <Transition source="3" dest="5" event="23"/>
+      <Transition source="4" dest="-1" event="22"/>
+      <Transition source="4" dest="1" event="9"/>
+      <Transition source="4" dest="1" event="2"/>
+      <Transition source="5" dest="-1" event="22"/>
+      <Transition source="5" dest="1" event="9"/>
+      <Transition source="5" dest="-1" event="2"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Service(0)" type="Plant">
+    <Events>
+      <Event id="27" label="unavailable.0" controllable="false"/>
+      <Event id="19" label="query.fail.0" controllable="false"/>
+      <Event id="2" label="agency.succ"/>
+      <Event id="22" label="query.0"/>
+      <Event id="20" label="order.0" controllable="false"/>
+      <Event id="28" label="committed.0" controllable="false"/>
+      <Event id="23" label="cancel.0"/>
+      <Event id="29" label="reserve.0" controllable="false"/>
+      <Event id="30" label="purchase.0"/>
+      <Event id="9" label="agency.fail"/>
+      <Event id="31" label="steps.0.1" controllable="false"/>
+      <Event id="32" label="steps.0.2" controllable="false"/>
+      <Event id="33" label="available.0" controllable="false"/>
+      <Event id="34" label="steps.0.0" controllable="false"/>
+      <Event id="35" label="select.0"/>
+      <Event id="36" label="uncommitted.0" controllable="false"/>
+      <Event id="24" label="query.succ.0" controllable="false"/>
+      <Event id="26" label="purchase.succ.0" controllable="false"/>
+      <Event id="21" label="purchase.fail.0" controllable="false"/>
+    </Events>
+    <States>
+      <State id="0" name="Service(0)[0]" initial="true"/>
+      <State id="1" name="Service(0)[1]"/>
+      <State id="2" name="Service(0)[2]"/>
+      <State id="3" name="Service(0)[3]"/>
+      <State id="4" name="Service(0)[4]"/>
+      <State id="5" name="Service(0)[5]"/>
+      <State id="6" name="Service(0)[6]"/>
+      <State id="7" name="Service(0)[7]"/>
+      <State id="8" name="Service(0)[8]"/>
+      <State id="9" name="Service(0)[9]"/>
+      <State id="10" name="Service(0)[10]"/>
+      <State id="11" name="Service(0)[11]"/>
+      <State id="12" name="Service(0)[12]"/>
+      <State id="13" name="Service(0)[13]"/>
+      <State id="14" name="Service(0)[14]"/>
+      <State id="15" name="Service(0)[15]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="22"/>
+      <Transition source="0" dest="0" event="9"/>
+      <Transition source="0" dest="0" event="2"/>
+      <Transition source="1" dest="15" event="27"/>
+      <Transition source="1" dest="2" event="33"/>
+      <Transition source="2" dest="14" event="31"/>
+      <Transition source="2" dest="11" event="32"/>
+      <Transition source="2" dest="3" event="34"/>
+      <Transition source="3" dest="4" event="24"/>
+      <Transition source="4" dest="8" event="28"/>
+      <Transition source="4" dest="5" event="36"/>
+      <Transition source="5" dest="6" event="20"/>
+      <Transition source="6" dest="0" event="9"/>
+      <Transition source="6" dest="0" event="2"/>
+      <Transition source="6" dest="0" event="23"/>
+      <Transition source="6" dest="7" event="30"/>
+      <Transition source="7" dest="0" event="21"/>
+      <Transition source="7" dest="0" event="26"/>
+      <Transition source="8" dest="9" event="29"/>
+      <Transition source="9" dest="0" event="9"/>
+      <Transition source="9" dest="0" event="2"/>
+      <Transition source="9" dest="0" event="23"/>
+      <Transition source="9" dest="10" event="30"/>
+      <Transition source="10" dest="0" event="26"/>
+      <Transition source="11" dest="12" event="24"/>
+      <Transition source="12" dest="13" event="35"/>
+      <Transition source="13" dest="4" event="35"/>
+      <Transition source="14" dest="13" event="24"/>
+      <Transition source="15" dest="0" event="19"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Agency" type="Plant">
+    <Events>
+      <Event id="37" label="agency.request" controllable="false"/>
+      <Event id="2" label="agency.succ"/>
+      <Event id="3" label="query.1"/>
+      <Event id="22" label="query.0"/>
+      <Event id="9" label="agency.fail"/>
+    </Events>
+    <States>
+      <State id="0" name="Agency[0]" initial="true"/>
+      <State id="1" name="Agency[1]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="37"/>
+      <Transition source="1" dest="1" event="3"/>
+      <Transition source="1" dest="1" event="22"/>
+      <Transition source="1" dest="0" event="9"/>
+      <Transition source="1" dest="0" event="2"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="ServiceMonitor(1)" type="Plant">
+    <Events>
+      <Event id="1" label="query.fail.1" controllable="false"/>
+      <Event id="3" label="query.1"/>
+      <Event id="2" label="agency.succ"/>
+      <Event id="6" label="cancel.1"/>
+      <Event id="16" label="query.succ.1" controllable="false"/>
+      <Event id="17" label="purchase.succ.1" controllable="false"/>
+      <Event id="18" label="purchase.fail.1" controllable="false"/>
+      <Event id="25" label="end" controllable="false"/>
+      <Event id="9" label="agency.fail"/>
+    </Events>
+    <States>
+      <State id="-1" name="ServiceMonitor(1)[-1]"/>
+      <State id="0" name="ServiceMonitor(1)[0]" initial="true"/>
+      <State id="1" name="ServiceMonitor(1)[1]"/>
+      <State id="2" name="ServiceMonitor(1)[2]"/>
+      <State id="3" name="ServiceMonitor(1)[3]"/>
+      <State id="4" name="ServiceMonitor(1)[4]"/>
+      <State id="5" name="ServiceMonitor(1)[5]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="2" event="3"/>
+      <Transition source="0" dest="1" event="9"/>
+      <Transition source="0" dest="-1" event="2"/>
+      <Transition source="1" dest="0" event="25"/>
+      <Transition source="2" dest="5" event="1"/>
+      <Transition source="2" dest="3" event="16"/>
+      <Transition source="2" dest="1" event="9"/>
+      <Transition source="2" dest="-1" event="2"/>
+      <Transition source="3" dest="5" event="6"/>
+      <Transition source="3" dest="4" event="17"/>
+      <Transition source="3" dest="1" event="9"/>
+      <Transition source="3" dest="5" event="18"/>
+      <Transition source="3" dest="-1" event="2"/>
+      <Transition source="4" dest="-1" event="3"/>
+      <Transition source="4" dest="1" event="9"/>
+      <Transition source="4" dest="1" event="2"/>
+      <Transition source="5" dest="-1" event="3"/>
+      <Transition source="5" dest="1" event="9"/>
+      <Transition source="5" dest="-1" event="2"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Goal" type="Specification">
+    <Events>
+      <Event id="37" label="agency.request" controllable="false"/>
+      <Event id="1" label="query.fail.1" controllable="false"/>
+      <Event id="0" label="unavailable.1" controllable="false"/>
+      <Event id="27" label="unavailable.0" controllable="false"/>
+      <Event id="19" label="query.fail.0" controllable="false"/>
+      <Event id="4" label="order.1" controllable="false"/>
+      <Event id="20" label="order.0" controllable="false"/>
+      <Event id="5" label="purchase.1"/>
+      <Event id="28" label="committed.0" controllable="false"/>
+      <Event id="6" label="cancel.1"/>
+      <Event id="7" label="committed.1" controllable="false"/>
+      <Event id="23" label="cancel.0"/>
+      <Event id="30" label="purchase.0"/>
+      <Event id="31" label="steps.0.1" controllable="false"/>
+      <Event id="32" label="steps.0.2" controllable="false"/>
+      <Event id="34" label="steps.0.0" controllable="false"/>
+      <Event id="11" label="steps.1.2" controllable="false"/>
+      <Event id="35" label="select.0"/>
+      <Event id="12" label="steps.1.1" controllable="false"/>
+      <Event id="14" label="steps.1.0" controllable="false"/>
+      <Event id="13" label="select.1"/>
+      <Event id="25" label="end" controllable="false"/>
+      <Event id="3" label="query.1"/>
+      <Event id="2" label="agency.succ"/>
+      <Event id="22" label="query.0"/>
+      <Event id="8" label="reserve.1" controllable="false"/>
+      <Event id="29" label="reserve.0" controllable="false"/>
+      <Event id="9" label="agency.fail"/>
+      <Event id="33" label="available.0" controllable="false"/>
+      <Event id="10" label="available.1" controllable="false"/>
+      <Event id="36" label="uncommitted.0" controllable="false"/>
+      <Event id="15" label="uncommitted.1" controllable="false"/>
+      <Event id="18" label="purchase.fail.1" controllable="false"/>
+      <Event id="17" label="purchase.succ.1" controllable="false"/>
+      <Event id="16" label="query.succ.1" controllable="false"/>
+      <Event id="24" label="query.succ.0" controllable="false"/>
+      <Event id="26" label="purchase.succ.0" controllable="false"/>
+      <Event id="21" label="purchase.fail.0" controllable="false"/>
+    </Events>
+    <States>
+      <State id="0"  name="init" initial="true"/>
+      <State id="1"  name="goal" accepting="true"/>
+      <State id="-1" name="error"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="0" event="37"/>
+      <Transition source="1" dest="0" event="37"/>
+      <Transition source="0" dest="0" event="1"/>
+      <Transition source="1" dest="0" event="1"/>
+      <Transition source="0" dest="0" event="0"/>
+      <Transition source="1" dest="0" event="0"/>
+      <Transition source="0" dest="0" event="27"/>
+      <Transition source="1" dest="0" event="27"/>
+      <Transition source="0" dest="0" event="19"/>
+      <Transition source="1" dest="0" event="19"/>
+      <Transition source="0" dest="0" event="4"/>
+      <Transition source="1" dest="0" event="4"/>
+      <Transition source="0" dest="0" event="20"/>
+      <Transition source="1" dest="0" event="20"/>
+      <Transition source="0" dest="0" event="5"/>
+      <Transition source="1" dest="0" event="5"/>
+      <Transition source="0" dest="0" event="28"/>
+      <Transition source="1" dest="0" event="28"/>
+      <Transition source="0" dest="0" event="6"/>
+      <Transition source="1" dest="0" event="6"/>
+      <Transition source="0" dest="0" event="7"/>
+      <Transition source="1" dest="0" event="7"/>
+      <Transition source="0" dest="0" event="23"/>
+      <Transition source="1" dest="0" event="23"/>
+      <Transition source="0" dest="0" event="30"/>
+      <Transition source="1" dest="0" event="30"/>
+      <Transition source="0" dest="0" event="31"/>
+      <Transition source="1" dest="0" event="31"/>
+      <Transition source="0" dest="0" event="32"/>
+      <Transition source="1" dest="0" event="32"/>
+      <Transition source="0" dest="0" event="34"/>
+      <Transition source="1" dest="0" event="34"/>
+      <Transition source="0" dest="0" event="11"/>
+      <Transition source="1" dest="0" event="11"/>
+      <Transition source="0" dest="0" event="35"/>
+      <Transition source="1" dest="0" event="35"/>
+      <Transition source="0" dest="0" event="12"/>
+      <Transition source="1" dest="0" event="12"/>
+      <Transition source="0" dest="0" event="14"/>
+      <Transition source="1" dest="0" event="14"/>
+      <Transition source="0" dest="0" event="13"/>
+      <Transition source="1" dest="0" event="13"/>
+      <Transition source="0" dest="1" event="25"/>
+      <Transition source="1" dest="1" event="25"/>
+      <Transition source="0" dest="0" event="3"/>
+      <Transition source="1" dest="0" event="3"/>
+      <Transition source="0" dest="0" event="2"/>
+      <Transition source="1" dest="0" event="2"/>
+      <Transition source="0" dest="0" event="22"/>
+      <Transition source="1" dest="0" event="22"/>
+      <Transition source="0" dest="0" event="8"/>
+      <Transition source="1" dest="0" event="8"/>
+      <Transition source="0" dest="0" event="29"/>
+      <Transition source="1" dest="0" event="29"/>
+      <Transition source="0" dest="0" event="9"/>
+      <Transition source="1" dest="0" event="9"/>
+      <Transition source="0" dest="0" event="33"/>
+      <Transition source="1" dest="0" event="33"/>
+      <Transition source="0" dest="0" event="10"/>
+      <Transition source="1" dest="0" event="10"/>
+      <Transition source="0" dest="0" event="36"/>
+      <Transition source="1" dest="0" event="36"/>
+      <Transition source="0" dest="0" event="15"/>
+      <Transition source="1" dest="0" event="15"/>
+      <Transition source="0" dest="0" event="18"/>
+      <Transition source="1" dest="0" event="18"/>
+      <Transition source="0" dest="0" event="17"/>
+      <Transition source="1" dest="0" event="17"/>
+      <Transition source="0" dest="0" event="16"/>
+      <Transition source="1" dest="0" event="16"/>
+      <Transition source="0" dest="0" event="24"/>
+      <Transition source="1" dest="0" event="24"/>
+      <Transition source="0" dest="0" event="26"/>
+      <Transition source="1" dest="0" event="26"/>
+      <Transition source="0" dest="0" event="21"/>
+      <Transition source="1" dest="0" event="21"/>
+    </Transitions>
+  </Automaton>
+</Automata>

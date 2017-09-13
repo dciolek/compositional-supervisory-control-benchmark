@@ -1,0 +1,521 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<Automata name="Environment" major="0" minor="1">
+  <Automaton name="Fork(5)" type="Plant">
+    <Events>
+      <Event id="0" label="release.4.5" controllable="false"/>
+      <Event id="1" label="release.5.5" controllable="false"/>
+      <Event id="2" label="take.5.5"/>
+      <Event id="3" label="take.4.5"/>
+    </Events>
+    <States>
+      <State id="-1" name="Fork(5)[-1]"/>
+      <State id="0" name="Fork(5)[0]" initial="true"/>
+      <State id="1" name="Fork(5)[1]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="3"/>
+      <Transition source="0" dest="1" event="2"/>
+      <Transition source="0" dest="0" event="1"/>
+      <Transition source="0" dest="0" event="0"/>
+      <Transition source="1" dest="-1" event="3"/>
+      <Transition source="1" dest="-1" event="2"/>
+      <Transition source="1" dest="0" event="1"/>
+      <Transition source="1" dest="0" event="0"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Philosopher(0)" type="Plant">
+    <Events>
+      <Event id="4" label="eat.0" controllable="false"/>
+      <Event id="5" label="think.0" controllable="false"/>
+      <Event id="6" label="step.0" controllable="false"/>
+      <Event id="7" label="take.0.0"/>
+      <Event id="8" label="release.0.1" controllable="false"/>
+      <Event id="9" label="release.0.0" controllable="false"/>
+      <Event id="10" label="take.0.1"/>
+      <Event id="11" label="end" controllable="false"/>
+    </Events>
+    <States>
+      <State id="0" name="Philosopher(0)[0]" initial="true"/>
+      <State id="1" name="Philosopher(0)[1]"/>
+      <State id="2" name="Philosopher(0)[2]"/>
+      <State id="3" name="Philosopher(0)[3]"/>
+      <State id="4" name="Philosopher(0)[4]"/>
+      <State id="5" name="Philosopher(0)[5]"/>
+      <State id="6" name="Philosopher(0)[6]"/>
+      <State id="7" name="Philosopher(0)[7]"/>
+      <State id="8" name="Philosopher(0)[8]"/>
+      <State id="9" name="Philosopher(0)[9]"/>
+      <State id="10" name="Philosopher(0)[10]"/>
+      <State id="11" name="Philosopher(0)[11]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="5"/>
+      <Transition source="1" dest="2" event="7"/>
+      <Transition source="2" dest="3" event="6"/>
+      <Transition source="3" dest="4" event="6"/>
+      <Transition source="4" dest="5" event="6"/>
+      <Transition source="5" dest="6" event="6"/>
+      <Transition source="6" dest="7" event="6"/>
+      <Transition source="7" dest="8" event="10"/>
+      <Transition source="8" dest="9" event="4"/>
+      <Transition source="9" dest="10" event="9"/>
+      <Transition source="10" dest="11" event="8"/>
+      <Transition source="11" dest="0" event="11"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Philosopher(5)" type="Plant">
+    <Events>
+      <Event id="12" label="eat.5" controllable="false"/>
+      <Event id="13" label="step.5" controllable="false"/>
+      <Event id="1" label="release.5.5" controllable="false"/>
+      <Event id="2" label="take.5.5"/>
+      <Event id="14" label="take.5.0"/>
+      <Event id="11" label="end" controllable="false"/>
+      <Event id="15" label="think.5" controllable="false"/>
+      <Event id="16" label="release.5.0" controllable="false"/>
+    </Events>
+    <States>
+      <State id="0" name="Philosopher(5)[0]" initial="true"/>
+      <State id="1" name="Philosopher(5)[1]"/>
+      <State id="2" name="Philosopher(5)[2]"/>
+      <State id="3" name="Philosopher(5)[3]"/>
+      <State id="4" name="Philosopher(5)[4]"/>
+      <State id="5" name="Philosopher(5)[5]"/>
+      <State id="6" name="Philosopher(5)[6]"/>
+      <State id="7" name="Philosopher(5)[7]"/>
+      <State id="8" name="Philosopher(5)[8]"/>
+      <State id="9" name="Philosopher(5)[9]"/>
+      <State id="10" name="Philosopher(5)[10]"/>
+      <State id="11" name="Philosopher(5)[11]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="15"/>
+      <Transition source="1" dest="2" event="2"/>
+      <Transition source="2" dest="3" event="13"/>
+      <Transition source="3" dest="4" event="13"/>
+      <Transition source="4" dest="5" event="13"/>
+      <Transition source="5" dest="6" event="13"/>
+      <Transition source="6" dest="7" event="13"/>
+      <Transition source="7" dest="8" event="14"/>
+      <Transition source="8" dest="9" event="12"/>
+      <Transition source="9" dest="10" event="1"/>
+      <Transition source="10" dest="11" event="16"/>
+      <Transition source="11" dest="0" event="11"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Philosopher(1)" type="Plant">
+    <Events>
+      <Event id="17" label="eat.1" controllable="false"/>
+      <Event id="18" label="think.1" controllable="false"/>
+      <Event id="19" label="take.1.2"/>
+      <Event id="20" label="step.1" controllable="false"/>
+      <Event id="21" label="take.1.1"/>
+      <Event id="22" label="release.1.2" controllable="false"/>
+      <Event id="23" label="release.1.1" controllable="false"/>
+      <Event id="11" label="end" controllable="false"/>
+    </Events>
+    <States>
+      <State id="0" name="Philosopher(1)[0]" initial="true"/>
+      <State id="1" name="Philosopher(1)[1]"/>
+      <State id="2" name="Philosopher(1)[2]"/>
+      <State id="3" name="Philosopher(1)[3]"/>
+      <State id="4" name="Philosopher(1)[4]"/>
+      <State id="5" name="Philosopher(1)[5]"/>
+      <State id="6" name="Philosopher(1)[6]"/>
+      <State id="7" name="Philosopher(1)[7]"/>
+      <State id="8" name="Philosopher(1)[8]"/>
+      <State id="9" name="Philosopher(1)[9]"/>
+      <State id="10" name="Philosopher(1)[10]"/>
+      <State id="11" name="Philosopher(1)[11]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="18"/>
+      <Transition source="1" dest="2" event="21"/>
+      <Transition source="2" dest="3" event="20"/>
+      <Transition source="3" dest="4" event="20"/>
+      <Transition source="4" dest="5" event="20"/>
+      <Transition source="5" dest="6" event="20"/>
+      <Transition source="6" dest="7" event="20"/>
+      <Transition source="7" dest="8" event="19"/>
+      <Transition source="8" dest="9" event="17"/>
+      <Transition source="9" dest="10" event="23"/>
+      <Transition source="10" dest="11" event="22"/>
+      <Transition source="11" dest="0" event="11"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Philosopher(2)" type="Plant">
+    <Events>
+      <Event id="24" label="think.2" controllable="false"/>
+      <Event id="25" label="take.2.3"/>
+      <Event id="26" label="release.2.2" controllable="false"/>
+      <Event id="27" label="eat.2" controllable="false"/>
+      <Event id="28" label="step.2" controllable="false"/>
+      <Event id="29" label="take.2.2"/>
+      <Event id="30" label="release.2.3" controllable="false"/>
+      <Event id="11" label="end" controllable="false"/>
+    </Events>
+    <States>
+      <State id="0" name="Philosopher(2)[0]" initial="true"/>
+      <State id="1" name="Philosopher(2)[1]"/>
+      <State id="2" name="Philosopher(2)[2]"/>
+      <State id="3" name="Philosopher(2)[3]"/>
+      <State id="4" name="Philosopher(2)[4]"/>
+      <State id="5" name="Philosopher(2)[5]"/>
+      <State id="6" name="Philosopher(2)[6]"/>
+      <State id="7" name="Philosopher(2)[7]"/>
+      <State id="8" name="Philosopher(2)[8]"/>
+      <State id="9" name="Philosopher(2)[9]"/>
+      <State id="10" name="Philosopher(2)[10]"/>
+      <State id="11" name="Philosopher(2)[11]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="24"/>
+      <Transition source="1" dest="2" event="29"/>
+      <Transition source="2" dest="3" event="28"/>
+      <Transition source="3" dest="4" event="28"/>
+      <Transition source="4" dest="5" event="28"/>
+      <Transition source="5" dest="6" event="28"/>
+      <Transition source="6" dest="7" event="28"/>
+      <Transition source="7" dest="8" event="25"/>
+      <Transition source="8" dest="9" event="27"/>
+      <Transition source="9" dest="10" event="26"/>
+      <Transition source="10" dest="11" event="30"/>
+      <Transition source="11" dest="0" event="11"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Fork(3)" type="Plant">
+    <Events>
+      <Event id="25" label="take.2.3"/>
+      <Event id="31" label="take.3.3"/>
+      <Event id="32" label="release.3.3" controllable="false"/>
+      <Event id="30" label="release.2.3" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="Fork(3)[-1]"/>
+      <State id="0" name="Fork(3)[0]" initial="true"/>
+      <State id="1" name="Fork(3)[1]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="31"/>
+      <Transition source="0" dest="1" event="25"/>
+      <Transition source="0" dest="0" event="32"/>
+      <Transition source="0" dest="0" event="30"/>
+      <Transition source="1" dest="-1" event="31"/>
+      <Transition source="1" dest="-1" event="25"/>
+      <Transition source="1" dest="0" event="32"/>
+      <Transition source="1" dest="0" event="30"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Fork(2)" type="Plant">
+    <Events>
+      <Event id="26" label="release.2.2" controllable="false"/>
+      <Event id="19" label="take.1.2"/>
+      <Event id="22" label="release.1.2" controllable="false"/>
+      <Event id="29" label="take.2.2"/>
+    </Events>
+    <States>
+      <State id="-1" name="Fork(2)[-1]"/>
+      <State id="0" name="Fork(2)[0]" initial="true"/>
+      <State id="1" name="Fork(2)[1]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="0" event="22"/>
+      <Transition source="0" dest="0" event="26"/>
+      <Transition source="0" dest="1" event="29"/>
+      <Transition source="0" dest="1" event="19"/>
+      <Transition source="1" dest="0" event="22"/>
+      <Transition source="1" dest="0" event="26"/>
+      <Transition source="1" dest="-1" event="29"/>
+      <Transition source="1" dest="-1" event="19"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Philosopher(4)" type="Plant">
+    <Events>
+      <Event id="0" label="release.4.5" controllable="false"/>
+      <Event id="33" label="eat.4" controllable="false"/>
+      <Event id="34" label="release.4.4" controllable="false"/>
+      <Event id="35" label="step.4" controllable="false"/>
+      <Event id="36" label="take.4.4"/>
+      <Event id="3" label="take.4.5"/>
+      <Event id="37" label="think.4" controllable="false"/>
+      <Event id="11" label="end" controllable="false"/>
+    </Events>
+    <States>
+      <State id="0" name="Philosopher(4)[0]" initial="true"/>
+      <State id="1" name="Philosopher(4)[1]"/>
+      <State id="2" name="Philosopher(4)[2]"/>
+      <State id="3" name="Philosopher(4)[3]"/>
+      <State id="4" name="Philosopher(4)[4]"/>
+      <State id="5" name="Philosopher(4)[5]"/>
+      <State id="6" name="Philosopher(4)[6]"/>
+      <State id="7" name="Philosopher(4)[7]"/>
+      <State id="8" name="Philosopher(4)[8]"/>
+      <State id="9" name="Philosopher(4)[9]"/>
+      <State id="10" name="Philosopher(4)[10]"/>
+      <State id="11" name="Philosopher(4)[11]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="37"/>
+      <Transition source="1" dest="2" event="36"/>
+      <Transition source="2" dest="3" event="35"/>
+      <Transition source="3" dest="4" event="35"/>
+      <Transition source="4" dest="5" event="35"/>
+      <Transition source="5" dest="6" event="35"/>
+      <Transition source="6" dest="7" event="35"/>
+      <Transition source="7" dest="8" event="3"/>
+      <Transition source="8" dest="9" event="33"/>
+      <Transition source="9" dest="10" event="34"/>
+      <Transition source="10" dest="11" event="0"/>
+      <Transition source="11" dest="0" event="11"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Fork(0)" type="Plant">
+    <Events>
+      <Event id="7" label="take.0.0"/>
+      <Event id="9" label="release.0.0" controllable="false"/>
+      <Event id="14" label="take.5.0"/>
+      <Event id="16" label="release.5.0" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="Fork(0)[-1]"/>
+      <State id="0" name="Fork(0)[0]" initial="true"/>
+      <State id="1" name="Fork(0)[1]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="14"/>
+      <Transition source="0" dest="0" event="9"/>
+      <Transition source="0" dest="1" event="7"/>
+      <Transition source="0" dest="0" event="16"/>
+      <Transition source="1" dest="-1" event="14"/>
+      <Transition source="1" dest="0" event="9"/>
+      <Transition source="1" dest="-1" event="7"/>
+      <Transition source="1" dest="0" event="16"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Fork(1)" type="Plant">
+    <Events>
+      <Event id="21" label="take.1.1"/>
+      <Event id="8" label="release.0.1" controllable="false"/>
+      <Event id="10" label="take.0.1"/>
+      <Event id="23" label="release.1.1" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="Fork(1)[-1]"/>
+      <State id="0" name="Fork(1)[0]" initial="true"/>
+      <State id="1" name="Fork(1)[1]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="0" event="8"/>
+      <Transition source="0" dest="1" event="21"/>
+      <Transition source="0" dest="0" event="23"/>
+      <Transition source="0" dest="1" event="10"/>
+      <Transition source="1" dest="0" event="8"/>
+      <Transition source="1" dest="-1" event="21"/>
+      <Transition source="1" dest="0" event="23"/>
+      <Transition source="1" dest="-1" event="10"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Philosopher(3)" type="Plant">
+    <Events>
+      <Event id="38" label="think.3" controllable="false"/>
+      <Event id="31" label="take.3.3"/>
+      <Event id="39" label="take.3.4"/>
+      <Event id="40" label="eat.3" controllable="false"/>
+      <Event id="32" label="release.3.3" controllable="false"/>
+      <Event id="41" label="step.3" controllable="false"/>
+      <Event id="42" label="release.3.4" controllable="false"/>
+      <Event id="11" label="end" controllable="false"/>
+    </Events>
+    <States>
+      <State id="0" name="Philosopher(3)[0]" initial="true"/>
+      <State id="1" name="Philosopher(3)[1]"/>
+      <State id="2" name="Philosopher(3)[2]"/>
+      <State id="3" name="Philosopher(3)[3]"/>
+      <State id="4" name="Philosopher(3)[4]"/>
+      <State id="5" name="Philosopher(3)[5]"/>
+      <State id="6" name="Philosopher(3)[6]"/>
+      <State id="7" name="Philosopher(3)[7]"/>
+      <State id="8" name="Philosopher(3)[8]"/>
+      <State id="9" name="Philosopher(3)[9]"/>
+      <State id="10" name="Philosopher(3)[10]"/>
+      <State id="11" name="Philosopher(3)[11]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="38"/>
+      <Transition source="1" dest="2" event="31"/>
+      <Transition source="2" dest="3" event="41"/>
+      <Transition source="3" dest="4" event="41"/>
+      <Transition source="4" dest="5" event="41"/>
+      <Transition source="5" dest="6" event="41"/>
+      <Transition source="6" dest="7" event="41"/>
+      <Transition source="7" dest="8" event="39"/>
+      <Transition source="8" dest="9" event="40"/>
+      <Transition source="9" dest="10" event="32"/>
+      <Transition source="10" dest="11" event="42"/>
+      <Transition source="11" dest="0" event="11"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Fork(4)" type="Plant">
+    <Events>
+      <Event id="34" label="release.4.4" controllable="false"/>
+      <Event id="39" label="take.3.4"/>
+      <Event id="36" label="take.4.4"/>
+      <Event id="42" label="release.3.4" controllable="false"/>
+    </Events>
+    <States>
+      <State id="-1" name="Fork(4)[-1]"/>
+      <State id="0" name="Fork(4)[0]" initial="true"/>
+      <State id="1" name="Fork(4)[1]"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="1" event="39"/>
+      <Transition source="0" dest="1" event="36"/>
+      <Transition source="0" dest="0" event="34"/>
+      <Transition source="0" dest="0" event="42"/>
+      <Transition source="1" dest="-1" event="39"/>
+      <Transition source="1" dest="-1" event="36"/>
+      <Transition source="1" dest="0" event="34"/>
+      <Transition source="1" dest="0" event="42"/>
+    </Transitions>
+  </Automaton>
+  <Automaton name="Goal" type="Specification">
+    <Events>
+      <Event id="25" label="take.2.3"/>
+      <Event id="4" label="eat.0" controllable="false"/>
+      <Event id="17" label="eat.1" controllable="false"/>
+      <Event id="33" label="eat.4" controllable="false"/>
+      <Event id="31" label="take.3.3"/>
+      <Event id="12" label="eat.5" controllable="false"/>
+      <Event id="27" label="eat.2" controllable="false"/>
+      <Event id="40" label="eat.3" controllable="false"/>
+      <Event id="39" label="take.3.4"/>
+      <Event id="13" label="step.5" controllable="false"/>
+      <Event id="35" label="step.4" controllable="false"/>
+      <Event id="41" label="step.3" controllable="false"/>
+      <Event id="28" label="step.2" controllable="false"/>
+      <Event id="8" label="release.0.1" controllable="false"/>
+      <Event id="2" label="take.5.5"/>
+      <Event id="9" label="release.0.0" controllable="false"/>
+      <Event id="14" label="take.5.0"/>
+      <Event id="6" label="step.0" controllable="false"/>
+      <Event id="20" label="step.1" controllable="false"/>
+      <Event id="36" label="take.4.4"/>
+      <Event id="7" label="take.0.0"/>
+      <Event id="1" label="release.5.5" controllable="false"/>
+      <Event id="3" label="take.4.5"/>
+      <Event id="10" label="take.0.1"/>
+      <Event id="29" label="take.2.2"/>
+      <Event id="11" label="end" controllable="false"/>
+      <Event id="16" label="release.5.0" controllable="false"/>
+      <Event id="24" label="think.2" controllable="false"/>
+      <Event id="0" label="release.4.5" controllable="false"/>
+      <Event id="38" label="think.3" controllable="false"/>
+      <Event id="5" label="think.0" controllable="false"/>
+      <Event id="18" label="think.1" controllable="false"/>
+      <Event id="19" label="take.1.2"/>
+      <Event id="34" label="release.4.4" controllable="false"/>
+      <Event id="21" label="take.1.1"/>
+      <Event id="32" label="release.3.3" controllable="false"/>
+      <Event id="42" label="release.3.4" controllable="false"/>
+      <Event id="37" label="think.4" controllable="false"/>
+      <Event id="30" label="release.2.3" controllable="false"/>
+      <Event id="15" label="think.5" controllable="false"/>
+      <Event id="26" label="release.2.2" controllable="false"/>
+      <Event id="22" label="release.1.2" controllable="false"/>
+      <Event id="23" label="release.1.1" controllable="false"/>
+    </Events>
+    <States>
+      <State id="0"  name="init" initial="true"/>
+      <State id="1"  name="goal" accepting="true"/>
+      <State id="-1" name="error"/>
+    </States>
+    <Transitions>
+      <Transition source="0" dest="0" event="25"/>
+      <Transition source="1" dest="0" event="25"/>
+      <Transition source="0" dest="0" event="4"/>
+      <Transition source="1" dest="0" event="4"/>
+      <Transition source="0" dest="0" event="17"/>
+      <Transition source="1" dest="0" event="17"/>
+      <Transition source="0" dest="0" event="33"/>
+      <Transition source="1" dest="0" event="33"/>
+      <Transition source="0" dest="0" event="31"/>
+      <Transition source="1" dest="0" event="31"/>
+      <Transition source="0" dest="0" event="12"/>
+      <Transition source="1" dest="0" event="12"/>
+      <Transition source="0" dest="0" event="27"/>
+      <Transition source="1" dest="0" event="27"/>
+      <Transition source="0" dest="0" event="40"/>
+      <Transition source="1" dest="0" event="40"/>
+      <Transition source="0" dest="0" event="39"/>
+      <Transition source="1" dest="0" event="39"/>
+      <Transition source="0" dest="0" event="13"/>
+      <Transition source="1" dest="0" event="13"/>
+      <Transition source="0" dest="0" event="35"/>
+      <Transition source="1" dest="0" event="35"/>
+      <Transition source="0" dest="0" event="41"/>
+      <Transition source="1" dest="0" event="41"/>
+      <Transition source="0" dest="0" event="28"/>
+      <Transition source="1" dest="0" event="28"/>
+      <Transition source="0" dest="0" event="8"/>
+      <Transition source="1" dest="0" event="8"/>
+      <Transition source="0" dest="0" event="2"/>
+      <Transition source="1" dest="0" event="2"/>
+      <Transition source="0" dest="0" event="9"/>
+      <Transition source="1" dest="0" event="9"/>
+      <Transition source="0" dest="0" event="14"/>
+      <Transition source="1" dest="0" event="14"/>
+      <Transition source="0" dest="0" event="6"/>
+      <Transition source="1" dest="0" event="6"/>
+      <Transition source="0" dest="0" event="20"/>
+      <Transition source="1" dest="0" event="20"/>
+      <Transition source="0" dest="0" event="36"/>
+      <Transition source="1" dest="0" event="36"/>
+      <Transition source="0" dest="0" event="7"/>
+      <Transition source="1" dest="0" event="7"/>
+      <Transition source="0" dest="0" event="1"/>
+      <Transition source="1" dest="0" event="1"/>
+      <Transition source="0" dest="0" event="3"/>
+      <Transition source="1" dest="0" event="3"/>
+      <Transition source="0" dest="0" event="10"/>
+      <Transition source="1" dest="0" event="10"/>
+      <Transition source="0" dest="0" event="29"/>
+      <Transition source="1" dest="0" event="29"/>
+      <Transition source="0" dest="1" event="11"/>
+      <Transition source="1" dest="1" event="11"/>
+      <Transition source="0" dest="0" event="16"/>
+      <Transition source="1" dest="0" event="16"/>
+      <Transition source="0" dest="0" event="24"/>
+      <Transition source="1" dest="0" event="24"/>
+      <Transition source="0" dest="0" event="0"/>
+      <Transition source="1" dest="0" event="0"/>
+      <Transition source="0" dest="0" event="38"/>
+      <Transition source="1" dest="0" event="38"/>
+      <Transition source="0" dest="0" event="5"/>
+      <Transition source="1" dest="0" event="5"/>
+      <Transition source="0" dest="0" event="18"/>
+      <Transition source="1" dest="0" event="18"/>
+      <Transition source="0" dest="0" event="19"/>
+      <Transition source="1" dest="0" event="19"/>
+      <Transition source="0" dest="0" event="34"/>
+      <Transition source="1" dest="0" event="34"/>
+      <Transition source="0" dest="0" event="21"/>
+      <Transition source="1" dest="0" event="21"/>
+      <Transition source="0" dest="0" event="32"/>
+      <Transition source="1" dest="0" event="32"/>
+      <Transition source="0" dest="0" event="42"/>
+      <Transition source="1" dest="0" event="42"/>
+      <Transition source="0" dest="0" event="37"/>
+      <Transition source="1" dest="0" event="37"/>
+      <Transition source="0" dest="0" event="30"/>
+      <Transition source="1" dest="0" event="30"/>
+      <Transition source="0" dest="0" event="15"/>
+      <Transition source="1" dest="0" event="15"/>
+      <Transition source="0" dest="0" event="26"/>
+      <Transition source="1" dest="0" event="26"/>
+      <Transition source="0" dest="0" event="22"/>
+      <Transition source="1" dest="0" event="22"/>
+      <Transition source="0" dest="0" event="23"/>
+      <Transition source="1" dest="0" event="23"/>
+    </Transitions>
+  </Automaton>
+</Automata>

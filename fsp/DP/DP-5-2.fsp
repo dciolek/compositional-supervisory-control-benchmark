@@ -1,0 +1,72 @@
+/*****************************************************************************
+
+The classic problem where philosophers sit around a table share one fork with
+each adjacent philosopher. The goal is to control the access to the forks
+avoiding a deadlock and allowing each philosopher to alternate between eating
+and thinking while performing required intermediate etiquette steps.
+
+The problem scales in two directions:
+1- Philosophers: The number of philosophers.
+2- Steps: The number of etiquette steps.
+
+*****************************************************************************/
+
+const N = 5
+const K = 2
+
+const Philosophers = N
+const Steps = K
+
+range Phil = 0..Philosophers-1
+
+def LeftP(p) = p
+def RightP(p) = (p+1) % Philosophers
+
+def LeftF(f) = f == 0 ? Philosophers-1 : f-1
+def RightF(f) = f
+
+/*****************************************************************************/
+
+
+Philosopher(Pid=0) = Idle,
+  Idle = (think[Pid] -> Hungry),
+  Hungry = (take[Pid][LeftP(Pid)] -> Etiquete[Steps]),
+  Etiquete[0] = Ready,
+  Etiquete[s:1..Steps] = (step[Pid] -> Etiquete[s-1]),
+  Ready = (
+    take[Pid][RightP(Pid)] -> eat[Pid] ->
+      release[Pid][LeftP(Pid)] -> release[Pid][RightP(Pid)] -> End),
+  End = (end -> Idle).
+
+
+Fork(Fid=0) = OnTable,
+  OnTable = (
+    take[LeftF(Fid)][Fid]     -> OnHand  |
+    take[RightF(Fid)][Fid]    -> OnHand  |
+    release[LeftF(Fid)][Fid]  -> OnTable |
+    release[RightF(Fid)][Fid] -> OnTable ),
+  OnHand  = (
+    take[LeftF(Fid)][Fid]     -> ERROR   |
+    take[RightF(Fid)][Fid]    -> ERROR   |
+    release[LeftF(Fid)][Fid]  -> OnTable |
+    release[RightF(Fid)][Fid] -> OnTable ).
+
+
+/*****************************************************************************/
+
+||Environment = (forall [p:Phil] (Philosopher(p) || Fork(p))).
+
+set Controllable = {take[Phil][Phil]}
+
+/*****************************************************************************/
+
+fluent F_End = <end, Controllable>
+
+controllerSpec Goal = {
+  liveness = {F_End}
+  reach = {end}
+  controllable = {Controllable}
+}
+
+controller ||Controller = Environment~{Goal}.
+

@@ -1,0 +1,77 @@
+/*****************************************************************************
+
+Cats and mice are placed in oposite ends of a corridor divided in cells. They
+move one cell at a time by turns (first the mice then the cats). The goal is
+to control the mice in order to reach the center of the corridor while
+avoiding sharing a cell with a cat.
+
+The problem scales in two dimensions:
+1- Criters: The number of cats and mice.
+2- Levels: The number of cells in the corridor (2*Levels+1).
+
+*****************************************************************************/
+
+const N = 2
+const K = 3
+
+const Mice = N
+const Cats = N
+const Levels = K
+const Areas = 2*Levels+1
+const Last = Areas-1
+
+def GoalA(a) = a \ 2
+
+const Goal = GoalA(Areas)
+range Area = 0..Areas-1
+
+/*****************************************************************************/
+
+Mouse(Mid=0) = Wait[Areas-1],
+  End = (end -> End),
+  Next[a:Area] = (
+    cat.turn -> Wait[a] |
+    when (a==Goal) end -> End ),
+  Wait[a:Area] = (
+    mouse.turn -> Act[a] ),
+  Act[a:Area] = (
+    when (a+1 <= Last) mouse[Mid].move[a+1] -> Next[a+1] |
+    when (a-1 >= 0   ) mouse[Mid].move[a-1] -> Next[a-1] ).
+
+
+Cat(Cid=0) = Next[0],
+  Next[a:Area] = (
+    mouse.turn -> Wait[a] ),
+  Wait[a:Area] = (
+    cat.turn   -> Act[a] ),
+  Act[a:Area] = (
+    when (a+1 <= Last) cat[Cid].move[a+1] -> Next[a+1] |
+    when (a-1 >= 0)    cat[Cid].move[a-1] -> Next[a-1] ).
+
+
+Monitor = Track[0],
+  Track[c:Area] = (
+    cat[0..Cats-1].move[a:Area]   -> if (a>=c) then Track[a] else Track[c] |
+    mouse[0..Mice-1].move[a:Area] -> if (a==c) then ERROR    else Track[c] ).
+
+
+/*****************************************************************************/
+
+||Environment = (
+  Monitor || forall [m:0..Mice-1] Mouse(m) || forall [c:0..Cats-1] Cat(c)).
+
+set Controllable = {mouse[0..Mice-1].move[Area], cat.turn, mouse.turn}
+
+
+/*****************************************************************************/
+
+fluent F_End = <end, Controllable>
+
+controllerSpec Goal = {
+  liveness = {F_End}
+  reach = {end}
+  controllable = {Controllable}
+}
+
+controller ||Controller = Environment~{Goal}.
+

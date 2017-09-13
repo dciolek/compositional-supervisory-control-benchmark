@@ -1,0 +1,84 @@
+/******************************************************************************
+
+An engineering company evaluates projects in order to decide which ones to
+bid for. For this a document describing the project needs to be accepted by
+the company's engineering teams. If all the teams accept it, the document is
+approved. It is discarded if all teams reject it.
+
+There is a need for a workflow that can cope with the requests. We synthesize
+a controller that acts as an enforcer for an emerging workflow that guarantees:
+  a- A document can be reassigned to a team that has rejected it.
+  b- A document cannot be reassigned to a team that has already accepted it.
+  c- Only when a team rejects it after (all possible) re-evaluation can the
+     document be rejected without consensus.
+
+The case study can be scale in two directions:
+1- Teams: The number of engineering teams.
+2- Steps: The (maximum) number of evaluation steps a team can perform.
+
+******************************************************************************/
+
+const N = 3
+const K = 2
+
+const Teams  = N
+const Steps  = K
+
+range Team   = 0..(Teams-1)
+range Step   = 1..Steps
+
+/*****************************************************************************/
+
+
+Crew(Tid=0) = Pending,
+  Pending = (
+    {approve,refuse} -> ERROR  |
+    assign[Tid] -> Assigned[1] ),
+  Assigned[s:Step] = (
+    reject[Tid][s] -> Rejected[s] |
+    accept[Tid]    -> Accepted    ),
+  Rejected[s:Step] = (
+    refuse  -> Ready |
+    approve -> ERROR |
+    assign[Tid] -> if (s < Steps) then Assigned[s+1] else ERROR ),
+  Accepted = (
+    {approve,refuse} -> Ready |
+    assign[Tid] -> ERROR ),
+  Ready = (end -> Crew).
+
+
+Document = Count[0],
+  Count[c:0..Teams-1] = (
+    reject[Team][Steps] -> Rejected |
+    accept[Team] -> Count[c+1] |
+    approve -> ERROR |
+    refuse -> if (c==0) then Ready else ERROR ),
+  Count[Teams] = (
+    {accept[Team],reject[Team][Steps]} -> Count[Teams] |
+    approve -> Ready |
+    refuse  -> ERROR ),
+  Rejected = (
+    {accept[Team],reject[Team][Steps]} -> Rejected |
+    approve -> ERROR |
+    refuse  -> Ready ),
+  Ready = (end -> Document).
+
+
+/*****************************************************************************/
+
+||Environment = (Document || forall [t:Team] Crew(t)).
+
+set Controllable = {assign[Team], refuse, approve}
+
+/*****************************************************************************/
+
+fluent F_End = <end, Controllable>
+
+controllerSpec Goal = {
+  liveness = {F_End}
+  reach = {end}
+  controllable = {Controllable}
+}
+
+controller ||Controller = Environment~{Goal}.
+

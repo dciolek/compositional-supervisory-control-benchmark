@@ -1,0 +1,79 @@
+/******************************************************************************
+
+The Transfer Line (TL), first introduced by Wonham, is one of the most
+traditional examples in controller synthesis.
+
+The TL consists of series of machines M(1), M(2), ... , M(n) connected by
+buffers B(1), B(2), ... , B(n) and ending in a special machine called Test Unit
+(TU). A machine M(i) takes work pieces from the buffer B(i−1) (with the
+exception of machine M(1) that takes the work pieces from the outside). After
+an undetermined amount of time, the working machine M(i) outputs a processed
+work piece through buffer B(i). Finally, when a work piece reaches the TU it
+can be accepted and taken out of the system or it can be rejected and placed
+back in buffer B(1) for reprocessing.
+
+The only controllable events in this case study are the taking of work pieces.
+An error ensues if a machine tries to take a work piece from an empty buffer or
+if it tries to place a processed work piece in a full buffer. One of the goals
+for the controller is to avoid the events that lead to errors, the other goal
+is to reach a state where a processed work piece can be accepted or rejected.
+We do not require the controller to achieve accepted pieces as acceptance and
+rejection are not decided by the controller.
+
+The case study can be scaled in three directions:
+1- Machines: number of interconnected machines.
+2- Capacity: maximum number of work pieces a machine can process
+             simultaneously and space of the buffers.
+
+******************************************************************************/
+
+const N = 3
+const K = 5
+
+const Machines = N
+const Workload = K
+const Capacity = Workload
+
+/*****************************************************************************/
+
+Machine(Id=0) = Working[0],
+  Working[wl:0..Workload] =
+    (when (wl < Workload) get[Id]   -> Working[wl+1] |
+     when (wl > 0)        put[Id+1] -> Working[wl-1] ).
+
+
+TU = Idle,
+  Idle    = (get[Machines] -> Testing),
+  Testing = (return[1] -> reject -> End | accept -> End),
+  End     = (end -> TU)
+            +{return[0..Machines]}.
+
+
+Buffer(Id=0) = Operative[0],
+  Operative[c:0..Capacity] = (
+    when (c > 0)         get[Id]    -> Operative[c-1] |
+    when (c == 0)        get[Id]    -> ERROR          |
+    when (c < Capacity)  put[Id]    -> Operative[c+1] |
+    when (c == Capacity) put[Id]    -> ERROR          |
+    when (c < Capacity)  return[Id] -> Operative[c+1] |
+    when (c == Capacity) return[Id] -> ERROR          ).
+
+
+/*****************************************************************************/
+
+||Environment = (forall [m:0..Machines-1] (Machine(m) || Buffer(m+1)) || TU).
+
+set Controllable = {get[0..Machines]}
+
+/*****************************************************************************/
+
+fluent F_End = <end,Controllable>
+
+controllerSpec Goal = {
+  liveness = {F_End}
+  reach = {end}
+  controllable = {Controllable}
+}
+
+controller ||Controller = Environment~{Goal}.
+
