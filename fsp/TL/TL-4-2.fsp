@@ -21,9 +21,9 @@ We do not require the controller to achieve accepted pieces as acceptance and
 rejection are not decided by the controller.
 
 The case study can be scaled in three directions:
-1- Machines: number of interconnected machines.
-2- Capacity: maximum number of work pieces a machine can process
-             simultaneously and space of the buffers.
+1- N: number of interconnected machines.
+2- K: maximum number of work pieces a machine can process simultaneously and
+      and space of the buffers.
 
 ******************************************************************************/
 
@@ -44,8 +44,8 @@ Machine(Id=0) = Working[0],
 
 TU = Idle,
   Idle    = (get[Machines] -> Testing),
-  Testing = (return[1] -> reject -> End | accept -> End),
-  End     = (end -> TU)
+  Testing = (return[1] -> reject -> TU |
+             accept -> TU)
             +{return[0..Machines]}.
 
 
@@ -61,19 +61,15 @@ Buffer(Id=0) = Operative[0],
 
 /*****************************************************************************/
 
-||Environment = (forall [m:0..Machines-1] (Machine(m) || Buffer(m+1)) || TU).
-
-set Controllable = {get[0..Machines]}
-
-/*****************************************************************************/
-
-fluent F_End = <end,Controllable>
+||Plant = (forall [m:0..Machines-1] (Machine(m) || Buffer(m+1)) || TU).
 
 controllerSpec Goal = {
-  liveness = {F_End}
-  reach = {end}
-  controllable = {Controllable}
+  controllable = {get[0..Machines]}
+  marking = {accept,reject}
+  nonblocking
 }
 
-controller ||Controller = Environment~{Goal}.
+controller ||MonolithicController = Plant~{Goal}.
+
+heuristic ||DirectedController = Plant~{Goal}.
 

@@ -27,10 +27,12 @@ range Height = 0..(Heights-1)
 
 
 Airplane(P=0) = (
-    requestLand[P] -> descend[P][h:Height] -> Holding[h] ),
+    requestLand[P] -> descend[P][h:Height] -> Holding[h] |
+    extendFlight[P] -> End),
   Holding[h:Height] =
     if (h>0) then (descend[P][h-1] -> Holding[h-1])
-             else (approach[P] -> land[P] -> end -> Airplane).
+             else (approach[P] -> land[P] -> End),
+  End = (control.all -> Airplane).
 
 
 HeightMonitor(H=0) = Empty,
@@ -40,6 +42,7 @@ HeightMonitor(H=0) = Empty,
   Occupied[p:Plane] = (
     foreach [o:Plane]
       when (p != o) descend[o][H] -> air.crash[H] -> ERROR |
+      when (p != o && H>0) descend[o][H-1] -> Occupied[p]  |
       when (p == o && H>0) descend[p][H-1] -> Empty |
       when (p == o && H==0) land[Plane]    -> Empty ).
 
@@ -54,27 +57,23 @@ RampMonitor(R=0) = Empty,
 
 ResponseMonitor = (
   requestLand[p:Plane] -> descend[p][Height] -> ResponseMonitor |
-  {descend[Plane][Height], approach[Plane]}  -> ResponseMonitor ).
+  {extendFlight[Plane],descend[Plane][Height], approach[Plane]}  -> ResponseMonitor ).
 
 
 /*****************************************************************************/
 
-||Environment = (
+||Plant = (
   ResponseMonitor || RampMonitor ||
   forall [h:Height] HeightMonitor(h) ||
   forall [p:Plane]  Airplane(p) ).
 
-set Controllable = {descend[Plane][Height], approach[Plane]}
-
-/*****************************************************************************/
-
-fluent F_End = <end, Controllable>
-
 controllerSpec Goal = {
-  liveness = {F_End}
-  reach = {end}
-  controllable = {Controllable}
+  controllable = {descend[Plane][Height], approach[Plane]}
+  marking = {control.all}
+  nonblocking
 }
 
-controller ||Controller = Environment~{Goal}.
+controller ||MonolithicController = Plant~{Goal}.
+
+heuristic ||DirectedController = Plant~{Goal}.
 

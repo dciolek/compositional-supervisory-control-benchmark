@@ -1,6 +1,6 @@
 (define
   (problem Goal)
-  (:domain Controller)
+  (:domain DirectedController)
   (:init
     (at $0 $Document)
     (at $0 $Crew-3)

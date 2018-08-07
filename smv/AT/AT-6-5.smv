@@ -1,0 +1,3018 @@
+MODULE main
+DOMAINNAME DirectedController
+PROBLEMNAME Goal
+IVAR
+  action: {
+    "(choose)",
+    "(default)",
+    "(approach_1)",
+    "(approach_0)",
+    "(approach_5)",
+    "(approach_4)",
+    "(approach_3)",
+    "(approach_2)",
+    "(descend_5_2)",
+    "(descend_5_1)",
+    "(descend_5_4)",
+    "(descend_4_0)",
+    "(descend_5_3)",
+    "(descend_4_1)",
+    "(descend_4_2)",
+    "(descend_4_3)",
+    "(descend_5_0)",
+    "(descend_4_4)",
+    "(control_all)",
+    "(land_5)",
+    "(land_3)",
+    "(land_4)",
+    "(air_crash_0)",
+    "(air_crash_2)",
+    "(air_crash_1)",
+    "(land_2)",
+    "(land_1)",
+    "(land_0)",
+    "(air_crash_4)",
+    "(air_crash_3)",
+    "(descend_0_2)",
+    "(descend_0_3)",
+    "(descend_0_4)",
+    "(descend_1_2)",
+    "(requestLand_5)",
+    "(requestLand_4)",
+    "(descend_1_1)",
+    "(descend_1_4)",
+    "(descend_1_3)",
+    "(land_crash)",
+    "(extendFlight_2)",
+    "(extendFlight_3)",
+    "(extendFlight_0)",
+    "(extendFlight_1)",
+    "(extendFlight_5)",
+    "(extendFlight_4)",
+    "(descend_2_1)",
+    "(descend_2_0)",
+    "(descend_2_3)",
+    "(descend_2_2)",
+    "(descend_1_0)",
+    "(descend_2_4)",
+    "(descend_0_1)",
+    "(descend_0_0)",
+    "(descend_3_1)",
+    "(descend_3_2)",
+    "(descend_3_0)",
+    "(descend_3_3)",
+    "(descend_3_4)",
+    "(requestLand_2)",
+    "(requestLand_3)",
+    "(requestLand_0)",
+    "(requestLand_1)"
+  };
+VAR
+  "(at HeightMonitor_1)":-1..37;
+  "(at Airplane_4)":-1..8;
+  "(at Airplane_5)":-1..8;
+  "(at Airplane_2)":-1..8;
+  "(at Airplane_1)":-1..8;
+  "(at HeightMonitor_2)":-1..37;
+  "(at Airplane_3)":-1..8;
+  "(at HeightMonitor_0)":-1..37;
+  "(at HeightMonitor_4)":-1..37;
+  "(at ResponseMonitor)":-1..6;
+  "(at RampMonitor)":-1..8;
+  "(at HeightMonitor_3)":-1..37;
+  "(at Airplane_0)":-1..8;
+  "(inprogress control_all)":0..1;
+  "(inprogress requestLand_5)":0..1;
+  "(inprogress requestLand_4)":0..1;
+  "(inprogress land_5)":0..1;
+  "(inprogress land_crash)":0..1;
+  "(inprogress land_3)":0..1;
+  "(inprogress land_4)":0..1;
+  "(inprogress extendFlight_2)":0..1;
+  "(inprogress extendFlight_3)":0..1;
+  "(inprogress extendFlight_0)":0..1;
+  "(inprogress extendFlight_1)":0..1;
+  "(inprogress air_crash_0)":0..1;
+  "(inprogress extendFlight_5)":0..1;
+  "(inprogress air_crash_2)":0..1;
+  "(inprogress extendFlight_4)":0..1;
+  "(inprogress air_crash_1)":0..1;
+  "(inprogress land_2)":0..1;
+  "(inprogress land_1)":0..1;
+  "(inprogress land_0)":0..1;
+  "(inprogress requestLand_2)":0..1;
+  "(inprogress requestLand_3)":0..1;
+  "(inprogress requestLand_0)":0..1;
+  "(inprogress requestLand_1)":0..1;
+  "(inprogress air_crash_4)":0..1;
+  "(inprogress air_crash_3)":0..1;
+  "(status)":-1..2;
+INIT (
+  "(inprogress extendFlight_3)"=0 &
+  "(inprogress land_crash)"=0 &
+  "(at Airplane_1)"=0 &
+  "(at Airplane_4)"=0 &
+  "(inprogress land_2)"=0 &
+  "(at Airplane_0)"=0 &
+  "(status)"=0 &
+  "(inprogress extendFlight_2)"=0 &
+  "(inprogress air_crash_3)"=0 &
+  "(inprogress requestLand_1)"=0 &
+  "(inprogress air_crash_2)"=0 &
+  "(inprogress requestLand_2)"=0 &
+  "(at ResponseMonitor)"=0 &
+  "(at Airplane_5)"=0 &
+  "(inprogress land_5)"=0 &
+  "(inprogress requestLand_3)"=0 &
+  "(at HeightMonitor_0)"=0 &
+  "(inprogress requestLand_5)"=0 &
+  "(inprogress air_crash_4)"=0 &
+  "(inprogress requestLand_0)"=0 &
+  "(inprogress extendFlight_4)"=0 &
+  "(inprogress land_4)"=0 &
+  "(inprogress air_crash_0)"=0 &
+  "(at HeightMonitor_4)"=0 &
+  "(inprogress extendFlight_0)"=0 &
+  "(at HeightMonitor_3)"=0 &
+  "(inprogress requestLand_4)"=0 &
+  "(inprogress extendFlight_1)"=0 &
+  "(inprogress extendFlight_5)"=0 &
+  "(at HeightMonitor_2)"=0 &
+  "(inprogress air_crash_1)"=0 &
+  "(at HeightMonitor_1)"=0 &
+  "(inprogress land_0)"=0 &
+  "(at Airplane_3)"=0 &
+  "(inprogress control_all)"=0 &
+  "(at Airplane_2)"=0 &
+  "(inprogress land_1)"=0 &
+  "(at RampMonitor)"=0 &
+  "(inprogress land_3)"=0 
+)
+DEFINE
+  "(@def ready approach_1 HeightMonitor_1)":=(FALSE);
+  "(@def ready approach_1 Airplane_4)":=(FALSE);
+  "(@def ready approach_1 Airplane_5)":=(FALSE);
+  "(@def ready approach_1 Airplane_2)":=(FALSE);
+  "(@def ready approach_1 Airplane_1)":=("(at Airplane_1)"=3);
+  "(@def ready approach_1 HeightMonitor_2)":=(FALSE);
+  "(@def ready approach_1 Airplane_3)":=(FALSE);
+  "(@def ready approach_1 HeightMonitor_0)":=(FALSE);
+  "(@def ready approach_1 HeightMonitor_4)":=(FALSE);
+  "(@def ready approach_1 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready approach_1 RampMonitor)":=("(at RampMonitor)"=0 | "(at RampMonitor)"=1);
+  "(@def ready approach_1 HeightMonitor_3)":=(FALSE);
+  "(@def ready approach_1 Airplane_0)":=(FALSE);
+  "(@def ready approach_0 HeightMonitor_1)":=(FALSE);
+  "(@def ready approach_0 Airplane_4)":=(FALSE);
+  "(@def ready approach_0 Airplane_5)":=(FALSE);
+  "(@def ready approach_0 Airplane_2)":=(FALSE);
+  "(@def ready approach_0 Airplane_1)":=(FALSE);
+  "(@def ready approach_0 HeightMonitor_2)":=(FALSE);
+  "(@def ready approach_0 Airplane_3)":=(FALSE);
+  "(@def ready approach_0 HeightMonitor_0)":=(FALSE);
+  "(@def ready approach_0 HeightMonitor_4)":=(FALSE);
+  "(@def ready approach_0 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready approach_0 RampMonitor)":=("(at RampMonitor)"=0 | "(at RampMonitor)"=1);
+  "(@def ready approach_0 HeightMonitor_3)":=(FALSE);
+  "(@def ready approach_0 Airplane_0)":=("(at Airplane_0)"=3);
+  "(@def ready approach_5 HeightMonitor_1)":=(FALSE);
+  "(@def ready approach_5 Airplane_4)":=(FALSE);
+  "(@def ready approach_5 Airplane_5)":=("(at Airplane_5)"=2);
+  "(@def ready approach_5 Airplane_2)":=(FALSE);
+  "(@def ready approach_5 Airplane_1)":=(FALSE);
+  "(@def ready approach_5 HeightMonitor_2)":=(FALSE);
+  "(@def ready approach_5 Airplane_3)":=(FALSE);
+  "(@def ready approach_5 HeightMonitor_0)":=(FALSE);
+  "(@def ready approach_5 HeightMonitor_4)":=(FALSE);
+  "(@def ready approach_5 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready approach_5 RampMonitor)":=("(at RampMonitor)"=0 | "(at RampMonitor)"=1);
+  "(@def ready approach_5 HeightMonitor_3)":=(FALSE);
+  "(@def ready approach_5 Airplane_0)":=(FALSE);
+  "(@def ready approach_4 HeightMonitor_1)":=(FALSE);
+  "(@def ready approach_4 Airplane_4)":=("(at Airplane_4)"=6);
+  "(@def ready approach_4 Airplane_5)":=(FALSE);
+  "(@def ready approach_4 Airplane_2)":=(FALSE);
+  "(@def ready approach_4 Airplane_1)":=(FALSE);
+  "(@def ready approach_4 HeightMonitor_2)":=(FALSE);
+  "(@def ready approach_4 Airplane_3)":=(FALSE);
+  "(@def ready approach_4 HeightMonitor_0)":=(FALSE);
+  "(@def ready approach_4 HeightMonitor_4)":=(FALSE);
+  "(@def ready approach_4 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready approach_4 RampMonitor)":=("(at RampMonitor)"=0 | "(at RampMonitor)"=1);
+  "(@def ready approach_4 HeightMonitor_3)":=(FALSE);
+  "(@def ready approach_4 Airplane_0)":=(FALSE);
+  "(@def ready approach_3 HeightMonitor_1)":=(FALSE);
+  "(@def ready approach_3 Airplane_4)":=(FALSE);
+  "(@def ready approach_3 Airplane_5)":=(FALSE);
+  "(@def ready approach_3 Airplane_2)":=(FALSE);
+  "(@def ready approach_3 Airplane_1)":=(FALSE);
+  "(@def ready approach_3 HeightMonitor_2)":=(FALSE);
+  "(@def ready approach_3 Airplane_3)":=("(at Airplane_3)"=7);
+  "(@def ready approach_3 HeightMonitor_0)":=(FALSE);
+  "(@def ready approach_3 HeightMonitor_4)":=(FALSE);
+  "(@def ready approach_3 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready approach_3 RampMonitor)":=("(at RampMonitor)"=0 | "(at RampMonitor)"=1);
+  "(@def ready approach_3 HeightMonitor_3)":=(FALSE);
+  "(@def ready approach_3 Airplane_0)":=(FALSE);
+  "(@def ready approach_2 HeightMonitor_1)":=(FALSE);
+  "(@def ready approach_2 Airplane_4)":=(FALSE);
+  "(@def ready approach_2 Airplane_5)":=(FALSE);
+  "(@def ready approach_2 Airplane_2)":=("(at Airplane_2)"=7);
+  "(@def ready approach_2 Airplane_1)":=(FALSE);
+  "(@def ready approach_2 HeightMonitor_2)":=(FALSE);
+  "(@def ready approach_2 Airplane_3)":=(FALSE);
+  "(@def ready approach_2 HeightMonitor_0)":=(FALSE);
+  "(@def ready approach_2 HeightMonitor_4)":=(FALSE);
+  "(@def ready approach_2 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready approach_2 RampMonitor)":=("(at RampMonitor)"=0 | "(at RampMonitor)"=1);
+  "(@def ready approach_2 HeightMonitor_3)":=(FALSE);
+  "(@def ready approach_2 Airplane_0)":=(FALSE);
+  "(@def ready descend_5_2 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_5_2 Airplane_4)":=(FALSE);
+  "(@def ready descend_5_2 Airplane_5)":=("(at Airplane_5)"=1 | "(at Airplane_5)"=5);
+  "(@def ready descend_5_2 Airplane_2)":=(FALSE);
+  "(@def ready descend_5_2 Airplane_1)":=(FALSE);
+  "(@def ready descend_5_2 HeightMonitor_2)":=("(at HeightMonitor_2)"=0 | "(at HeightMonitor_2)"=1 | "(at HeightMonitor_2)"=7 | "(at HeightMonitor_2)"=13 | "(at HeightMonitor_2)"=25 | "(at HeightMonitor_2)"=31);
+  "(@def ready descend_5_2 Airplane_3)":=(FALSE);
+  "(@def ready descend_5_2 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_5_2 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_5_2 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=6);
+  "(@def ready descend_5_2 RampMonitor)":=(FALSE);
+  "(@def ready descend_5_2 HeightMonitor_3)":=("(at HeightMonitor_3)"=0 | "(at HeightMonitor_3)"=1 | "(at HeightMonitor_3)"=7 | "(at HeightMonitor_3)"=13 | "(at HeightMonitor_3)"=19 | "(at HeightMonitor_3)"=25 | "(at HeightMonitor_3)"=31);
+  "(@def ready descend_5_2 Airplane_0)":=(FALSE);
+  "(@def ready descend_5_1 HeightMonitor_1)":=("(at HeightMonitor_1)"=0 | "(at HeightMonitor_1)"=1 | "(at HeightMonitor_1)"=7 | "(at HeightMonitor_1)"=19 | "(at HeightMonitor_1)"=25 | "(at HeightMonitor_1)"=31);
+  "(@def ready descend_5_1 Airplane_4)":=(FALSE);
+  "(@def ready descend_5_1 Airplane_5)":=("(at Airplane_5)"=1 | "(at Airplane_5)"=6);
+  "(@def ready descend_5_1 Airplane_2)":=(FALSE);
+  "(@def ready descend_5_1 Airplane_1)":=(FALSE);
+  "(@def ready descend_5_1 HeightMonitor_2)":=("(at HeightMonitor_2)"=0 | "(at HeightMonitor_2)"=1 | "(at HeightMonitor_2)"=7 | "(at HeightMonitor_2)"=13 | "(at HeightMonitor_2)"=19 | "(at HeightMonitor_2)"=25 | "(at HeightMonitor_2)"=31);
+  "(@def ready descend_5_1 Airplane_3)":=(FALSE);
+  "(@def ready descend_5_1 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_5_1 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_5_1 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=6);
+  "(@def ready descend_5_1 RampMonitor)":=(FALSE);
+  "(@def ready descend_5_1 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_5_1 Airplane_0)":=(FALSE);
+  "(@def ready descend_5_4 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_5_4 Airplane_4)":=(FALSE);
+  "(@def ready descend_5_4 Airplane_5)":=("(at Airplane_5)"=1);
+  "(@def ready descend_5_4 Airplane_2)":=(FALSE);
+  "(@def ready descend_5_4 Airplane_1)":=(FALSE);
+  "(@def ready descend_5_4 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_5_4 Airplane_3)":=(FALSE);
+  "(@def ready descend_5_4 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_5_4 HeightMonitor_4)":=("(at HeightMonitor_4)"=0 | "(at HeightMonitor_4)"=1 | "(at HeightMonitor_4)"=7 | "(at HeightMonitor_4)"=13 | "(at HeightMonitor_4)"=25 | "(at HeightMonitor_4)"=31);
+  "(@def ready descend_5_4 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=6);
+  "(@def ready descend_5_4 RampMonitor)":=(FALSE);
+  "(@def ready descend_5_4 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_5_4 Airplane_0)":=(FALSE);
+  "(@def ready descend_4_0 HeightMonitor_1)":=("(at HeightMonitor_1)"=0 | "(at HeightMonitor_1)"=1 | "(at HeightMonitor_1)"=7 | "(at HeightMonitor_1)"=13 | "(at HeightMonitor_1)"=19 | "(at HeightMonitor_1)"=25 | "(at HeightMonitor_1)"=31);
+  "(@def ready descend_4_0 Airplane_4)":=("(at Airplane_4)"=1 | "(at Airplane_4)"=5);
+  "(@def ready descend_4_0 Airplane_5)":=(FALSE);
+  "(@def ready descend_4_0 Airplane_2)":=(FALSE);
+  "(@def ready descend_4_0 Airplane_1)":=(FALSE);
+  "(@def ready descend_4_0 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_4_0 Airplane_3)":=(FALSE);
+  "(@def ready descend_4_0 HeightMonitor_0)":=("(at HeightMonitor_0)"=0 | "(at HeightMonitor_0)"=1 | "(at HeightMonitor_0)"=7 | "(at HeightMonitor_0)"=13 | "(at HeightMonitor_0)"=19 | "(at HeightMonitor_0)"=31);
+  "(@def ready descend_4_0 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_4_0 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=5);
+  "(@def ready descend_4_0 RampMonitor)":=(FALSE);
+  "(@def ready descend_4_0 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_4_0 Airplane_0)":=(FALSE);
+  "(@def ready descend_5_3 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_5_3 Airplane_4)":=(FALSE);
+  "(@def ready descend_5_3 Airplane_5)":=("(at Airplane_5)"=1 | "(at Airplane_5)"=8);
+  "(@def ready descend_5_3 Airplane_2)":=(FALSE);
+  "(@def ready descend_5_3 Airplane_1)":=(FALSE);
+  "(@def ready descend_5_3 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_5_3 Airplane_3)":=(FALSE);
+  "(@def ready descend_5_3 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_5_3 HeightMonitor_4)":=("(at HeightMonitor_4)"=0 | "(at HeightMonitor_4)"=1 | "(at HeightMonitor_4)"=7 | "(at HeightMonitor_4)"=13 | "(at HeightMonitor_4)"=19 | "(at HeightMonitor_4)"=25 | "(at HeightMonitor_4)"=31);
+  "(@def ready descend_5_3 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=6);
+  "(@def ready descend_5_3 RampMonitor)":=(FALSE);
+  "(@def ready descend_5_3 HeightMonitor_3)":=("(at HeightMonitor_3)"=0 | "(at HeightMonitor_3)"=1 | "(at HeightMonitor_3)"=7 | "(at HeightMonitor_3)"=13 | "(at HeightMonitor_3)"=25 | "(at HeightMonitor_3)"=31);
+  "(@def ready descend_5_3 Airplane_0)":=(FALSE);
+  "(@def ready descend_4_1 HeightMonitor_1)":=("(at HeightMonitor_1)"=0 | "(at HeightMonitor_1)"=1 | "(at HeightMonitor_1)"=13 | "(at HeightMonitor_1)"=19 | "(at HeightMonitor_1)"=25 | "(at HeightMonitor_1)"=31);
+  "(@def ready descend_4_1 Airplane_4)":=("(at Airplane_4)"=1 | "(at Airplane_4)"=4);
+  "(@def ready descend_4_1 Airplane_5)":=(FALSE);
+  "(@def ready descend_4_1 Airplane_2)":=(FALSE);
+  "(@def ready descend_4_1 Airplane_1)":=(FALSE);
+  "(@def ready descend_4_1 HeightMonitor_2)":=("(at HeightMonitor_2)"=0 | "(at HeightMonitor_2)"=1 | "(at HeightMonitor_2)"=7 | "(at HeightMonitor_2)"=13 | "(at HeightMonitor_2)"=19 | "(at HeightMonitor_2)"=25 | "(at HeightMonitor_2)"=31);
+  "(@def ready descend_4_1 Airplane_3)":=(FALSE);
+  "(@def ready descend_4_1 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_4_1 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_4_1 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=5);
+  "(@def ready descend_4_1 RampMonitor)":=(FALSE);
+  "(@def ready descend_4_1 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_4_1 Airplane_0)":=(FALSE);
+  "(@def ready descend_4_2 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_4_2 Airplane_4)":=("(at Airplane_4)"=1 | "(at Airplane_4)"=3);
+  "(@def ready descend_4_2 Airplane_5)":=(FALSE);
+  "(@def ready descend_4_2 Airplane_2)":=(FALSE);
+  "(@def ready descend_4_2 Airplane_1)":=(FALSE);
+  "(@def ready descend_4_2 HeightMonitor_2)":=("(at HeightMonitor_2)"=0 | "(at HeightMonitor_2)"=7 | "(at HeightMonitor_2)"=13 | "(at HeightMonitor_2)"=19 | "(at HeightMonitor_2)"=25 | "(at HeightMonitor_2)"=31);
+  "(@def ready descend_4_2 Airplane_3)":=(FALSE);
+  "(@def ready descend_4_2 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_4_2 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_4_2 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=5);
+  "(@def ready descend_4_2 RampMonitor)":=(FALSE);
+  "(@def ready descend_4_2 HeightMonitor_3)":=("(at HeightMonitor_3)"=0 | "(at HeightMonitor_3)"=1 | "(at HeightMonitor_3)"=7 | "(at HeightMonitor_3)"=13 | "(at HeightMonitor_3)"=19 | "(at HeightMonitor_3)"=25 | "(at HeightMonitor_3)"=31);
+  "(@def ready descend_4_2 Airplane_0)":=(FALSE);
+  "(@def ready descend_4_3 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_4_3 Airplane_4)":=("(at Airplane_4)"=1 | "(at Airplane_4)"=2);
+  "(@def ready descend_4_3 Airplane_5)":=(FALSE);
+  "(@def ready descend_4_3 Airplane_2)":=(FALSE);
+  "(@def ready descend_4_3 Airplane_1)":=(FALSE);
+  "(@def ready descend_4_3 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_4_3 Airplane_3)":=(FALSE);
+  "(@def ready descend_4_3 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_4_3 HeightMonitor_4)":=("(at HeightMonitor_4)"=0 | "(at HeightMonitor_4)"=1 | "(at HeightMonitor_4)"=7 | "(at HeightMonitor_4)"=13 | "(at HeightMonitor_4)"=19 | "(at HeightMonitor_4)"=25 | "(at HeightMonitor_4)"=31);
+  "(@def ready descend_4_3 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=5);
+  "(@def ready descend_4_3 RampMonitor)":=(FALSE);
+  "(@def ready descend_4_3 HeightMonitor_3)":=("(at HeightMonitor_3)"=0 | "(at HeightMonitor_3)"=1 | "(at HeightMonitor_3)"=7 | "(at HeightMonitor_3)"=19 | "(at HeightMonitor_3)"=25 | "(at HeightMonitor_3)"=31);
+  "(@def ready descend_4_3 Airplane_0)":=(FALSE);
+  "(@def ready descend_5_0 HeightMonitor_1)":=("(at HeightMonitor_1)"=0 | "(at HeightMonitor_1)"=1 | "(at HeightMonitor_1)"=7 | "(at HeightMonitor_1)"=13 | "(at HeightMonitor_1)"=19 | "(at HeightMonitor_1)"=25 | "(at HeightMonitor_1)"=31);
+  "(@def ready descend_5_0 Airplane_4)":=(FALSE);
+  "(@def ready descend_5_0 Airplane_5)":=("(at Airplane_5)"=1 | "(at Airplane_5)"=7);
+  "(@def ready descend_5_0 Airplane_2)":=(FALSE);
+  "(@def ready descend_5_0 Airplane_1)":=(FALSE);
+  "(@def ready descend_5_0 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_5_0 Airplane_3)":=(FALSE);
+  "(@def ready descend_5_0 HeightMonitor_0)":=("(at HeightMonitor_0)"=0 | "(at HeightMonitor_0)"=1 | "(at HeightMonitor_0)"=13 | "(at HeightMonitor_0)"=19 | "(at HeightMonitor_0)"=25 | "(at HeightMonitor_0)"=31);
+  "(@def ready descend_5_0 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_5_0 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=6);
+  "(@def ready descend_5_0 RampMonitor)":=(FALSE);
+  "(@def ready descend_5_0 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_5_0 Airplane_0)":=(FALSE);
+  "(@def ready descend_4_4 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_4_4 Airplane_4)":=("(at Airplane_4)"=1);
+  "(@def ready descend_4_4 Airplane_5)":=(FALSE);
+  "(@def ready descend_4_4 Airplane_2)":=(FALSE);
+  "(@def ready descend_4_4 Airplane_1)":=(FALSE);
+  "(@def ready descend_4_4 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_4_4 Airplane_3)":=(FALSE);
+  "(@def ready descend_4_4 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_4_4 HeightMonitor_4)":=("(at HeightMonitor_4)"=0 | "(at HeightMonitor_4)"=1 | "(at HeightMonitor_4)"=13 | "(at HeightMonitor_4)"=19 | "(at HeightMonitor_4)"=25 | "(at HeightMonitor_4)"=31);
+  "(@def ready descend_4_4 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=5);
+  "(@def ready descend_4_4 RampMonitor)":=(FALSE);
+  "(@def ready descend_4_4 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_4_4 Airplane_0)":=(FALSE);
+  "(@def ready control_all HeightMonitor_1)":=(FALSE);
+  "(@def ready control_all Airplane_4)":=("(at Airplane_4)"=8);
+  "(@def ready control_all Airplane_5)":=("(at Airplane_5)"=4);
+  "(@def ready control_all Airplane_2)":=("(at Airplane_2)"=1);
+  "(@def ready control_all Airplane_1)":=("(at Airplane_1)"=1);
+  "(@def ready control_all HeightMonitor_2)":=(FALSE);
+  "(@def ready control_all Airplane_3)":=("(at Airplane_3)"=1);
+  "(@def ready control_all HeightMonitor_0)":=(FALSE);
+  "(@def ready control_all HeightMonitor_4)":=(FALSE);
+  "(@def ready control_all ResponseMonitor)":=(FALSE);
+  "(@def ready control_all RampMonitor)":=(FALSE);
+  "(@def ready control_all HeightMonitor_3)":=(FALSE);
+  "(@def ready control_all Airplane_0)":=("(at Airplane_0)"=1);
+  "(@def ready land_5 HeightMonitor_1)":=(FALSE);
+  "(@def ready land_5 Airplane_4)":=(FALSE);
+  "(@def ready land_5 Airplane_5)":=("(at Airplane_5)"=3);
+  "(@def ready land_5 Airplane_2)":=(FALSE);
+  "(@def ready land_5 Airplane_1)":=(FALSE);
+  "(@def ready land_5 HeightMonitor_2)":=(FALSE);
+  "(@def ready land_5 Airplane_3)":=(FALSE);
+  "(@def ready land_5 HeightMonitor_0)":=("(at HeightMonitor_0)"=1 | "(at HeightMonitor_0)"=7 | "(at HeightMonitor_0)"=13 | "(at HeightMonitor_0)"=19 | "(at HeightMonitor_0)"=25 | "(at HeightMonitor_0)"=31);
+  "(@def ready land_5 HeightMonitor_4)":=(FALSE);
+  "(@def ready land_5 ResponseMonitor)":=(FALSE);
+  "(@def ready land_5 RampMonitor)":=("(at RampMonitor)"=1);
+  "(@def ready land_5 HeightMonitor_3)":=(FALSE);
+  "(@def ready land_5 Airplane_0)":=(FALSE);
+  "(@def ready land_3 HeightMonitor_1)":=(FALSE);
+  "(@def ready land_3 Airplane_4)":=(FALSE);
+  "(@def ready land_3 Airplane_5)":=(FALSE);
+  "(@def ready land_3 Airplane_2)":=(FALSE);
+  "(@def ready land_3 Airplane_1)":=(FALSE);
+  "(@def ready land_3 HeightMonitor_2)":=(FALSE);
+  "(@def ready land_3 Airplane_3)":=("(at Airplane_3)"=8);
+  "(@def ready land_3 HeightMonitor_0)":=("(at HeightMonitor_0)"=1 | "(at HeightMonitor_0)"=7 | "(at HeightMonitor_0)"=13 | "(at HeightMonitor_0)"=19 | "(at HeightMonitor_0)"=25 | "(at HeightMonitor_0)"=31);
+  "(@def ready land_3 HeightMonitor_4)":=(FALSE);
+  "(@def ready land_3 ResponseMonitor)":=(FALSE);
+  "(@def ready land_3 RampMonitor)":=("(at RampMonitor)"=1);
+  "(@def ready land_3 HeightMonitor_3)":=(FALSE);
+  "(@def ready land_3 Airplane_0)":=(FALSE);
+  "(@def ready land_4 HeightMonitor_1)":=(FALSE);
+  "(@def ready land_4 Airplane_4)":=("(at Airplane_4)"=7);
+  "(@def ready land_4 Airplane_5)":=(FALSE);
+  "(@def ready land_4 Airplane_2)":=(FALSE);
+  "(@def ready land_4 Airplane_1)":=(FALSE);
+  "(@def ready land_4 HeightMonitor_2)":=(FALSE);
+  "(@def ready land_4 Airplane_3)":=(FALSE);
+  "(@def ready land_4 HeightMonitor_0)":=("(at HeightMonitor_0)"=1 | "(at HeightMonitor_0)"=7 | "(at HeightMonitor_0)"=13 | "(at HeightMonitor_0)"=19 | "(at HeightMonitor_0)"=25 | "(at HeightMonitor_0)"=31);
+  "(@def ready land_4 HeightMonitor_4)":=(FALSE);
+  "(@def ready land_4 ResponseMonitor)":=(FALSE);
+  "(@def ready land_4 RampMonitor)":=("(at RampMonitor)"=1);
+  "(@def ready land_4 HeightMonitor_3)":=(FALSE);
+  "(@def ready land_4 Airplane_0)":=(FALSE);
+  "(@def ready air_crash_0 HeightMonitor_1)":=(FALSE);
+  "(@def ready air_crash_0 Airplane_4)":=(FALSE);
+  "(@def ready air_crash_0 Airplane_5)":=(FALSE);
+  "(@def ready air_crash_0 Airplane_2)":=(FALSE);
+  "(@def ready air_crash_0 Airplane_1)":=(FALSE);
+  "(@def ready air_crash_0 HeightMonitor_2)":=(FALSE);
+  "(@def ready air_crash_0 Airplane_3)":=(FALSE);
+  "(@def ready air_crash_0 HeightMonitor_0)":=("(at HeightMonitor_0)"=2 | "(at HeightMonitor_0)"=3 | "(at HeightMonitor_0)"=4 | "(at HeightMonitor_0)"=5 | "(at HeightMonitor_0)"=6 | "(at HeightMonitor_0)"=8 | "(at HeightMonitor_0)"=9 | "(at HeightMonitor_0)"=10 | "(at HeightMonitor_0)"=11 | "(at HeightMonitor_0)"=12 | "(at HeightMonitor_0)"=14 | "(at HeightMonitor_0)"=15 | "(at HeightMonitor_0)"=17 | "(at HeightMonitor_0)"=16 | "(at HeightMonitor_0)"=18 | "(at HeightMonitor_0)"=21 | "(at HeightMonitor_0)"=20 | "(at HeightMonitor_0)"=23 | "(at HeightMonitor_0)"=22 | "(at HeightMonitor_0)"=24 | "(at HeightMonitor_0)"=27 | "(at HeightMonitor_0)"=26 | "(at HeightMonitor_0)"=29 | "(at HeightMonitor_0)"=28 | "(at HeightMonitor_0)"=30 | "(at HeightMonitor_0)"=34 | "(at HeightMonitor_0)"=35 | "(at HeightMonitor_0)"=32 | "(at HeightMonitor_0)"=33 | "(at HeightMonitor_0)"=36);
+  "(@def ready air_crash_0 HeightMonitor_4)":=(FALSE);
+  "(@def ready air_crash_0 ResponseMonitor)":=(FALSE);
+  "(@def ready air_crash_0 RampMonitor)":=(FALSE);
+  "(@def ready air_crash_0 HeightMonitor_3)":=(FALSE);
+  "(@def ready air_crash_0 Airplane_0)":=(FALSE);
+  "(@def ready air_crash_2 HeightMonitor_1)":=(FALSE);
+  "(@def ready air_crash_2 Airplane_4)":=(FALSE);
+  "(@def ready air_crash_2 Airplane_5)":=(FALSE);
+  "(@def ready air_crash_2 Airplane_2)":=(FALSE);
+  "(@def ready air_crash_2 Airplane_1)":=(FALSE);
+  "(@def ready air_crash_2 HeightMonitor_2)":=("(at HeightMonitor_2)"=2 | "(at HeightMonitor_2)"=3 | "(at HeightMonitor_2)"=4 | "(at HeightMonitor_2)"=5 | "(at HeightMonitor_2)"=6 | "(at HeightMonitor_2)"=8 | "(at HeightMonitor_2)"=9 | "(at HeightMonitor_2)"=10 | "(at HeightMonitor_2)"=11 | "(at HeightMonitor_2)"=12 | "(at HeightMonitor_2)"=14 | "(at HeightMonitor_2)"=15 | "(at HeightMonitor_2)"=17 | "(at HeightMonitor_2)"=16 | "(at HeightMonitor_2)"=18 | "(at HeightMonitor_2)"=21 | "(at HeightMonitor_2)"=20 | "(at HeightMonitor_2)"=23 | "(at HeightMonitor_2)"=22 | "(at HeightMonitor_2)"=24 | "(at HeightMonitor_2)"=27 | "(at HeightMonitor_2)"=26 | "(at HeightMonitor_2)"=29 | "(at HeightMonitor_2)"=28 | "(at HeightMonitor_2)"=30 | "(at HeightMonitor_2)"=34 | "(at HeightMonitor_2)"=35 | "(at HeightMonitor_2)"=32 | "(at HeightMonitor_2)"=33 | "(at HeightMonitor_2)"=36);
+  "(@def ready air_crash_2 Airplane_3)":=(FALSE);
+  "(@def ready air_crash_2 HeightMonitor_0)":=(FALSE);
+  "(@def ready air_crash_2 HeightMonitor_4)":=(FALSE);
+  "(@def ready air_crash_2 ResponseMonitor)":=(FALSE);
+  "(@def ready air_crash_2 RampMonitor)":=(FALSE);
+  "(@def ready air_crash_2 HeightMonitor_3)":=(FALSE);
+  "(@def ready air_crash_2 Airplane_0)":=(FALSE);
+  "(@def ready air_crash_1 HeightMonitor_1)":=("(at HeightMonitor_1)"=2 | "(at HeightMonitor_1)"=3 | "(at HeightMonitor_1)"=4 | "(at HeightMonitor_1)"=5 | "(at HeightMonitor_1)"=6 | "(at HeightMonitor_1)"=8 | "(at HeightMonitor_1)"=9 | "(at HeightMonitor_1)"=10 | "(at HeightMonitor_1)"=11 | "(at HeightMonitor_1)"=12 | "(at HeightMonitor_1)"=14 | "(at HeightMonitor_1)"=15 | "(at HeightMonitor_1)"=17 | "(at HeightMonitor_1)"=16 | "(at HeightMonitor_1)"=18 | "(at HeightMonitor_1)"=21 | "(at HeightMonitor_1)"=20 | "(at HeightMonitor_1)"=23 | "(at HeightMonitor_1)"=22 | "(at HeightMonitor_1)"=24 | "(at HeightMonitor_1)"=27 | "(at HeightMonitor_1)"=26 | "(at HeightMonitor_1)"=29 | "(at HeightMonitor_1)"=28 | "(at HeightMonitor_1)"=30 | "(at HeightMonitor_1)"=34 | "(at HeightMonitor_1)"=35 | "(at HeightMonitor_1)"=32 | "(at HeightMonitor_1)"=33 | "(at HeightMonitor_1)"=36);
+  "(@def ready air_crash_1 Airplane_4)":=(FALSE);
+  "(@def ready air_crash_1 Airplane_5)":=(FALSE);
+  "(@def ready air_crash_1 Airplane_2)":=(FALSE);
+  "(@def ready air_crash_1 Airplane_1)":=(FALSE);
+  "(@def ready air_crash_1 HeightMonitor_2)":=(FALSE);
+  "(@def ready air_crash_1 Airplane_3)":=(FALSE);
+  "(@def ready air_crash_1 HeightMonitor_0)":=(FALSE);
+  "(@def ready air_crash_1 HeightMonitor_4)":=(FALSE);
+  "(@def ready air_crash_1 ResponseMonitor)":=(FALSE);
+  "(@def ready air_crash_1 RampMonitor)":=(FALSE);
+  "(@def ready air_crash_1 HeightMonitor_3)":=(FALSE);
+  "(@def ready air_crash_1 Airplane_0)":=(FALSE);
+  "(@def ready land_2 HeightMonitor_1)":=(FALSE);
+  "(@def ready land_2 Airplane_4)":=(FALSE);
+  "(@def ready land_2 Airplane_5)":=(FALSE);
+  "(@def ready land_2 Airplane_2)":=("(at Airplane_2)"=8);
+  "(@def ready land_2 Airplane_1)":=(FALSE);
+  "(@def ready land_2 HeightMonitor_2)":=(FALSE);
+  "(@def ready land_2 Airplane_3)":=(FALSE);
+  "(@def ready land_2 HeightMonitor_0)":=("(at HeightMonitor_0)"=1 | "(at HeightMonitor_0)"=7 | "(at HeightMonitor_0)"=13 | "(at HeightMonitor_0)"=19 | "(at HeightMonitor_0)"=25 | "(at HeightMonitor_0)"=31);
+  "(@def ready land_2 HeightMonitor_4)":=(FALSE);
+  "(@def ready land_2 ResponseMonitor)":=(FALSE);
+  "(@def ready land_2 RampMonitor)":=("(at RampMonitor)"=1);
+  "(@def ready land_2 HeightMonitor_3)":=(FALSE);
+  "(@def ready land_2 Airplane_0)":=(FALSE);
+  "(@def ready land_1 HeightMonitor_1)":=(FALSE);
+  "(@def ready land_1 Airplane_4)":=(FALSE);
+  "(@def ready land_1 Airplane_5)":=(FALSE);
+  "(@def ready land_1 Airplane_2)":=(FALSE);
+  "(@def ready land_1 Airplane_1)":=("(at Airplane_1)"=4);
+  "(@def ready land_1 HeightMonitor_2)":=(FALSE);
+  "(@def ready land_1 Airplane_3)":=(FALSE);
+  "(@def ready land_1 HeightMonitor_0)":=("(at HeightMonitor_0)"=1 | "(at HeightMonitor_0)"=7 | "(at HeightMonitor_0)"=13 | "(at HeightMonitor_0)"=19 | "(at HeightMonitor_0)"=25 | "(at HeightMonitor_0)"=31);
+  "(@def ready land_1 HeightMonitor_4)":=(FALSE);
+  "(@def ready land_1 ResponseMonitor)":=(FALSE);
+  "(@def ready land_1 RampMonitor)":=("(at RampMonitor)"=1);
+  "(@def ready land_1 HeightMonitor_3)":=(FALSE);
+  "(@def ready land_1 Airplane_0)":=(FALSE);
+  "(@def ready land_0 HeightMonitor_1)":=(FALSE);
+  "(@def ready land_0 Airplane_4)":=(FALSE);
+  "(@def ready land_0 Airplane_5)":=(FALSE);
+  "(@def ready land_0 Airplane_2)":=(FALSE);
+  "(@def ready land_0 Airplane_1)":=(FALSE);
+  "(@def ready land_0 HeightMonitor_2)":=(FALSE);
+  "(@def ready land_0 Airplane_3)":=(FALSE);
+  "(@def ready land_0 HeightMonitor_0)":=("(at HeightMonitor_0)"=1 | "(at HeightMonitor_0)"=7 | "(at HeightMonitor_0)"=13 | "(at HeightMonitor_0)"=19 | "(at HeightMonitor_0)"=25 | "(at HeightMonitor_0)"=31);
+  "(@def ready land_0 HeightMonitor_4)":=(FALSE);
+  "(@def ready land_0 ResponseMonitor)":=(FALSE);
+  "(@def ready land_0 RampMonitor)":=("(at RampMonitor)"=1);
+  "(@def ready land_0 HeightMonitor_3)":=(FALSE);
+  "(@def ready land_0 Airplane_0)":=("(at Airplane_0)"=4);
+  "(@def ready air_crash_4 HeightMonitor_1)":=(FALSE);
+  "(@def ready air_crash_4 Airplane_4)":=(FALSE);
+  "(@def ready air_crash_4 Airplane_5)":=(FALSE);
+  "(@def ready air_crash_4 Airplane_2)":=(FALSE);
+  "(@def ready air_crash_4 Airplane_1)":=(FALSE);
+  "(@def ready air_crash_4 HeightMonitor_2)":=(FALSE);
+  "(@def ready air_crash_4 Airplane_3)":=(FALSE);
+  "(@def ready air_crash_4 HeightMonitor_0)":=(FALSE);
+  "(@def ready air_crash_4 HeightMonitor_4)":=("(at HeightMonitor_4)"=2 | "(at HeightMonitor_4)"=3 | "(at HeightMonitor_4)"=4 | "(at HeightMonitor_4)"=5 | "(at HeightMonitor_4)"=6 | "(at HeightMonitor_4)"=8 | "(at HeightMonitor_4)"=9 | "(at HeightMonitor_4)"=10 | "(at HeightMonitor_4)"=11 | "(at HeightMonitor_4)"=12 | "(at HeightMonitor_4)"=14 | "(at HeightMonitor_4)"=15 | "(at HeightMonitor_4)"=17 | "(at HeightMonitor_4)"=16 | "(at HeightMonitor_4)"=18 | "(at HeightMonitor_4)"=21 | "(at HeightMonitor_4)"=20 | "(at HeightMonitor_4)"=23 | "(at HeightMonitor_4)"=22 | "(at HeightMonitor_4)"=24 | "(at HeightMonitor_4)"=27 | "(at HeightMonitor_4)"=26 | "(at HeightMonitor_4)"=29 | "(at HeightMonitor_4)"=28 | "(at HeightMonitor_4)"=30 | "(at HeightMonitor_4)"=34 | "(at HeightMonitor_4)"=35 | "(at HeightMonitor_4)"=32 | "(at HeightMonitor_4)"=33 | "(at HeightMonitor_4)"=36);
+  "(@def ready air_crash_4 ResponseMonitor)":=(FALSE);
+  "(@def ready air_crash_4 RampMonitor)":=(FALSE);
+  "(@def ready air_crash_4 HeightMonitor_3)":=(FALSE);
+  "(@def ready air_crash_4 Airplane_0)":=(FALSE);
+  "(@def ready air_crash_3 HeightMonitor_1)":=(FALSE);
+  "(@def ready air_crash_3 Airplane_4)":=(FALSE);
+  "(@def ready air_crash_3 Airplane_5)":=(FALSE);
+  "(@def ready air_crash_3 Airplane_2)":=(FALSE);
+  "(@def ready air_crash_3 Airplane_1)":=(FALSE);
+  "(@def ready air_crash_3 HeightMonitor_2)":=(FALSE);
+  "(@def ready air_crash_3 Airplane_3)":=(FALSE);
+  "(@def ready air_crash_3 HeightMonitor_0)":=(FALSE);
+  "(@def ready air_crash_3 HeightMonitor_4)":=(FALSE);
+  "(@def ready air_crash_3 ResponseMonitor)":=(FALSE);
+  "(@def ready air_crash_3 RampMonitor)":=(FALSE);
+  "(@def ready air_crash_3 HeightMonitor_3)":=("(at HeightMonitor_3)"=2 | "(at HeightMonitor_3)"=3 | "(at HeightMonitor_3)"=4 | "(at HeightMonitor_3)"=5 | "(at HeightMonitor_3)"=6 | "(at HeightMonitor_3)"=8 | "(at HeightMonitor_3)"=9 | "(at HeightMonitor_3)"=10 | "(at HeightMonitor_3)"=11 | "(at HeightMonitor_3)"=12 | "(at HeightMonitor_3)"=14 | "(at HeightMonitor_3)"=15 | "(at HeightMonitor_3)"=17 | "(at HeightMonitor_3)"=16 | "(at HeightMonitor_3)"=18 | "(at HeightMonitor_3)"=21 | "(at HeightMonitor_3)"=20 | "(at HeightMonitor_3)"=23 | "(at HeightMonitor_3)"=22 | "(at HeightMonitor_3)"=24 | "(at HeightMonitor_3)"=27 | "(at HeightMonitor_3)"=26 | "(at HeightMonitor_3)"=29 | "(at HeightMonitor_3)"=28 | "(at HeightMonitor_3)"=30 | "(at HeightMonitor_3)"=34 | "(at HeightMonitor_3)"=35 | "(at HeightMonitor_3)"=32 | "(at HeightMonitor_3)"=33 | "(at HeightMonitor_3)"=36);
+  "(@def ready air_crash_3 Airplane_0)":=(FALSE);
+  "(@def ready descend_0_2 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_0_2 Airplane_4)":=(FALSE);
+  "(@def ready descend_0_2 Airplane_5)":=(FALSE);
+  "(@def ready descend_0_2 Airplane_2)":=(FALSE);
+  "(@def ready descend_0_2 Airplane_1)":=(FALSE);
+  "(@def ready descend_0_2 HeightMonitor_2)":=("(at HeightMonitor_2)"=0 | "(at HeightMonitor_2)"=1 | "(at HeightMonitor_2)"=7 | "(at HeightMonitor_2)"=13 | "(at HeightMonitor_2)"=19 | "(at HeightMonitor_2)"=25);
+  "(@def ready descend_0_2 Airplane_3)":=(FALSE);
+  "(@def ready descend_0_2 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_0_2 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_0_2 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=2);
+  "(@def ready descend_0_2 RampMonitor)":=(FALSE);
+  "(@def ready descend_0_2 HeightMonitor_3)":=("(at HeightMonitor_3)"=0 | "(at HeightMonitor_3)"=1 | "(at HeightMonitor_3)"=7 | "(at HeightMonitor_3)"=13 | "(at HeightMonitor_3)"=19 | "(at HeightMonitor_3)"=25 | "(at HeightMonitor_3)"=31);
+  "(@def ready descend_0_2 Airplane_0)":=("(at Airplane_0)"=2 | "(at Airplane_0)"=7);
+  "(@def ready descend_0_3 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_0_3 Airplane_4)":=(FALSE);
+  "(@def ready descend_0_3 Airplane_5)":=(FALSE);
+  "(@def ready descend_0_3 Airplane_2)":=(FALSE);
+  "(@def ready descend_0_3 Airplane_1)":=(FALSE);
+  "(@def ready descend_0_3 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_0_3 Airplane_3)":=(FALSE);
+  "(@def ready descend_0_3 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_0_3 HeightMonitor_4)":=("(at HeightMonitor_4)"=0 | "(at HeightMonitor_4)"=1 | "(at HeightMonitor_4)"=7 | "(at HeightMonitor_4)"=13 | "(at HeightMonitor_4)"=19 | "(at HeightMonitor_4)"=25 | "(at HeightMonitor_4)"=31);
+  "(@def ready descend_0_3 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=2);
+  "(@def ready descend_0_3 RampMonitor)":=(FALSE);
+  "(@def ready descend_0_3 HeightMonitor_3)":=("(at HeightMonitor_3)"=0 | "(at HeightMonitor_3)"=1 | "(at HeightMonitor_3)"=7 | "(at HeightMonitor_3)"=13 | "(at HeightMonitor_3)"=19 | "(at HeightMonitor_3)"=25);
+  "(@def ready descend_0_3 Airplane_0)":=("(at Airplane_0)"=2 | "(at Airplane_0)"=6);
+  "(@def ready descend_0_4 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_0_4 Airplane_4)":=(FALSE);
+  "(@def ready descend_0_4 Airplane_5)":=(FALSE);
+  "(@def ready descend_0_4 Airplane_2)":=(FALSE);
+  "(@def ready descend_0_4 Airplane_1)":=(FALSE);
+  "(@def ready descend_0_4 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_0_4 Airplane_3)":=(FALSE);
+  "(@def ready descend_0_4 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_0_4 HeightMonitor_4)":=("(at HeightMonitor_4)"=0 | "(at HeightMonitor_4)"=1 | "(at HeightMonitor_4)"=7 | "(at HeightMonitor_4)"=13 | "(at HeightMonitor_4)"=19 | "(at HeightMonitor_4)"=25);
+  "(@def ready descend_0_4 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=2);
+  "(@def ready descend_0_4 RampMonitor)":=(FALSE);
+  "(@def ready descend_0_4 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_0_4 Airplane_0)":=("(at Airplane_0)"=2);
+  "(@def ready descend_1_2 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_1_2 Airplane_4)":=(FALSE);
+  "(@def ready descend_1_2 Airplane_5)":=(FALSE);
+  "(@def ready descend_1_2 Airplane_2)":=(FALSE);
+  "(@def ready descend_1_2 Airplane_1)":=("(at Airplane_1)"=2 | "(at Airplane_1)"=5);
+  "(@def ready descend_1_2 HeightMonitor_2)":=("(at HeightMonitor_2)"=0 | "(at HeightMonitor_2)"=1 | "(at HeightMonitor_2)"=7 | "(at HeightMonitor_2)"=13 | "(at HeightMonitor_2)"=19 | "(at HeightMonitor_2)"=31);
+  "(@def ready descend_1_2 Airplane_3)":=(FALSE);
+  "(@def ready descend_1_2 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_1_2 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_1_2 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=1);
+  "(@def ready descend_1_2 RampMonitor)":=(FALSE);
+  "(@def ready descend_1_2 HeightMonitor_3)":=("(at HeightMonitor_3)"=0 | "(at HeightMonitor_3)"=1 | "(at HeightMonitor_3)"=7 | "(at HeightMonitor_3)"=13 | "(at HeightMonitor_3)"=19 | "(at HeightMonitor_3)"=25 | "(at HeightMonitor_3)"=31);
+  "(@def ready descend_1_2 Airplane_0)":=(FALSE);
+  "(@def ready requestLand_5 HeightMonitor_1)":=(FALSE);
+  "(@def ready requestLand_5 Airplane_4)":=(FALSE);
+  "(@def ready requestLand_5 Airplane_5)":=("(at Airplane_5)"=0);
+  "(@def ready requestLand_5 Airplane_2)":=(FALSE);
+  "(@def ready requestLand_5 Airplane_1)":=(FALSE);
+  "(@def ready requestLand_5 HeightMonitor_2)":=(FALSE);
+  "(@def ready requestLand_5 Airplane_3)":=(FALSE);
+  "(@def ready requestLand_5 HeightMonitor_0)":=(FALSE);
+  "(@def ready requestLand_5 HeightMonitor_4)":=(FALSE);
+  "(@def ready requestLand_5 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready requestLand_5 RampMonitor)":=(FALSE);
+  "(@def ready requestLand_5 HeightMonitor_3)":=(FALSE);
+  "(@def ready requestLand_5 Airplane_0)":=(FALSE);
+  "(@def ready requestLand_4 HeightMonitor_1)":=(FALSE);
+  "(@def ready requestLand_4 Airplane_4)":=("(at Airplane_4)"=0);
+  "(@def ready requestLand_4 Airplane_5)":=(FALSE);
+  "(@def ready requestLand_4 Airplane_2)":=(FALSE);
+  "(@def ready requestLand_4 Airplane_1)":=(FALSE);
+  "(@def ready requestLand_4 HeightMonitor_2)":=(FALSE);
+  "(@def ready requestLand_4 Airplane_3)":=(FALSE);
+  "(@def ready requestLand_4 HeightMonitor_0)":=(FALSE);
+  "(@def ready requestLand_4 HeightMonitor_4)":=(FALSE);
+  "(@def ready requestLand_4 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready requestLand_4 RampMonitor)":=(FALSE);
+  "(@def ready requestLand_4 HeightMonitor_3)":=(FALSE);
+  "(@def ready requestLand_4 Airplane_0)":=(FALSE);
+  "(@def ready descend_1_1 HeightMonitor_1)":=("(at HeightMonitor_1)"=0 | "(at HeightMonitor_1)"=1 | "(at HeightMonitor_1)"=7 | "(at HeightMonitor_1)"=13 | "(at HeightMonitor_1)"=19 | "(at HeightMonitor_1)"=25);
+  "(@def ready descend_1_1 Airplane_4)":=(FALSE);
+  "(@def ready descend_1_1 Airplane_5)":=(FALSE);
+  "(@def ready descend_1_1 Airplane_2)":=(FALSE);
+  "(@def ready descend_1_1 Airplane_1)":=("(at Airplane_1)"=2 | "(at Airplane_1)"=6);
+  "(@def ready descend_1_1 HeightMonitor_2)":=("(at HeightMonitor_2)"=0 | "(at HeightMonitor_2)"=1 | "(at HeightMonitor_2)"=7 | "(at HeightMonitor_2)"=13 | "(at HeightMonitor_2)"=19 | "(at HeightMonitor_2)"=25 | "(at HeightMonitor_2)"=31);
+  "(@def ready descend_1_1 Airplane_3)":=(FALSE);
+  "(@def ready descend_1_1 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_1_1 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_1_1 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=1);
+  "(@def ready descend_1_1 RampMonitor)":=(FALSE);
+  "(@def ready descend_1_1 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_1_1 Airplane_0)":=(FALSE);
+  "(@def ready descend_1_4 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_1_4 Airplane_4)":=(FALSE);
+  "(@def ready descend_1_4 Airplane_5)":=(FALSE);
+  "(@def ready descend_1_4 Airplane_2)":=(FALSE);
+  "(@def ready descend_1_4 Airplane_1)":=("(at Airplane_1)"=2);
+  "(@def ready descend_1_4 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_1_4 Airplane_3)":=(FALSE);
+  "(@def ready descend_1_4 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_1_4 HeightMonitor_4)":=("(at HeightMonitor_4)"=0 | "(at HeightMonitor_4)"=1 | "(at HeightMonitor_4)"=7 | "(at HeightMonitor_4)"=13 | "(at HeightMonitor_4)"=19 | "(at HeightMonitor_4)"=31);
+  "(@def ready descend_1_4 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=1);
+  "(@def ready descend_1_4 RampMonitor)":=(FALSE);
+  "(@def ready descend_1_4 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_1_4 Airplane_0)":=(FALSE);
+  "(@def ready descend_1_3 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_1_3 Airplane_4)":=(FALSE);
+  "(@def ready descend_1_3 Airplane_5)":=(FALSE);
+  "(@def ready descend_1_3 Airplane_2)":=(FALSE);
+  "(@def ready descend_1_3 Airplane_1)":=("(at Airplane_1)"=2 | "(at Airplane_1)"=8);
+  "(@def ready descend_1_3 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_1_3 Airplane_3)":=(FALSE);
+  "(@def ready descend_1_3 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_1_3 HeightMonitor_4)":=("(at HeightMonitor_4)"=0 | "(at HeightMonitor_4)"=1 | "(at HeightMonitor_4)"=7 | "(at HeightMonitor_4)"=13 | "(at HeightMonitor_4)"=19 | "(at HeightMonitor_4)"=25 | "(at HeightMonitor_4)"=31);
+  "(@def ready descend_1_3 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=1);
+  "(@def ready descend_1_3 RampMonitor)":=(FALSE);
+  "(@def ready descend_1_3 HeightMonitor_3)":=("(at HeightMonitor_3)"=0 | "(at HeightMonitor_3)"=1 | "(at HeightMonitor_3)"=7 | "(at HeightMonitor_3)"=13 | "(at HeightMonitor_3)"=19 | "(at HeightMonitor_3)"=31);
+  "(@def ready descend_1_3 Airplane_0)":=(FALSE);
+  "(@def ready land_crash HeightMonitor_1)":=(FALSE);
+  "(@def ready land_crash Airplane_4)":=(FALSE);
+  "(@def ready land_crash Airplane_5)":=(FALSE);
+  "(@def ready land_crash Airplane_2)":=(FALSE);
+  "(@def ready land_crash Airplane_1)":=(FALSE);
+  "(@def ready land_crash HeightMonitor_2)":=(FALSE);
+  "(@def ready land_crash Airplane_3)":=(FALSE);
+  "(@def ready land_crash HeightMonitor_0)":=(FALSE);
+  "(@def ready land_crash HeightMonitor_4)":=(FALSE);
+  "(@def ready land_crash ResponseMonitor)":=(FALSE);
+  "(@def ready land_crash RampMonitor)":=("(at RampMonitor)"=2 | "(at RampMonitor)"=3 | "(at RampMonitor)"=4 | "(at RampMonitor)"=5 | "(at RampMonitor)"=6 | "(at RampMonitor)"=7);
+  "(@def ready land_crash HeightMonitor_3)":=(FALSE);
+  "(@def ready land_crash Airplane_0)":=(FALSE);
+  "(@def ready extendFlight_2 HeightMonitor_1)":=(FALSE);
+  "(@def ready extendFlight_2 Airplane_4)":=(FALSE);
+  "(@def ready extendFlight_2 Airplane_5)":=(FALSE);
+  "(@def ready extendFlight_2 Airplane_2)":=("(at Airplane_2)"=0);
+  "(@def ready extendFlight_2 Airplane_1)":=(FALSE);
+  "(@def ready extendFlight_2 HeightMonitor_2)":=(FALSE);
+  "(@def ready extendFlight_2 Airplane_3)":=(FALSE);
+  "(@def ready extendFlight_2 HeightMonitor_0)":=(FALSE);
+  "(@def ready extendFlight_2 HeightMonitor_4)":=(FALSE);
+  "(@def ready extendFlight_2 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready extendFlight_2 RampMonitor)":=(FALSE);
+  "(@def ready extendFlight_2 HeightMonitor_3)":=(FALSE);
+  "(@def ready extendFlight_2 Airplane_0)":=(FALSE);
+  "(@def ready extendFlight_3 HeightMonitor_1)":=(FALSE);
+  "(@def ready extendFlight_3 Airplane_4)":=(FALSE);
+  "(@def ready extendFlight_3 Airplane_5)":=(FALSE);
+  "(@def ready extendFlight_3 Airplane_2)":=(FALSE);
+  "(@def ready extendFlight_3 Airplane_1)":=(FALSE);
+  "(@def ready extendFlight_3 HeightMonitor_2)":=(FALSE);
+  "(@def ready extendFlight_3 Airplane_3)":=("(at Airplane_3)"=0);
+  "(@def ready extendFlight_3 HeightMonitor_0)":=(FALSE);
+  "(@def ready extendFlight_3 HeightMonitor_4)":=(FALSE);
+  "(@def ready extendFlight_3 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready extendFlight_3 RampMonitor)":=(FALSE);
+  "(@def ready extendFlight_3 HeightMonitor_3)":=(FALSE);
+  "(@def ready extendFlight_3 Airplane_0)":=(FALSE);
+  "(@def ready extendFlight_0 HeightMonitor_1)":=(FALSE);
+  "(@def ready extendFlight_0 Airplane_4)":=(FALSE);
+  "(@def ready extendFlight_0 Airplane_5)":=(FALSE);
+  "(@def ready extendFlight_0 Airplane_2)":=(FALSE);
+  "(@def ready extendFlight_0 Airplane_1)":=(FALSE);
+  "(@def ready extendFlight_0 HeightMonitor_2)":=(FALSE);
+  "(@def ready extendFlight_0 Airplane_3)":=(FALSE);
+  "(@def ready extendFlight_0 HeightMonitor_0)":=(FALSE);
+  "(@def ready extendFlight_0 HeightMonitor_4)":=(FALSE);
+  "(@def ready extendFlight_0 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready extendFlight_0 RampMonitor)":=(FALSE);
+  "(@def ready extendFlight_0 HeightMonitor_3)":=(FALSE);
+  "(@def ready extendFlight_0 Airplane_0)":=("(at Airplane_0)"=0);
+  "(@def ready extendFlight_1 HeightMonitor_1)":=(FALSE);
+  "(@def ready extendFlight_1 Airplane_4)":=(FALSE);
+  "(@def ready extendFlight_1 Airplane_5)":=(FALSE);
+  "(@def ready extendFlight_1 Airplane_2)":=(FALSE);
+  "(@def ready extendFlight_1 Airplane_1)":=("(at Airplane_1)"=0);
+  "(@def ready extendFlight_1 HeightMonitor_2)":=(FALSE);
+  "(@def ready extendFlight_1 Airplane_3)":=(FALSE);
+  "(@def ready extendFlight_1 HeightMonitor_0)":=(FALSE);
+  "(@def ready extendFlight_1 HeightMonitor_4)":=(FALSE);
+  "(@def ready extendFlight_1 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready extendFlight_1 RampMonitor)":=(FALSE);
+  "(@def ready extendFlight_1 HeightMonitor_3)":=(FALSE);
+  "(@def ready extendFlight_1 Airplane_0)":=(FALSE);
+  "(@def ready extendFlight_5 HeightMonitor_1)":=(FALSE);
+  "(@def ready extendFlight_5 Airplane_4)":=(FALSE);
+  "(@def ready extendFlight_5 Airplane_5)":=("(at Airplane_5)"=0);
+  "(@def ready extendFlight_5 Airplane_2)":=(FALSE);
+  "(@def ready extendFlight_5 Airplane_1)":=(FALSE);
+  "(@def ready extendFlight_5 HeightMonitor_2)":=(FALSE);
+  "(@def ready extendFlight_5 Airplane_3)":=(FALSE);
+  "(@def ready extendFlight_5 HeightMonitor_0)":=(FALSE);
+  "(@def ready extendFlight_5 HeightMonitor_4)":=(FALSE);
+  "(@def ready extendFlight_5 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready extendFlight_5 RampMonitor)":=(FALSE);
+  "(@def ready extendFlight_5 HeightMonitor_3)":=(FALSE);
+  "(@def ready extendFlight_5 Airplane_0)":=(FALSE);
+  "(@def ready extendFlight_4 HeightMonitor_1)":=(FALSE);
+  "(@def ready extendFlight_4 Airplane_4)":=("(at Airplane_4)"=0);
+  "(@def ready extendFlight_4 Airplane_5)":=(FALSE);
+  "(@def ready extendFlight_4 Airplane_2)":=(FALSE);
+  "(@def ready extendFlight_4 Airplane_1)":=(FALSE);
+  "(@def ready extendFlight_4 HeightMonitor_2)":=(FALSE);
+  "(@def ready extendFlight_4 Airplane_3)":=(FALSE);
+  "(@def ready extendFlight_4 HeightMonitor_0)":=(FALSE);
+  "(@def ready extendFlight_4 HeightMonitor_4)":=(FALSE);
+  "(@def ready extendFlight_4 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready extendFlight_4 RampMonitor)":=(FALSE);
+  "(@def ready extendFlight_4 HeightMonitor_3)":=(FALSE);
+  "(@def ready extendFlight_4 Airplane_0)":=(FALSE);
+  "(@def ready descend_2_1 HeightMonitor_1)":=("(at HeightMonitor_1)"=0 | "(at HeightMonitor_1)"=1 | "(at HeightMonitor_1)"=7 | "(at HeightMonitor_1)"=13 | "(at HeightMonitor_1)"=25 | "(at HeightMonitor_1)"=31);
+  "(@def ready descend_2_1 Airplane_4)":=(FALSE);
+  "(@def ready descend_2_1 Airplane_5)":=(FALSE);
+  "(@def ready descend_2_1 Airplane_2)":=("(at Airplane_2)"=2 | "(at Airplane_2)"=5);
+  "(@def ready descend_2_1 Airplane_1)":=(FALSE);
+  "(@def ready descend_2_1 HeightMonitor_2)":=("(at HeightMonitor_2)"=0 | "(at HeightMonitor_2)"=1 | "(at HeightMonitor_2)"=7 | "(at HeightMonitor_2)"=13 | "(at HeightMonitor_2)"=19 | "(at HeightMonitor_2)"=25 | "(at HeightMonitor_2)"=31);
+  "(@def ready descend_2_1 Airplane_3)":=(FALSE);
+  "(@def ready descend_2_1 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_2_1 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_2_1 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=4);
+  "(@def ready descend_2_1 RampMonitor)":=(FALSE);
+  "(@def ready descend_2_1 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_2_1 Airplane_0)":=(FALSE);
+  "(@def ready descend_2_0 HeightMonitor_1)":=("(at HeightMonitor_1)"=0 | "(at HeightMonitor_1)"=1 | "(at HeightMonitor_1)"=7 | "(at HeightMonitor_1)"=13 | "(at HeightMonitor_1)"=19 | "(at HeightMonitor_1)"=25 | "(at HeightMonitor_1)"=31);
+  "(@def ready descend_2_0 Airplane_4)":=(FALSE);
+  "(@def ready descend_2_0 Airplane_5)":=(FALSE);
+  "(@def ready descend_2_0 Airplane_2)":=("(at Airplane_2)"=2 | "(at Airplane_2)"=6);
+  "(@def ready descend_2_0 Airplane_1)":=(FALSE);
+  "(@def ready descend_2_0 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_2_0 Airplane_3)":=(FALSE);
+  "(@def ready descend_2_0 HeightMonitor_0)":=("(at HeightMonitor_0)"=0 | "(at HeightMonitor_0)"=1 | "(at HeightMonitor_0)"=7 | "(at HeightMonitor_0)"=13 | "(at HeightMonitor_0)"=19 | "(at HeightMonitor_0)"=25);
+  "(@def ready descend_2_0 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_2_0 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=4);
+  "(@def ready descend_2_0 RampMonitor)":=(FALSE);
+  "(@def ready descend_2_0 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_2_0 Airplane_0)":=(FALSE);
+  "(@def ready descend_2_3 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_2_3 Airplane_4)":=(FALSE);
+  "(@def ready descend_2_3 Airplane_5)":=(FALSE);
+  "(@def ready descend_2_3 Airplane_2)":=("(at Airplane_2)"=2 | "(at Airplane_2)"=3);
+  "(@def ready descend_2_3 Airplane_1)":=(FALSE);
+  "(@def ready descend_2_3 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_2_3 Airplane_3)":=(FALSE);
+  "(@def ready descend_2_3 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_2_3 HeightMonitor_4)":=("(at HeightMonitor_4)"=0 | "(at HeightMonitor_4)"=1 | "(at HeightMonitor_4)"=7 | "(at HeightMonitor_4)"=13 | "(at HeightMonitor_4)"=19 | "(at HeightMonitor_4)"=25 | "(at HeightMonitor_4)"=31);
+  "(@def ready descend_2_3 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=4);
+  "(@def ready descend_2_3 RampMonitor)":=(FALSE);
+  "(@def ready descend_2_3 HeightMonitor_3)":=("(at HeightMonitor_3)"=0 | "(at HeightMonitor_3)"=7 | "(at HeightMonitor_3)"=13 | "(at HeightMonitor_3)"=19 | "(at HeightMonitor_3)"=25 | "(at HeightMonitor_3)"=31);
+  "(@def ready descend_2_3 Airplane_0)":=(FALSE);
+  "(@def ready descend_2_2 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_2_2 Airplane_4)":=(FALSE);
+  "(@def ready descend_2_2 Airplane_5)":=(FALSE);
+  "(@def ready descend_2_2 Airplane_2)":=("(at Airplane_2)"=2 | "(at Airplane_2)"=4);
+  "(@def ready descend_2_2 Airplane_1)":=(FALSE);
+  "(@def ready descend_2_2 HeightMonitor_2)":=("(at HeightMonitor_2)"=0 | "(at HeightMonitor_2)"=1 | "(at HeightMonitor_2)"=13 | "(at HeightMonitor_2)"=19 | "(at HeightMonitor_2)"=25 | "(at HeightMonitor_2)"=31);
+  "(@def ready descend_2_2 Airplane_3)":=(FALSE);
+  "(@def ready descend_2_2 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_2_2 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_2_2 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=4);
+  "(@def ready descend_2_2 RampMonitor)":=(FALSE);
+  "(@def ready descend_2_2 HeightMonitor_3)":=("(at HeightMonitor_3)"=0 | "(at HeightMonitor_3)"=1 | "(at HeightMonitor_3)"=7 | "(at HeightMonitor_3)"=13 | "(at HeightMonitor_3)"=19 | "(at HeightMonitor_3)"=25 | "(at HeightMonitor_3)"=31);
+  "(@def ready descend_2_2 Airplane_0)":=(FALSE);
+  "(@def ready descend_1_0 HeightMonitor_1)":=("(at HeightMonitor_1)"=0 | "(at HeightMonitor_1)"=1 | "(at HeightMonitor_1)"=7 | "(at HeightMonitor_1)"=13 | "(at HeightMonitor_1)"=19 | "(at HeightMonitor_1)"=25 | "(at HeightMonitor_1)"=31);
+  "(@def ready descend_1_0 Airplane_4)":=(FALSE);
+  "(@def ready descend_1_0 Airplane_5)":=(FALSE);
+  "(@def ready descend_1_0 Airplane_2)":=(FALSE);
+  "(@def ready descend_1_0 Airplane_1)":=("(at Airplane_1)"=2 | "(at Airplane_1)"=7);
+  "(@def ready descend_1_0 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_1_0 Airplane_3)":=(FALSE);
+  "(@def ready descend_1_0 HeightMonitor_0)":=("(at HeightMonitor_0)"=0 | "(at HeightMonitor_0)"=1 | "(at HeightMonitor_0)"=7 | "(at HeightMonitor_0)"=19 | "(at HeightMonitor_0)"=25 | "(at HeightMonitor_0)"=31);
+  "(@def ready descend_1_0 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_1_0 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=1);
+  "(@def ready descend_1_0 RampMonitor)":=(FALSE);
+  "(@def ready descend_1_0 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_1_0 Airplane_0)":=(FALSE);
+  "(@def ready descend_2_4 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_2_4 Airplane_4)":=(FALSE);
+  "(@def ready descend_2_4 Airplane_5)":=(FALSE);
+  "(@def ready descend_2_4 Airplane_2)":=("(at Airplane_2)"=2);
+  "(@def ready descend_2_4 Airplane_1)":=(FALSE);
+  "(@def ready descend_2_4 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_2_4 Airplane_3)":=(FALSE);
+  "(@def ready descend_2_4 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_2_4 HeightMonitor_4)":=("(at HeightMonitor_4)"=0 | "(at HeightMonitor_4)"=1 | "(at HeightMonitor_4)"=7 | "(at HeightMonitor_4)"=19 | "(at HeightMonitor_4)"=25 | "(at HeightMonitor_4)"=31);
+  "(@def ready descend_2_4 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=4);
+  "(@def ready descend_2_4 RampMonitor)":=(FALSE);
+  "(@def ready descend_2_4 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_2_4 Airplane_0)":=(FALSE);
+  "(@def ready descend_0_1 HeightMonitor_1)":=("(at HeightMonitor_1)"=0 | "(at HeightMonitor_1)"=7 | "(at HeightMonitor_1)"=13 | "(at HeightMonitor_1)"=19 | "(at HeightMonitor_1)"=25 | "(at HeightMonitor_1)"=31);
+  "(@def ready descend_0_1 Airplane_4)":=(FALSE);
+  "(@def ready descend_0_1 Airplane_5)":=(FALSE);
+  "(@def ready descend_0_1 Airplane_2)":=(FALSE);
+  "(@def ready descend_0_1 Airplane_1)":=(FALSE);
+  "(@def ready descend_0_1 HeightMonitor_2)":=("(at HeightMonitor_2)"=0 | "(at HeightMonitor_2)"=1 | "(at HeightMonitor_2)"=7 | "(at HeightMonitor_2)"=13 | "(at HeightMonitor_2)"=19 | "(at HeightMonitor_2)"=25 | "(at HeightMonitor_2)"=31);
+  "(@def ready descend_0_1 Airplane_3)":=(FALSE);
+  "(@def ready descend_0_1 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_0_1 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_0_1 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=2);
+  "(@def ready descend_0_1 RampMonitor)":=(FALSE);
+  "(@def ready descend_0_1 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_0_1 Airplane_0)":=("(at Airplane_0)"=2 | "(at Airplane_0)"=8);
+  "(@def ready descend_0_0 HeightMonitor_1)":=("(at HeightMonitor_1)"=0 | "(at HeightMonitor_1)"=1 | "(at HeightMonitor_1)"=7 | "(at HeightMonitor_1)"=13 | "(at HeightMonitor_1)"=19 | "(at HeightMonitor_1)"=25 | "(at HeightMonitor_1)"=31);
+  "(@def ready descend_0_0 Airplane_4)":=(FALSE);
+  "(@def ready descend_0_0 Airplane_5)":=(FALSE);
+  "(@def ready descend_0_0 Airplane_2)":=(FALSE);
+  "(@def ready descend_0_0 Airplane_1)":=(FALSE);
+  "(@def ready descend_0_0 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_0_0 Airplane_3)":=(FALSE);
+  "(@def ready descend_0_0 HeightMonitor_0)":=("(at HeightMonitor_0)"=0 | "(at HeightMonitor_0)"=7 | "(at HeightMonitor_0)"=13 | "(at HeightMonitor_0)"=19 | "(at HeightMonitor_0)"=25 | "(at HeightMonitor_0)"=31);
+  "(@def ready descend_0_0 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_0_0 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=2);
+  "(@def ready descend_0_0 RampMonitor)":=(FALSE);
+  "(@def ready descend_0_0 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_0_0 Airplane_0)":=("(at Airplane_0)"=2 | "(at Airplane_0)"=5);
+  "(@def ready descend_3_1 HeightMonitor_1)":=("(at HeightMonitor_1)"=0 | "(at HeightMonitor_1)"=1 | "(at HeightMonitor_1)"=7 | "(at HeightMonitor_1)"=13 | "(at HeightMonitor_1)"=19 | "(at HeightMonitor_1)"=31);
+  "(@def ready descend_3_1 Airplane_4)":=(FALSE);
+  "(@def ready descend_3_1 Airplane_5)":=(FALSE);
+  "(@def ready descend_3_1 Airplane_2)":=(FALSE);
+  "(@def ready descend_3_1 Airplane_1)":=(FALSE);
+  "(@def ready descend_3_1 HeightMonitor_2)":=("(at HeightMonitor_2)"=0 | "(at HeightMonitor_2)"=1 | "(at HeightMonitor_2)"=7 | "(at HeightMonitor_2)"=13 | "(at HeightMonitor_2)"=19 | "(at HeightMonitor_2)"=25 | "(at HeightMonitor_2)"=31);
+  "(@def ready descend_3_1 Airplane_3)":=("(at Airplane_3)"=2 | "(at Airplane_3)"=5);
+  "(@def ready descend_3_1 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_3_1 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_3_1 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=3);
+  "(@def ready descend_3_1 RampMonitor)":=(FALSE);
+  "(@def ready descend_3_1 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_3_1 Airplane_0)":=(FALSE);
+  "(@def ready descend_3_2 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_3_2 Airplane_4)":=(FALSE);
+  "(@def ready descend_3_2 Airplane_5)":=(FALSE);
+  "(@def ready descend_3_2 Airplane_2)":=(FALSE);
+  "(@def ready descend_3_2 Airplane_1)":=(FALSE);
+  "(@def ready descend_3_2 HeightMonitor_2)":=("(at HeightMonitor_2)"=0 | "(at HeightMonitor_2)"=1 | "(at HeightMonitor_2)"=7 | "(at HeightMonitor_2)"=19 | "(at HeightMonitor_2)"=25 | "(at HeightMonitor_2)"=31);
+  "(@def ready descend_3_2 Airplane_3)":=("(at Airplane_3)"=2 | "(at Airplane_3)"=4);
+  "(@def ready descend_3_2 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_3_2 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_3_2 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=3);
+  "(@def ready descend_3_2 RampMonitor)":=(FALSE);
+  "(@def ready descend_3_2 HeightMonitor_3)":=("(at HeightMonitor_3)"=0 | "(at HeightMonitor_3)"=1 | "(at HeightMonitor_3)"=7 | "(at HeightMonitor_3)"=13 | "(at HeightMonitor_3)"=19 | "(at HeightMonitor_3)"=25 | "(at HeightMonitor_3)"=31);
+  "(@def ready descend_3_2 Airplane_0)":=(FALSE);
+  "(@def ready descend_3_0 HeightMonitor_1)":=("(at HeightMonitor_1)"=0 | "(at HeightMonitor_1)"=1 | "(at HeightMonitor_1)"=7 | "(at HeightMonitor_1)"=13 | "(at HeightMonitor_1)"=19 | "(at HeightMonitor_1)"=25 | "(at HeightMonitor_1)"=31);
+  "(@def ready descend_3_0 Airplane_4)":=(FALSE);
+  "(@def ready descend_3_0 Airplane_5)":=(FALSE);
+  "(@def ready descend_3_0 Airplane_2)":=(FALSE);
+  "(@def ready descend_3_0 Airplane_1)":=(FALSE);
+  "(@def ready descend_3_0 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_3_0 Airplane_3)":=("(at Airplane_3)"=2 | "(at Airplane_3)"=6);
+  "(@def ready descend_3_0 HeightMonitor_0)":=("(at HeightMonitor_0)"=0 | "(at HeightMonitor_0)"=1 | "(at HeightMonitor_0)"=7 | "(at HeightMonitor_0)"=13 | "(at HeightMonitor_0)"=25 | "(at HeightMonitor_0)"=31);
+  "(@def ready descend_3_0 HeightMonitor_4)":=(FALSE);
+  "(@def ready descend_3_0 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=3);
+  "(@def ready descend_3_0 RampMonitor)":=(FALSE);
+  "(@def ready descend_3_0 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_3_0 Airplane_0)":=(FALSE);
+  "(@def ready descend_3_3 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_3_3 Airplane_4)":=(FALSE);
+  "(@def ready descend_3_3 Airplane_5)":=(FALSE);
+  "(@def ready descend_3_3 Airplane_2)":=(FALSE);
+  "(@def ready descend_3_3 Airplane_1)":=(FALSE);
+  "(@def ready descend_3_3 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_3_3 Airplane_3)":=("(at Airplane_3)"=2 | "(at Airplane_3)"=3);
+  "(@def ready descend_3_3 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_3_3 HeightMonitor_4)":=("(at HeightMonitor_4)"=0 | "(at HeightMonitor_4)"=1 | "(at HeightMonitor_4)"=7 | "(at HeightMonitor_4)"=13 | "(at HeightMonitor_4)"=19 | "(at HeightMonitor_4)"=25 | "(at HeightMonitor_4)"=31);
+  "(@def ready descend_3_3 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=3);
+  "(@def ready descend_3_3 RampMonitor)":=(FALSE);
+  "(@def ready descend_3_3 HeightMonitor_3)":=("(at HeightMonitor_3)"=0 | "(at HeightMonitor_3)"=1 | "(at HeightMonitor_3)"=13 | "(at HeightMonitor_3)"=19 | "(at HeightMonitor_3)"=25 | "(at HeightMonitor_3)"=31);
+  "(@def ready descend_3_3 Airplane_0)":=(FALSE);
+  "(@def ready descend_3_4 HeightMonitor_1)":=(FALSE);
+  "(@def ready descend_3_4 Airplane_4)":=(FALSE);
+  "(@def ready descend_3_4 Airplane_5)":=(FALSE);
+  "(@def ready descend_3_4 Airplane_2)":=(FALSE);
+  "(@def ready descend_3_4 Airplane_1)":=(FALSE);
+  "(@def ready descend_3_4 HeightMonitor_2)":=(FALSE);
+  "(@def ready descend_3_4 Airplane_3)":=("(at Airplane_3)"=2);
+  "(@def ready descend_3_4 HeightMonitor_0)":=(FALSE);
+  "(@def ready descend_3_4 HeightMonitor_4)":=("(at HeightMonitor_4)"=0 | "(at HeightMonitor_4)"=7 | "(at HeightMonitor_4)"=13 | "(at HeightMonitor_4)"=19 | "(at HeightMonitor_4)"=25 | "(at HeightMonitor_4)"=31);
+  "(@def ready descend_3_4 ResponseMonitor)":=("(at ResponseMonitor)"=0 | "(at ResponseMonitor)"=3);
+  "(@def ready descend_3_4 RampMonitor)":=(FALSE);
+  "(@def ready descend_3_4 HeightMonitor_3)":=(FALSE);
+  "(@def ready descend_3_4 Airplane_0)":=(FALSE);
+  "(@def ready requestLand_2 HeightMonitor_1)":=(FALSE);
+  "(@def ready requestLand_2 Airplane_4)":=(FALSE);
+  "(@def ready requestLand_2 Airplane_5)":=(FALSE);
+  "(@def ready requestLand_2 Airplane_2)":=("(at Airplane_2)"=0);
+  "(@def ready requestLand_2 Airplane_1)":=(FALSE);
+  "(@def ready requestLand_2 HeightMonitor_2)":=(FALSE);
+  "(@def ready requestLand_2 Airplane_3)":=(FALSE);
+  "(@def ready requestLand_2 HeightMonitor_0)":=(FALSE);
+  "(@def ready requestLand_2 HeightMonitor_4)":=(FALSE);
+  "(@def ready requestLand_2 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready requestLand_2 RampMonitor)":=(FALSE);
+  "(@def ready requestLand_2 HeightMonitor_3)":=(FALSE);
+  "(@def ready requestLand_2 Airplane_0)":=(FALSE);
+  "(@def ready requestLand_3 HeightMonitor_1)":=(FALSE);
+  "(@def ready requestLand_3 Airplane_4)":=(FALSE);
+  "(@def ready requestLand_3 Airplane_5)":=(FALSE);
+  "(@def ready requestLand_3 Airplane_2)":=(FALSE);
+  "(@def ready requestLand_3 Airplane_1)":=(FALSE);
+  "(@def ready requestLand_3 HeightMonitor_2)":=(FALSE);
+  "(@def ready requestLand_3 Airplane_3)":=("(at Airplane_3)"=0);
+  "(@def ready requestLand_3 HeightMonitor_0)":=(FALSE);
+  "(@def ready requestLand_3 HeightMonitor_4)":=(FALSE);
+  "(@def ready requestLand_3 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready requestLand_3 RampMonitor)":=(FALSE);
+  "(@def ready requestLand_3 HeightMonitor_3)":=(FALSE);
+  "(@def ready requestLand_3 Airplane_0)":=(FALSE);
+  "(@def ready requestLand_0 HeightMonitor_1)":=(FALSE);
+  "(@def ready requestLand_0 Airplane_4)":=(FALSE);
+  "(@def ready requestLand_0 Airplane_5)":=(FALSE);
+  "(@def ready requestLand_0 Airplane_2)":=(FALSE);
+  "(@def ready requestLand_0 Airplane_1)":=(FALSE);
+  "(@def ready requestLand_0 HeightMonitor_2)":=(FALSE);
+  "(@def ready requestLand_0 Airplane_3)":=(FALSE);
+  "(@def ready requestLand_0 HeightMonitor_0)":=(FALSE);
+  "(@def ready requestLand_0 HeightMonitor_4)":=(FALSE);
+  "(@def ready requestLand_0 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready requestLand_0 RampMonitor)":=(FALSE);
+  "(@def ready requestLand_0 HeightMonitor_3)":=(FALSE);
+  "(@def ready requestLand_0 Airplane_0)":=("(at Airplane_0)"=0);
+  "(@def ready requestLand_1 HeightMonitor_1)":=(FALSE);
+  "(@def ready requestLand_1 Airplane_4)":=(FALSE);
+  "(@def ready requestLand_1 Airplane_5)":=(FALSE);
+  "(@def ready requestLand_1 Airplane_2)":=(FALSE);
+  "(@def ready requestLand_1 Airplane_1)":=("(at Airplane_1)"=0);
+  "(@def ready requestLand_1 HeightMonitor_2)":=(FALSE);
+  "(@def ready requestLand_1 Airplane_3)":=(FALSE);
+  "(@def ready requestLand_1 HeightMonitor_0)":=(FALSE);
+  "(@def ready requestLand_1 HeightMonitor_4)":=(FALSE);
+  "(@def ready requestLand_1 ResponseMonitor)":=("(at ResponseMonitor)"=0);
+  "(@def ready requestLand_1 RampMonitor)":=(FALSE);
+  "(@def ready requestLand_1 HeightMonitor_3)":=(FALSE);
+  "(@def ready requestLand_1 Airplane_0)":=(FALSE);
+  "(@def enabled approach_1)":=("(@def ready approach_1 Airplane_1)" & "(@def ready approach_1 ResponseMonitor)" & "(@def ready approach_1 RampMonitor)");
+  "(@def enabled approach_0)":=("(@def ready approach_0 ResponseMonitor)" & "(@def ready approach_0 RampMonitor)" & "(@def ready approach_0 Airplane_0)");
+  "(@def enabled approach_5)":=("(@def ready approach_5 Airplane_5)" & "(@def ready approach_5 ResponseMonitor)" & "(@def ready approach_5 RampMonitor)");
+  "(@def enabled approach_4)":=("(@def ready approach_4 Airplane_4)" & "(@def ready approach_4 ResponseMonitor)" & "(@def ready approach_4 RampMonitor)");
+  "(@def enabled approach_3)":=("(@def ready approach_3 Airplane_3)" & "(@def ready approach_3 ResponseMonitor)" & "(@def ready approach_3 RampMonitor)");
+  "(@def enabled approach_2)":=("(@def ready approach_2 Airplane_2)" & "(@def ready approach_2 ResponseMonitor)" & "(@def ready approach_2 RampMonitor)");
+  "(@def enabled descend_5_2)":=("(@def ready descend_5_2 Airplane_5)" & "(@def ready descend_5_2 HeightMonitor_2)" & "(@def ready descend_5_2 ResponseMonitor)" & "(@def ready descend_5_2 HeightMonitor_3)");
+  "(@def enabled descend_5_1)":=("(@def ready descend_5_1 HeightMonitor_1)" & "(@def ready descend_5_1 Airplane_5)" & "(@def ready descend_5_1 HeightMonitor_2)" & "(@def ready descend_5_1 ResponseMonitor)");
+  "(@def enabled descend_5_4)":=("(@def ready descend_5_4 Airplane_5)" & "(@def ready descend_5_4 HeightMonitor_4)" & "(@def ready descend_5_4 ResponseMonitor)");
+  "(@def enabled descend_4_0)":=("(@def ready descend_4_0 HeightMonitor_1)" & "(@def ready descend_4_0 Airplane_4)" & "(@def ready descend_4_0 HeightMonitor_0)" & "(@def ready descend_4_0 ResponseMonitor)");
+  "(@def enabled descend_5_3)":=("(@def ready descend_5_3 Airplane_5)" & "(@def ready descend_5_3 HeightMonitor_4)" & "(@def ready descend_5_3 ResponseMonitor)" & "(@def ready descend_5_3 HeightMonitor_3)");
+  "(@def enabled descend_4_1)":=("(@def ready descend_4_1 HeightMonitor_1)" & "(@def ready descend_4_1 Airplane_4)" & "(@def ready descend_4_1 HeightMonitor_2)" & "(@def ready descend_4_1 ResponseMonitor)");
+  "(@def enabled descend_4_2)":=("(@def ready descend_4_2 Airplane_4)" & "(@def ready descend_4_2 HeightMonitor_2)" & "(@def ready descend_4_2 ResponseMonitor)" & "(@def ready descend_4_2 HeightMonitor_3)");
+  "(@def enabled descend_4_3)":=("(@def ready descend_4_3 Airplane_4)" & "(@def ready descend_4_3 HeightMonitor_4)" & "(@def ready descend_4_3 ResponseMonitor)" & "(@def ready descend_4_3 HeightMonitor_3)");
+  "(@def enabled descend_5_0)":=("(@def ready descend_5_0 HeightMonitor_1)" & "(@def ready descend_5_0 Airplane_5)" & "(@def ready descend_5_0 HeightMonitor_0)" & "(@def ready descend_5_0 ResponseMonitor)");
+  "(@def enabled descend_4_4)":=("(@def ready descend_4_4 Airplane_4)" & "(@def ready descend_4_4 HeightMonitor_4)" & "(@def ready descend_4_4 ResponseMonitor)");
+  "(@def enabled control_all)":=("(@def ready control_all Airplane_4)" & "(@def ready control_all Airplane_5)" & "(@def ready control_all Airplane_2)" & "(@def ready control_all Airplane_1)" & "(@def ready control_all Airplane_3)" & "(@def ready control_all Airplane_0)");
+  "(@def enabled land_5)":=("(@def ready land_5 Airplane_5)" & "(@def ready land_5 HeightMonitor_0)" & "(@def ready land_5 RampMonitor)");
+  "(@def enabled land_3)":=("(@def ready land_3 Airplane_3)" & "(@def ready land_3 HeightMonitor_0)" & "(@def ready land_3 RampMonitor)");
+  "(@def enabled land_4)":=("(@def ready land_4 Airplane_4)" & "(@def ready land_4 HeightMonitor_0)" & "(@def ready land_4 RampMonitor)");
+  "(@def enabled air_crash_0)":=("(@def ready air_crash_0 HeightMonitor_0)");
+  "(@def enabled air_crash_2)":=("(@def ready air_crash_2 HeightMonitor_2)");
+  "(@def enabled air_crash_1)":=("(@def ready air_crash_1 HeightMonitor_1)");
+  "(@def enabled land_2)":=("(@def ready land_2 Airplane_2)" & "(@def ready land_2 HeightMonitor_0)" & "(@def ready land_2 RampMonitor)");
+  "(@def enabled land_1)":=("(@def ready land_1 Airplane_1)" & "(@def ready land_1 HeightMonitor_0)" & "(@def ready land_1 RampMonitor)");
+  "(@def enabled land_0)":=("(@def ready land_0 HeightMonitor_0)" & "(@def ready land_0 RampMonitor)" & "(@def ready land_0 Airplane_0)");
+  "(@def enabled air_crash_4)":=("(@def ready air_crash_4 HeightMonitor_4)");
+  "(@def enabled air_crash_3)":=("(@def ready air_crash_3 HeightMonitor_3)");
+  "(@def enabled descend_0_2)":=("(@def ready descend_0_2 HeightMonitor_2)" & "(@def ready descend_0_2 ResponseMonitor)" & "(@def ready descend_0_2 HeightMonitor_3)" & "(@def ready descend_0_2 Airplane_0)");
+  "(@def enabled descend_0_3)":=("(@def ready descend_0_3 HeightMonitor_4)" & "(@def ready descend_0_3 ResponseMonitor)" & "(@def ready descend_0_3 HeightMonitor_3)" & "(@def ready descend_0_3 Airplane_0)");
+  "(@def enabled descend_0_4)":=("(@def ready descend_0_4 HeightMonitor_4)" & "(@def ready descend_0_4 ResponseMonitor)" & "(@def ready descend_0_4 Airplane_0)");
+  "(@def enabled descend_1_2)":=("(@def ready descend_1_2 Airplane_1)" & "(@def ready descend_1_2 HeightMonitor_2)" & "(@def ready descend_1_2 ResponseMonitor)" & "(@def ready descend_1_2 HeightMonitor_3)");
+  "(@def enabled requestLand_5)":=("(@def ready requestLand_5 Airplane_5)" & "(@def ready requestLand_5 ResponseMonitor)");
+  "(@def enabled requestLand_4)":=("(@def ready requestLand_4 Airplane_4)" & "(@def ready requestLand_4 ResponseMonitor)");
+  "(@def enabled descend_1_1)":=("(@def ready descend_1_1 HeightMonitor_1)" & "(@def ready descend_1_1 Airplane_1)" & "(@def ready descend_1_1 HeightMonitor_2)" & "(@def ready descend_1_1 ResponseMonitor)");
+  "(@def enabled descend_1_4)":=("(@def ready descend_1_4 Airplane_1)" & "(@def ready descend_1_4 HeightMonitor_4)" & "(@def ready descend_1_4 ResponseMonitor)");
+  "(@def enabled descend_1_3)":=("(@def ready descend_1_3 Airplane_1)" & "(@def ready descend_1_3 HeightMonitor_4)" & "(@def ready descend_1_3 ResponseMonitor)" & "(@def ready descend_1_3 HeightMonitor_3)");
+  "(@def enabled land_crash)":=("(@def ready land_crash RampMonitor)");
+  "(@def enabled extendFlight_2)":=("(@def ready extendFlight_2 Airplane_2)" & "(@def ready extendFlight_2 ResponseMonitor)");
+  "(@def enabled extendFlight_3)":=("(@def ready extendFlight_3 Airplane_3)" & "(@def ready extendFlight_3 ResponseMonitor)");
+  "(@def enabled extendFlight_0)":=("(@def ready extendFlight_0 ResponseMonitor)" & "(@def ready extendFlight_0 Airplane_0)");
+  "(@def enabled extendFlight_1)":=("(@def ready extendFlight_1 Airplane_1)" & "(@def ready extendFlight_1 ResponseMonitor)");
+  "(@def enabled extendFlight_5)":=("(@def ready extendFlight_5 Airplane_5)" & "(@def ready extendFlight_5 ResponseMonitor)");
+  "(@def enabled extendFlight_4)":=("(@def ready extendFlight_4 Airplane_4)" & "(@def ready extendFlight_4 ResponseMonitor)");
+  "(@def enabled descend_2_1)":=("(@def ready descend_2_1 HeightMonitor_1)" & "(@def ready descend_2_1 Airplane_2)" & "(@def ready descend_2_1 HeightMonitor_2)" & "(@def ready descend_2_1 ResponseMonitor)");
+  "(@def enabled descend_2_0)":=("(@def ready descend_2_0 HeightMonitor_1)" & "(@def ready descend_2_0 Airplane_2)" & "(@def ready descend_2_0 HeightMonitor_0)" & "(@def ready descend_2_0 ResponseMonitor)");
+  "(@def enabled descend_2_3)":=("(@def ready descend_2_3 Airplane_2)" & "(@def ready descend_2_3 HeightMonitor_4)" & "(@def ready descend_2_3 ResponseMonitor)" & "(@def ready descend_2_3 HeightMonitor_3)");
+  "(@def enabled descend_2_2)":=("(@def ready descend_2_2 Airplane_2)" & "(@def ready descend_2_2 HeightMonitor_2)" & "(@def ready descend_2_2 ResponseMonitor)" & "(@def ready descend_2_2 HeightMonitor_3)");
+  "(@def enabled descend_1_0)":=("(@def ready descend_1_0 HeightMonitor_1)" & "(@def ready descend_1_0 Airplane_1)" & "(@def ready descend_1_0 HeightMonitor_0)" & "(@def ready descend_1_0 ResponseMonitor)");
+  "(@def enabled descend_2_4)":=("(@def ready descend_2_4 Airplane_2)" & "(@def ready descend_2_4 HeightMonitor_4)" & "(@def ready descend_2_4 ResponseMonitor)");
+  "(@def enabled descend_0_1)":=("(@def ready descend_0_1 HeightMonitor_1)" & "(@def ready descend_0_1 HeightMonitor_2)" & "(@def ready descend_0_1 ResponseMonitor)" & "(@def ready descend_0_1 Airplane_0)");
+  "(@def enabled descend_0_0)":=("(@def ready descend_0_0 HeightMonitor_1)" & "(@def ready descend_0_0 HeightMonitor_0)" & "(@def ready descend_0_0 ResponseMonitor)" & "(@def ready descend_0_0 Airplane_0)");
+  "(@def enabled descend_3_1)":=("(@def ready descend_3_1 HeightMonitor_1)" & "(@def ready descend_3_1 HeightMonitor_2)" & "(@def ready descend_3_1 Airplane_3)" & "(@def ready descend_3_1 ResponseMonitor)");
+  "(@def enabled descend_3_2)":=("(@def ready descend_3_2 HeightMonitor_2)" & "(@def ready descend_3_2 Airplane_3)" & "(@def ready descend_3_2 ResponseMonitor)" & "(@def ready descend_3_2 HeightMonitor_3)");
+  "(@def enabled descend_3_0)":=("(@def ready descend_3_0 HeightMonitor_1)" & "(@def ready descend_3_0 Airplane_3)" & "(@def ready descend_3_0 HeightMonitor_0)" & "(@def ready descend_3_0 ResponseMonitor)");
+  "(@def enabled descend_3_3)":=("(@def ready descend_3_3 Airplane_3)" & "(@def ready descend_3_3 HeightMonitor_4)" & "(@def ready descend_3_3 ResponseMonitor)" & "(@def ready descend_3_3 HeightMonitor_3)");
+  "(@def enabled descend_3_4)":=("(@def ready descend_3_4 Airplane_3)" & "(@def ready descend_3_4 HeightMonitor_4)" & "(@def ready descend_3_4 ResponseMonitor)");
+  "(@def enabled requestLand_2)":=("(@def ready requestLand_2 Airplane_2)" & "(@def ready requestLand_2 ResponseMonitor)");
+  "(@def enabled requestLand_3)":=("(@def ready requestLand_3 Airplane_3)" & "(@def ready requestLand_3 ResponseMonitor)");
+  "(@def enabled requestLand_0)":=("(@def ready requestLand_0 ResponseMonitor)" & "(@def ready requestLand_0 Airplane_0)");
+  "(@def enabled requestLand_1)":=("(@def ready requestLand_1 Airplane_1)" & "(@def ready requestLand_1 ResponseMonitor)");
+  "(@def event)":=("(@def enabled control_all)" | "(@def enabled requestLand_5)" | "(@def enabled requestLand_4)" | "(@def enabled land_5)" | "(@def enabled land_crash)" | "(@def enabled land_3)" | "(@def enabled land_4)" | "(@def enabled extendFlight_2)" | "(@def enabled extendFlight_3)" | "(@def enabled extendFlight_0)" | "(@def enabled extendFlight_1)" | "(@def enabled air_crash_0)" | "(@def enabled extendFlight_5)" | "(@def enabled air_crash_2)" | "(@def enabled extendFlight_4)" | "(@def enabled air_crash_1)" | "(@def enabled land_2)" | "(@def enabled land_1)" | "(@def enabled land_0)" | "(@def enabled requestLand_2)" | "(@def enabled requestLand_3)" | "(@def enabled requestLand_0)" | "(@def enabled requestLand_1)" | "(@def enabled air_crash_4)" | "(@def enabled air_crash_3)");
+  "(@def keep at)":=(next("(at HeightMonitor_1)")="(at HeightMonitor_1)" & next("(at Airplane_4)")="(at Airplane_4)" & next("(at Airplane_5)")="(at Airplane_5)" & next("(at Airplane_2)")="(at Airplane_2)" & next("(at Airplane_1)")="(at Airplane_1)" & next("(at HeightMonitor_2)")="(at HeightMonitor_2)" & next("(at Airplane_3)")="(at Airplane_3)" & next("(at HeightMonitor_0)")="(at HeightMonitor_0)" & next("(at HeightMonitor_4)")="(at HeightMonitor_4)" & next("(at ResponseMonitor)")="(at ResponseMonitor)" & next("(at RampMonitor)")="(at RampMonitor)" & next("(at HeightMonitor_3)")="(at HeightMonitor_3)" & next("(at Airplane_0)")="(at Airplane_0)");
+  "(@def no inprogress)":=(!"(inprogress control_all)" & !"(inprogress requestLand_5)" & !"(inprogress requestLand_4)" & !"(inprogress land_5)" & !"(inprogress land_crash)" & !"(inprogress land_3)" & !"(inprogress land_4)" & !"(inprogress extendFlight_2)" & !"(inprogress extendFlight_3)" & !"(inprogress extendFlight_0)" & !"(inprogress extendFlight_1)" & !"(inprogress air_crash_0)" & !"(inprogress extendFlight_5)" & !"(inprogress air_crash_2)" & !"(inprogress extendFlight_4)" & !"(inprogress air_crash_1)" & !"(inprogress land_2)" & !"(inprogress land_1)" & !"(inprogress land_0)" & !"(inprogress requestLand_2)" & !"(inprogress requestLand_3)" & !"(inprogress requestLand_0)" & !"(inprogress requestLand_1)" & !"(inprogress air_crash_4)" & !"(inprogress air_crash_3)");
+  "(@def reset inprogress)":=(next("(inprogress control_all)")=0 & next("(inprogress requestLand_5)")=0 & next("(inprogress requestLand_4)")=0 & next("(inprogress land_5)")=0 & next("(inprogress land_crash)")=0 & next("(inprogress land_3)")=0 & next("(inprogress land_4)")=0 & next("(inprogress extendFlight_2)")=0 & next("(inprogress extendFlight_3)")=0 & next("(inprogress extendFlight_0)")=0 & next("(inprogress extendFlight_1)")=0 & next("(inprogress air_crash_0)")=0 & next("(inprogress extendFlight_5)")=0 & next("(inprogress air_crash_2)")=0 & next("(inprogress extendFlight_4)")=0 & next("(inprogress air_crash_1)")=0 & next("(inprogress land_2)")=0 & next("(inprogress land_1)")=0 & next("(inprogress land_0)")=0 & next("(inprogress requestLand_2)")=0 & next("(inprogress requestLand_3)")=0 & next("(inprogress requestLand_0)")=0 & next("(inprogress requestLand_1)")=0 & next("(inprogress air_crash_4)")=0 & next("(inprogress air_crash_3)")=0);
+TRANS (
+  (
+    (action="(choose)" & !("(status)"=0 & "(@def event)") -> FALSE) &
+    ((action="(choose)" & ("(status)"=0 & "(@def event)"))
+      -> (
+        (!"(@def enabled control_all)" -> next("(inprogress control_all)")=0) & 
+        (!"(@def enabled requestLand_5)" -> next("(inprogress requestLand_5)")=0) & 
+        (!"(@def enabled requestLand_4)" -> next("(inprogress requestLand_4)")=0) & 
+        (!"(@def enabled land_5)" -> next("(inprogress land_5)")=0) & 
+        (!"(@def enabled land_crash)" -> next("(inprogress land_crash)")=0) & 
+        (!"(@def enabled land_3)" -> next("(inprogress land_3)")=0) & 
+        (!"(@def enabled land_4)" -> next("(inprogress land_4)")=0) & 
+        (!"(@def enabled extendFlight_2)" -> next("(inprogress extendFlight_2)")=0) & 
+        (!"(@def enabled extendFlight_3)" -> next("(inprogress extendFlight_3)")=0) & 
+        (!"(@def enabled extendFlight_0)" -> next("(inprogress extendFlight_0)")=0) & 
+        (!"(@def enabled extendFlight_1)" -> next("(inprogress extendFlight_1)")=0) & 
+        (!"(@def enabled air_crash_0)" -> next("(inprogress air_crash_0)")=0) & 
+        (!"(@def enabled extendFlight_5)" -> next("(inprogress extendFlight_5)")=0) & 
+        (!"(@def enabled air_crash_2)" -> next("(inprogress air_crash_2)")=0) & 
+        (!"(@def enabled extendFlight_4)" -> next("(inprogress extendFlight_4)")=0) & 
+        (!"(@def enabled air_crash_1)" -> next("(inprogress air_crash_1)")=0) & 
+        (!"(@def enabled land_2)" -> next("(inprogress land_2)")=0) & 
+        (!"(@def enabled land_1)" -> next("(inprogress land_1)")=0) & 
+        (!"(@def enabled land_0)" -> next("(inprogress land_0)")=0) & 
+        (!"(@def enabled requestLand_2)" -> next("(inprogress requestLand_2)")=0) & 
+        (!"(@def enabled requestLand_3)" -> next("(inprogress requestLand_3)")=0) & 
+        (!"(@def enabled requestLand_0)" -> next("(inprogress requestLand_0)")=0) & 
+        (!"(@def enabled requestLand_1)" -> next("(inprogress requestLand_1)")=0) & 
+        (!"(@def enabled air_crash_4)" -> next("(inprogress air_crash_4)")=0) & 
+        (!"(@def enabled air_crash_3)" -> next("(inprogress air_crash_3)")=0) & 
+        next("(status)")=1 &
+        "(@def keep at)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(default)" & !("(status)"=1 & "(@def no inprogress)") -> FALSE) &
+    ((action="(default)" & ("(status)"=1 & "(@def no inprogress)"))
+      -> (
+        next("(inprogress control_all)")=1 &
+        next("(inprogress requestLand_5)")=1 &
+        next("(inprogress requestLand_4)")=1 &
+        next("(inprogress land_5)")=1 &
+        next("(inprogress land_crash)")=1 &
+        next("(inprogress land_3)")=1 &
+        next("(inprogress land_4)")=1 &
+        next("(inprogress extendFlight_2)")=1 &
+        next("(inprogress extendFlight_3)")=1 &
+        next("(inprogress extendFlight_0)")=1 &
+        next("(inprogress extendFlight_1)")=1 &
+        next("(inprogress air_crash_0)")=1 &
+        next("(inprogress extendFlight_5)")=1 &
+        next("(inprogress air_crash_2)")=1 &
+        next("(inprogress extendFlight_4)")=1 &
+        next("(inprogress air_crash_1)")=1 &
+        next("(inprogress land_2)")=1 &
+        next("(inprogress land_1)")=1 &
+        next("(inprogress land_0)")=1 &
+        next("(inprogress requestLand_2)")=1 &
+        next("(inprogress requestLand_3)")=1 &
+        next("(inprogress requestLand_0)")=1 &
+        next("(inprogress requestLand_1)")=1 &
+        next("(inprogress air_crash_4)")=1 &
+        next("(inprogress air_crash_3)")=1 &
+        "(@def keep at)" &
+        next("(status)")="(status)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(approach_1)" & !("(@def enabled approach_1)" & !"(@def event)") -> FALSE) &
+    ((action="(approach_1)" & ("(@def enabled approach_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_1)"=3 -> next("(at Airplane_1)")=4) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at RampMonitor)"=0 -> next("(at RampMonitor)")=1) &
+        ("(at RampMonitor)"=1 -> next("(at RampMonitor)")=7) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(approach_0)" & !("(@def enabled approach_0)" & !"(@def event)") -> FALSE) &
+    ((action="(approach_0)" & ("(@def enabled approach_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at RampMonitor)"=0 -> next("(at RampMonitor)")=1) &
+        ("(at RampMonitor)"=1 -> next("(at RampMonitor)")=6) &
+        ("(at Airplane_0)"=3 -> next("(at Airplane_0)")=4) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(approach_5)" & !("(@def enabled approach_5)" & !"(@def event)") -> FALSE) &
+    ((action="(approach_5)" & ("(@def enabled approach_5)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_5)"=2 -> next("(at Airplane_5)")=3) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at RampMonitor)"=0 -> next("(at RampMonitor)")=1) &
+        ("(at RampMonitor)"=1 -> next("(at RampMonitor)")=5) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(approach_4)" & !("(@def enabled approach_4)" & !"(@def event)") -> FALSE) &
+    ((action="(approach_4)" & ("(@def enabled approach_4)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_4)"=6 -> next("(at Airplane_4)")=7) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at RampMonitor)"=0 -> next("(at RampMonitor)")=1) &
+        ("(at RampMonitor)"=1 -> next("(at RampMonitor)")=4) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(approach_3)" & !("(@def enabled approach_3)" & !"(@def event)") -> FALSE) &
+    ((action="(approach_3)" & ("(@def enabled approach_3)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_3)"=7 -> next("(at Airplane_3)")=8) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at RampMonitor)"=0 -> next("(at RampMonitor)")=1) &
+        ("(at RampMonitor)"=1 -> next("(at RampMonitor)")=3) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_2)")="(at Airplane_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(approach_2)" & !("(@def enabled approach_2)" & !"(@def event)") -> FALSE) &
+    ((action="(approach_2)" & ("(@def enabled approach_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_2)"=7 -> next("(at Airplane_2)")=8) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at RampMonitor)"=0 -> next("(at RampMonitor)")=1) &
+        ("(at RampMonitor)"=1 -> next("(at RampMonitor)")=2) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_5_2)" & !("(@def enabled descend_5_2)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_5_2)" & ("(@def enabled descend_5_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_5)"=1 -> next("(at Airplane_5)")=6) &
+        ("(at Airplane_5)"=5 -> next("(at Airplane_5)")=6) &
+        ("(at HeightMonitor_2)"=0 -> next("(at HeightMonitor_2)")=19) &
+        ("(at HeightMonitor_2)"=1 -> next("(at HeightMonitor_2)")=4) &
+        ("(at HeightMonitor_2)"=7 -> next("(at HeightMonitor_2)")=10) &
+        ("(at HeightMonitor_2)"=13 -> next("(at HeightMonitor_2)")=16) &
+        ("(at HeightMonitor_2)"=25 -> next("(at HeightMonitor_2)")=29) &
+        ("(at HeightMonitor_2)"=31 -> next("(at HeightMonitor_2)")=35) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=6 -> next("(at ResponseMonitor)")=0) &
+        ("(at HeightMonitor_3)"=0 -> next("(at HeightMonitor_3)")=0) &
+        ("(at HeightMonitor_3)"=1 -> next("(at HeightMonitor_3)")=1) &
+        ("(at HeightMonitor_3)"=7 -> next("(at HeightMonitor_3)")=7) &
+        ("(at HeightMonitor_3)"=13 -> next("(at HeightMonitor_3)")=13) &
+        ("(at HeightMonitor_3)"=19 -> next("(at HeightMonitor_3)")=0) &
+        ("(at HeightMonitor_3)"=25 -> next("(at HeightMonitor_3)")=25) &
+        ("(at HeightMonitor_3)"=31 -> next("(at HeightMonitor_3)")=31) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_5_1)" & !("(@def enabled descend_5_1)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_5_1)" & ("(@def enabled descend_5_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=0 -> next("(at HeightMonitor_1)")=13) &
+        ("(at HeightMonitor_1)"=1 -> next("(at HeightMonitor_1)")=3) &
+        ("(at HeightMonitor_1)"=7 -> next("(at HeightMonitor_1)")=9) &
+        ("(at HeightMonitor_1)"=19 -> next("(at HeightMonitor_1)")=22) &
+        ("(at HeightMonitor_1)"=25 -> next("(at HeightMonitor_1)")=28) &
+        ("(at HeightMonitor_1)"=31 -> next("(at HeightMonitor_1)")=34) &
+        ("(at Airplane_5)"=1 -> next("(at Airplane_5)")=7) &
+        ("(at Airplane_5)"=6 -> next("(at Airplane_5)")=7) &
+        ("(at HeightMonitor_2)"=0 -> next("(at HeightMonitor_2)")=0) &
+        ("(at HeightMonitor_2)"=1 -> next("(at HeightMonitor_2)")=1) &
+        ("(at HeightMonitor_2)"=7 -> next("(at HeightMonitor_2)")=7) &
+        ("(at HeightMonitor_2)"=13 -> next("(at HeightMonitor_2)")=13) &
+        ("(at HeightMonitor_2)"=19 -> next("(at HeightMonitor_2)")=0) &
+        ("(at HeightMonitor_2)"=25 -> next("(at HeightMonitor_2)")=25) &
+        ("(at HeightMonitor_2)"=31 -> next("(at HeightMonitor_2)")=31) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=6 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_5_4)" & !("(@def enabled descend_5_4)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_5_4)" & ("(@def enabled descend_5_4)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_5)"=1 -> next("(at Airplane_5)")=8) &
+        ("(at HeightMonitor_4)"=0 -> next("(at HeightMonitor_4)")=19) &
+        ("(at HeightMonitor_4)"=1 -> next("(at HeightMonitor_4)")=4) &
+        ("(at HeightMonitor_4)"=7 -> next("(at HeightMonitor_4)")=10) &
+        ("(at HeightMonitor_4)"=13 -> next("(at HeightMonitor_4)")=16) &
+        ("(at HeightMonitor_4)"=25 -> next("(at HeightMonitor_4)")=29) &
+        ("(at HeightMonitor_4)"=31 -> next("(at HeightMonitor_4)")=35) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=6 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_4_0)" & !("(@def enabled descend_4_0)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_4_0)" & ("(@def enabled descend_4_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=0 -> next("(at HeightMonitor_1)")=0) &
+        ("(at HeightMonitor_1)"=1 -> next("(at HeightMonitor_1)")=1) &
+        ("(at HeightMonitor_1)"=7 -> next("(at HeightMonitor_1)")=0) &
+        ("(at HeightMonitor_1)"=13 -> next("(at HeightMonitor_1)")=13) &
+        ("(at HeightMonitor_1)"=19 -> next("(at HeightMonitor_1)")=19) &
+        ("(at HeightMonitor_1)"=25 -> next("(at HeightMonitor_1)")=25) &
+        ("(at HeightMonitor_1)"=31 -> next("(at HeightMonitor_1)")=31) &
+        ("(at Airplane_4)"=1 -> next("(at Airplane_4)")=6) &
+        ("(at Airplane_4)"=5 -> next("(at Airplane_4)")=6) &
+        ("(at HeightMonitor_0)"=0 -> next("(at HeightMonitor_0)")=25) &
+        ("(at HeightMonitor_0)"=1 -> next("(at HeightMonitor_0)")=5) &
+        ("(at HeightMonitor_0)"=7 -> next("(at HeightMonitor_0)")=11) &
+        ("(at HeightMonitor_0)"=13 -> next("(at HeightMonitor_0)")=17) &
+        ("(at HeightMonitor_0)"=19 -> next("(at HeightMonitor_0)")=23) &
+        ("(at HeightMonitor_0)"=31 -> next("(at HeightMonitor_0)")=36) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=5 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_5_3)" & !("(@def enabled descend_5_3)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_5_3)" & ("(@def enabled descend_5_3)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_5)"=1 -> next("(at Airplane_5)")=5) &
+        ("(at Airplane_5)"=8 -> next("(at Airplane_5)")=5) &
+        ("(at HeightMonitor_4)"=0 -> next("(at HeightMonitor_4)")=0) &
+        ("(at HeightMonitor_4)"=1 -> next("(at HeightMonitor_4)")=1) &
+        ("(at HeightMonitor_4)"=7 -> next("(at HeightMonitor_4)")=7) &
+        ("(at HeightMonitor_4)"=13 -> next("(at HeightMonitor_4)")=13) &
+        ("(at HeightMonitor_4)"=19 -> next("(at HeightMonitor_4)")=0) &
+        ("(at HeightMonitor_4)"=25 -> next("(at HeightMonitor_4)")=25) &
+        ("(at HeightMonitor_4)"=31 -> next("(at HeightMonitor_4)")=31) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=6 -> next("(at ResponseMonitor)")=0) &
+        ("(at HeightMonitor_3)"=0 -> next("(at HeightMonitor_3)")=19) &
+        ("(at HeightMonitor_3)"=1 -> next("(at HeightMonitor_3)")=4) &
+        ("(at HeightMonitor_3)"=7 -> next("(at HeightMonitor_3)")=10) &
+        ("(at HeightMonitor_3)"=13 -> next("(at HeightMonitor_3)")=16) &
+        ("(at HeightMonitor_3)"=25 -> next("(at HeightMonitor_3)")=29) &
+        ("(at HeightMonitor_3)"=31 -> next("(at HeightMonitor_3)")=35) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_4_1)" & !("(@def enabled descend_4_1)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_4_1)" & ("(@def enabled descend_4_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=0 -> next("(at HeightMonitor_1)")=7) &
+        ("(at HeightMonitor_1)"=1 -> next("(at HeightMonitor_1)")=2) &
+        ("(at HeightMonitor_1)"=13 -> next("(at HeightMonitor_1)")=15) &
+        ("(at HeightMonitor_1)"=19 -> next("(at HeightMonitor_1)")=21) &
+        ("(at HeightMonitor_1)"=25 -> next("(at HeightMonitor_1)")=27) &
+        ("(at HeightMonitor_1)"=31 -> next("(at HeightMonitor_1)")=33) &
+        ("(at Airplane_4)"=1 -> next("(at Airplane_4)")=5) &
+        ("(at Airplane_4)"=4 -> next("(at Airplane_4)")=5) &
+        ("(at HeightMonitor_2)"=0 -> next("(at HeightMonitor_2)")=0) &
+        ("(at HeightMonitor_2)"=1 -> next("(at HeightMonitor_2)")=0) &
+        ("(at HeightMonitor_2)"=7 -> next("(at HeightMonitor_2)")=7) &
+        ("(at HeightMonitor_2)"=13 -> next("(at HeightMonitor_2)")=13) &
+        ("(at HeightMonitor_2)"=19 -> next("(at HeightMonitor_2)")=19) &
+        ("(at HeightMonitor_2)"=25 -> next("(at HeightMonitor_2)")=25) &
+        ("(at HeightMonitor_2)"=31 -> next("(at HeightMonitor_2)")=31) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=5 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_4_2)" & !("(@def enabled descend_4_2)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_4_2)" & ("(@def enabled descend_4_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_4)"=1 -> next("(at Airplane_4)")=4) &
+        ("(at Airplane_4)"=3 -> next("(at Airplane_4)")=4) &
+        ("(at HeightMonitor_2)"=0 -> next("(at HeightMonitor_2)")=1) &
+        ("(at HeightMonitor_2)"=7 -> next("(at HeightMonitor_2)")=8) &
+        ("(at HeightMonitor_2)"=13 -> next("(at HeightMonitor_2)")=14) &
+        ("(at HeightMonitor_2)"=19 -> next("(at HeightMonitor_2)")=20) &
+        ("(at HeightMonitor_2)"=25 -> next("(at HeightMonitor_2)")=26) &
+        ("(at HeightMonitor_2)"=31 -> next("(at HeightMonitor_2)")=32) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=5 -> next("(at ResponseMonitor)")=0) &
+        ("(at HeightMonitor_3)"=0 -> next("(at HeightMonitor_3)")=0) &
+        ("(at HeightMonitor_3)"=1 -> next("(at HeightMonitor_3)")=1) &
+        ("(at HeightMonitor_3)"=7 -> next("(at HeightMonitor_3)")=7) &
+        ("(at HeightMonitor_3)"=13 -> next("(at HeightMonitor_3)")=0) &
+        ("(at HeightMonitor_3)"=19 -> next("(at HeightMonitor_3)")=19) &
+        ("(at HeightMonitor_3)"=25 -> next("(at HeightMonitor_3)")=25) &
+        ("(at HeightMonitor_3)"=31 -> next("(at HeightMonitor_3)")=31) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_4_3)" & !("(@def enabled descend_4_3)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_4_3)" & ("(@def enabled descend_4_3)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_4)"=1 -> next("(at Airplane_4)")=3) &
+        ("(at Airplane_4)"=2 -> next("(at Airplane_4)")=3) &
+        ("(at HeightMonitor_4)"=0 -> next("(at HeightMonitor_4)")=0) &
+        ("(at HeightMonitor_4)"=1 -> next("(at HeightMonitor_4)")=1) &
+        ("(at HeightMonitor_4)"=7 -> next("(at HeightMonitor_4)")=0) &
+        ("(at HeightMonitor_4)"=13 -> next("(at HeightMonitor_4)")=13) &
+        ("(at HeightMonitor_4)"=19 -> next("(at HeightMonitor_4)")=19) &
+        ("(at HeightMonitor_4)"=25 -> next("(at HeightMonitor_4)")=25) &
+        ("(at HeightMonitor_4)"=31 -> next("(at HeightMonitor_4)")=31) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=5 -> next("(at ResponseMonitor)")=0) &
+        ("(at HeightMonitor_3)"=0 -> next("(at HeightMonitor_3)")=13) &
+        ("(at HeightMonitor_3)"=1 -> next("(at HeightMonitor_3)")=3) &
+        ("(at HeightMonitor_3)"=7 -> next("(at HeightMonitor_3)")=9) &
+        ("(at HeightMonitor_3)"=19 -> next("(at HeightMonitor_3)")=22) &
+        ("(at HeightMonitor_3)"=25 -> next("(at HeightMonitor_3)")=28) &
+        ("(at HeightMonitor_3)"=31 -> next("(at HeightMonitor_3)")=34) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_5_0)" & !("(@def enabled descend_5_0)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_5_0)" & ("(@def enabled descend_5_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=0 -> next("(at HeightMonitor_1)")=0) &
+        ("(at HeightMonitor_1)"=1 -> next("(at HeightMonitor_1)")=1) &
+        ("(at HeightMonitor_1)"=7 -> next("(at HeightMonitor_1)")=7) &
+        ("(at HeightMonitor_1)"=13 -> next("(at HeightMonitor_1)")=0) &
+        ("(at HeightMonitor_1)"=19 -> next("(at HeightMonitor_1)")=19) &
+        ("(at HeightMonitor_1)"=25 -> next("(at HeightMonitor_1)")=25) &
+        ("(at HeightMonitor_1)"=31 -> next("(at HeightMonitor_1)")=31) &
+        ("(at Airplane_5)"=1 -> next("(at Airplane_5)")=2) &
+        ("(at Airplane_5)"=7 -> next("(at Airplane_5)")=2) &
+        ("(at HeightMonitor_0)"=0 -> next("(at HeightMonitor_0)")=7) &
+        ("(at HeightMonitor_0)"=1 -> next("(at HeightMonitor_0)")=2) &
+        ("(at HeightMonitor_0)"=13 -> next("(at HeightMonitor_0)")=15) &
+        ("(at HeightMonitor_0)"=19 -> next("(at HeightMonitor_0)")=21) &
+        ("(at HeightMonitor_0)"=25 -> next("(at HeightMonitor_0)")=27) &
+        ("(at HeightMonitor_0)"=31 -> next("(at HeightMonitor_0)")=33) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=6 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_4_4)" & !("(@def enabled descend_4_4)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_4_4)" & ("(@def enabled descend_4_4)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_4)"=1 -> next("(at Airplane_4)")=2) &
+        ("(at HeightMonitor_4)"=0 -> next("(at HeightMonitor_4)")=7) &
+        ("(at HeightMonitor_4)"=1 -> next("(at HeightMonitor_4)")=2) &
+        ("(at HeightMonitor_4)"=13 -> next("(at HeightMonitor_4)")=15) &
+        ("(at HeightMonitor_4)"=19 -> next("(at HeightMonitor_4)")=21) &
+        ("(at HeightMonitor_4)"=25 -> next("(at HeightMonitor_4)")=27) &
+        ("(at HeightMonitor_4)"=31 -> next("(at HeightMonitor_4)")=33) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=5 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(control_all)" & !("(@def enabled control_all)" & "(inprogress control_all)") -> FALSE) &
+    ((action="(control_all)" & ("(@def enabled control_all)" & "(inprogress control_all)"))
+      -> (
+        next("(status)")=2 &
+        ("(at Airplane_4)"=8 -> next("(at Airplane_4)")=0) &
+        ("(at Airplane_5)"=4 -> next("(at Airplane_5)")=0) &
+        ("(at Airplane_2)"=1 -> next("(at Airplane_2)")=0) &
+        ("(at Airplane_1)"=1 -> next("(at Airplane_1)")=0) &
+        ("(at Airplane_3)"=1 -> next("(at Airplane_3)")=0) &
+        ("(at Airplane_0)"=1 -> next("(at Airplane_0)")=0) &
+        "(@def reset inprogress)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(land_5)" & !("(@def enabled land_5)" & "(inprogress land_5)") -> FALSE) &
+    ((action="(land_5)" & ("(@def enabled land_5)" & "(inprogress land_5)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_5)"=3 -> next("(at Airplane_5)")=4) &
+        ("(at HeightMonitor_0)"=1 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=7 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=13 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=19 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=25 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=31 -> next("(at HeightMonitor_0)")=0) &
+        ("(at RampMonitor)"=1 -> next("(at RampMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(land_3)" & !("(@def enabled land_3)" & "(inprogress land_3)") -> FALSE) &
+    ((action="(land_3)" & ("(@def enabled land_3)" & "(inprogress land_3)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_3)"=8 -> next("(at Airplane_3)")=1) &
+        ("(at HeightMonitor_0)"=1 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=7 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=13 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=19 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=25 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=31 -> next("(at HeightMonitor_0)")=0) &
+        ("(at RampMonitor)"=1 -> next("(at RampMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_2)")="(at Airplane_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(land_4)" & !("(@def enabled land_4)" & "(inprogress land_4)") -> FALSE) &
+    ((action="(land_4)" & ("(@def enabled land_4)" & "(inprogress land_4)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_4)"=7 -> next("(at Airplane_4)")=8) &
+        ("(at HeightMonitor_0)"=1 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=7 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=13 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=19 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=25 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=31 -> next("(at HeightMonitor_0)")=0) &
+        ("(at RampMonitor)"=1 -> next("(at RampMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(air_crash_0)" & !("(@def enabled air_crash_0)" & "(inprogress air_crash_0)") -> FALSE) &
+    ((action="(air_crash_0)" & ("(@def enabled air_crash_0)" & "(inprogress air_crash_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_0)"=2 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=3 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=4 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=5 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=6 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=8 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=9 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=10 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=11 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=12 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=14 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=15 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=17 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=16 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=18 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=21 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=20 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=23 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=22 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=24 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=27 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=26 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=29 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=28 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=30 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=34 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=35 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=32 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=33 -> next("(at HeightMonitor_0)")=-1) &
+        ("(at HeightMonitor_0)"=36 -> next("(at HeightMonitor_0)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(air_crash_2)" & !("(@def enabled air_crash_2)" & "(inprogress air_crash_2)") -> FALSE) &
+    ((action="(air_crash_2)" & ("(@def enabled air_crash_2)" & "(inprogress air_crash_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_2)"=2 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=3 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=4 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=5 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=6 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=8 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=9 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=10 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=11 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=12 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=14 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=15 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=17 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=16 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=18 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=21 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=20 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=23 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=22 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=24 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=27 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=26 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=29 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=28 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=30 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=34 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=35 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=32 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=33 -> next("(at HeightMonitor_2)")=-1) &
+        ("(at HeightMonitor_2)"=36 -> next("(at HeightMonitor_2)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(air_crash_1)" & !("(@def enabled air_crash_1)" & "(inprogress air_crash_1)") -> FALSE) &
+    ((action="(air_crash_1)" & ("(@def enabled air_crash_1)" & "(inprogress air_crash_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=2 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=3 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=4 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=5 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=6 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=8 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=9 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=10 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=11 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=12 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=14 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=15 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=17 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=16 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=18 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=21 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=20 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=23 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=22 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=24 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=27 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=26 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=29 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=28 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=30 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=34 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=35 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=32 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=33 -> next("(at HeightMonitor_1)")=-1) &
+        ("(at HeightMonitor_1)"=36 -> next("(at HeightMonitor_1)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(land_2)" & !("(@def enabled land_2)" & "(inprogress land_2)") -> FALSE) &
+    ((action="(land_2)" & ("(@def enabled land_2)" & "(inprogress land_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_2)"=8 -> next("(at Airplane_2)")=1) &
+        ("(at HeightMonitor_0)"=1 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=7 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=13 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=19 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=25 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=31 -> next("(at HeightMonitor_0)")=0) &
+        ("(at RampMonitor)"=1 -> next("(at RampMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(land_1)" & !("(@def enabled land_1)" & "(inprogress land_1)") -> FALSE) &
+    ((action="(land_1)" & ("(@def enabled land_1)" & "(inprogress land_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_1)"=4 -> next("(at Airplane_1)")=1) &
+        ("(at HeightMonitor_0)"=1 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=7 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=13 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=19 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=25 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=31 -> next("(at HeightMonitor_0)")=0) &
+        ("(at RampMonitor)"=1 -> next("(at RampMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(land_0)" & !("(@def enabled land_0)" & "(inprogress land_0)") -> FALSE) &
+    ((action="(land_0)" & ("(@def enabled land_0)" & "(inprogress land_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_0)"=1 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=7 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=13 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=19 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=25 -> next("(at HeightMonitor_0)")=0) &
+        ("(at HeightMonitor_0)"=31 -> next("(at HeightMonitor_0)")=0) &
+        ("(at RampMonitor)"=1 -> next("(at RampMonitor)")=0) &
+        ("(at Airplane_0)"=4 -> next("(at Airplane_0)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(air_crash_4)" & !("(@def enabled air_crash_4)" & "(inprogress air_crash_4)") -> FALSE) &
+    ((action="(air_crash_4)" & ("(@def enabled air_crash_4)" & "(inprogress air_crash_4)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_4)"=2 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=3 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=4 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=5 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=6 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=8 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=9 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=10 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=11 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=12 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=14 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=15 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=17 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=16 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=18 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=21 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=20 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=23 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=22 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=24 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=27 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=26 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=29 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=28 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=30 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=34 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=35 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=32 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=33 -> next("(at HeightMonitor_4)")=-1) &
+        ("(at HeightMonitor_4)"=36 -> next("(at HeightMonitor_4)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(air_crash_3)" & !("(@def enabled air_crash_3)" & "(inprogress air_crash_3)") -> FALSE) &
+    ((action="(air_crash_3)" & ("(@def enabled air_crash_3)" & "(inprogress air_crash_3)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_3)"=2 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=3 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=4 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=5 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=6 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=8 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=9 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=10 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=11 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=12 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=14 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=15 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=17 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=16 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=18 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=21 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=20 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=23 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=22 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=24 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=27 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=26 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=29 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=28 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=30 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=34 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=35 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=32 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=33 -> next("(at HeightMonitor_3)")=-1) &
+        ("(at HeightMonitor_3)"=36 -> next("(at HeightMonitor_3)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_0_2)" & !("(@def enabled descend_0_2)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_0_2)" & ("(@def enabled descend_0_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_2)"=0 -> next("(at HeightMonitor_2)")=31) &
+        ("(at HeightMonitor_2)"=1 -> next("(at HeightMonitor_2)")=6) &
+        ("(at HeightMonitor_2)"=7 -> next("(at HeightMonitor_2)")=12) &
+        ("(at HeightMonitor_2)"=13 -> next("(at HeightMonitor_2)")=18) &
+        ("(at HeightMonitor_2)"=19 -> next("(at HeightMonitor_2)")=24) &
+        ("(at HeightMonitor_2)"=25 -> next("(at HeightMonitor_2)")=30) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=2 -> next("(at ResponseMonitor)")=0) &
+        ("(at HeightMonitor_3)"=0 -> next("(at HeightMonitor_3)")=0) &
+        ("(at HeightMonitor_3)"=1 -> next("(at HeightMonitor_3)")=1) &
+        ("(at HeightMonitor_3)"=7 -> next("(at HeightMonitor_3)")=7) &
+        ("(at HeightMonitor_3)"=13 -> next("(at HeightMonitor_3)")=13) &
+        ("(at HeightMonitor_3)"=19 -> next("(at HeightMonitor_3)")=19) &
+        ("(at HeightMonitor_3)"=25 -> next("(at HeightMonitor_3)")=25) &
+        ("(at HeightMonitor_3)"=31 -> next("(at HeightMonitor_3)")=0) &
+        ("(at Airplane_0)"=2 -> next("(at Airplane_0)")=8) &
+        ("(at Airplane_0)"=7 -> next("(at Airplane_0)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_0_3)" & !("(@def enabled descend_0_3)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_0_3)" & ("(@def enabled descend_0_3)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_4)"=0 -> next("(at HeightMonitor_4)")=0) &
+        ("(at HeightMonitor_4)"=1 -> next("(at HeightMonitor_4)")=1) &
+        ("(at HeightMonitor_4)"=7 -> next("(at HeightMonitor_4)")=7) &
+        ("(at HeightMonitor_4)"=13 -> next("(at HeightMonitor_4)")=13) &
+        ("(at HeightMonitor_4)"=19 -> next("(at HeightMonitor_4)")=19) &
+        ("(at HeightMonitor_4)"=25 -> next("(at HeightMonitor_4)")=25) &
+        ("(at HeightMonitor_4)"=31 -> next("(at HeightMonitor_4)")=0) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=2 -> next("(at ResponseMonitor)")=0) &
+        ("(at HeightMonitor_3)"=0 -> next("(at HeightMonitor_3)")=31) &
+        ("(at HeightMonitor_3)"=1 -> next("(at HeightMonitor_3)")=6) &
+        ("(at HeightMonitor_3)"=7 -> next("(at HeightMonitor_3)")=12) &
+        ("(at HeightMonitor_3)"=13 -> next("(at HeightMonitor_3)")=18) &
+        ("(at HeightMonitor_3)"=19 -> next("(at HeightMonitor_3)")=24) &
+        ("(at HeightMonitor_3)"=25 -> next("(at HeightMonitor_3)")=30) &
+        ("(at Airplane_0)"=2 -> next("(at Airplane_0)")=7) &
+        ("(at Airplane_0)"=6 -> next("(at Airplane_0)")=7) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_0_4)" & !("(@def enabled descend_0_4)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_0_4)" & ("(@def enabled descend_0_4)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_4)"=0 -> next("(at HeightMonitor_4)")=31) &
+        ("(at HeightMonitor_4)"=1 -> next("(at HeightMonitor_4)")=6) &
+        ("(at HeightMonitor_4)"=7 -> next("(at HeightMonitor_4)")=12) &
+        ("(at HeightMonitor_4)"=13 -> next("(at HeightMonitor_4)")=18) &
+        ("(at HeightMonitor_4)"=19 -> next("(at HeightMonitor_4)")=24) &
+        ("(at HeightMonitor_4)"=25 -> next("(at HeightMonitor_4)")=30) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=2 -> next("(at ResponseMonitor)")=0) &
+        ("(at Airplane_0)"=2 -> next("(at Airplane_0)")=6) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_1_2)" & !("(@def enabled descend_1_2)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_1_2)" & ("(@def enabled descend_1_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_1)"=2 -> next("(at Airplane_1)")=6) &
+        ("(at Airplane_1)"=5 -> next("(at Airplane_1)")=6) &
+        ("(at HeightMonitor_2)"=0 -> next("(at HeightMonitor_2)")=25) &
+        ("(at HeightMonitor_2)"=1 -> next("(at HeightMonitor_2)")=5) &
+        ("(at HeightMonitor_2)"=7 -> next("(at HeightMonitor_2)")=11) &
+        ("(at HeightMonitor_2)"=13 -> next("(at HeightMonitor_2)")=17) &
+        ("(at HeightMonitor_2)"=19 -> next("(at HeightMonitor_2)")=23) &
+        ("(at HeightMonitor_2)"=31 -> next("(at HeightMonitor_2)")=36) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=1 -> next("(at ResponseMonitor)")=0) &
+        ("(at HeightMonitor_3)"=0 -> next("(at HeightMonitor_3)")=0) &
+        ("(at HeightMonitor_3)"=1 -> next("(at HeightMonitor_3)")=1) &
+        ("(at HeightMonitor_3)"=7 -> next("(at HeightMonitor_3)")=7) &
+        ("(at HeightMonitor_3)"=13 -> next("(at HeightMonitor_3)")=13) &
+        ("(at HeightMonitor_3)"=19 -> next("(at HeightMonitor_3)")=19) &
+        ("(at HeightMonitor_3)"=25 -> next("(at HeightMonitor_3)")=0) &
+        ("(at HeightMonitor_3)"=31 -> next("(at HeightMonitor_3)")=31) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(requestLand_5)" & !("(@def enabled requestLand_5)" & "(inprogress requestLand_5)") -> FALSE) &
+    ((action="(requestLand_5)" & ("(@def enabled requestLand_5)" & "(inprogress requestLand_5)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_5)"=0 -> next("(at Airplane_5)")=1) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=6) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(requestLand_4)" & !("(@def enabled requestLand_4)" & "(inprogress requestLand_4)") -> FALSE) &
+    ((action="(requestLand_4)" & ("(@def enabled requestLand_4)" & "(inprogress requestLand_4)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_4)"=0 -> next("(at Airplane_4)")=1) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=5) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_1_1)" & !("(@def enabled descend_1_1)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_1_1)" & ("(@def enabled descend_1_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=0 -> next("(at HeightMonitor_1)")=31) &
+        ("(at HeightMonitor_1)"=1 -> next("(at HeightMonitor_1)")=6) &
+        ("(at HeightMonitor_1)"=7 -> next("(at HeightMonitor_1)")=12) &
+        ("(at HeightMonitor_1)"=13 -> next("(at HeightMonitor_1)")=18) &
+        ("(at HeightMonitor_1)"=19 -> next("(at HeightMonitor_1)")=24) &
+        ("(at HeightMonitor_1)"=25 -> next("(at HeightMonitor_1)")=30) &
+        ("(at Airplane_1)"=2 -> next("(at Airplane_1)")=7) &
+        ("(at Airplane_1)"=6 -> next("(at Airplane_1)")=7) &
+        ("(at HeightMonitor_2)"=0 -> next("(at HeightMonitor_2)")=0) &
+        ("(at HeightMonitor_2)"=1 -> next("(at HeightMonitor_2)")=1) &
+        ("(at HeightMonitor_2)"=7 -> next("(at HeightMonitor_2)")=7) &
+        ("(at HeightMonitor_2)"=13 -> next("(at HeightMonitor_2)")=13) &
+        ("(at HeightMonitor_2)"=19 -> next("(at HeightMonitor_2)")=19) &
+        ("(at HeightMonitor_2)"=25 -> next("(at HeightMonitor_2)")=0) &
+        ("(at HeightMonitor_2)"=31 -> next("(at HeightMonitor_2)")=31) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=1 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_1_4)" & !("(@def enabled descend_1_4)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_1_4)" & ("(@def enabled descend_1_4)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_1)"=2 -> next("(at Airplane_1)")=8) &
+        ("(at HeightMonitor_4)"=0 -> next("(at HeightMonitor_4)")=25) &
+        ("(at HeightMonitor_4)"=1 -> next("(at HeightMonitor_4)")=5) &
+        ("(at HeightMonitor_4)"=7 -> next("(at HeightMonitor_4)")=11) &
+        ("(at HeightMonitor_4)"=13 -> next("(at HeightMonitor_4)")=17) &
+        ("(at HeightMonitor_4)"=19 -> next("(at HeightMonitor_4)")=23) &
+        ("(at HeightMonitor_4)"=31 -> next("(at HeightMonitor_4)")=36) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=1 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_1_3)" & !("(@def enabled descend_1_3)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_1_3)" & ("(@def enabled descend_1_3)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_1)"=2 -> next("(at Airplane_1)")=5) &
+        ("(at Airplane_1)"=8 -> next("(at Airplane_1)")=5) &
+        ("(at HeightMonitor_4)"=0 -> next("(at HeightMonitor_4)")=0) &
+        ("(at HeightMonitor_4)"=1 -> next("(at HeightMonitor_4)")=1) &
+        ("(at HeightMonitor_4)"=7 -> next("(at HeightMonitor_4)")=7) &
+        ("(at HeightMonitor_4)"=13 -> next("(at HeightMonitor_4)")=13) &
+        ("(at HeightMonitor_4)"=19 -> next("(at HeightMonitor_4)")=19) &
+        ("(at HeightMonitor_4)"=25 -> next("(at HeightMonitor_4)")=0) &
+        ("(at HeightMonitor_4)"=31 -> next("(at HeightMonitor_4)")=31) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=1 -> next("(at ResponseMonitor)")=0) &
+        ("(at HeightMonitor_3)"=0 -> next("(at HeightMonitor_3)")=25) &
+        ("(at HeightMonitor_3)"=1 -> next("(at HeightMonitor_3)")=5) &
+        ("(at HeightMonitor_3)"=7 -> next("(at HeightMonitor_3)")=11) &
+        ("(at HeightMonitor_3)"=13 -> next("(at HeightMonitor_3)")=17) &
+        ("(at HeightMonitor_3)"=19 -> next("(at HeightMonitor_3)")=23) &
+        ("(at HeightMonitor_3)"=31 -> next("(at HeightMonitor_3)")=36) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(land_crash)" & !("(@def enabled land_crash)" & "(inprogress land_crash)") -> FALSE) &
+    ((action="(land_crash)" & ("(@def enabled land_crash)" & "(inprogress land_crash)"))
+      -> (
+        next("(status)")=0 &
+        ("(at RampMonitor)"=2 -> next("(at RampMonitor)")=-1) &
+        ("(at RampMonitor)"=3 -> next("(at RampMonitor)")=-1) &
+        ("(at RampMonitor)"=4 -> next("(at RampMonitor)")=-1) &
+        ("(at RampMonitor)"=5 -> next("(at RampMonitor)")=-1) &
+        ("(at RampMonitor)"=6 -> next("(at RampMonitor)")=-1) &
+        ("(at RampMonitor)"=7 -> next("(at RampMonitor)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at ResponseMonitor)")="(at ResponseMonitor)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(extendFlight_2)" & !("(@def enabled extendFlight_2)" & "(inprogress extendFlight_2)") -> FALSE) &
+    ((action="(extendFlight_2)" & ("(@def enabled extendFlight_2)" & "(inprogress extendFlight_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_2)"=0 -> next("(at Airplane_2)")=1) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(extendFlight_3)" & !("(@def enabled extendFlight_3)" & "(inprogress extendFlight_3)") -> FALSE) &
+    ((action="(extendFlight_3)" & ("(@def enabled extendFlight_3)" & "(inprogress extendFlight_3)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_3)"=0 -> next("(at Airplane_3)")=1) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(extendFlight_0)" & !("(@def enabled extendFlight_0)" & "(inprogress extendFlight_0)") -> FALSE) &
+    ((action="(extendFlight_0)" & ("(@def enabled extendFlight_0)" & "(inprogress extendFlight_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at Airplane_0)"=0 -> next("(at Airplane_0)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(extendFlight_1)" & !("(@def enabled extendFlight_1)" & "(inprogress extendFlight_1)") -> FALSE) &
+    ((action="(extendFlight_1)" & ("(@def enabled extendFlight_1)" & "(inprogress extendFlight_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_1)"=0 -> next("(at Airplane_1)")=1) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(extendFlight_5)" & !("(@def enabled extendFlight_5)" & "(inprogress extendFlight_5)") -> FALSE) &
+    ((action="(extendFlight_5)" & ("(@def enabled extendFlight_5)" & "(inprogress extendFlight_5)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_5)"=0 -> next("(at Airplane_5)")=4) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(extendFlight_4)" & !("(@def enabled extendFlight_4)" & "(inprogress extendFlight_4)") -> FALSE) &
+    ((action="(extendFlight_4)" & ("(@def enabled extendFlight_4)" & "(inprogress extendFlight_4)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_4)"=0 -> next("(at Airplane_4)")=8) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_2_1)" & !("(@def enabled descend_2_1)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_2_1)" & ("(@def enabled descend_2_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=0 -> next("(at HeightMonitor_1)")=19) &
+        ("(at HeightMonitor_1)"=1 -> next("(at HeightMonitor_1)")=4) &
+        ("(at HeightMonitor_1)"=7 -> next("(at HeightMonitor_1)")=10) &
+        ("(at HeightMonitor_1)"=13 -> next("(at HeightMonitor_1)")=16) &
+        ("(at HeightMonitor_1)"=25 -> next("(at HeightMonitor_1)")=29) &
+        ("(at HeightMonitor_1)"=31 -> next("(at HeightMonitor_1)")=35) &
+        ("(at Airplane_2)"=2 -> next("(at Airplane_2)")=6) &
+        ("(at Airplane_2)"=5 -> next("(at Airplane_2)")=6) &
+        ("(at HeightMonitor_2)"=0 -> next("(at HeightMonitor_2)")=0) &
+        ("(at HeightMonitor_2)"=1 -> next("(at HeightMonitor_2)")=1) &
+        ("(at HeightMonitor_2)"=7 -> next("(at HeightMonitor_2)")=0) &
+        ("(at HeightMonitor_2)"=13 -> next("(at HeightMonitor_2)")=13) &
+        ("(at HeightMonitor_2)"=19 -> next("(at HeightMonitor_2)")=19) &
+        ("(at HeightMonitor_2)"=25 -> next("(at HeightMonitor_2)")=25) &
+        ("(at HeightMonitor_2)"=31 -> next("(at HeightMonitor_2)")=31) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=4 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_2_0)" & !("(@def enabled descend_2_0)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_2_0)" & ("(@def enabled descend_2_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=0 -> next("(at HeightMonitor_1)")=0) &
+        ("(at HeightMonitor_1)"=1 -> next("(at HeightMonitor_1)")=1) &
+        ("(at HeightMonitor_1)"=7 -> next("(at HeightMonitor_1)")=7) &
+        ("(at HeightMonitor_1)"=13 -> next("(at HeightMonitor_1)")=13) &
+        ("(at HeightMonitor_1)"=19 -> next("(at HeightMonitor_1)")=0) &
+        ("(at HeightMonitor_1)"=25 -> next("(at HeightMonitor_1)")=25) &
+        ("(at HeightMonitor_1)"=31 -> next("(at HeightMonitor_1)")=31) &
+        ("(at Airplane_2)"=2 -> next("(at Airplane_2)")=7) &
+        ("(at Airplane_2)"=6 -> next("(at Airplane_2)")=7) &
+        ("(at HeightMonitor_0)"=0 -> next("(at HeightMonitor_0)")=31) &
+        ("(at HeightMonitor_0)"=1 -> next("(at HeightMonitor_0)")=6) &
+        ("(at HeightMonitor_0)"=7 -> next("(at HeightMonitor_0)")=12) &
+        ("(at HeightMonitor_0)"=13 -> next("(at HeightMonitor_0)")=18) &
+        ("(at HeightMonitor_0)"=19 -> next("(at HeightMonitor_0)")=24) &
+        ("(at HeightMonitor_0)"=25 -> next("(at HeightMonitor_0)")=30) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=4 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_2_3)" & !("(@def enabled descend_2_3)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_2_3)" & ("(@def enabled descend_2_3)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_2)"=2 -> next("(at Airplane_2)")=4) &
+        ("(at Airplane_2)"=3 -> next("(at Airplane_2)")=4) &
+        ("(at HeightMonitor_4)"=0 -> next("(at HeightMonitor_4)")=0) &
+        ("(at HeightMonitor_4)"=1 -> next("(at HeightMonitor_4)")=1) &
+        ("(at HeightMonitor_4)"=7 -> next("(at HeightMonitor_4)")=7) &
+        ("(at HeightMonitor_4)"=13 -> next("(at HeightMonitor_4)")=0) &
+        ("(at HeightMonitor_4)"=19 -> next("(at HeightMonitor_4)")=19) &
+        ("(at HeightMonitor_4)"=25 -> next("(at HeightMonitor_4)")=25) &
+        ("(at HeightMonitor_4)"=31 -> next("(at HeightMonitor_4)")=31) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=4 -> next("(at ResponseMonitor)")=0) &
+        ("(at HeightMonitor_3)"=0 -> next("(at HeightMonitor_3)")=1) &
+        ("(at HeightMonitor_3)"=7 -> next("(at HeightMonitor_3)")=8) &
+        ("(at HeightMonitor_3)"=13 -> next("(at HeightMonitor_3)")=14) &
+        ("(at HeightMonitor_3)"=19 -> next("(at HeightMonitor_3)")=20) &
+        ("(at HeightMonitor_3)"=25 -> next("(at HeightMonitor_3)")=26) &
+        ("(at HeightMonitor_3)"=31 -> next("(at HeightMonitor_3)")=32) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_2_2)" & !("(@def enabled descend_2_2)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_2_2)" & ("(@def enabled descend_2_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_2)"=2 -> next("(at Airplane_2)")=5) &
+        ("(at Airplane_2)"=4 -> next("(at Airplane_2)")=5) &
+        ("(at HeightMonitor_2)"=0 -> next("(at HeightMonitor_2)")=7) &
+        ("(at HeightMonitor_2)"=1 -> next("(at HeightMonitor_2)")=2) &
+        ("(at HeightMonitor_2)"=13 -> next("(at HeightMonitor_2)")=15) &
+        ("(at HeightMonitor_2)"=19 -> next("(at HeightMonitor_2)")=21) &
+        ("(at HeightMonitor_2)"=25 -> next("(at HeightMonitor_2)")=27) &
+        ("(at HeightMonitor_2)"=31 -> next("(at HeightMonitor_2)")=33) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=4 -> next("(at ResponseMonitor)")=0) &
+        ("(at HeightMonitor_3)"=0 -> next("(at HeightMonitor_3)")=0) &
+        ("(at HeightMonitor_3)"=1 -> next("(at HeightMonitor_3)")=0) &
+        ("(at HeightMonitor_3)"=7 -> next("(at HeightMonitor_3)")=7) &
+        ("(at HeightMonitor_3)"=13 -> next("(at HeightMonitor_3)")=13) &
+        ("(at HeightMonitor_3)"=19 -> next("(at HeightMonitor_3)")=19) &
+        ("(at HeightMonitor_3)"=25 -> next("(at HeightMonitor_3)")=25) &
+        ("(at HeightMonitor_3)"=31 -> next("(at HeightMonitor_3)")=31) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_1_0)" & !("(@def enabled descend_1_0)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_1_0)" & ("(@def enabled descend_1_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=0 -> next("(at HeightMonitor_1)")=0) &
+        ("(at HeightMonitor_1)"=1 -> next("(at HeightMonitor_1)")=1) &
+        ("(at HeightMonitor_1)"=7 -> next("(at HeightMonitor_1)")=7) &
+        ("(at HeightMonitor_1)"=13 -> next("(at HeightMonitor_1)")=13) &
+        ("(at HeightMonitor_1)"=19 -> next("(at HeightMonitor_1)")=19) &
+        ("(at HeightMonitor_1)"=25 -> next("(at HeightMonitor_1)")=25) &
+        ("(at HeightMonitor_1)"=31 -> next("(at HeightMonitor_1)")=0) &
+        ("(at Airplane_1)"=2 -> next("(at Airplane_1)")=3) &
+        ("(at Airplane_1)"=7 -> next("(at Airplane_1)")=3) &
+        ("(at HeightMonitor_0)"=0 -> next("(at HeightMonitor_0)")=13) &
+        ("(at HeightMonitor_0)"=1 -> next("(at HeightMonitor_0)")=3) &
+        ("(at HeightMonitor_0)"=7 -> next("(at HeightMonitor_0)")=9) &
+        ("(at HeightMonitor_0)"=19 -> next("(at HeightMonitor_0)")=22) &
+        ("(at HeightMonitor_0)"=25 -> next("(at HeightMonitor_0)")=28) &
+        ("(at HeightMonitor_0)"=31 -> next("(at HeightMonitor_0)")=34) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=1 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_2_4)" & !("(@def enabled descend_2_4)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_2_4)" & ("(@def enabled descend_2_4)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_2)"=2 -> next("(at Airplane_2)")=3) &
+        ("(at HeightMonitor_4)"=0 -> next("(at HeightMonitor_4)")=13) &
+        ("(at HeightMonitor_4)"=1 -> next("(at HeightMonitor_4)")=3) &
+        ("(at HeightMonitor_4)"=7 -> next("(at HeightMonitor_4)")=9) &
+        ("(at HeightMonitor_4)"=19 -> next("(at HeightMonitor_4)")=22) &
+        ("(at HeightMonitor_4)"=25 -> next("(at HeightMonitor_4)")=28) &
+        ("(at HeightMonitor_4)"=31 -> next("(at HeightMonitor_4)")=34) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=4 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_0_1)" & !("(@def enabled descend_0_1)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_0_1)" & ("(@def enabled descend_0_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=0 -> next("(at HeightMonitor_1)")=1) &
+        ("(at HeightMonitor_1)"=7 -> next("(at HeightMonitor_1)")=8) &
+        ("(at HeightMonitor_1)"=13 -> next("(at HeightMonitor_1)")=14) &
+        ("(at HeightMonitor_1)"=19 -> next("(at HeightMonitor_1)")=20) &
+        ("(at HeightMonitor_1)"=25 -> next("(at HeightMonitor_1)")=26) &
+        ("(at HeightMonitor_1)"=31 -> next("(at HeightMonitor_1)")=32) &
+        ("(at HeightMonitor_2)"=0 -> next("(at HeightMonitor_2)")=0) &
+        ("(at HeightMonitor_2)"=1 -> next("(at HeightMonitor_2)")=1) &
+        ("(at HeightMonitor_2)"=7 -> next("(at HeightMonitor_2)")=7) &
+        ("(at HeightMonitor_2)"=13 -> next("(at HeightMonitor_2)")=13) &
+        ("(at HeightMonitor_2)"=19 -> next("(at HeightMonitor_2)")=19) &
+        ("(at HeightMonitor_2)"=25 -> next("(at HeightMonitor_2)")=25) &
+        ("(at HeightMonitor_2)"=31 -> next("(at HeightMonitor_2)")=0) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=2 -> next("(at ResponseMonitor)")=0) &
+        ("(at Airplane_0)"=2 -> next("(at Airplane_0)")=5) &
+        ("(at Airplane_0)"=8 -> next("(at Airplane_0)")=5) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_0_0)" & !("(@def enabled descend_0_0)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_0_0)" & ("(@def enabled descend_0_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=0 -> next("(at HeightMonitor_1)")=0) &
+        ("(at HeightMonitor_1)"=1 -> next("(at HeightMonitor_1)")=0) &
+        ("(at HeightMonitor_1)"=7 -> next("(at HeightMonitor_1)")=7) &
+        ("(at HeightMonitor_1)"=13 -> next("(at HeightMonitor_1)")=13) &
+        ("(at HeightMonitor_1)"=19 -> next("(at HeightMonitor_1)")=19) &
+        ("(at HeightMonitor_1)"=25 -> next("(at HeightMonitor_1)")=25) &
+        ("(at HeightMonitor_1)"=31 -> next("(at HeightMonitor_1)")=31) &
+        ("(at HeightMonitor_0)"=0 -> next("(at HeightMonitor_0)")=1) &
+        ("(at HeightMonitor_0)"=7 -> next("(at HeightMonitor_0)")=8) &
+        ("(at HeightMonitor_0)"=13 -> next("(at HeightMonitor_0)")=14) &
+        ("(at HeightMonitor_0)"=19 -> next("(at HeightMonitor_0)")=20) &
+        ("(at HeightMonitor_0)"=25 -> next("(at HeightMonitor_0)")=26) &
+        ("(at HeightMonitor_0)"=31 -> next("(at HeightMonitor_0)")=32) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=2 -> next("(at ResponseMonitor)")=0) &
+        ("(at Airplane_0)"=2 -> next("(at Airplane_0)")=3) &
+        ("(at Airplane_0)"=5 -> next("(at Airplane_0)")=3) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_3_1)" & !("(@def enabled descend_3_1)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_3_1)" & ("(@def enabled descend_3_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=0 -> next("(at HeightMonitor_1)")=25) &
+        ("(at HeightMonitor_1)"=1 -> next("(at HeightMonitor_1)")=5) &
+        ("(at HeightMonitor_1)"=7 -> next("(at HeightMonitor_1)")=11) &
+        ("(at HeightMonitor_1)"=13 -> next("(at HeightMonitor_1)")=17) &
+        ("(at HeightMonitor_1)"=19 -> next("(at HeightMonitor_1)")=23) &
+        ("(at HeightMonitor_1)"=31 -> next("(at HeightMonitor_1)")=36) &
+        ("(at HeightMonitor_2)"=0 -> next("(at HeightMonitor_2)")=0) &
+        ("(at HeightMonitor_2)"=1 -> next("(at HeightMonitor_2)")=1) &
+        ("(at HeightMonitor_2)"=7 -> next("(at HeightMonitor_2)")=7) &
+        ("(at HeightMonitor_2)"=13 -> next("(at HeightMonitor_2)")=0) &
+        ("(at HeightMonitor_2)"=19 -> next("(at HeightMonitor_2)")=19) &
+        ("(at HeightMonitor_2)"=25 -> next("(at HeightMonitor_2)")=25) &
+        ("(at HeightMonitor_2)"=31 -> next("(at HeightMonitor_2)")=31) &
+        ("(at Airplane_3)"=2 -> next("(at Airplane_3)")=6) &
+        ("(at Airplane_3)"=5 -> next("(at Airplane_3)")=6) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=3 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_3_2)" & !("(@def enabled descend_3_2)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_3_2)" & ("(@def enabled descend_3_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_2)"=0 -> next("(at HeightMonitor_2)")=13) &
+        ("(at HeightMonitor_2)"=1 -> next("(at HeightMonitor_2)")=3) &
+        ("(at HeightMonitor_2)"=7 -> next("(at HeightMonitor_2)")=9) &
+        ("(at HeightMonitor_2)"=19 -> next("(at HeightMonitor_2)")=22) &
+        ("(at HeightMonitor_2)"=25 -> next("(at HeightMonitor_2)")=28) &
+        ("(at HeightMonitor_2)"=31 -> next("(at HeightMonitor_2)")=34) &
+        ("(at Airplane_3)"=2 -> next("(at Airplane_3)")=5) &
+        ("(at Airplane_3)"=4 -> next("(at Airplane_3)")=5) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=3 -> next("(at ResponseMonitor)")=0) &
+        ("(at HeightMonitor_3)"=0 -> next("(at HeightMonitor_3)")=0) &
+        ("(at HeightMonitor_3)"=1 -> next("(at HeightMonitor_3)")=1) &
+        ("(at HeightMonitor_3)"=7 -> next("(at HeightMonitor_3)")=0) &
+        ("(at HeightMonitor_3)"=13 -> next("(at HeightMonitor_3)")=13) &
+        ("(at HeightMonitor_3)"=19 -> next("(at HeightMonitor_3)")=19) &
+        ("(at HeightMonitor_3)"=25 -> next("(at HeightMonitor_3)")=25) &
+        ("(at HeightMonitor_3)"=31 -> next("(at HeightMonitor_3)")=31) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_3_0)" & !("(@def enabled descend_3_0)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_3_0)" & ("(@def enabled descend_3_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at HeightMonitor_1)"=0 -> next("(at HeightMonitor_1)")=0) &
+        ("(at HeightMonitor_1)"=1 -> next("(at HeightMonitor_1)")=1) &
+        ("(at HeightMonitor_1)"=7 -> next("(at HeightMonitor_1)")=7) &
+        ("(at HeightMonitor_1)"=13 -> next("(at HeightMonitor_1)")=13) &
+        ("(at HeightMonitor_1)"=19 -> next("(at HeightMonitor_1)")=19) &
+        ("(at HeightMonitor_1)"=25 -> next("(at HeightMonitor_1)")=0) &
+        ("(at HeightMonitor_1)"=31 -> next("(at HeightMonitor_1)")=31) &
+        ("(at Airplane_3)"=2 -> next("(at Airplane_3)")=7) &
+        ("(at Airplane_3)"=6 -> next("(at Airplane_3)")=7) &
+        ("(at HeightMonitor_0)"=0 -> next("(at HeightMonitor_0)")=19) &
+        ("(at HeightMonitor_0)"=1 -> next("(at HeightMonitor_0)")=4) &
+        ("(at HeightMonitor_0)"=7 -> next("(at HeightMonitor_0)")=10) &
+        ("(at HeightMonitor_0)"=13 -> next("(at HeightMonitor_0)")=16) &
+        ("(at HeightMonitor_0)"=25 -> next("(at HeightMonitor_0)")=29) &
+        ("(at HeightMonitor_0)"=31 -> next("(at HeightMonitor_0)")=35) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=3 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_3_3)" & !("(@def enabled descend_3_3)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_3_3)" & ("(@def enabled descend_3_3)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_3)"=2 -> next("(at Airplane_3)")=4) &
+        ("(at Airplane_3)"=3 -> next("(at Airplane_3)")=4) &
+        ("(at HeightMonitor_4)"=0 -> next("(at HeightMonitor_4)")=0) &
+        ("(at HeightMonitor_4)"=1 -> next("(at HeightMonitor_4)")=0) &
+        ("(at HeightMonitor_4)"=7 -> next("(at HeightMonitor_4)")=7) &
+        ("(at HeightMonitor_4)"=13 -> next("(at HeightMonitor_4)")=13) &
+        ("(at HeightMonitor_4)"=19 -> next("(at HeightMonitor_4)")=19) &
+        ("(at HeightMonitor_4)"=25 -> next("(at HeightMonitor_4)")=25) &
+        ("(at HeightMonitor_4)"=31 -> next("(at HeightMonitor_4)")=31) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=3 -> next("(at ResponseMonitor)")=0) &
+        ("(at HeightMonitor_3)"=0 -> next("(at HeightMonitor_3)")=7) &
+        ("(at HeightMonitor_3)"=1 -> next("(at HeightMonitor_3)")=2) &
+        ("(at HeightMonitor_3)"=13 -> next("(at HeightMonitor_3)")=15) &
+        ("(at HeightMonitor_3)"=19 -> next("(at HeightMonitor_3)")=21) &
+        ("(at HeightMonitor_3)"=25 -> next("(at HeightMonitor_3)")=27) &
+        ("(at HeightMonitor_3)"=31 -> next("(at HeightMonitor_3)")=33) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(descend_3_4)" & !("(@def enabled descend_3_4)" & !"(@def event)") -> FALSE) &
+    ((action="(descend_3_4)" & ("(@def enabled descend_3_4)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_3)"=2 -> next("(at Airplane_3)")=3) &
+        ("(at HeightMonitor_4)"=0 -> next("(at HeightMonitor_4)")=1) &
+        ("(at HeightMonitor_4)"=7 -> next("(at HeightMonitor_4)")=8) &
+        ("(at HeightMonitor_4)"=13 -> next("(at HeightMonitor_4)")=14) &
+        ("(at HeightMonitor_4)"=19 -> next("(at HeightMonitor_4)")=20) &
+        ("(at HeightMonitor_4)"=25 -> next("(at HeightMonitor_4)")=26) &
+        ("(at HeightMonitor_4)"=31 -> next("(at HeightMonitor_4)")=32) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=0) &
+        ("(at ResponseMonitor)"=3 -> next("(at ResponseMonitor)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(requestLand_2)" & !("(@def enabled requestLand_2)" & "(inprogress requestLand_2)") -> FALSE) &
+    ((action="(requestLand_2)" & ("(@def enabled requestLand_2)" & "(inprogress requestLand_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_2)"=0 -> next("(at Airplane_2)")=2) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=4) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(requestLand_3)" & !("(@def enabled requestLand_3)" & "(inprogress requestLand_3)") -> FALSE) &
+    ((action="(requestLand_3)" & ("(@def enabled requestLand_3)" & "(inprogress requestLand_3)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_3)"=0 -> next("(at Airplane_3)")=2) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=3) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(requestLand_0)" & !("(@def enabled requestLand_0)" & "(inprogress requestLand_0)") -> FALSE) &
+    ((action="(requestLand_0)" & ("(@def enabled requestLand_0)" & "(inprogress requestLand_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=2) &
+        ("(at Airplane_0)"=0 -> next("(at Airplane_0)")=2) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_1)")="(at Airplane_1)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(requestLand_1)" & !("(@def enabled requestLand_1)" & "(inprogress requestLand_1)") -> FALSE) &
+    ((action="(requestLand_1)" & ("(@def enabled requestLand_1)" & "(inprogress requestLand_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Airplane_1)"=0 -> next("(at Airplane_1)")=2) &
+        ("(at ResponseMonitor)"=0 -> next("(at ResponseMonitor)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Airplane_4)")="(at Airplane_4)" &
+        next("(at Airplane_0)")="(at Airplane_0)" &
+        next("(at Airplane_5)")="(at Airplane_5)" &
+        next("(at HeightMonitor_0)")="(at HeightMonitor_0)" &
+        next("(at HeightMonitor_4)")="(at HeightMonitor_4)" &
+        next("(at HeightMonitor_3)")="(at HeightMonitor_3)" &
+        next("(at HeightMonitor_2)")="(at HeightMonitor_2)" &
+        next("(at HeightMonitor_1)")="(at HeightMonitor_1)" &
+        next("(at Airplane_3)")="(at Airplane_3)" &
+        next("(at Airplane_2)")="(at Airplane_2)" &
+        next("(at RampMonitor)")="(at RampMonitor)" 
+      )
+    )
+  )
+)
+FULL_OBS_STRONG_GOAL ("(status)"=2)

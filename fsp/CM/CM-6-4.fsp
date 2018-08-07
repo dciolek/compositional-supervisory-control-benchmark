@@ -20,58 +20,51 @@ const Levels = K
 const Areas = 2*Levels+1
 const Last = Areas-1
 
-def GoalA(a) = a \ 2
-
-const Goal = GoalA(Areas)
+const Center = Areas \ 2
 range Area = 0..Areas-1
 
 /*****************************************************************************/
 
 Mouse(Mid=0) = Wait[Areas-1],
-  End = (end -> End),
-  Next[a:Area] = (
-    cat.turn -> Wait[a] |
-    when (a==Goal) end -> End ),
+  Next[a:Area] =
+    if (a==Center) then (safe -> cat.turn -> Wait[a])
+    else (cat.turn -> Wait[a]),
   Wait[a:Area] = (
-    mouse.turn -> Act[a] ),
+    mouse.turn -> Act[a] |
+    cat[0..Cats-1].move[b:Area] ->
+      if (a==b && a!=Center) then ERROR
+      else Wait[a] ),
   Act[a:Area] = (
+    mouse[Mid].move[a] -> Next[a] |
     when (a+1 <= Last) mouse[Mid].move[a+1] -> Next[a+1] |
     when (a-1 >= 0   ) mouse[Mid].move[a-1] -> Next[a-1] ).
 
 
 Cat(Cid=0) = Next[0],
-  Next[a:Area] = (
-    mouse.turn -> Wait[a] ),
+  Next[a:Area] = (mouse.turn -> Wait[a]),
   Wait[a:Area] = (
-    cat.turn   -> Act[a] ),
+    cat.turn   -> Act[a] |
+    mouse[0..Mice-1].move[b:Area] ->
+      if (a==b && a!=Center) then ERROR
+      else Wait[a] ),
   Act[a:Area] = (
+    cat[Cid].move[a] -> Next[a] |
     when (a+1 <= Last) cat[Cid].move[a+1] -> Next[a+1] |
     when (a-1 >= 0)    cat[Cid].move[a-1] -> Next[a-1] ).
 
-
-Monitor = Track[0],
-  Track[c:Area] = (
-    cat[0..Cats-1].move[a:Area]   -> if (a>=c) then Track[a] else Track[c] |
-    mouse[0..Mice-1].move[a:Area] -> if (a==c) then ERROR    else Track[c] ).
-
-
 /*****************************************************************************/
 
-||Environment = (
-  Monitor || forall [m:0..Mice-1] Mouse(m) || forall [c:0..Cats-1] Cat(c)).
-
-set Controllable = {mouse[0..Mice-1].move[Area], cat.turn, mouse.turn}
-
-
-/*****************************************************************************/
-
-fluent F_End = <end, Controllable>
+||Plant = (
+  forall [m:0..Mice-1] Mouse(m) || forall [c:0..Cats-1] Cat(c)).
 
 controllerSpec Goal = {
-  liveness = {F_End}
-  reach = {end}
-  controllable = {Controllable}
+  controllable = {mouse[0..Mice-1].move[Area]}
+  marking = {safe}
+  nonblocking
 }
 
-controller ||Controller = Environment~{Goal}.
+controller ||MonolithicController = Plant~{Goal}.
+
+heuristic ||DirectedController = Plant~{Goal}.
+
 

@@ -35,38 +35,33 @@ Philosopher(Pid=0) = Idle,
   Etiquete[s:1..Steps] = (step[Pid] -> Etiquete[s-1]),
   Ready = (
     take[Pid][RightP(Pid)] -> eat[Pid] ->
-      release[Pid][LeftP(Pid)] -> release[Pid][RightP(Pid)] -> End),
-  End = (end -> Idle).
+      release[Pid][LeftP(Pid)] -> release[Pid][RightP(Pid)] -> Idle).
 
 
 Fork(Fid=0) = OnTable,
   OnTable = (
     take[LeftF(Fid)][Fid]     -> OnHand  |
-    take[RightF(Fid)][Fid]    -> OnHand  |
-    release[LeftF(Fid)][Fid]  -> OnTable |
-    release[RightF(Fid)][Fid] -> OnTable ),
+    take[RightF(Fid)][Fid]    -> OnHand  ),
   OnHand  = (
-    take[LeftF(Fid)][Fid]     -> ERROR   |
-    take[RightF(Fid)][Fid]    -> ERROR   |
     release[LeftF(Fid)][Fid]  -> OnTable |
     release[RightF(Fid)][Fid] -> OnTable ).
 
 
-/*****************************************************************************/
+Monitor(Id=0) = (eat[Id] -> Done),
+  Done = (eat[Id] -> Done | eat.all -> Monitor).
 
-||Environment = (forall [p:Phil] (Philosopher(p) || Fork(p))).
-
-set Controllable = {take[Phil][Phil]}
 
 /*****************************************************************************/
 
-fluent F_End = <end, Controllable>
+||Plant = (forall [p:Phil] (Philosopher(p) || Fork(p) || Monitor(p))).
 
 controllerSpec Goal = {
-  liveness = {F_End}
-  reach = {end}
-  controllable = {Controllable}
+  controllable = {take[Phil][Phil]}
+  marking = {eat.all}
+  nonblocking
 }
 
-controller ||Controller = Environment~{Goal}.
+controller ||MonolithicController = Plant~{Goal}.
+
+heuristic ||DirectedController = Plant~{Goal}.
 

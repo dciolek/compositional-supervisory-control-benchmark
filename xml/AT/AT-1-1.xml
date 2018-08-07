@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<Automata name="Environment" major="0" minor="1">
+<Automata name="Plant" major="0" minor="1">
   <Automaton name="HeightMonitor(0)" type="Plant">
     <Events>
       <Event id="0" label="land.0" controllable="false"/>
       <Event id="1" label="descend.0.0"/>
     </Events>
     <States>
-      <State id="0" name="HeightMonitor(0)[0]" initial="true"/>
-      <State id="1" name="HeightMonitor(0)[1]"/>
+      <State id="0" name="HeightMonitor(0)[0]" accepting="true" initial="true"/>
+      <State id="1" name="HeightMonitor(0)[1]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="1" event="1"/>
@@ -21,10 +21,10 @@
       <Event id="3" label="land.crash" controllable="false"/>
     </Events>
     <States>
-      <State id="-1" name="RampMonitor[-1]"/>
-      <State id="0" name="RampMonitor[0]" initial="true"/>
-      <State id="1" name="RampMonitor[1]"/>
-      <State id="2" name="RampMonitor[2]"/>
+      <State id="-1" name="RampMonitor[-1]" accepting="false"/>
+      <State id="0" name="RampMonitor[0]" accepting="true" initial="true"/>
+      <State id="1" name="RampMonitor[1]" accepting="true"/>
+      <State id="2" name="RampMonitor[2]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="1" event="2"/>
@@ -37,13 +37,15 @@
     <Events>
       <Event id="2" label="approach.0"/>
       <Event id="4" label="requestLand.0" controllable="false"/>
+      <Event id="5" label="extendFlight.0" controllable="false"/>
       <Event id="1" label="descend.0.0"/>
     </Events>
     <States>
-      <State id="0" name="ResponseMonitor[0]" initial="true"/>
-      <State id="1" name="ResponseMonitor[1]"/>
+      <State id="0" name="ResponseMonitor[0]" accepting="true" initial="true"/>
+      <State id="1" name="ResponseMonitor[1]" accepting="true"/>
     </States>
     <Transitions>
+      <Transition source="0" dest="0" event="5"/>
       <Transition source="0" dest="1" event="4"/>
       <Transition source="0" dest="0" event="1"/>
       <Transition source="0" dest="0" event="2"/>
@@ -53,41 +55,45 @@
   <Automaton name="Airplane(0)" type="Plant">
     <Events>
       <Event id="2" label="approach.0"/>
+      <Event id="6" label="control.all" controllable="false"/>
       <Event id="0" label="land.0" controllable="false"/>
       <Event id="4" label="requestLand.0" controllable="false"/>
-      <Event id="5" label="end" controllable="false"/>
+      <Event id="5" label="extendFlight.0" controllable="false"/>
       <Event id="1" label="descend.0.0"/>
     </Events>
     <States>
-      <State id="0" name="Airplane(0)[0]" initial="true"/>
-      <State id="1" name="Airplane(0)[1]"/>
-      <State id="2" name="Airplane(0)[2]"/>
-      <State id="3" name="Airplane(0)[3]"/>
-      <State id="4" name="Airplane(0)[4]"/>
+      <State id="0" name="Airplane(0)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Airplane(0)[1]" accepting="true"/>
+      <State id="2" name="Airplane(0)[2]" accepting="true"/>
+      <State id="3" name="Airplane(0)[3]" accepting="true"/>
+      <State id="4" name="Airplane(0)[4]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="4"/>
-      <Transition source="1" dest="2" event="1"/>
-      <Transition source="2" dest="3" event="2"/>
-      <Transition source="3" dest="4" event="0"/>
-      <Transition source="4" dest="0" event="5"/>
+      <Transition source="0" dest="1" event="5"/>
+      <Transition source="0" dest="2" event="4"/>
+      <Transition source="1" dest="0" event="6"/>
+      <Transition source="2" dest="3" event="1"/>
+      <Transition source="3" dest="4" event="2"/>
+      <Transition source="4" dest="1" event="0"/>
     </Transitions>
   </Automaton>
   <Automaton name="Goal" type="Specification">
     <Events>
+      <Event id="6" label="control.all" controllable="false"/>
       <Event id="2" label="approach.0"/>
       <Event id="0" label="land.0" controllable="false"/>
       <Event id="3" label="land.crash" controllable="false"/>
       <Event id="4" label="requestLand.0" controllable="false"/>
-      <Event id="5" label="end" controllable="false"/>
+      <Event id="5" label="extendFlight.0" controllable="false"/>
       <Event id="1" label="descend.0.0"/>
     </Events>
     <States>
       <State id="0"  name="init" initial="true"/>
       <State id="1"  name="goal" accepting="true"/>
-      <State id="-1" name="error"/>
     </States>
     <Transitions>
+      <Transition source="0" dest="1" event="6"/>
+      <Transition source="1" dest="1" event="6"/>
       <Transition source="0" dest="0" event="2"/>
       <Transition source="1" dest="0" event="2"/>
       <Transition source="0" dest="0" event="0"/>
@@ -96,8 +102,8 @@
       <Transition source="1" dest="0" event="3"/>
       <Transition source="0" dest="0" event="4"/>
       <Transition source="1" dest="0" event="4"/>
-      <Transition source="0" dest="1" event="5"/>
-      <Transition source="1" dest="1" event="5"/>
+      <Transition source="0" dest="0" event="5"/>
+      <Transition source="1" dest="0" event="5"/>
       <Transition source="0" dest="0" event="1"/>
       <Transition source="1" dest="0" event="1"/>
     </Transitions>

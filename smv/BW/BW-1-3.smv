@@ -1,0 +1,194 @@
+MODULE main
+DOMAINNAME DirectedController
+PROBLEMNAME Goal
+IVAR
+  action: {
+    "(choose)",
+    "(default)",
+    "(reject_0_2)",
+    "(refuse)",
+    "(reject_0_1)",
+    "(accept_0)",
+    "(approve)",
+    "(assign_0)",
+    "(reject_0_3)"
+  };
+VAR
+  "(at Document)":-1..3;
+  "(at Crew_0)":-1..8;
+  "(inprogress reject_0_2)":0..1;
+  "(inprogress accept_0)":0..1;
+  "(inprogress reject_0_1)":0..1;
+  "(inprogress reject_0_3)":0..1;
+  "(status)":-1..2;
+INIT (
+  "(inprogress reject_0_1)"=0 &
+  "(status)"=0 &
+  "(inprogress accept_0)"=0 &
+  "(at Document)"=0 &
+  "(inprogress reject_0_2)"=0 &
+  "(inprogress reject_0_3)"=0 &
+  "(at Crew_0)"=0 
+)
+DEFINE
+  "(@def ready reject_0_2 Document)":=(FALSE);
+  "(@def ready reject_0_2 Crew_0)":=("(at Crew_0)"=3);
+  "(@def ready refuse Document)":=("(at Document)"=0 | "(at Document)"=1 | "(at Document)"=2);
+  "(@def ready refuse Crew_0)":=("(at Crew_0)"=0 | "(at Crew_0)"=2 | "(at Crew_0)"=4 | "(at Crew_0)"=5 | "(at Crew_0)"=7);
+  "(@def ready reject_0_1 Document)":=(FALSE);
+  "(@def ready reject_0_1 Crew_0)":=("(at Crew_0)"=1);
+  "(@def ready accept_0 Document)":=("(at Document)"=0 | "(at Document)"=1 | "(at Document)"=2);
+  "(@def ready accept_0 Crew_0)":=("(at Crew_0)"=1 | "(at Crew_0)"=3 | "(at Crew_0)"=6);
+  "(@def ready approve Document)":=("(at Document)"=0 | "(at Document)"=1 | "(at Document)"=2);
+  "(@def ready approve Crew_0)":=("(at Crew_0)"=0 | "(at Crew_0)"=2 | "(at Crew_0)"=4 | "(at Crew_0)"=5 | "(at Crew_0)"=7);
+  "(@def ready assign_0 Document)":=(FALSE);
+  "(@def ready assign_0 Crew_0)":=("(at Crew_0)"=0 | "(at Crew_0)"=2 | "(at Crew_0)"=4 | "(at Crew_0)"=5 | "(at Crew_0)"=7);
+  "(@def ready reject_0_3 Document)":=("(at Document)"=0 | "(at Document)"=1 | "(at Document)"=2);
+  "(@def ready reject_0_3 Crew_0)":=("(at Crew_0)"=6);
+  "(@def enabled reject_0_2)":=("(@def ready reject_0_2 Crew_0)");
+  "(@def enabled refuse)":=("(@def ready refuse Document)" & "(@def ready refuse Crew_0)");
+  "(@def enabled reject_0_1)":=("(@def ready reject_0_1 Crew_0)");
+  "(@def enabled accept_0)":=("(@def ready accept_0 Document)" & "(@def ready accept_0 Crew_0)");
+  "(@def enabled approve)":=("(@def ready approve Document)" & "(@def ready approve Crew_0)");
+  "(@def enabled assign_0)":=("(@def ready assign_0 Crew_0)");
+  "(@def enabled reject_0_3)":=("(@def ready reject_0_3 Document)" & "(@def ready reject_0_3 Crew_0)");
+  "(@def event)":=("(@def enabled reject_0_2)" | "(@def enabled accept_0)" | "(@def enabled reject_0_1)" | "(@def enabled reject_0_3)");
+  "(@def keep at)":=(next("(at Document)")="(at Document)" & next("(at Crew_0)")="(at Crew_0)");
+  "(@def no inprogress)":=(!"(inprogress reject_0_2)" & !"(inprogress accept_0)" & !"(inprogress reject_0_1)" & !"(inprogress reject_0_3)");
+  "(@def reset inprogress)":=(next("(inprogress reject_0_2)")=0 & next("(inprogress accept_0)")=0 & next("(inprogress reject_0_1)")=0 & next("(inprogress reject_0_3)")=0);
+TRANS (
+  (
+    (action="(choose)" & !("(status)"=0 & "(@def event)") -> FALSE) &
+    ((action="(choose)" & ("(status)"=0 & "(@def event)"))
+      -> (
+        (!"(@def enabled reject_0_2)" -> next("(inprogress reject_0_2)")=0) & 
+        (!"(@def enabled accept_0)" -> next("(inprogress accept_0)")=0) & 
+        (!"(@def enabled reject_0_1)" -> next("(inprogress reject_0_1)")=0) & 
+        (!"(@def enabled reject_0_3)" -> next("(inprogress reject_0_3)")=0) & 
+        next("(status)")=1 &
+        "(@def keep at)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(default)" & !("(status)"=1 & "(@def no inprogress)") -> FALSE) &
+    ((action="(default)" & ("(status)"=1 & "(@def no inprogress)"))
+      -> (
+        next("(inprogress reject_0_2)")=1 &
+        next("(inprogress accept_0)")=1 &
+        next("(inprogress reject_0_1)")=1 &
+        next("(inprogress reject_0_3)")=1 &
+        "(@def keep at)" &
+        next("(status)")="(status)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(reject_0_2)" & !("(@def enabled reject_0_2)" & "(inprogress reject_0_2)") -> FALSE) &
+    ((action="(reject_0_2)" & ("(@def enabled reject_0_2)" & "(inprogress reject_0_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Crew_0)"=3 -> next("(at Crew_0)")=5) &
+        "(@def reset inprogress)" &
+        next("(at Document)")="(at Document)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(refuse)" & !("(@def enabled refuse)" & !"(@def event)") -> FALSE) &
+    ((action="(refuse)" & ("(@def enabled refuse)" & !"(@def event)"))
+      -> (
+        next("(status)")=2 &
+        ("(at Document)"=0 -> next("(at Document)")=0) &
+        ("(at Document)"=1 -> next("(at Document)")=0) &
+        ("(at Document)"=2 -> next("(at Document)")=-1) &
+        ("(at Crew_0)"=0 -> next("(at Crew_0)")=-1) &
+        ("(at Crew_0)"=2 -> next("(at Crew_0)")=0) &
+        ("(at Crew_0)"=4 -> next("(at Crew_0)")=0) &
+        ("(at Crew_0)"=5 -> next("(at Crew_0)")=0) &
+        ("(at Crew_0)"=7 -> next("(at Crew_0)")=0) &
+        "(@def reset inprogress)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(reject_0_1)" & !("(@def enabled reject_0_1)" & "(inprogress reject_0_1)") -> FALSE) &
+    ((action="(reject_0_1)" & ("(@def enabled reject_0_1)" & "(inprogress reject_0_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Crew_0)"=1 -> next("(at Crew_0)")=2) &
+        "(@def reset inprogress)" &
+        next("(at Document)")="(at Document)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(accept_0)" & !("(@def enabled accept_0)" & "(inprogress accept_0)") -> FALSE) &
+    ((action="(accept_0)" & ("(@def enabled accept_0)" & "(inprogress accept_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Document)"=0 -> next("(at Document)")=2) &
+        ("(at Document)"=1 -> next("(at Document)")=1) &
+        ("(at Document)"=2 -> next("(at Document)")=2) &
+        ("(at Crew_0)"=1 -> next("(at Crew_0)")=4) &
+        ("(at Crew_0)"=3 -> next("(at Crew_0)")=4) &
+        ("(at Crew_0)"=6 -> next("(at Crew_0)")=4) &
+        "(@def reset inprogress)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(approve)" & !("(@def enabled approve)" & !"(@def event)") -> FALSE) &
+    ((action="(approve)" & ("(@def enabled approve)" & !"(@def event)"))
+      -> (
+        next("(status)")=2 &
+        ("(at Document)"=0 -> next("(at Document)")=-1) &
+        ("(at Document)"=1 -> next("(at Document)")=-1) &
+        ("(at Document)"=2 -> next("(at Document)")=0) &
+        ("(at Crew_0)"=0 -> next("(at Crew_0)")=-1) &
+        ("(at Crew_0)"=2 -> next("(at Crew_0)")=-1) &
+        ("(at Crew_0)"=4 -> next("(at Crew_0)")=0) &
+        ("(at Crew_0)"=5 -> next("(at Crew_0)")=-1) &
+        ("(at Crew_0)"=7 -> next("(at Crew_0)")=-1) &
+        "(@def reset inprogress)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(assign_0)" & !("(@def enabled assign_0)" & !"(@def event)") -> FALSE) &
+    ((action="(assign_0)" & ("(@def enabled assign_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Crew_0)"=0 -> next("(at Crew_0)")=1) &
+        ("(at Crew_0)"=2 -> next("(at Crew_0)")=3) &
+        ("(at Crew_0)"=4 -> next("(at Crew_0)")=-1) &
+        ("(at Crew_0)"=5 -> next("(at Crew_0)")=6) &
+        ("(at Crew_0)"=7 -> next("(at Crew_0)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Document)")="(at Document)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(reject_0_3)" & !("(@def enabled reject_0_3)" & "(inprogress reject_0_3)") -> FALSE) &
+    ((action="(reject_0_3)" & ("(@def enabled reject_0_3)" & "(inprogress reject_0_3)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Document)"=0 -> next("(at Document)")=1) &
+        ("(at Document)"=1 -> next("(at Document)")=1) &
+        ("(at Document)"=2 -> next("(at Document)")=2) &
+        ("(at Crew_0)"=6 -> next("(at Crew_0)")=7) &
+        "(@def reset inprogress)" 
+      )
+    )
+  )
+)
+FULL_OBS_STRONG_GOAL ("(status)"=2)

@@ -1,173 +1,186 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<Automata name="Environment" major="0" minor="1">
+<Automata name="Plant" major="0" minor="1">
   <Automaton name="Airplane(1)" type="Plant">
     <Events>
       <Event id="0" label="approach.1"/>
-      <Event id="1" label="land.1" controllable="false"/>
-      <Event id="2" label="requestLand.1" controllable="false"/>
-      <Event id="3" label="descend.1.0"/>
-      <Event id="4" label="end" controllable="false"/>
+      <Event id="1" label="control.all" controllable="false"/>
+      <Event id="2" label="land.1" controllable="false"/>
+      <Event id="3" label="requestLand.1" controllable="false"/>
+      <Event id="4" label="descend.1.0"/>
+      <Event id="5" label="extendFlight.1" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="Airplane(1)[0]" initial="true"/>
-      <State id="1" name="Airplane(1)[1]"/>
-      <State id="2" name="Airplane(1)[2]"/>
-      <State id="3" name="Airplane(1)[3]"/>
-      <State id="4" name="Airplane(1)[4]"/>
+      <State id="0" name="Airplane(1)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Airplane(1)[1]" accepting="true"/>
+      <State id="2" name="Airplane(1)[2]" accepting="true"/>
+      <State id="3" name="Airplane(1)[3]" accepting="true"/>
+      <State id="4" name="Airplane(1)[4]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="2"/>
-      <Transition source="1" dest="2" event="3"/>
-      <Transition source="2" dest="3" event="0"/>
-      <Transition source="3" dest="4" event="1"/>
-      <Transition source="4" dest="0" event="4"/>
+      <Transition source="0" dest="2" event="3"/>
+      <Transition source="0" dest="1" event="5"/>
+      <Transition source="1" dest="0" event="1"/>
+      <Transition source="2" dest="3" event="4"/>
+      <Transition source="3" dest="4" event="0"/>
+      <Transition source="4" dest="1" event="2"/>
     </Transitions>
   </Automaton>
   <Automaton name="HeightMonitor(0)" type="Plant">
     <Events>
-      <Event id="5" label="air.crash.0" controllable="false"/>
-      <Event id="1" label="land.1" controllable="false"/>
-      <Event id="6" label="land.0" controllable="false"/>
-      <Event id="3" label="descend.1.0"/>
-      <Event id="7" label="descend.0.0"/>
+      <Event id="6" label="air.crash.0" controllable="false"/>
+      <Event id="2" label="land.1" controllable="false"/>
+      <Event id="7" label="land.0" controllable="false"/>
+      <Event id="4" label="descend.1.0"/>
+      <Event id="8" label="descend.0.0"/>
     </Events>
     <States>
-      <State id="-1" name="HeightMonitor(0)[-1]"/>
-      <State id="0" name="HeightMonitor(0)[0]" initial="true"/>
-      <State id="1" name="HeightMonitor(0)[1]"/>
-      <State id="2" name="HeightMonitor(0)[2]"/>
-      <State id="3" name="HeightMonitor(0)[3]"/>
-      <State id="4" name="HeightMonitor(0)[4]"/>
+      <State id="-1" name="HeightMonitor(0)[-1]" accepting="false"/>
+      <State id="0" name="HeightMonitor(0)[0]" accepting="true" initial="true"/>
+      <State id="1" name="HeightMonitor(0)[1]" accepting="true"/>
+      <State id="2" name="HeightMonitor(0)[2]" accepting="true"/>
+      <State id="3" name="HeightMonitor(0)[3]" accepting="true"/>
+      <State id="4" name="HeightMonitor(0)[4]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="7"/>
-      <Transition source="0" dest="3" event="3"/>
-      <Transition source="1" dest="2" event="3"/>
-      <Transition source="1" dest="0" event="6"/>
-      <Transition source="1" dest="0" event="1"/>
-      <Transition source="2" dest="-1" event="5"/>
-      <Transition source="3" dest="4" event="7"/>
-      <Transition source="3" dest="0" event="6"/>
-      <Transition source="3" dest="0" event="1"/>
-      <Transition source="4" dest="-1" event="5"/>
+      <Transition source="0" dest="1" event="8"/>
+      <Transition source="0" dest="3" event="4"/>
+      <Transition source="1" dest="2" event="4"/>
+      <Transition source="1" dest="0" event="7"/>
+      <Transition source="1" dest="0" event="2"/>
+      <Transition source="2" dest="-1" event="6"/>
+      <Transition source="3" dest="4" event="8"/>
+      <Transition source="3" dest="0" event="7"/>
+      <Transition source="3" dest="0" event="2"/>
+      <Transition source="4" dest="-1" event="6"/>
     </Transitions>
   </Automaton>
   <Automaton name="RampMonitor" type="Plant">
     <Events>
       <Event id="0" label="approach.1"/>
-      <Event id="8" label="approach.0"/>
-      <Event id="1" label="land.1" controllable="false"/>
-      <Event id="6" label="land.0" controllable="false"/>
-      <Event id="9" label="land.crash" controllable="false"/>
+      <Event id="9" label="approach.0"/>
+      <Event id="2" label="land.1" controllable="false"/>
+      <Event id="7" label="land.0" controllable="false"/>
+      <Event id="10" label="land.crash" controllable="false"/>
     </Events>
     <States>
-      <State id="-1" name="RampMonitor[-1]"/>
-      <State id="0" name="RampMonitor[0]" initial="true"/>
-      <State id="1" name="RampMonitor[1]"/>
-      <State id="2" name="RampMonitor[2]"/>
-      <State id="3" name="RampMonitor[3]"/>
+      <State id="-1" name="RampMonitor[-1]" accepting="false"/>
+      <State id="0" name="RampMonitor[0]" accepting="true" initial="true"/>
+      <State id="1" name="RampMonitor[1]" accepting="true"/>
+      <State id="2" name="RampMonitor[2]" accepting="true"/>
+      <State id="3" name="RampMonitor[3]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="1" event="0"/>
-      <Transition source="0" dest="1" event="8"/>
+      <Transition source="0" dest="1" event="9"/>
       <Transition source="1" dest="3" event="0"/>
-      <Transition source="1" dest="2" event="8"/>
-      <Transition source="1" dest="0" event="6"/>
-      <Transition source="1" dest="0" event="1"/>
-      <Transition source="2" dest="-1" event="9"/>
-      <Transition source="3" dest="-1" event="9"/>
+      <Transition source="1" dest="2" event="9"/>
+      <Transition source="1" dest="0" event="7"/>
+      <Transition source="1" dest="0" event="2"/>
+      <Transition source="2" dest="-1" event="10"/>
+      <Transition source="3" dest="-1" event="10"/>
     </Transitions>
   </Automaton>
   <Automaton name="ResponseMonitor" type="Plant">
     <Events>
       <Event id="0" label="approach.1"/>
-      <Event id="8" label="approach.0"/>
-      <Event id="10" label="requestLand.0" controllable="false"/>
-      <Event id="2" label="requestLand.1" controllable="false"/>
-      <Event id="3" label="descend.1.0"/>
-      <Event id="7" label="descend.0.0"/>
+      <Event id="9" label="approach.0"/>
+      <Event id="11" label="requestLand.0" controllable="false"/>
+      <Event id="3" label="requestLand.1" controllable="false"/>
+      <Event id="4" label="descend.1.0"/>
+      <Event id="12" label="extendFlight.0" controllable="false"/>
+      <Event id="8" label="descend.0.0"/>
+      <Event id="5" label="extendFlight.1" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="ResponseMonitor[0]" initial="true"/>
-      <State id="1" name="ResponseMonitor[1]"/>
-      <State id="2" name="ResponseMonitor[2]"/>
+      <State id="0" name="ResponseMonitor[0]" accepting="true" initial="true"/>
+      <State id="1" name="ResponseMonitor[1]" accepting="true"/>
+      <State id="2" name="ResponseMonitor[2]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="2"/>
-      <Transition source="0" dest="2" event="10"/>
+      <Transition source="0" dest="1" event="3"/>
+      <Transition source="0" dest="0" event="12"/>
+      <Transition source="0" dest="2" event="11"/>
       <Transition source="0" dest="0" event="0"/>
-      <Transition source="0" dest="0" event="7"/>
-      <Transition source="0" dest="0" event="3"/>
+      <Transition source="0" dest="0" event="5"/>
       <Transition source="0" dest="0" event="8"/>
-      <Transition source="1" dest="0" event="3"/>
-      <Transition source="2" dest="0" event="7"/>
+      <Transition source="0" dest="0" event="4"/>
+      <Transition source="0" dest="0" event="9"/>
+      <Transition source="1" dest="0" event="4"/>
+      <Transition source="2" dest="0" event="8"/>
     </Transitions>
   </Automaton>
   <Automaton name="Airplane(0)" type="Plant">
     <Events>
-      <Event id="8" label="approach.0"/>
-      <Event id="6" label="land.0" controllable="false"/>
-      <Event id="10" label="requestLand.0" controllable="false"/>
-      <Event id="4" label="end" controllable="false"/>
-      <Event id="7" label="descend.0.0"/>
+      <Event id="9" label="approach.0"/>
+      <Event id="1" label="control.all" controllable="false"/>
+      <Event id="7" label="land.0" controllable="false"/>
+      <Event id="11" label="requestLand.0" controllable="false"/>
+      <Event id="12" label="extendFlight.0" controllable="false"/>
+      <Event id="8" label="descend.0.0"/>
     </Events>
     <States>
-      <State id="0" name="Airplane(0)[0]" initial="true"/>
-      <State id="1" name="Airplane(0)[1]"/>
-      <State id="2" name="Airplane(0)[2]"/>
-      <State id="3" name="Airplane(0)[3]"/>
-      <State id="4" name="Airplane(0)[4]"/>
+      <State id="0" name="Airplane(0)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Airplane(0)[1]" accepting="true"/>
+      <State id="2" name="Airplane(0)[2]" accepting="true"/>
+      <State id="3" name="Airplane(0)[3]" accepting="true"/>
+      <State id="4" name="Airplane(0)[4]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="10"/>
-      <Transition source="1" dest="2" event="7"/>
+      <Transition source="0" dest="1" event="12"/>
+      <Transition source="0" dest="2" event="11"/>
+      <Transition source="1" dest="0" event="1"/>
       <Transition source="2" dest="3" event="8"/>
-      <Transition source="3" dest="4" event="6"/>
-      <Transition source="4" dest="0" event="4"/>
+      <Transition source="3" dest="4" event="9"/>
+      <Transition source="4" dest="1" event="7"/>
     </Transitions>
   </Automaton>
   <Automaton name="Goal" type="Specification">
     <Events>
-      <Event id="5" label="air.crash.0" controllable="false"/>
       <Event id="0" label="approach.1"/>
-      <Event id="8" label="approach.0"/>
-      <Event id="1" label="land.1" controllable="false"/>
-      <Event id="6" label="land.0" controllable="false"/>
-      <Event id="9" label="land.crash" controllable="false"/>
-      <Event id="10" label="requestLand.0" controllable="false"/>
-      <Event id="2" label="requestLand.1" controllable="false"/>
-      <Event id="3" label="descend.1.0"/>
-      <Event id="4" label="end" controllable="false"/>
-      <Event id="7" label="descend.0.0"/>
+      <Event id="1" label="control.all" controllable="false"/>
+      <Event id="9" label="approach.0"/>
+      <Event id="10" label="land.crash" controllable="false"/>
+      <Event id="12" label="extendFlight.0" controllable="false"/>
+      <Event id="5" label="extendFlight.1" controllable="false"/>
+      <Event id="6" label="air.crash.0" controllable="false"/>
+      <Event id="2" label="land.1" controllable="false"/>
+      <Event id="7" label="land.0" controllable="false"/>
+      <Event id="11" label="requestLand.0" controllable="false"/>
+      <Event id="4" label="descend.1.0"/>
+      <Event id="3" label="requestLand.1" controllable="false"/>
+      <Event id="8" label="descend.0.0"/>
     </Events>
     <States>
       <State id="0"  name="init" initial="true"/>
       <State id="1"  name="goal" accepting="true"/>
-      <State id="-1" name="error"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="0" event="5"/>
-      <Transition source="1" dest="0" event="5"/>
       <Transition source="0" dest="0" event="0"/>
       <Transition source="1" dest="0" event="0"/>
-      <Transition source="0" dest="0" event="8"/>
-      <Transition source="1" dest="0" event="8"/>
-      <Transition source="0" dest="0" event="1"/>
-      <Transition source="1" dest="0" event="1"/>
-      <Transition source="0" dest="0" event="6"/>
-      <Transition source="1" dest="0" event="6"/>
+      <Transition source="0" dest="1" event="1"/>
+      <Transition source="1" dest="1" event="1"/>
       <Transition source="0" dest="0" event="9"/>
       <Transition source="1" dest="0" event="9"/>
       <Transition source="0" dest="0" event="10"/>
       <Transition source="1" dest="0" event="10"/>
+      <Transition source="0" dest="0" event="12"/>
+      <Transition source="1" dest="0" event="12"/>
+      <Transition source="0" dest="0" event="5"/>
+      <Transition source="1" dest="0" event="5"/>
+      <Transition source="0" dest="0" event="6"/>
+      <Transition source="1" dest="0" event="6"/>
       <Transition source="0" dest="0" event="2"/>
       <Transition source="1" dest="0" event="2"/>
-      <Transition source="0" dest="0" event="3"/>
-      <Transition source="1" dest="0" event="3"/>
-      <Transition source="0" dest="1" event="4"/>
-      <Transition source="1" dest="1" event="4"/>
       <Transition source="0" dest="0" event="7"/>
       <Transition source="1" dest="0" event="7"/>
+      <Transition source="0" dest="0" event="11"/>
+      <Transition source="1" dest="0" event="11"/>
+      <Transition source="0" dest="0" event="4"/>
+      <Transition source="1" dest="0" event="4"/>
+      <Transition source="0" dest="0" event="3"/>
+      <Transition source="1" dest="0" event="3"/>
+      <Transition source="0" dest="0" event="8"/>
+      <Transition source="1" dest="0" event="8"/>
     </Transitions>
   </Automaton>
 </Automata>

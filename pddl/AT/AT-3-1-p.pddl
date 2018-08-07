@@ -1,6 +1,6 @@
 (define
   (problem Goal)
-  (:domain Controller)
+  (:domain DirectedController)
   (:init
     (at $0 $Airplane-2)
     (at $0 $Airplane-1)

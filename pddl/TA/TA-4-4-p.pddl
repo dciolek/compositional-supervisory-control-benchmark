@@ -1,6 +1,6 @@
 (define
   (problem Goal)
-  (:domain Controller)
+  (:domain DirectedController)
   (:init
     (at $0 $Service-2)
     (at $0 $Service-1)

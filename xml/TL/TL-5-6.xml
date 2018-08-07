@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<Automata name="Environment" major="0" minor="1">
+<Automata name="Plant" major="0" minor="1">
   <Automaton name="Machine(3)" type="Plant">
     <Events>
       <Event id="0" label="get.3"/>
       <Event id="1" label="put.4" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="Machine(3)[0]" initial="true"/>
-      <State id="1" name="Machine(3)[1]"/>
-      <State id="2" name="Machine(3)[2]"/>
-      <State id="3" name="Machine(3)[3]"/>
-      <State id="4" name="Machine(3)[4]"/>
-      <State id="5" name="Machine(3)[5]"/>
-      <State id="6" name="Machine(3)[6]"/>
+      <State id="0" name="Machine(3)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Machine(3)[1]" accepting="true"/>
+      <State id="2" name="Machine(3)[2]" accepting="true"/>
+      <State id="3" name="Machine(3)[3]" accepting="true"/>
+      <State id="4" name="Machine(3)[4]" accepting="true"/>
+      <State id="5" name="Machine(3)[5]" accepting="true"/>
+      <State id="6" name="Machine(3)[6]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="1" event="0"/>
@@ -36,14 +36,14 @@
       <Event id="4" label="put.1" controllable="false"/>
     </Events>
     <States>
-      <State id="-1" name="Buffer(1)[-1]"/>
-      <State id="0" name="Buffer(1)[0]" initial="true"/>
-      <State id="1" name="Buffer(1)[1]"/>
-      <State id="2" name="Buffer(1)[2]"/>
-      <State id="3" name="Buffer(1)[3]"/>
-      <State id="4" name="Buffer(1)[4]"/>
-      <State id="5" name="Buffer(1)[5]"/>
-      <State id="6" name="Buffer(1)[6]"/>
+      <State id="-1" name="Buffer(1)[-1]" accepting="false"/>
+      <State id="0" name="Buffer(1)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Buffer(1)[1]" accepting="true"/>
+      <State id="2" name="Buffer(1)[2]" accepting="true"/>
+      <State id="3" name="Buffer(1)[3]" accepting="true"/>
+      <State id="4" name="Buffer(1)[4]" accepting="true"/>
+      <State id="5" name="Buffer(1)[5]" accepting="true"/>
+      <State id="6" name="Buffer(1)[6]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="1" event="2"/>
@@ -76,14 +76,14 @@
       <Event id="7" label="put.5" controllable="false"/>
     </Events>
     <States>
-      <State id="-1" name="Buffer(5)[-1]"/>
-      <State id="0" name="Buffer(5)[0]" initial="true"/>
-      <State id="1" name="Buffer(5)[1]"/>
-      <State id="2" name="Buffer(5)[2]"/>
-      <State id="3" name="Buffer(5)[3]"/>
-      <State id="4" name="Buffer(5)[4]"/>
-      <State id="5" name="Buffer(5)[5]"/>
-      <State id="6" name="Buffer(5)[6]"/>
+      <State id="-1" name="Buffer(5)[-1]" accepting="false"/>
+      <State id="0" name="Buffer(5)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Buffer(5)[1]" accepting="true"/>
+      <State id="2" name="Buffer(5)[2]" accepting="true"/>
+      <State id="3" name="Buffer(5)[3]" accepting="true"/>
+      <State id="4" name="Buffer(5)[4]" accepting="true"/>
+      <State id="5" name="Buffer(5)[5]" accepting="true"/>
+      <State id="6" name="Buffer(5)[6]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="-1" event="6"/>
@@ -115,13 +115,13 @@
       <Event id="4" label="put.1" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="Machine(0)[0]" initial="true"/>
-      <State id="1" name="Machine(0)[1]"/>
-      <State id="2" name="Machine(0)[2]"/>
-      <State id="3" name="Machine(0)[3]"/>
-      <State id="4" name="Machine(0)[4]"/>
-      <State id="5" name="Machine(0)[5]"/>
-      <State id="6" name="Machine(0)[6]"/>
+      <State id="0" name="Machine(0)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Machine(0)[1]" accepting="true"/>
+      <State id="2" name="Machine(0)[2]" accepting="true"/>
+      <State id="3" name="Machine(0)[3]" accepting="true"/>
+      <State id="4" name="Machine(0)[4]" accepting="true"/>
+      <State id="5" name="Machine(0)[5]" accepting="true"/>
+      <State id="6" name="Machine(0)[6]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="1" event="8"/>
@@ -144,13 +144,13 @@
       <Event id="9" label="put.2" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="Machine(1)[0]" initial="true"/>
-      <State id="1" name="Machine(1)[1]"/>
-      <State id="2" name="Machine(1)[2]"/>
-      <State id="3" name="Machine(1)[3]"/>
-      <State id="4" name="Machine(1)[4]"/>
-      <State id="5" name="Machine(1)[5]"/>
-      <State id="6" name="Machine(1)[6]"/>
+      <State id="0" name="Machine(1)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Machine(1)[1]" accepting="true"/>
+      <State id="2" name="Machine(1)[2]" accepting="true"/>
+      <State id="3" name="Machine(1)[3]" accepting="true"/>
+      <State id="4" name="Machine(1)[4]" accepting="true"/>
+      <State id="5" name="Machine(1)[5]" accepting="true"/>
+      <State id="6" name="Machine(1)[6]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="1" event="3"/>
@@ -174,14 +174,14 @@
       <Event id="9" label="put.2" controllable="false"/>
     </Events>
     <States>
-      <State id="-1" name="Buffer(2)[-1]"/>
-      <State id="0" name="Buffer(2)[0]" initial="true"/>
-      <State id="1" name="Buffer(2)[1]"/>
-      <State id="2" name="Buffer(2)[2]"/>
-      <State id="3" name="Buffer(2)[3]"/>
-      <State id="4" name="Buffer(2)[4]"/>
-      <State id="5" name="Buffer(2)[5]"/>
-      <State id="6" name="Buffer(2)[6]"/>
+      <State id="-1" name="Buffer(2)[-1]" accepting="false"/>
+      <State id="0" name="Buffer(2)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Buffer(2)[1]" accepting="true"/>
+      <State id="2" name="Buffer(2)[2]" accepting="true"/>
+      <State id="3" name="Buffer(2)[3]" accepting="true"/>
+      <State id="4" name="Buffer(2)[4]" accepting="true"/>
+      <State id="5" name="Buffer(2)[5]" accepting="true"/>
+      <State id="6" name="Buffer(2)[6]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="1" event="10"/>
@@ -218,158 +218,155 @@
       <Event id="2" label="return.1" controllable="false"/>
       <Event id="15" label="return.0" controllable="false"/>
       <Event id="16" label="accept" controllable="false"/>
-      <Event id="17" label="end" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="TU[0]" initial="true"/>
-      <State id="1" name="TU[1]"/>
-      <State id="2" name="TU[2]"/>
-      <State id="3" name="TU[3]"/>
+      <State id="0" name="TU[0]" accepting="true" initial="true"/>
+      <State id="1" name="TU[1]" accepting="true"/>
+      <State id="2" name="TU[2]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="1" event="6"/>
-      <Transition source="1" dest="3" event="2"/>
-      <Transition source="1" dest="2" event="16"/>
-      <Transition source="2" dest="0" event="17"/>
-      <Transition source="3" dest="2" event="14"/>
+      <Transition source="1" dest="2" event="2"/>
+      <Transition source="1" dest="0" event="16"/>
+      <Transition source="2" dest="0" event="14"/>
     </Transitions>
   </Automaton>
   <Automaton name="Buffer(3)" type="Plant">
     <Events>
       <Event id="13" label="return.3" controllable="false"/>
       <Event id="0" label="get.3"/>
-      <Event id="18" label="put.3" controllable="false"/>
+      <Event id="17" label="put.3" controllable="false"/>
     </Events>
     <States>
-      <State id="-1" name="Buffer(3)[-1]"/>
-      <State id="0" name="Buffer(3)[0]" initial="true"/>
-      <State id="1" name="Buffer(3)[1]"/>
-      <State id="2" name="Buffer(3)[2]"/>
-      <State id="3" name="Buffer(3)[3]"/>
-      <State id="4" name="Buffer(3)[4]"/>
-      <State id="5" name="Buffer(3)[5]"/>
-      <State id="6" name="Buffer(3)[6]"/>
+      <State id="-1" name="Buffer(3)[-1]" accepting="false"/>
+      <State id="0" name="Buffer(3)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Buffer(3)[1]" accepting="true"/>
+      <State id="2" name="Buffer(3)[2]" accepting="true"/>
+      <State id="3" name="Buffer(3)[3]" accepting="true"/>
+      <State id="4" name="Buffer(3)[4]" accepting="true"/>
+      <State id="5" name="Buffer(3)[5]" accepting="true"/>
+      <State id="6" name="Buffer(3)[6]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="-1" event="0"/>
       <Transition source="0" dest="1" event="13"/>
-      <Transition source="0" dest="1" event="18"/>
+      <Transition source="0" dest="1" event="17"/>
       <Transition source="1" dest="0" event="0"/>
       <Transition source="1" dest="2" event="13"/>
-      <Transition source="1" dest="2" event="18"/>
+      <Transition source="1" dest="2" event="17"/>
       <Transition source="2" dest="1" event="0"/>
       <Transition source="2" dest="3" event="13"/>
-      <Transition source="2" dest="3" event="18"/>
+      <Transition source="2" dest="3" event="17"/>
       <Transition source="3" dest="2" event="0"/>
       <Transition source="3" dest="4" event="13"/>
-      <Transition source="3" dest="4" event="18"/>
+      <Transition source="3" dest="4" event="17"/>
       <Transition source="4" dest="3" event="0"/>
       <Transition source="4" dest="5" event="13"/>
-      <Transition source="4" dest="5" event="18"/>
+      <Transition source="4" dest="5" event="17"/>
       <Transition source="5" dest="4" event="0"/>
       <Transition source="5" dest="6" event="13"/>
-      <Transition source="5" dest="6" event="18"/>
+      <Transition source="5" dest="6" event="17"/>
       <Transition source="6" dest="5" event="0"/>
       <Transition source="6" dest="-1" event="13"/>
-      <Transition source="6" dest="-1" event="18"/>
+      <Transition source="6" dest="-1" event="17"/>
     </Transitions>
   </Automaton>
   <Automaton name="Machine(2)" type="Plant">
     <Events>
       <Event id="11" label="get.2"/>
-      <Event id="18" label="put.3" controllable="false"/>
+      <Event id="17" label="put.3" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="Machine(2)[0]" initial="true"/>
-      <State id="1" name="Machine(2)[1]"/>
-      <State id="2" name="Machine(2)[2]"/>
-      <State id="3" name="Machine(2)[3]"/>
-      <State id="4" name="Machine(2)[4]"/>
-      <State id="5" name="Machine(2)[5]"/>
-      <State id="6" name="Machine(2)[6]"/>
+      <State id="0" name="Machine(2)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Machine(2)[1]" accepting="true"/>
+      <State id="2" name="Machine(2)[2]" accepting="true"/>
+      <State id="3" name="Machine(2)[3]" accepting="true"/>
+      <State id="4" name="Machine(2)[4]" accepting="true"/>
+      <State id="5" name="Machine(2)[5]" accepting="true"/>
+      <State id="6" name="Machine(2)[6]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="1" event="11"/>
-      <Transition source="1" dest="0" event="18"/>
+      <Transition source="1" dest="0" event="17"/>
       <Transition source="1" dest="2" event="11"/>
-      <Transition source="2" dest="1" event="18"/>
+      <Transition source="2" dest="1" event="17"/>
       <Transition source="2" dest="3" event="11"/>
-      <Transition source="3" dest="2" event="18"/>
+      <Transition source="3" dest="2" event="17"/>
       <Transition source="3" dest="4" event="11"/>
-      <Transition source="4" dest="3" event="18"/>
+      <Transition source="4" dest="3" event="17"/>
       <Transition source="4" dest="5" event="11"/>
-      <Transition source="5" dest="4" event="18"/>
+      <Transition source="5" dest="4" event="17"/>
       <Transition source="5" dest="6" event="11"/>
-      <Transition source="6" dest="5" event="18"/>
+      <Transition source="6" dest="5" event="17"/>
     </Transitions>
   </Automaton>
   <Automaton name="Machine(4)" type="Plant">
     <Events>
-      <Event id="19" label="get.4"/>
+      <Event id="18" label="get.4"/>
       <Event id="7" label="put.5" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="Machine(4)[0]" initial="true"/>
-      <State id="1" name="Machine(4)[1]"/>
-      <State id="2" name="Machine(4)[2]"/>
-      <State id="3" name="Machine(4)[3]"/>
-      <State id="4" name="Machine(4)[4]"/>
-      <State id="5" name="Machine(4)[5]"/>
-      <State id="6" name="Machine(4)[6]"/>
+      <State id="0" name="Machine(4)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Machine(4)[1]" accepting="true"/>
+      <State id="2" name="Machine(4)[2]" accepting="true"/>
+      <State id="3" name="Machine(4)[3]" accepting="true"/>
+      <State id="4" name="Machine(4)[4]" accepting="true"/>
+      <State id="5" name="Machine(4)[5]" accepting="true"/>
+      <State id="6" name="Machine(4)[6]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="19"/>
+      <Transition source="0" dest="1" event="18"/>
       <Transition source="1" dest="0" event="7"/>
-      <Transition source="1" dest="2" event="19"/>
+      <Transition source="1" dest="2" event="18"/>
       <Transition source="2" dest="1" event="7"/>
-      <Transition source="2" dest="3" event="19"/>
+      <Transition source="2" dest="3" event="18"/>
       <Transition source="3" dest="2" event="7"/>
-      <Transition source="3" dest="4" event="19"/>
+      <Transition source="3" dest="4" event="18"/>
       <Transition source="4" dest="3" event="7"/>
-      <Transition source="4" dest="5" event="19"/>
+      <Transition source="4" dest="5" event="18"/>
       <Transition source="5" dest="4" event="7"/>
-      <Transition source="5" dest="6" event="19"/>
+      <Transition source="5" dest="6" event="18"/>
       <Transition source="6" dest="5" event="7"/>
     </Transitions>
   </Automaton>
   <Automaton name="Buffer(4)" type="Plant">
     <Events>
       <Event id="12" label="return.4" controllable="false"/>
-      <Event id="19" label="get.4"/>
+      <Event id="18" label="get.4"/>
       <Event id="1" label="put.4" controllable="false"/>
     </Events>
     <States>
-      <State id="-1" name="Buffer(4)[-1]"/>
-      <State id="0" name="Buffer(4)[0]" initial="true"/>
-      <State id="1" name="Buffer(4)[1]"/>
-      <State id="2" name="Buffer(4)[2]"/>
-      <State id="3" name="Buffer(4)[3]"/>
-      <State id="4" name="Buffer(4)[4]"/>
-      <State id="5" name="Buffer(4)[5]"/>
-      <State id="6" name="Buffer(4)[6]"/>
+      <State id="-1" name="Buffer(4)[-1]" accepting="false"/>
+      <State id="0" name="Buffer(4)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Buffer(4)[1]" accepting="true"/>
+      <State id="2" name="Buffer(4)[2]" accepting="true"/>
+      <State id="3" name="Buffer(4)[3]" accepting="true"/>
+      <State id="4" name="Buffer(4)[4]" accepting="true"/>
+      <State id="5" name="Buffer(4)[5]" accepting="true"/>
+      <State id="6" name="Buffer(4)[6]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="1" event="1"/>
       <Transition source="0" dest="1" event="12"/>
-      <Transition source="0" dest="-1" event="19"/>
+      <Transition source="0" dest="-1" event="18"/>
       <Transition source="1" dest="2" event="1"/>
       <Transition source="1" dest="2" event="12"/>
-      <Transition source="1" dest="0" event="19"/>
+      <Transition source="1" dest="0" event="18"/>
       <Transition source="2" dest="3" event="1"/>
       <Transition source="2" dest="3" event="12"/>
-      <Transition source="2" dest="1" event="19"/>
+      <Transition source="2" dest="1" event="18"/>
       <Transition source="3" dest="4" event="1"/>
       <Transition source="3" dest="4" event="12"/>
-      <Transition source="3" dest="2" event="19"/>
+      <Transition source="3" dest="2" event="18"/>
       <Transition source="4" dest="5" event="1"/>
       <Transition source="4" dest="5" event="12"/>
-      <Transition source="4" dest="3" event="19"/>
+      <Transition source="4" dest="3" event="18"/>
       <Transition source="5" dest="6" event="1"/>
       <Transition source="5" dest="6" event="12"/>
-      <Transition source="5" dest="4" event="19"/>
+      <Transition source="5" dest="4" event="18"/>
       <Transition source="6" dest="-1" event="1"/>
       <Transition source="6" dest="-1" event="12"/>
-      <Transition source="6" dest="5" event="19"/>
+      <Transition source="6" dest="5" event="18"/>
     </Transitions>
   </Automaton>
   <Automaton name="Goal" type="Specification">
@@ -378,7 +375,7 @@
       <Event id="12" label="return.4" controllable="false"/>
       <Event id="13" label="return.3" controllable="false"/>
       <Event id="6" label="get.5"/>
-      <Event id="19" label="get.4"/>
+      <Event id="18" label="get.4"/>
       <Event id="10" label="return.2" controllable="false"/>
       <Event id="14" label="reject" controllable="false"/>
       <Event id="0" label="get.3"/>
@@ -389,16 +386,14 @@
       <Event id="16" label="accept" controllable="false"/>
       <Event id="8" label="get.0"/>
       <Event id="1" label="put.4" controllable="false"/>
-      <Event id="18" label="put.3" controllable="false"/>
+      <Event id="17" label="put.3" controllable="false"/>
       <Event id="7" label="put.5" controllable="false"/>
       <Event id="9" label="put.2" controllable="false"/>
-      <Event id="17" label="end" controllable="false"/>
       <Event id="4" label="put.1" controllable="false"/>
     </Events>
     <States>
       <State id="0"  name="init" initial="true"/>
       <State id="1"  name="goal" accepting="true"/>
-      <State id="-1" name="error"/>
     </States>
     <Transitions>
       <Transition source="0" dest="0" event="5"/>
@@ -409,12 +404,12 @@
       <Transition source="1" dest="0" event="13"/>
       <Transition source="0" dest="0" event="6"/>
       <Transition source="1" dest="0" event="6"/>
-      <Transition source="0" dest="0" event="19"/>
-      <Transition source="1" dest="0" event="19"/>
+      <Transition source="0" dest="0" event="18"/>
+      <Transition source="1" dest="0" event="18"/>
       <Transition source="0" dest="0" event="10"/>
       <Transition source="1" dest="0" event="10"/>
-      <Transition source="0" dest="0" event="14"/>
-      <Transition source="1" dest="0" event="14"/>
+      <Transition source="0" dest="1" event="14"/>
+      <Transition source="1" dest="1" event="14"/>
       <Transition source="0" dest="0" event="0"/>
       <Transition source="1" dest="0" event="0"/>
       <Transition source="0" dest="0" event="2"/>
@@ -425,20 +420,18 @@
       <Transition source="1" dest="0" event="15"/>
       <Transition source="0" dest="0" event="3"/>
       <Transition source="1" dest="0" event="3"/>
-      <Transition source="0" dest="0" event="16"/>
-      <Transition source="1" dest="0" event="16"/>
+      <Transition source="0" dest="1" event="16"/>
+      <Transition source="1" dest="1" event="16"/>
       <Transition source="0" dest="0" event="8"/>
       <Transition source="1" dest="0" event="8"/>
       <Transition source="0" dest="0" event="1"/>
       <Transition source="1" dest="0" event="1"/>
-      <Transition source="0" dest="0" event="18"/>
-      <Transition source="1" dest="0" event="18"/>
+      <Transition source="0" dest="0" event="17"/>
+      <Transition source="1" dest="0" event="17"/>
       <Transition source="0" dest="0" event="7"/>
       <Transition source="1" dest="0" event="7"/>
       <Transition source="0" dest="0" event="9"/>
       <Transition source="1" dest="0" event="9"/>
-      <Transition source="0" dest="1" event="17"/>
-      <Transition source="1" dest="1" event="17"/>
       <Transition source="0" dest="0" event="4"/>
       <Transition source="1" dest="0" event="4"/>
     </Transitions>

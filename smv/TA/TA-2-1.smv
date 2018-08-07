@@ -1,0 +1,829 @@
+MODULE main
+DOMAINNAME DirectedController
+PROBLEMNAME Goal
+IVAR
+  action: {
+    "(choose)",
+    "(default)",
+    "(agency_request)",
+    "(unavailable_1)",
+    "(query_fail_1)",
+    "(unavailable_0)",
+    "(query_fail_0)",
+    "(agency_succ)",
+    "(query_1)",
+    "(query_0)",
+    "(purchase_1)",
+    "(committed_0)",
+    "(cancel_1)",
+    "(cancel_0)",
+    "(committed_1)",
+    "(purchase_0)",
+    "(agency_fail)",
+    "(available_0)",
+    "(available_1)",
+    "(steps_0_0)",
+    "(steps_1_0)",
+    "(uncommitted_0)",
+    "(uncommitted_1)",
+    "(query_succ_1)",
+    "(purchase_succ_1)",
+    "(purchase_fail_1)",
+    "(query_succ_0)",
+    "(purchase_succ_0)",
+    "(purchase_fail_0)"
+  };
+VAR
+  "(at Service_1)":-1..9;
+  "(at AgencyMonitor)":-1..3;
+  "(at ServiceMonitor_0)":-1..5;
+  "(at Service_0)":-1..11;
+  "(at Agency)":-1..1;
+  "(at ServiceMonitor_1)":-1..5;
+  "(inprogress agency_request)":0..1;
+  "(inprogress unavailable_1)":0..1;
+  "(inprogress query_fail_1)":0..1;
+  "(inprogress unavailable_0)":0..1;
+  "(inprogress query_fail_0)":0..1;
+  "(inprogress query_1)":0..1;
+  "(inprogress query_0)":0..1;
+  "(inprogress committed_0)":0..1;
+  "(inprogress committed_1)":0..1;
+  "(inprogress available_0)":0..1;
+  "(inprogress available_1)":0..1;
+  "(inprogress steps_0_0)":0..1;
+  "(inprogress steps_1_0)":0..1;
+  "(inprogress uncommitted_0)":0..1;
+  "(inprogress uncommitted_1)":0..1;
+  "(inprogress purchase_fail_1)":0..1;
+  "(inprogress purchase_succ_1)":0..1;
+  "(inprogress query_succ_1)":0..1;
+  "(inprogress query_succ_0)":0..1;
+  "(inprogress purchase_fail_0)":0..1;
+  "(inprogress purchase_succ_0)":0..1;
+  "(status)":-1..2;
+INIT (
+  "(inprogress purchase_fail_0)"=0 &
+  "(at AgencyMonitor)"=0 &
+  "(inprogress query_0)"=0 &
+  "(inprogress agency_request)"=0 &
+  "(inprogress query_succ_1)"=0 &
+  "(inprogress uncommitted_0)"=0 &
+  "(inprogress query_succ_0)"=0 &
+  "(inprogress query_1)"=0 &
+  "(inprogress purchase_succ_0)"=0 &
+  "(status)"=0 &
+  "(inprogress steps_1_0)"=0 &
+  "(inprogress purchase_fail_1)"=0 &
+  "(inprogress query_fail_1)"=0 &
+  "(inprogress query_fail_0)"=0 &
+  "(inprogress available_0)"=0 &
+  "(inprogress steps_0_0)"=0 &
+  "(inprogress committed_1)"=0 &
+  "(at Agency)"=0 &
+  "(at ServiceMonitor_0)"=0 &
+  "(inprogress available_1)"=0 &
+  "(inprogress uncommitted_1)"=0 &
+  "(inprogress committed_0)"=0 &
+  "(inprogress purchase_succ_1)"=0 &
+  "(inprogress unavailable_0)"=0 &
+  "(at Service_1)"=0 &
+  "(at ServiceMonitor_1)"=0 &
+  "(inprogress unavailable_1)"=0 &
+  "(at Service_0)"=0 
+)
+DEFINE
+  "(@def ready agency_request Service_1)":=(FALSE);
+  "(@def ready agency_request AgencyMonitor)":=(FALSE);
+  "(@def ready agency_request ServiceMonitor_0)":=(FALSE);
+  "(@def ready agency_request Service_0)":=(FALSE);
+  "(@def ready agency_request Agency)":=("(at Agency)"=0);
+  "(@def ready agency_request ServiceMonitor_1)":=(FALSE);
+  "(@def ready unavailable_1 Service_1)":=("(at Service_1)"=1);
+  "(@def ready unavailable_1 AgencyMonitor)":=(FALSE);
+  "(@def ready unavailable_1 ServiceMonitor_0)":=(FALSE);
+  "(@def ready unavailable_1 Service_0)":=(FALSE);
+  "(@def ready unavailable_1 Agency)":=(FALSE);
+  "(@def ready unavailable_1 ServiceMonitor_1)":=(FALSE);
+  "(@def ready query_fail_1 Service_1)":=("(at Service_1)"=9);
+  "(@def ready query_fail_1 AgencyMonitor)":=("(at AgencyMonitor)"=0 | "(at AgencyMonitor)"=1 | "(at AgencyMonitor)"=2);
+  "(@def ready query_fail_1 ServiceMonitor_0)":=(FALSE);
+  "(@def ready query_fail_1 Service_0)":=(FALSE);
+  "(@def ready query_fail_1 Agency)":=(FALSE);
+  "(@def ready query_fail_1 ServiceMonitor_1)":=("(at ServiceMonitor_1)"=1);
+  "(@def ready unavailable_0 Service_1)":=(FALSE);
+  "(@def ready unavailable_0 AgencyMonitor)":=(FALSE);
+  "(@def ready unavailable_0 ServiceMonitor_0)":=(FALSE);
+  "(@def ready unavailable_0 Service_0)":=("(at Service_0)"=1);
+  "(@def ready unavailable_0 Agency)":=(FALSE);
+  "(@def ready unavailable_0 ServiceMonitor_1)":=(FALSE);
+  "(@def ready query_fail_0 Service_1)":=(FALSE);
+  "(@def ready query_fail_0 AgencyMonitor)":=("(at AgencyMonitor)"=0 | "(at AgencyMonitor)"=1 | "(at AgencyMonitor)"=2);
+  "(@def ready query_fail_0 ServiceMonitor_0)":=("(at ServiceMonitor_0)"=1);
+  "(@def ready query_fail_0 Service_0)":=("(at Service_0)"=11);
+  "(@def ready query_fail_0 Agency)":=(FALSE);
+  "(@def ready query_fail_0 ServiceMonitor_1)":=(FALSE);
+  "(@def ready agency_succ Service_1)":=("(at Service_1)"=0 | "(at Service_1)"=5 | "(at Service_1)"=7);
+  "(@def ready agency_succ AgencyMonitor)":=("(at AgencyMonitor)"=0 | "(at AgencyMonitor)"=1 | "(at AgencyMonitor)"=2);
+  "(@def ready agency_succ ServiceMonitor_0)":=("(at ServiceMonitor_0)"=0 | "(at ServiceMonitor_0)"=1 | "(at ServiceMonitor_0)"=2 | "(at ServiceMonitor_0)"=3 | "(at ServiceMonitor_0)"=4);
+  "(@def ready agency_succ Service_0)":=("(at Service_0)"=0 | "(at Service_0)"=6 | "(at Service_0)"=9);
+  "(@def ready agency_succ Agency)":=("(at Agency)"=1);
+  "(@def ready agency_succ ServiceMonitor_1)":=("(at ServiceMonitor_1)"=0 | "(at ServiceMonitor_1)"=1 | "(at ServiceMonitor_1)"=2 | "(at ServiceMonitor_1)"=3 | "(at ServiceMonitor_1)"=4);
+  "(@def ready query_1 Service_1)":=("(at Service_1)"=0);
+  "(@def ready query_1 AgencyMonitor)":=(FALSE);
+  "(@def ready query_1 ServiceMonitor_0)":=(FALSE);
+  "(@def ready query_1 Service_0)":=("(at Service_0)"=5 | "(at Service_0)"=8);
+  "(@def ready query_1 Agency)":=("(at Agency)"=1);
+  "(@def ready query_1 ServiceMonitor_1)":=("(at ServiceMonitor_1)"=0);
+  "(@def ready query_0 Service_1)":=(FALSE);
+  "(@def ready query_0 AgencyMonitor)":=(FALSE);
+  "(@def ready query_0 ServiceMonitor_0)":=("(at ServiceMonitor_0)"=0);
+  "(@def ready query_0 Service_0)":=("(at Service_0)"=0);
+  "(@def ready query_0 Agency)":=("(at Agency)"=1);
+  "(@def ready query_0 ServiceMonitor_1)":=(FALSE);
+  "(@def ready purchase_1 Service_1)":=("(at Service_1)"=5 | "(at Service_1)"=7);
+  "(@def ready purchase_1 AgencyMonitor)":=(FALSE);
+  "(@def ready purchase_1 ServiceMonitor_0)":=(FALSE);
+  "(@def ready purchase_1 Service_0)":=(FALSE);
+  "(@def ready purchase_1 Agency)":=(FALSE);
+  "(@def ready purchase_1 ServiceMonitor_1)":=(FALSE);
+  "(@def ready committed_0 Service_1)":=(FALSE);
+  "(@def ready committed_0 AgencyMonitor)":=(FALSE);
+  "(@def ready committed_0 ServiceMonitor_0)":=(FALSE);
+  "(@def ready committed_0 Service_0)":=("(at Service_0)"=4);
+  "(@def ready committed_0 Agency)":=(FALSE);
+  "(@def ready committed_0 ServiceMonitor_1)":=(FALSE);
+  "(@def ready cancel_1 Service_1)":=("(at Service_1)"=5 | "(at Service_1)"=7);
+  "(@def ready cancel_1 AgencyMonitor)":=(FALSE);
+  "(@def ready cancel_1 ServiceMonitor_0)":=(FALSE);
+  "(@def ready cancel_1 Service_0)":=(FALSE);
+  "(@def ready cancel_1 Agency)":=(FALSE);
+  "(@def ready cancel_1 ServiceMonitor_1)":=("(at ServiceMonitor_1)"=2);
+  "(@def ready cancel_0 Service_1)":=(FALSE);
+  "(@def ready cancel_0 AgencyMonitor)":=(FALSE);
+  "(@def ready cancel_0 ServiceMonitor_0)":=("(at ServiceMonitor_0)"=2);
+  "(@def ready cancel_0 Service_0)":=("(at Service_0)"=6 | "(at Service_0)"=9);
+  "(@def ready cancel_0 Agency)":=(FALSE);
+  "(@def ready cancel_0 ServiceMonitor_1)":=(FALSE);
+  "(@def ready committed_1 Service_1)":=("(at Service_1)"=4);
+  "(@def ready committed_1 AgencyMonitor)":=(FALSE);
+  "(@def ready committed_1 ServiceMonitor_0)":=(FALSE);
+  "(@def ready committed_1 Service_0)":=(FALSE);
+  "(@def ready committed_1 Agency)":=(FALSE);
+  "(@def ready committed_1 ServiceMonitor_1)":=(FALSE);
+  "(@def ready purchase_0 Service_1)":=(FALSE);
+  "(@def ready purchase_0 AgencyMonitor)":=(FALSE);
+  "(@def ready purchase_0 ServiceMonitor_0)":=(FALSE);
+  "(@def ready purchase_0 Service_0)":=("(at Service_0)"=6 | "(at Service_0)"=9);
+  "(@def ready purchase_0 Agency)":=(FALSE);
+  "(@def ready purchase_0 ServiceMonitor_1)":=(FALSE);
+  "(@def ready agency_fail Service_1)":=("(at Service_1)"=0 | "(at Service_1)"=5 | "(at Service_1)"=7);
+  "(@def ready agency_fail AgencyMonitor)":=("(at AgencyMonitor)"=0 | "(at AgencyMonitor)"=1 | "(at AgencyMonitor)"=2);
+  "(@def ready agency_fail ServiceMonitor_0)":=("(at ServiceMonitor_0)"=0 | "(at ServiceMonitor_0)"=1 | "(at ServiceMonitor_0)"=2 | "(at ServiceMonitor_0)"=3 | "(at ServiceMonitor_0)"=4);
+  "(@def ready agency_fail Service_0)":=("(at Service_0)"=0 | "(at Service_0)"=6 | "(at Service_0)"=9);
+  "(@def ready agency_fail Agency)":=("(at Agency)"=1);
+  "(@def ready agency_fail ServiceMonitor_1)":=("(at ServiceMonitor_1)"=0 | "(at ServiceMonitor_1)"=1 | "(at ServiceMonitor_1)"=2 | "(at ServiceMonitor_1)"=3 | "(at ServiceMonitor_1)"=4);
+  "(@def ready available_0 Service_1)":=(FALSE);
+  "(@def ready available_0 AgencyMonitor)":=(FALSE);
+  "(@def ready available_0 ServiceMonitor_0)":=(FALSE);
+  "(@def ready available_0 Service_0)":=("(at Service_0)"=1);
+  "(@def ready available_0 Agency)":=(FALSE);
+  "(@def ready available_0 ServiceMonitor_1)":=(FALSE);
+  "(@def ready available_1 Service_1)":=("(at Service_1)"=1);
+  "(@def ready available_1 AgencyMonitor)":=(FALSE);
+  "(@def ready available_1 ServiceMonitor_0)":=(FALSE);
+  "(@def ready available_1 Service_0)":=(FALSE);
+  "(@def ready available_1 Agency)":=(FALSE);
+  "(@def ready available_1 ServiceMonitor_1)":=(FALSE);
+  "(@def ready steps_0_0 Service_1)":=(FALSE);
+  "(@def ready steps_0_0 AgencyMonitor)":=(FALSE);
+  "(@def ready steps_0_0 ServiceMonitor_0)":=(FALSE);
+  "(@def ready steps_0_0 Service_0)":=("(at Service_0)"=2);
+  "(@def ready steps_0_0 Agency)":=(FALSE);
+  "(@def ready steps_0_0 ServiceMonitor_1)":=(FALSE);
+  "(@def ready steps_1_0 Service_1)":=("(at Service_1)"=2);
+  "(@def ready steps_1_0 AgencyMonitor)":=(FALSE);
+  "(@def ready steps_1_0 ServiceMonitor_0)":=(FALSE);
+  "(@def ready steps_1_0 Service_0)":=(FALSE);
+  "(@def ready steps_1_0 Agency)":=(FALSE);
+  "(@def ready steps_1_0 ServiceMonitor_1)":=(FALSE);
+  "(@def ready uncommitted_0 Service_1)":=(FALSE);
+  "(@def ready uncommitted_0 AgencyMonitor)":=("(at AgencyMonitor)"=0 | "(at AgencyMonitor)"=1 | "(at AgencyMonitor)"=2);
+  "(@def ready uncommitted_0 ServiceMonitor_0)":=(FALSE);
+  "(@def ready uncommitted_0 Service_0)":=("(at Service_0)"=4);
+  "(@def ready uncommitted_0 Agency)":=(FALSE);
+  "(@def ready uncommitted_0 ServiceMonitor_1)":=(FALSE);
+  "(@def ready uncommitted_1 Service_1)":=("(at Service_1)"=4);
+  "(@def ready uncommitted_1 AgencyMonitor)":=("(at AgencyMonitor)"=0 | "(at AgencyMonitor)"=1 | "(at AgencyMonitor)"=2);
+  "(@def ready uncommitted_1 ServiceMonitor_0)":=(FALSE);
+  "(@def ready uncommitted_1 Service_0)":=(FALSE);
+  "(@def ready uncommitted_1 Agency)":=(FALSE);
+  "(@def ready uncommitted_1 ServiceMonitor_1)":=(FALSE);
+  "(@def ready query_succ_1 Service_1)":=("(at Service_1)"=3);
+  "(@def ready query_succ_1 AgencyMonitor)":=(FALSE);
+  "(@def ready query_succ_1 ServiceMonitor_0)":=(FALSE);
+  "(@def ready query_succ_1 Service_0)":=(FALSE);
+  "(@def ready query_succ_1 Agency)":=(FALSE);
+  "(@def ready query_succ_1 ServiceMonitor_1)":=("(at ServiceMonitor_1)"=1);
+  "(@def ready purchase_succ_1 Service_1)":=("(at Service_1)"=6 | "(at Service_1)"=8);
+  "(@def ready purchase_succ_1 AgencyMonitor)":=(FALSE);
+  "(@def ready purchase_succ_1 ServiceMonitor_0)":=(FALSE);
+  "(@def ready purchase_succ_1 Service_0)":=(FALSE);
+  "(@def ready purchase_succ_1 Agency)":=(FALSE);
+  "(@def ready purchase_succ_1 ServiceMonitor_1)":=("(at ServiceMonitor_1)"=2);
+  "(@def ready purchase_fail_1 Service_1)":=("(at Service_1)"=6);
+  "(@def ready purchase_fail_1 AgencyMonitor)":=("(at AgencyMonitor)"=1 | "(at AgencyMonitor)"=2);
+  "(@def ready purchase_fail_1 ServiceMonitor_0)":=(FALSE);
+  "(@def ready purchase_fail_1 Service_0)":=(FALSE);
+  "(@def ready purchase_fail_1 Agency)":=(FALSE);
+  "(@def ready purchase_fail_1 ServiceMonitor_1)":=("(at ServiceMonitor_1)"=2);
+  "(@def ready query_succ_0 Service_1)":=(FALSE);
+  "(@def ready query_succ_0 AgencyMonitor)":=(FALSE);
+  "(@def ready query_succ_0 ServiceMonitor_0)":=("(at ServiceMonitor_0)"=1);
+  "(@def ready query_succ_0 Service_0)":=("(at Service_0)"=3);
+  "(@def ready query_succ_0 Agency)":=(FALSE);
+  "(@def ready query_succ_0 ServiceMonitor_1)":=(FALSE);
+  "(@def ready purchase_succ_0 Service_1)":=(FALSE);
+  "(@def ready purchase_succ_0 AgencyMonitor)":=(FALSE);
+  "(@def ready purchase_succ_0 ServiceMonitor_0)":=("(at ServiceMonitor_0)"=2);
+  "(@def ready purchase_succ_0 Service_0)":=("(at Service_0)"=7 | "(at Service_0)"=10);
+  "(@def ready purchase_succ_0 Agency)":=(FALSE);
+  "(@def ready purchase_succ_0 ServiceMonitor_1)":=(FALSE);
+  "(@def ready purchase_fail_0 Service_1)":=(FALSE);
+  "(@def ready purchase_fail_0 AgencyMonitor)":=("(at AgencyMonitor)"=1 | "(at AgencyMonitor)"=2);
+  "(@def ready purchase_fail_0 ServiceMonitor_0)":=("(at ServiceMonitor_0)"=2);
+  "(@def ready purchase_fail_0 Service_0)":=("(at Service_0)"=7);
+  "(@def ready purchase_fail_0 Agency)":=(FALSE);
+  "(@def ready purchase_fail_0 ServiceMonitor_1)":=(FALSE);
+  "(@def enabled agency_request)":=("(@def ready agency_request Agency)");
+  "(@def enabled unavailable_1)":=("(@def ready unavailable_1 Service_1)");
+  "(@def enabled query_fail_1)":=("(@def ready query_fail_1 Service_1)" & "(@def ready query_fail_1 AgencyMonitor)" & "(@def ready query_fail_1 ServiceMonitor_1)");
+  "(@def enabled unavailable_0)":=("(@def ready unavailable_0 Service_0)");
+  "(@def enabled query_fail_0)":=("(@def ready query_fail_0 AgencyMonitor)" & "(@def ready query_fail_0 ServiceMonitor_0)" & "(@def ready query_fail_0 Service_0)");
+  "(@def enabled agency_succ)":=("(@def ready agency_succ Service_1)" & "(@def ready agency_succ AgencyMonitor)" & "(@def ready agency_succ ServiceMonitor_0)" & "(@def ready agency_succ Service_0)" & "(@def ready agency_succ Agency)" & "(@def ready agency_succ ServiceMonitor_1)");
+  "(@def enabled query_1)":=("(@def ready query_1 Service_1)" & "(@def ready query_1 Service_0)" & "(@def ready query_1 Agency)" & "(@def ready query_1 ServiceMonitor_1)");
+  "(@def enabled query_0)":=("(@def ready query_0 ServiceMonitor_0)" & "(@def ready query_0 Service_0)" & "(@def ready query_0 Agency)");
+  "(@def enabled purchase_1)":=("(@def ready purchase_1 Service_1)");
+  "(@def enabled committed_0)":=("(@def ready committed_0 Service_0)");
+  "(@def enabled cancel_1)":=("(@def ready cancel_1 Service_1)" & "(@def ready cancel_1 ServiceMonitor_1)");
+  "(@def enabled cancel_0)":=("(@def ready cancel_0 ServiceMonitor_0)" & "(@def ready cancel_0 Service_0)");
+  "(@def enabled committed_1)":=("(@def ready committed_1 Service_1)");
+  "(@def enabled purchase_0)":=("(@def ready purchase_0 Service_0)");
+  "(@def enabled agency_fail)":=("(@def ready agency_fail Service_1)" & "(@def ready agency_fail AgencyMonitor)" & "(@def ready agency_fail ServiceMonitor_0)" & "(@def ready agency_fail Service_0)" & "(@def ready agency_fail Agency)" & "(@def ready agency_fail ServiceMonitor_1)");
+  "(@def enabled available_0)":=("(@def ready available_0 Service_0)");
+  "(@def enabled available_1)":=("(@def ready available_1 Service_1)");
+  "(@def enabled steps_0_0)":=("(@def ready steps_0_0 Service_0)");
+  "(@def enabled steps_1_0)":=("(@def ready steps_1_0 Service_1)");
+  "(@def enabled uncommitted_0)":=("(@def ready uncommitted_0 AgencyMonitor)" & "(@def ready uncommitted_0 Service_0)");
+  "(@def enabled uncommitted_1)":=("(@def ready uncommitted_1 Service_1)" & "(@def ready uncommitted_1 AgencyMonitor)");
+  "(@def enabled query_succ_1)":=("(@def ready query_succ_1 Service_1)" & "(@def ready query_succ_1 ServiceMonitor_1)");
+  "(@def enabled purchase_succ_1)":=("(@def ready purchase_succ_1 Service_1)" & "(@def ready purchase_succ_1 ServiceMonitor_1)");
+  "(@def enabled purchase_fail_1)":=("(@def ready purchase_fail_1 Service_1)" & "(@def ready purchase_fail_1 AgencyMonitor)" & "(@def ready purchase_fail_1 ServiceMonitor_1)");
+  "(@def enabled query_succ_0)":=("(@def ready query_succ_0 ServiceMonitor_0)" & "(@def ready query_succ_0 Service_0)");
+  "(@def enabled purchase_succ_0)":=("(@def ready purchase_succ_0 ServiceMonitor_0)" & "(@def ready purchase_succ_0 Service_0)");
+  "(@def enabled purchase_fail_0)":=("(@def ready purchase_fail_0 AgencyMonitor)" & "(@def ready purchase_fail_0 ServiceMonitor_0)" & "(@def ready purchase_fail_0 Service_0)");
+  "(@def event)":=("(@def enabled agency_request)" | "(@def enabled unavailable_1)" | "(@def enabled query_fail_1)" | "(@def enabled unavailable_0)" | "(@def enabled query_fail_0)" | "(@def enabled query_1)" | "(@def enabled query_0)" | "(@def enabled committed_0)" | "(@def enabled committed_1)" | "(@def enabled available_0)" | "(@def enabled available_1)" | "(@def enabled steps_0_0)" | "(@def enabled steps_1_0)" | "(@def enabled uncommitted_0)" | "(@def enabled uncommitted_1)" | "(@def enabled purchase_fail_1)" | "(@def enabled purchase_succ_1)" | "(@def enabled query_succ_1)" | "(@def enabled query_succ_0)" | "(@def enabled purchase_fail_0)" | "(@def enabled purchase_succ_0)");
+  "(@def keep at)":=(next("(at Service_1)")="(at Service_1)" & next("(at AgencyMonitor)")="(at AgencyMonitor)" & next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" & next("(at Service_0)")="(at Service_0)" & next("(at Agency)")="(at Agency)" & next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)");
+  "(@def no inprogress)":=(!"(inprogress agency_request)" & !"(inprogress unavailable_1)" & !"(inprogress query_fail_1)" & !"(inprogress unavailable_0)" & !"(inprogress query_fail_0)" & !"(inprogress query_1)" & !"(inprogress query_0)" & !"(inprogress committed_0)" & !"(inprogress committed_1)" & !"(inprogress available_0)" & !"(inprogress available_1)" & !"(inprogress steps_0_0)" & !"(inprogress steps_1_0)" & !"(inprogress uncommitted_0)" & !"(inprogress uncommitted_1)" & !"(inprogress purchase_fail_1)" & !"(inprogress purchase_succ_1)" & !"(inprogress query_succ_1)" & !"(inprogress query_succ_0)" & !"(inprogress purchase_fail_0)" & !"(inprogress purchase_succ_0)");
+  "(@def reset inprogress)":=(next("(inprogress agency_request)")=0 & next("(inprogress unavailable_1)")=0 & next("(inprogress query_fail_1)")=0 & next("(inprogress unavailable_0)")=0 & next("(inprogress query_fail_0)")=0 & next("(inprogress query_1)")=0 & next("(inprogress query_0)")=0 & next("(inprogress committed_0)")=0 & next("(inprogress committed_1)")=0 & next("(inprogress available_0)")=0 & next("(inprogress available_1)")=0 & next("(inprogress steps_0_0)")=0 & next("(inprogress steps_1_0)")=0 & next("(inprogress uncommitted_0)")=0 & next("(inprogress uncommitted_1)")=0 & next("(inprogress purchase_fail_1)")=0 & next("(inprogress purchase_succ_1)")=0 & next("(inprogress query_succ_1)")=0 & next("(inprogress query_succ_0)")=0 & next("(inprogress purchase_fail_0)")=0 & next("(inprogress purchase_succ_0)")=0);
+TRANS (
+  (
+    (action="(choose)" & !("(status)"=0 & "(@def event)") -> FALSE) &
+    ((action="(choose)" & ("(status)"=0 & "(@def event)"))
+      -> (
+        (!"(@def enabled agency_request)" -> next("(inprogress agency_request)")=0) & 
+        (!"(@def enabled unavailable_1)" -> next("(inprogress unavailable_1)")=0) & 
+        (!"(@def enabled query_fail_1)" -> next("(inprogress query_fail_1)")=0) & 
+        (!"(@def enabled unavailable_0)" -> next("(inprogress unavailable_0)")=0) & 
+        (!"(@def enabled query_fail_0)" -> next("(inprogress query_fail_0)")=0) & 
+        (!"(@def enabled query_1)" -> next("(inprogress query_1)")=0) & 
+        (!"(@def enabled query_0)" -> next("(inprogress query_0)")=0) & 
+        (!"(@def enabled committed_0)" -> next("(inprogress committed_0)")=0) & 
+        (!"(@def enabled committed_1)" -> next("(inprogress committed_1)")=0) & 
+        (!"(@def enabled available_0)" -> next("(inprogress available_0)")=0) & 
+        (!"(@def enabled available_1)" -> next("(inprogress available_1)")=0) & 
+        (!"(@def enabled steps_0_0)" -> next("(inprogress steps_0_0)")=0) & 
+        (!"(@def enabled steps_1_0)" -> next("(inprogress steps_1_0)")=0) & 
+        (!"(@def enabled uncommitted_0)" -> next("(inprogress uncommitted_0)")=0) & 
+        (!"(@def enabled uncommitted_1)" -> next("(inprogress uncommitted_1)")=0) & 
+        (!"(@def enabled purchase_fail_1)" -> next("(inprogress purchase_fail_1)")=0) & 
+        (!"(@def enabled purchase_succ_1)" -> next("(inprogress purchase_succ_1)")=0) & 
+        (!"(@def enabled query_succ_1)" -> next("(inprogress query_succ_1)")=0) & 
+        (!"(@def enabled query_succ_0)" -> next("(inprogress query_succ_0)")=0) & 
+        (!"(@def enabled purchase_fail_0)" -> next("(inprogress purchase_fail_0)")=0) & 
+        (!"(@def enabled purchase_succ_0)" -> next("(inprogress purchase_succ_0)")=0) & 
+        next("(status)")=1 &
+        "(@def keep at)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(default)" & !("(status)"=1 & "(@def no inprogress)") -> FALSE) &
+    ((action="(default)" & ("(status)"=1 & "(@def no inprogress)"))
+      -> (
+        next("(inprogress agency_request)")=1 &
+        next("(inprogress unavailable_1)")=1 &
+        next("(inprogress query_fail_1)")=1 &
+        next("(inprogress unavailable_0)")=1 &
+        next("(inprogress query_fail_0)")=1 &
+        next("(inprogress query_1)")=1 &
+        next("(inprogress query_0)")=1 &
+        next("(inprogress committed_0)")=1 &
+        next("(inprogress committed_1)")=1 &
+        next("(inprogress available_0)")=1 &
+        next("(inprogress available_1)")=1 &
+        next("(inprogress steps_0_0)")=1 &
+        next("(inprogress steps_1_0)")=1 &
+        next("(inprogress uncommitted_0)")=1 &
+        next("(inprogress uncommitted_1)")=1 &
+        next("(inprogress purchase_fail_1)")=1 &
+        next("(inprogress purchase_succ_1)")=1 &
+        next("(inprogress query_succ_1)")=1 &
+        next("(inprogress query_succ_0)")=1 &
+        next("(inprogress purchase_fail_0)")=1 &
+        next("(inprogress purchase_succ_0)")=1 &
+        "(@def keep at)" &
+        next("(status)")="(status)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(agency_request)" & !("(@def enabled agency_request)" & "(inprogress agency_request)") -> FALSE) &
+    ((action="(agency_request)" & ("(@def enabled agency_request)" & "(inprogress agency_request)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Agency)"=0 -> next("(at Agency)")=1) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" &
+        next("(at Service_0)")="(at Service_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(unavailable_1)" & !("(@def enabled unavailable_1)" & "(inprogress unavailable_1)") -> FALSE) &
+    ((action="(unavailable_1)" & ("(@def enabled unavailable_1)" & "(inprogress unavailable_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_1)"=1 -> next("(at Service_1)")=9) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" &
+        next("(at Service_0)")="(at Service_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(query_fail_1)" & !("(@def enabled query_fail_1)" & "(inprogress query_fail_1)") -> FALSE) &
+    ((action="(query_fail_1)" & ("(@def enabled query_fail_1)" & "(inprogress query_fail_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_1)"=9 -> next("(at Service_1)")=0) &
+        ("(at AgencyMonitor)"=0 -> next("(at AgencyMonitor)")=2) &
+        ("(at AgencyMonitor)"=1 -> next("(at AgencyMonitor)")=2) &
+        ("(at AgencyMonitor)"=2 -> next("(at AgencyMonitor)")=2) &
+        ("(at ServiceMonitor_1)"=1 -> next("(at ServiceMonitor_1)")=4) &
+        "(@def reset inprogress)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at Service_0)")="(at Service_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(unavailable_0)" & !("(@def enabled unavailable_0)" & "(inprogress unavailable_0)") -> FALSE) &
+    ((action="(unavailable_0)" & ("(@def enabled unavailable_0)" & "(inprogress unavailable_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_0)"=1 -> next("(at Service_0)")=11) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(query_fail_0)" & !("(@def enabled query_fail_0)" & "(inprogress query_fail_0)") -> FALSE) &
+    ((action="(query_fail_0)" & ("(@def enabled query_fail_0)" & "(inprogress query_fail_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at AgencyMonitor)"=0 -> next("(at AgencyMonitor)")=2) &
+        ("(at AgencyMonitor)"=1 -> next("(at AgencyMonitor)")=2) &
+        ("(at AgencyMonitor)"=2 -> next("(at AgencyMonitor)")=2) &
+        ("(at ServiceMonitor_0)"=1 -> next("(at ServiceMonitor_0)")=4) &
+        ("(at Service_0)"=11 -> next("(at Service_0)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(agency_succ)" & !("(@def enabled agency_succ)" & !"(@def event)") -> FALSE) &
+    ((action="(agency_succ)" & ("(@def enabled agency_succ)" & !"(@def event)"))
+      -> (
+        next("(status)")=2 &
+        ("(at Service_1)"=0 -> next("(at Service_1)")=0) &
+        ("(at Service_1)"=5 -> next("(at Service_1)")=0) &
+        ("(at Service_1)"=7 -> next("(at Service_1)")=0) &
+        ("(at AgencyMonitor)"=0 -> next("(at AgencyMonitor)")=0) &
+        ("(at AgencyMonitor)"=1 -> next("(at AgencyMonitor)")=0) &
+        ("(at AgencyMonitor)"=2 -> next("(at AgencyMonitor)")=0) &
+        ("(at ServiceMonitor_0)"=0 -> next("(at ServiceMonitor_0)")=-1) &
+        ("(at ServiceMonitor_0)"=1 -> next("(at ServiceMonitor_0)")=-1) &
+        ("(at ServiceMonitor_0)"=2 -> next("(at ServiceMonitor_0)")=-1) &
+        ("(at ServiceMonitor_0)"=3 -> next("(at ServiceMonitor_0)")=0) &
+        ("(at ServiceMonitor_0)"=4 -> next("(at ServiceMonitor_0)")=-1) &
+        ("(at Service_0)"=0 -> next("(at Service_0)")=0) &
+        ("(at Service_0)"=6 -> next("(at Service_0)")=0) &
+        ("(at Service_0)"=9 -> next("(at Service_0)")=0) &
+        ("(at Agency)"=1 -> next("(at Agency)")=0) &
+        ("(at ServiceMonitor_1)"=0 -> next("(at ServiceMonitor_1)")=-1) &
+        ("(at ServiceMonitor_1)"=1 -> next("(at ServiceMonitor_1)")=-1) &
+        ("(at ServiceMonitor_1)"=2 -> next("(at ServiceMonitor_1)")=-1) &
+        ("(at ServiceMonitor_1)"=3 -> next("(at ServiceMonitor_1)")=0) &
+        ("(at ServiceMonitor_1)"=4 -> next("(at ServiceMonitor_1)")=-1) &
+        "(@def reset inprogress)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(query_1)" & !("(@def enabled query_1)" & "(inprogress query_1)") -> FALSE) &
+    ((action="(query_1)" & ("(@def enabled query_1)" & "(inprogress query_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_1)"=0 -> next("(at Service_1)")=1) &
+        ("(at Service_0)"=5 -> next("(at Service_0)")=6) &
+        ("(at Service_0)"=8 -> next("(at Service_0)")=9) &
+        ("(at Agency)"=1 -> next("(at Agency)")=1) &
+        ("(at ServiceMonitor_1)"=0 -> next("(at ServiceMonitor_1)")=1) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(query_0)" & !("(@def enabled query_0)" & "(inprogress query_0)") -> FALSE) &
+    ((action="(query_0)" & ("(@def enabled query_0)" & "(inprogress query_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at ServiceMonitor_0)"=0 -> next("(at ServiceMonitor_0)")=1) &
+        ("(at Service_0)"=0 -> next("(at Service_0)")=1) &
+        ("(at Agency)"=1 -> next("(at Agency)")=1) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(purchase_1)" & !("(@def enabled purchase_1)" & !"(@def event)") -> FALSE) &
+    ((action="(purchase_1)" & ("(@def enabled purchase_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_1)"=5 -> next("(at Service_1)")=6) &
+        ("(at Service_1)"=7 -> next("(at Service_1)")=8) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" &
+        next("(at Service_0)")="(at Service_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(committed_0)" & !("(@def enabled committed_0)" & "(inprogress committed_0)") -> FALSE) &
+    ((action="(committed_0)" & ("(@def enabled committed_0)" & "(inprogress committed_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_0)"=4 -> next("(at Service_0)")=8) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cancel_1)" & !("(@def enabled cancel_1)" & !"(@def event)") -> FALSE) &
+    ((action="(cancel_1)" & ("(@def enabled cancel_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_1)"=5 -> next("(at Service_1)")=0) &
+        ("(at Service_1)"=7 -> next("(at Service_1)")=0) &
+        ("(at ServiceMonitor_1)"=2 -> next("(at ServiceMonitor_1)")=4) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at Service_0)")="(at Service_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cancel_0)" & !("(@def enabled cancel_0)" & !"(@def event)") -> FALSE) &
+    ((action="(cancel_0)" & ("(@def enabled cancel_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at ServiceMonitor_0)"=2 -> next("(at ServiceMonitor_0)")=4) &
+        ("(at Service_0)"=6 -> next("(at Service_0)")=0) &
+        ("(at Service_0)"=9 -> next("(at Service_0)")=0) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(committed_1)" & !("(@def enabled committed_1)" & "(inprogress committed_1)") -> FALSE) &
+    ((action="(committed_1)" & ("(@def enabled committed_1)" & "(inprogress committed_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_1)"=4 -> next("(at Service_1)")=7) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" &
+        next("(at Service_0)")="(at Service_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(purchase_0)" & !("(@def enabled purchase_0)" & !"(@def event)") -> FALSE) &
+    ((action="(purchase_0)" & ("(@def enabled purchase_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_0)"=6 -> next("(at Service_0)")=7) &
+        ("(at Service_0)"=9 -> next("(at Service_0)")=10) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(agency_fail)" & !("(@def enabled agency_fail)" & !"(@def event)") -> FALSE) &
+    ((action="(agency_fail)" & ("(@def enabled agency_fail)" & !"(@def event)"))
+      -> (
+        next("(status)")=2 &
+        ("(at Service_1)"=0 -> next("(at Service_1)")=0) &
+        ("(at Service_1)"=5 -> next("(at Service_1)")=0) &
+        ("(at Service_1)"=7 -> next("(at Service_1)")=0) &
+        ("(at AgencyMonitor)"=0 -> next("(at AgencyMonitor)")=-1) &
+        ("(at AgencyMonitor)"=1 -> next("(at AgencyMonitor)")=-1) &
+        ("(at AgencyMonitor)"=2 -> next("(at AgencyMonitor)")=0) &
+        ("(at ServiceMonitor_0)"=0 -> next("(at ServiceMonitor_0)")=0) &
+        ("(at ServiceMonitor_0)"=1 -> next("(at ServiceMonitor_0)")=0) &
+        ("(at ServiceMonitor_0)"=2 -> next("(at ServiceMonitor_0)")=0) &
+        ("(at ServiceMonitor_0)"=3 -> next("(at ServiceMonitor_0)")=0) &
+        ("(at ServiceMonitor_0)"=4 -> next("(at ServiceMonitor_0)")=0) &
+        ("(at Service_0)"=0 -> next("(at Service_0)")=0) &
+        ("(at Service_0)"=6 -> next("(at Service_0)")=0) &
+        ("(at Service_0)"=9 -> next("(at Service_0)")=0) &
+        ("(at Agency)"=1 -> next("(at Agency)")=0) &
+        ("(at ServiceMonitor_1)"=0 -> next("(at ServiceMonitor_1)")=0) &
+        ("(at ServiceMonitor_1)"=1 -> next("(at ServiceMonitor_1)")=0) &
+        ("(at ServiceMonitor_1)"=2 -> next("(at ServiceMonitor_1)")=0) &
+        ("(at ServiceMonitor_1)"=3 -> next("(at ServiceMonitor_1)")=0) &
+        ("(at ServiceMonitor_1)"=4 -> next("(at ServiceMonitor_1)")=0) &
+        "(@def reset inprogress)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(available_0)" & !("(@def enabled available_0)" & "(inprogress available_0)") -> FALSE) &
+    ((action="(available_0)" & ("(@def enabled available_0)" & "(inprogress available_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_0)"=1 -> next("(at Service_0)")=2) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(available_1)" & !("(@def enabled available_1)" & "(inprogress available_1)") -> FALSE) &
+    ((action="(available_1)" & ("(@def enabled available_1)" & "(inprogress available_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_1)"=1 -> next("(at Service_1)")=2) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" &
+        next("(at Service_0)")="(at Service_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(steps_0_0)" & !("(@def enabled steps_0_0)" & "(inprogress steps_0_0)") -> FALSE) &
+    ((action="(steps_0_0)" & ("(@def enabled steps_0_0)" & "(inprogress steps_0_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_0)"=2 -> next("(at Service_0)")=3) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(steps_1_0)" & !("(@def enabled steps_1_0)" & "(inprogress steps_1_0)") -> FALSE) &
+    ((action="(steps_1_0)" & ("(@def enabled steps_1_0)" & "(inprogress steps_1_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_1)"=2 -> next("(at Service_1)")=3) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" &
+        next("(at Service_0)")="(at Service_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(uncommitted_0)" & !("(@def enabled uncommitted_0)" & "(inprogress uncommitted_0)") -> FALSE) &
+    ((action="(uncommitted_0)" & ("(@def enabled uncommitted_0)" & "(inprogress uncommitted_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at AgencyMonitor)"=0 -> next("(at AgencyMonitor)")=1) &
+        ("(at AgencyMonitor)"=1 -> next("(at AgencyMonitor)")=2) &
+        ("(at AgencyMonitor)"=2 -> next("(at AgencyMonitor)")=2) &
+        ("(at Service_0)"=4 -> next("(at Service_0)")=5) &
+        "(@def reset inprogress)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(uncommitted_1)" & !("(@def enabled uncommitted_1)" & "(inprogress uncommitted_1)") -> FALSE) &
+    ((action="(uncommitted_1)" & ("(@def enabled uncommitted_1)" & "(inprogress uncommitted_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_1)"=4 -> next("(at Service_1)")=5) &
+        ("(at AgencyMonitor)"=0 -> next("(at AgencyMonitor)")=1) &
+        ("(at AgencyMonitor)"=1 -> next("(at AgencyMonitor)")=2) &
+        ("(at AgencyMonitor)"=2 -> next("(at AgencyMonitor)")=2) &
+        "(@def reset inprogress)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" &
+        next("(at Service_0)")="(at Service_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(query_succ_1)" & !("(@def enabled query_succ_1)" & "(inprogress query_succ_1)") -> FALSE) &
+    ((action="(query_succ_1)" & ("(@def enabled query_succ_1)" & "(inprogress query_succ_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_1)"=3 -> next("(at Service_1)")=4) &
+        ("(at ServiceMonitor_1)"=1 -> next("(at ServiceMonitor_1)")=2) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at Service_0)")="(at Service_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(purchase_succ_1)" & !("(@def enabled purchase_succ_1)" & "(inprogress purchase_succ_1)") -> FALSE) &
+    ((action="(purchase_succ_1)" & ("(@def enabled purchase_succ_1)" & "(inprogress purchase_succ_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_1)"=6 -> next("(at Service_1)")=0) &
+        ("(at Service_1)"=8 -> next("(at Service_1)")=0) &
+        ("(at ServiceMonitor_1)"=2 -> next("(at ServiceMonitor_1)")=3) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at Service_0)")="(at Service_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(purchase_fail_1)" & !("(@def enabled purchase_fail_1)" & "(inprogress purchase_fail_1)") -> FALSE) &
+    ((action="(purchase_fail_1)" & ("(@def enabled purchase_fail_1)" & "(inprogress purchase_fail_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Service_1)"=6 -> next("(at Service_1)")=0) &
+        ("(at AgencyMonitor)"=1 -> next("(at AgencyMonitor)")=2) &
+        ("(at AgencyMonitor)"=2 -> next("(at AgencyMonitor)")=2) &
+        ("(at ServiceMonitor_1)"=2 -> next("(at ServiceMonitor_1)")=4) &
+        "(@def reset inprogress)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at ServiceMonitor_0)")="(at ServiceMonitor_0)" &
+        next("(at Service_0)")="(at Service_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(query_succ_0)" & !("(@def enabled query_succ_0)" & "(inprogress query_succ_0)") -> FALSE) &
+    ((action="(query_succ_0)" & ("(@def enabled query_succ_0)" & "(inprogress query_succ_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at ServiceMonitor_0)"=1 -> next("(at ServiceMonitor_0)")=2) &
+        ("(at Service_0)"=3 -> next("(at Service_0)")=4) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(purchase_succ_0)" & !("(@def enabled purchase_succ_0)" & "(inprogress purchase_succ_0)") -> FALSE) &
+    ((action="(purchase_succ_0)" & ("(@def enabled purchase_succ_0)" & "(inprogress purchase_succ_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at ServiceMonitor_0)"=2 -> next("(at ServiceMonitor_0)")=3) &
+        ("(at Service_0)"=7 -> next("(at Service_0)")=0) &
+        ("(at Service_0)"=10 -> next("(at Service_0)")=0) &
+        "(@def reset inprogress)" &
+        next("(at AgencyMonitor)")="(at AgencyMonitor)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(purchase_fail_0)" & !("(@def enabled purchase_fail_0)" & "(inprogress purchase_fail_0)") -> FALSE) &
+    ((action="(purchase_fail_0)" & ("(@def enabled purchase_fail_0)" & "(inprogress purchase_fail_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at AgencyMonitor)"=1 -> next("(at AgencyMonitor)")=2) &
+        ("(at AgencyMonitor)"=2 -> next("(at AgencyMonitor)")=2) &
+        ("(at ServiceMonitor_0)"=2 -> next("(at ServiceMonitor_0)")=4) &
+        ("(at Service_0)"=7 -> next("(at Service_0)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Agency)")="(at Agency)" &
+        next("(at Service_1)")="(at Service_1)" &
+        next("(at ServiceMonitor_1)")="(at ServiceMonitor_1)" 
+      )
+    )
+  )
+)
+FULL_OBS_STRONG_GOAL ("(status)"=2)

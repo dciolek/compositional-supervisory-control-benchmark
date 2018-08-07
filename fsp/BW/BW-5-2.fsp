@@ -38,13 +38,12 @@ Crew(Tid=0) = Pending,
     reject[Tid][s] -> Rejected[s] |
     accept[Tid]    -> Accepted    ),
   Rejected[s:Step] = (
-    refuse  -> Ready |
+    refuse  -> Pending |
     approve -> ERROR |
     assign[Tid] -> if (s < Steps) then Assigned[s+1] else ERROR ),
   Accepted = (
-    {approve,refuse} -> Ready |
-    assign[Tid] -> ERROR ),
-  Ready = (end -> Crew).
+    {approve,refuse} -> Pending |
+    assign[Tid] -> ERROR ).
 
 
 Document = Count[0],
@@ -52,33 +51,29 @@ Document = Count[0],
     reject[Team][Steps] -> Rejected |
     accept[Team] -> Count[c+1] |
     approve -> ERROR |
-    refuse -> if (c==0) then Ready else ERROR ),
+    refuse -> if (c==0) then Document else ERROR ),
   Count[Teams] = (
     {accept[Team],reject[Team][Steps]} -> Count[Teams] |
-    approve -> Ready |
+    approve -> Document |
     refuse  -> ERROR ),
   Rejected = (
     {accept[Team],reject[Team][Steps]} -> Rejected |
     approve -> ERROR |
-    refuse  -> Ready ),
-  Ready = (end -> Document).
+    refuse  -> Document ).
 
 
 /*****************************************************************************/
 
-||Environment = (Document || forall [t:Team] Crew(t)).
-
-set Controllable = {assign[Team], refuse, approve}
-
-/*****************************************************************************/
-
-fluent F_End = <end, Controllable>
+||Plant = (Document || forall [t:Team] Crew(t)).
 
 controllerSpec Goal = {
-  liveness = {F_End}
-  reach = {end}
-  controllable = {Controllable}
+  controllable = {assign[Team], refuse, approve}
+  marking = {refuse, approve}
+  nonblocking
 }
 
-controller ||Controller = Environment~{Goal}.
+controller ||MonolithicController = Plant~{Goal}.
+
+heuristic ||DirectedController = Plant~{Goal}.
+
 

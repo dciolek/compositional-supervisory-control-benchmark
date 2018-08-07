@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<Automata name="Environment" major="0" minor="1">
+<Automata name="Plant" major="0" minor="1">
   <Automaton name="HeightMonitor(1)" type="Plant">
     <Events>
       <Event id="0" label="descend.1.1"/>
@@ -17,44 +17,44 @@
       <Event id="12" label="descend.0.0"/>
     </Events>
     <States>
-      <State id="-1" name="HeightMonitor(1)[-1]"/>
-      <State id="0" name="HeightMonitor(1)[0]" initial="true"/>
-      <State id="1" name="HeightMonitor(1)[1]"/>
-      <State id="2" name="HeightMonitor(1)[2]"/>
-      <State id="3" name="HeightMonitor(1)[3]"/>
-      <State id="4" name="HeightMonitor(1)[4]"/>
-      <State id="5" name="HeightMonitor(1)[5]"/>
-      <State id="6" name="HeightMonitor(1)[6]"/>
-      <State id="7" name="HeightMonitor(1)[7]"/>
-      <State id="8" name="HeightMonitor(1)[8]"/>
-      <State id="9" name="HeightMonitor(1)[9]"/>
-      <State id="10" name="HeightMonitor(1)[10]"/>
-      <State id="11" name="HeightMonitor(1)[11]"/>
-      <State id="12" name="HeightMonitor(1)[12]"/>
-      <State id="13" name="HeightMonitor(1)[13]"/>
-      <State id="14" name="HeightMonitor(1)[14]"/>
-      <State id="15" name="HeightMonitor(1)[15]"/>
-      <State id="17" name="HeightMonitor(1)[17]"/>
-      <State id="16" name="HeightMonitor(1)[16]"/>
-      <State id="19" name="HeightMonitor(1)[19]"/>
-      <State id="18" name="HeightMonitor(1)[18]"/>
-      <State id="21" name="HeightMonitor(1)[21]"/>
-      <State id="20" name="HeightMonitor(1)[20]"/>
-      <State id="23" name="HeightMonitor(1)[23]"/>
-      <State id="22" name="HeightMonitor(1)[22]"/>
-      <State id="25" name="HeightMonitor(1)[25]"/>
-      <State id="24" name="HeightMonitor(1)[24]"/>
-      <State id="27" name="HeightMonitor(1)[27]"/>
-      <State id="26" name="HeightMonitor(1)[26]"/>
-      <State id="29" name="HeightMonitor(1)[29]"/>
-      <State id="28" name="HeightMonitor(1)[28]"/>
-      <State id="31" name="HeightMonitor(1)[31]"/>
-      <State id="30" name="HeightMonitor(1)[30]"/>
-      <State id="34" name="HeightMonitor(1)[34]"/>
-      <State id="35" name="HeightMonitor(1)[35]"/>
-      <State id="32" name="HeightMonitor(1)[32]"/>
-      <State id="33" name="HeightMonitor(1)[33]"/>
-      <State id="36" name="HeightMonitor(1)[36]"/>
+      <State id="-1" name="HeightMonitor(1)[-1]" accepting="false"/>
+      <State id="0" name="HeightMonitor(1)[0]" accepting="true" initial="true"/>
+      <State id="1" name="HeightMonitor(1)[1]" accepting="true"/>
+      <State id="2" name="HeightMonitor(1)[2]" accepting="true"/>
+      <State id="3" name="HeightMonitor(1)[3]" accepting="true"/>
+      <State id="4" name="HeightMonitor(1)[4]" accepting="true"/>
+      <State id="5" name="HeightMonitor(1)[5]" accepting="true"/>
+      <State id="6" name="HeightMonitor(1)[6]" accepting="true"/>
+      <State id="7" name="HeightMonitor(1)[7]" accepting="true"/>
+      <State id="8" name="HeightMonitor(1)[8]" accepting="true"/>
+      <State id="9" name="HeightMonitor(1)[9]" accepting="true"/>
+      <State id="10" name="HeightMonitor(1)[10]" accepting="true"/>
+      <State id="11" name="HeightMonitor(1)[11]" accepting="true"/>
+      <State id="12" name="HeightMonitor(1)[12]" accepting="true"/>
+      <State id="13" name="HeightMonitor(1)[13]" accepting="true"/>
+      <State id="14" name="HeightMonitor(1)[14]" accepting="true"/>
+      <State id="15" name="HeightMonitor(1)[15]" accepting="true"/>
+      <State id="17" name="HeightMonitor(1)[17]" accepting="true"/>
+      <State id="16" name="HeightMonitor(1)[16]" accepting="true"/>
+      <State id="19" name="HeightMonitor(1)[19]" accepting="true"/>
+      <State id="18" name="HeightMonitor(1)[18]" accepting="true"/>
+      <State id="21" name="HeightMonitor(1)[21]" accepting="true"/>
+      <State id="20" name="HeightMonitor(1)[20]" accepting="true"/>
+      <State id="23" name="HeightMonitor(1)[23]" accepting="true"/>
+      <State id="22" name="HeightMonitor(1)[22]" accepting="true"/>
+      <State id="25" name="HeightMonitor(1)[25]" accepting="true"/>
+      <State id="24" name="HeightMonitor(1)[24]" accepting="true"/>
+      <State id="27" name="HeightMonitor(1)[27]" accepting="true"/>
+      <State id="26" name="HeightMonitor(1)[26]" accepting="true"/>
+      <State id="29" name="HeightMonitor(1)[29]" accepting="true"/>
+      <State id="28" name="HeightMonitor(1)[28]" accepting="true"/>
+      <State id="31" name="HeightMonitor(1)[31]" accepting="true"/>
+      <State id="30" name="HeightMonitor(1)[30]" accepting="true"/>
+      <State id="34" name="HeightMonitor(1)[34]" accepting="true"/>
+      <State id="35" name="HeightMonitor(1)[35]" accepting="true"/>
+      <State id="32" name="HeightMonitor(1)[32]" accepting="true"/>
+      <State id="33" name="HeightMonitor(1)[33]" accepting="true"/>
+      <State id="36" name="HeightMonitor(1)[36]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="7" event="5"/>
@@ -71,9 +71,14 @@
       <Transition source="0" dest="19" event="8"/>
       <Transition source="1" dest="2" event="5"/>
       <Transition source="1" dest="3" event="2"/>
+      <Transition source="1" dest="1" event="9"/>
+      <Transition source="1" dest="1" event="3"/>
       <Transition source="1" dest="0" event="12"/>
+      <Transition source="1" dest="1" event="10"/>
+      <Transition source="1" dest="1" event="4"/>
       <Transition source="1" dest="6" event="0"/>
       <Transition source="1" dest="5" event="1"/>
+      <Transition source="1" dest="1" event="6"/>
       <Transition source="1" dest="4" event="8"/>
       <Transition source="2" dest="-1" event="7"/>
       <Transition source="3" dest="-1" event="7"/>
@@ -81,10 +86,15 @@
       <Transition source="5" dest="-1" event="7"/>
       <Transition source="6" dest="-1" event="7"/>
       <Transition source="7" dest="9" event="2"/>
+      <Transition source="7" dest="7" event="9"/>
       <Transition source="7" dest="0" event="3"/>
+      <Transition source="7" dest="7" event="12"/>
+      <Transition source="7" dest="7" event="10"/>
       <Transition source="7" dest="8" event="11"/>
+      <Transition source="7" dest="7" event="4"/>
       <Transition source="7" dest="12" event="0"/>
       <Transition source="7" dest="11" event="1"/>
+      <Transition source="7" dest="7" event="6"/>
       <Transition source="7" dest="10" event="8"/>
       <Transition source="8" dest="-1" event="7"/>
       <Transition source="9" dest="-1" event="7"/>
@@ -92,7 +102,12 @@
       <Transition source="11" dest="-1" event="7"/>
       <Transition source="12" dest="-1" event="7"/>
       <Transition source="13" dest="15" event="5"/>
+      <Transition source="13" dest="13" event="9"/>
+      <Transition source="13" dest="13" event="3"/>
+      <Transition source="13" dest="13" event="12"/>
+      <Transition source="13" dest="13" event="10"/>
       <Transition source="13" dest="14" event="11"/>
+      <Transition source="13" dest="13" event="4"/>
       <Transition source="13" dest="18" event="0"/>
       <Transition source="13" dest="17" event="1"/>
       <Transition source="13" dest="0" event="6"/>
@@ -104,9 +119,14 @@
       <Transition source="19" dest="21" event="5"/>
       <Transition source="19" dest="22" event="2"/>
       <Transition source="19" dest="0" event="9"/>
+      <Transition source="19" dest="19" event="3"/>
+      <Transition source="19" dest="19" event="12"/>
+      <Transition source="19" dest="19" event="10"/>
       <Transition source="19" dest="20" event="11"/>
+      <Transition source="19" dest="19" event="4"/>
       <Transition source="19" dest="24" event="0"/>
       <Transition source="19" dest="23" event="1"/>
+      <Transition source="19" dest="19" event="6"/>
       <Transition source="18" dest="-1" event="7"/>
       <Transition source="21" dest="-1" event="7"/>
       <Transition source="20" dest="-1" event="7"/>
@@ -114,9 +134,14 @@
       <Transition source="22" dest="-1" event="7"/>
       <Transition source="25" dest="27" event="5"/>
       <Transition source="25" dest="28" event="2"/>
+      <Transition source="25" dest="25" event="9"/>
+      <Transition source="25" dest="25" event="3"/>
+      <Transition source="25" dest="25" event="12"/>
+      <Transition source="25" dest="25" event="10"/>
       <Transition source="25" dest="26" event="11"/>
       <Transition source="25" dest="0" event="4"/>
       <Transition source="25" dest="30" event="0"/>
+      <Transition source="25" dest="25" event="6"/>
       <Transition source="25" dest="29" event="8"/>
       <Transition source="24" dest="-1" event="7"/>
       <Transition source="27" dest="-1" event="7"/>
@@ -125,9 +150,14 @@
       <Transition source="28" dest="-1" event="7"/>
       <Transition source="31" dest="33" event="5"/>
       <Transition source="31" dest="34" event="2"/>
+      <Transition source="31" dest="31" event="9"/>
+      <Transition source="31" dest="31" event="3"/>
+      <Transition source="31" dest="31" event="12"/>
       <Transition source="31" dest="0" event="10"/>
       <Transition source="31" dest="32" event="11"/>
+      <Transition source="31" dest="31" event="4"/>
       <Transition source="31" dest="36" event="1"/>
+      <Transition source="31" dest="31" event="6"/>
       <Transition source="31" dest="35" event="8"/>
       <Transition source="30" dest="-1" event="7"/>
       <Transition source="34" dest="-1" event="7"/>
@@ -139,194 +169,204 @@
   </Automaton>
   <Automaton name="Airplane(4)" type="Plant">
     <Events>
-      <Event id="13" label="requestLand.4" controllable="false"/>
-      <Event id="14" label="approach.4"/>
+      <Event id="13" label="control.all" controllable="false"/>
+      <Event id="14" label="extendFlight.4" controllable="false"/>
+      <Event id="15" label="requestLand.4" controllable="false"/>
+      <Event id="16" label="approach.4"/>
       <Event id="3" label="descend.4.0"/>
       <Event id="5" label="descend.4.1"/>
-      <Event id="15" label="land.4" controllable="false"/>
-      <Event id="16" label="end" controllable="false"/>
+      <Event id="17" label="land.4" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="Airplane(4)[0]" initial="true"/>
-      <State id="1" name="Airplane(4)[1]"/>
-      <State id="2" name="Airplane(4)[2]"/>
-      <State id="3" name="Airplane(4)[3]"/>
-      <State id="4" name="Airplane(4)[4]"/>
-      <State id="5" name="Airplane(4)[5]"/>
+      <State id="0" name="Airplane(4)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Airplane(4)[1]" accepting="true"/>
+      <State id="2" name="Airplane(4)[2]" accepting="true"/>
+      <State id="3" name="Airplane(4)[3]" accepting="true"/>
+      <State id="4" name="Airplane(4)[4]" accepting="true"/>
+      <State id="5" name="Airplane(4)[5]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="13"/>
+      <Transition source="0" dest="1" event="15"/>
+      <Transition source="0" dest="5" event="14"/>
       <Transition source="1" dest="2" event="5"/>
       <Transition source="1" dest="3" event="3"/>
       <Transition source="2" dest="3" event="3"/>
-      <Transition source="3" dest="4" event="14"/>
-      <Transition source="4" dest="5" event="15"/>
-      <Transition source="5" dest="0" event="16"/>
+      <Transition source="3" dest="4" event="16"/>
+      <Transition source="4" dest="5" event="17"/>
+      <Transition source="5" dest="0" event="13"/>
     </Transitions>
   </Automaton>
   <Automaton name="Airplane(5)" type="Plant">
     <Events>
-      <Event id="17" label="requestLand.5" controllable="false"/>
-      <Event id="18" label="approach.5"/>
-      <Event id="19" label="land.5" controllable="false"/>
+      <Event id="13" label="control.all" controllable="false"/>
+      <Event id="18" label="extendFlight.5" controllable="false"/>
+      <Event id="19" label="requestLand.5" controllable="false"/>
+      <Event id="20" label="approach.5"/>
+      <Event id="21" label="land.5" controllable="false"/>
       <Event id="2" label="descend.5.1"/>
       <Event id="6" label="descend.5.0"/>
-      <Event id="16" label="end" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="Airplane(5)[0]" initial="true"/>
-      <State id="1" name="Airplane(5)[1]"/>
-      <State id="2" name="Airplane(5)[2]"/>
-      <State id="3" name="Airplane(5)[3]"/>
-      <State id="4" name="Airplane(5)[4]"/>
-      <State id="5" name="Airplane(5)[5]"/>
+      <State id="0" name="Airplane(5)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Airplane(5)[1]" accepting="true"/>
+      <State id="2" name="Airplane(5)[2]" accepting="true"/>
+      <State id="3" name="Airplane(5)[3]" accepting="true"/>
+      <State id="4" name="Airplane(5)[4]" accepting="true"/>
+      <State id="5" name="Airplane(5)[5]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="17"/>
+      <Transition source="0" dest="1" event="19"/>
+      <Transition source="0" dest="4" event="18"/>
       <Transition source="1" dest="5" event="2"/>
       <Transition source="1" dest="2" event="6"/>
-      <Transition source="2" dest="3" event="18"/>
-      <Transition source="3" dest="4" event="19"/>
-      <Transition source="4" dest="0" event="16"/>
+      <Transition source="2" dest="3" event="20"/>
+      <Transition source="3" dest="4" event="21"/>
+      <Transition source="4" dest="0" event="13"/>
       <Transition source="5" dest="2" event="6"/>
     </Transitions>
   </Automaton>
   <Automaton name="Airplane(2)" type="Plant">
     <Events>
-      <Event id="20" label="land.2" controllable="false"/>
-      <Event id="21" label="approach.2"/>
-      <Event id="22" label="requestLand.2" controllable="false"/>
+      <Event id="13" label="control.all" controllable="false"/>
+      <Event id="22" label="land.2" controllable="false"/>
+      <Event id="23" label="approach.2"/>
+      <Event id="24" label="requestLand.2" controllable="false"/>
       <Event id="8" label="descend.2.1"/>
       <Event id="9" label="descend.2.0"/>
-      <Event id="16" label="end" controllable="false"/>
+      <Event id="25" label="extendFlight.2" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="Airplane(2)[0]" initial="true"/>
-      <State id="1" name="Airplane(2)[1]"/>
-      <State id="2" name="Airplane(2)[2]"/>
-      <State id="3" name="Airplane(2)[3]"/>
-      <State id="4" name="Airplane(2)[4]"/>
-      <State id="5" name="Airplane(2)[5]"/>
+      <State id="0" name="Airplane(2)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Airplane(2)[1]" accepting="true"/>
+      <State id="2" name="Airplane(2)[2]" accepting="true"/>
+      <State id="3" name="Airplane(2)[3]" accepting="true"/>
+      <State id="4" name="Airplane(2)[4]" accepting="true"/>
+      <State id="5" name="Airplane(2)[5]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="22"/>
-      <Transition source="1" dest="2" event="9"/>
-      <Transition source="1" dest="5" event="8"/>
-      <Transition source="2" dest="3" event="21"/>
-      <Transition source="3" dest="4" event="20"/>
-      <Transition source="4" dest="0" event="16"/>
-      <Transition source="5" dest="2" event="9"/>
+      <Transition source="0" dest="1" event="25"/>
+      <Transition source="0" dest="2" event="24"/>
+      <Transition source="1" dest="0" event="13"/>
+      <Transition source="2" dest="3" event="9"/>
+      <Transition source="2" dest="5" event="8"/>
+      <Transition source="3" dest="4" event="23"/>
+      <Transition source="4" dest="1" event="22"/>
+      <Transition source="5" dest="3" event="9"/>
     </Transitions>
   </Automaton>
   <Automaton name="Airplane(1)" type="Plant">
     <Events>
-      <Event id="23" label="approach.1"/>
+      <Event id="26" label="approach.1"/>
+      <Event id="13" label="control.all" controllable="false"/>
       <Event id="0" label="descend.1.1"/>
-      <Event id="24" label="land.1" controllable="false"/>
-      <Event id="25" label="requestLand.1" controllable="false"/>
+      <Event id="27" label="land.1" controllable="false"/>
+      <Event id="28" label="requestLand.1" controllable="false"/>
       <Event id="10" label="descend.1.0"/>
-      <Event id="16" label="end" controllable="false"/>
+      <Event id="29" label="extendFlight.1" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="Airplane(1)[0]" initial="true"/>
-      <State id="1" name="Airplane(1)[1]"/>
-      <State id="2" name="Airplane(1)[2]"/>
-      <State id="3" name="Airplane(1)[3]"/>
-      <State id="4" name="Airplane(1)[4]"/>
-      <State id="5" name="Airplane(1)[5]"/>
+      <State id="0" name="Airplane(1)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Airplane(1)[1]" accepting="true"/>
+      <State id="2" name="Airplane(1)[2]" accepting="true"/>
+      <State id="3" name="Airplane(1)[3]" accepting="true"/>
+      <State id="4" name="Airplane(1)[4]" accepting="true"/>
+      <State id="5" name="Airplane(1)[5]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="25"/>
-      <Transition source="1" dest="2" event="10"/>
-      <Transition source="1" dest="5" event="0"/>
-      <Transition source="2" dest="3" event="23"/>
-      <Transition source="3" dest="4" event="24"/>
-      <Transition source="4" dest="0" event="16"/>
-      <Transition source="5" dest="2" event="10"/>
+      <Transition source="0" dest="2" event="28"/>
+      <Transition source="0" dest="1" event="29"/>
+      <Transition source="1" dest="0" event="13"/>
+      <Transition source="2" dest="3" event="10"/>
+      <Transition source="2" dest="5" event="0"/>
+      <Transition source="3" dest="4" event="26"/>
+      <Transition source="4" dest="1" event="27"/>
+      <Transition source="5" dest="3" event="10"/>
     </Transitions>
   </Automaton>
   <Automaton name="Airplane(3)" type="Plant">
     <Events>
-      <Event id="26" label="approach.3"/>
+      <Event id="13" label="control.all" controllable="false"/>
+      <Event id="30" label="approach.3"/>
       <Event id="1" label="descend.3.1"/>
-      <Event id="27" label="requestLand.3" controllable="false"/>
-      <Event id="28" label="land.3" controllable="false"/>
+      <Event id="31" label="requestLand.3" controllable="false"/>
+      <Event id="32" label="land.3" controllable="false"/>
       <Event id="4" label="descend.3.0"/>
-      <Event id="16" label="end" controllable="false"/>
+      <Event id="33" label="extendFlight.3" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="Airplane(3)[0]" initial="true"/>
-      <State id="1" name="Airplane(3)[1]"/>
-      <State id="2" name="Airplane(3)[2]"/>
-      <State id="3" name="Airplane(3)[3]"/>
-      <State id="4" name="Airplane(3)[4]"/>
-      <State id="5" name="Airplane(3)[5]"/>
+      <State id="0" name="Airplane(3)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Airplane(3)[1]" accepting="true"/>
+      <State id="2" name="Airplane(3)[2]" accepting="true"/>
+      <State id="3" name="Airplane(3)[3]" accepting="true"/>
+      <State id="4" name="Airplane(3)[4]" accepting="true"/>
+      <State id="5" name="Airplane(3)[5]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="27"/>
-      <Transition source="1" dest="2" event="4"/>
-      <Transition source="1" dest="5" event="1"/>
-      <Transition source="2" dest="3" event="26"/>
-      <Transition source="3" dest="4" event="28"/>
-      <Transition source="4" dest="0" event="16"/>
-      <Transition source="5" dest="2" event="4"/>
+      <Transition source="0" dest="1" event="33"/>
+      <Transition source="0" dest="2" event="31"/>
+      <Transition source="1" dest="0" event="13"/>
+      <Transition source="2" dest="3" event="4"/>
+      <Transition source="2" dest="5" event="1"/>
+      <Transition source="3" dest="4" event="30"/>
+      <Transition source="4" dest="1" event="32"/>
+      <Transition source="5" dest="3" event="4"/>
     </Transitions>
   </Automaton>
   <Automaton name="HeightMonitor(0)" type="Plant">
     <Events>
-      <Event id="29" label="air.crash.0" controllable="false"/>
-      <Event id="20" label="land.2" controllable="false"/>
-      <Event id="24" label="land.1" controllable="false"/>
-      <Event id="30" label="land.0" controllable="false"/>
-      <Event id="19" label="land.5" controllable="false"/>
+      <Event id="34" label="air.crash.0" controllable="false"/>
+      <Event id="22" label="land.2" controllable="false"/>
+      <Event id="27" label="land.1" controllable="false"/>
+      <Event id="35" label="land.0" controllable="false"/>
+      <Event id="21" label="land.5" controllable="false"/>
       <Event id="9" label="descend.2.0"/>
       <Event id="3" label="descend.4.0"/>
-      <Event id="28" label="land.3" controllable="false"/>
+      <Event id="32" label="land.3" controllable="false"/>
       <Event id="10" label="descend.1.0"/>
       <Event id="4" label="descend.3.0"/>
-      <Event id="15" label="land.4" controllable="false"/>
+      <Event id="17" label="land.4" controllable="false"/>
       <Event id="6" label="descend.5.0"/>
       <Event id="12" label="descend.0.0"/>
     </Events>
     <States>
-      <State id="-1" name="HeightMonitor(0)[-1]"/>
-      <State id="0" name="HeightMonitor(0)[0]" initial="true"/>
-      <State id="1" name="HeightMonitor(0)[1]"/>
-      <State id="2" name="HeightMonitor(0)[2]"/>
-      <State id="3" name="HeightMonitor(0)[3]"/>
-      <State id="4" name="HeightMonitor(0)[4]"/>
-      <State id="5" name="HeightMonitor(0)[5]"/>
-      <State id="6" name="HeightMonitor(0)[6]"/>
-      <State id="7" name="HeightMonitor(0)[7]"/>
-      <State id="8" name="HeightMonitor(0)[8]"/>
-      <State id="9" name="HeightMonitor(0)[9]"/>
-      <State id="10" name="HeightMonitor(0)[10]"/>
-      <State id="11" name="HeightMonitor(0)[11]"/>
-      <State id="12" name="HeightMonitor(0)[12]"/>
-      <State id="13" name="HeightMonitor(0)[13]"/>
-      <State id="14" name="HeightMonitor(0)[14]"/>
-      <State id="15" name="HeightMonitor(0)[15]"/>
-      <State id="17" name="HeightMonitor(0)[17]"/>
-      <State id="16" name="HeightMonitor(0)[16]"/>
-      <State id="19" name="HeightMonitor(0)[19]"/>
-      <State id="18" name="HeightMonitor(0)[18]"/>
-      <State id="21" name="HeightMonitor(0)[21]"/>
-      <State id="20" name="HeightMonitor(0)[20]"/>
-      <State id="23" name="HeightMonitor(0)[23]"/>
-      <State id="22" name="HeightMonitor(0)[22]"/>
-      <State id="25" name="HeightMonitor(0)[25]"/>
-      <State id="24" name="HeightMonitor(0)[24]"/>
-      <State id="27" name="HeightMonitor(0)[27]"/>
-      <State id="26" name="HeightMonitor(0)[26]"/>
-      <State id="29" name="HeightMonitor(0)[29]"/>
-      <State id="28" name="HeightMonitor(0)[28]"/>
-      <State id="31" name="HeightMonitor(0)[31]"/>
-      <State id="30" name="HeightMonitor(0)[30]"/>
-      <State id="34" name="HeightMonitor(0)[34]"/>
-      <State id="35" name="HeightMonitor(0)[35]"/>
-      <State id="32" name="HeightMonitor(0)[32]"/>
-      <State id="33" name="HeightMonitor(0)[33]"/>
-      <State id="36" name="HeightMonitor(0)[36]"/>
+      <State id="-1" name="HeightMonitor(0)[-1]" accepting="false"/>
+      <State id="0" name="HeightMonitor(0)[0]" accepting="true" initial="true"/>
+      <State id="1" name="HeightMonitor(0)[1]" accepting="true"/>
+      <State id="2" name="HeightMonitor(0)[2]" accepting="true"/>
+      <State id="3" name="HeightMonitor(0)[3]" accepting="true"/>
+      <State id="4" name="HeightMonitor(0)[4]" accepting="true"/>
+      <State id="5" name="HeightMonitor(0)[5]" accepting="true"/>
+      <State id="6" name="HeightMonitor(0)[6]" accepting="true"/>
+      <State id="7" name="HeightMonitor(0)[7]" accepting="true"/>
+      <State id="8" name="HeightMonitor(0)[8]" accepting="true"/>
+      <State id="9" name="HeightMonitor(0)[9]" accepting="true"/>
+      <State id="10" name="HeightMonitor(0)[10]" accepting="true"/>
+      <State id="11" name="HeightMonitor(0)[11]" accepting="true"/>
+      <State id="12" name="HeightMonitor(0)[12]" accepting="true"/>
+      <State id="13" name="HeightMonitor(0)[13]" accepting="true"/>
+      <State id="14" name="HeightMonitor(0)[14]" accepting="true"/>
+      <State id="15" name="HeightMonitor(0)[15]" accepting="true"/>
+      <State id="17" name="HeightMonitor(0)[17]" accepting="true"/>
+      <State id="16" name="HeightMonitor(0)[16]" accepting="true"/>
+      <State id="19" name="HeightMonitor(0)[19]" accepting="true"/>
+      <State id="18" name="HeightMonitor(0)[18]" accepting="true"/>
+      <State id="21" name="HeightMonitor(0)[21]" accepting="true"/>
+      <State id="20" name="HeightMonitor(0)[20]" accepting="true"/>
+      <State id="23" name="HeightMonitor(0)[23]" accepting="true"/>
+      <State id="22" name="HeightMonitor(0)[22]" accepting="true"/>
+      <State id="25" name="HeightMonitor(0)[25]" accepting="true"/>
+      <State id="24" name="HeightMonitor(0)[24]" accepting="true"/>
+      <State id="27" name="HeightMonitor(0)[27]" accepting="true"/>
+      <State id="26" name="HeightMonitor(0)[26]" accepting="true"/>
+      <State id="29" name="HeightMonitor(0)[29]" accepting="true"/>
+      <State id="28" name="HeightMonitor(0)[28]" accepting="true"/>
+      <State id="31" name="HeightMonitor(0)[31]" accepting="true"/>
+      <State id="30" name="HeightMonitor(0)[30]" accepting="true"/>
+      <State id="34" name="HeightMonitor(0)[34]" accepting="true"/>
+      <State id="35" name="HeightMonitor(0)[35]" accepting="true"/>
+      <State id="32" name="HeightMonitor(0)[32]" accepting="true"/>
+      <State id="33" name="HeightMonitor(0)[33]" accepting="true"/>
+      <State id="36" name="HeightMonitor(0)[36]" accepting="true"/>
     </States>
     <Transitions>
       <Transition source="0" dest="31" event="9"/>
@@ -335,163 +375,175 @@
       <Transition source="0" dest="13" event="10"/>
       <Transition source="0" dest="19" event="4"/>
       <Transition source="0" dest="7" event="6"/>
-      <Transition source="1" dest="0" event="28"/>
+      <Transition source="1" dest="0" event="32"/>
       <Transition source="1" dest="6" event="9"/>
-      <Transition source="1" dest="0" event="15"/>
+      <Transition source="1" dest="0" event="17"/>
       <Transition source="1" dest="5" event="3"/>
       <Transition source="1" dest="3" event="10"/>
-      <Transition source="1" dest="0" event="30"/>
+      <Transition source="1" dest="0" event="35"/>
       <Transition source="1" dest="4" event="4"/>
-      <Transition source="1" dest="0" event="20"/>
-      <Transition source="1" dest="0" event="24"/>
-      <Transition source="1" dest="0" event="19"/>
+      <Transition source="1" dest="0" event="22"/>
+      <Transition source="1" dest="0" event="27"/>
+      <Transition source="1" dest="0" event="21"/>
       <Transition source="1" dest="2" event="6"/>
-      <Transition source="2" dest="-1" event="29"/>
-      <Transition source="3" dest="-1" event="29"/>
-      <Transition source="4" dest="-1" event="29"/>
-      <Transition source="5" dest="-1" event="29"/>
-      <Transition source="6" dest="-1" event="29"/>
-      <Transition source="7" dest="0" event="28"/>
+      <Transition source="2" dest="-1" event="34"/>
+      <Transition source="3" dest="-1" event="34"/>
+      <Transition source="4" dest="-1" event="34"/>
+      <Transition source="5" dest="-1" event="34"/>
+      <Transition source="6" dest="-1" event="34"/>
+      <Transition source="7" dest="0" event="32"/>
       <Transition source="7" dest="12" event="9"/>
-      <Transition source="7" dest="0" event="15"/>
+      <Transition source="7" dest="0" event="17"/>
       <Transition source="7" dest="11" event="3"/>
       <Transition source="7" dest="8" event="12"/>
       <Transition source="7" dest="9" event="10"/>
-      <Transition source="7" dest="0" event="30"/>
+      <Transition source="7" dest="0" event="35"/>
       <Transition source="7" dest="10" event="4"/>
-      <Transition source="7" dest="0" event="20"/>
-      <Transition source="7" dest="0" event="24"/>
-      <Transition source="7" dest="0" event="19"/>
-      <Transition source="8" dest="-1" event="29"/>
-      <Transition source="9" dest="-1" event="29"/>
-      <Transition source="10" dest="-1" event="29"/>
-      <Transition source="11" dest="-1" event="29"/>
-      <Transition source="12" dest="-1" event="29"/>
-      <Transition source="13" dest="0" event="28"/>
+      <Transition source="7" dest="0" event="22"/>
+      <Transition source="7" dest="0" event="27"/>
+      <Transition source="7" dest="0" event="21"/>
+      <Transition source="8" dest="-1" event="34"/>
+      <Transition source="9" dest="-1" event="34"/>
+      <Transition source="10" dest="-1" event="34"/>
+      <Transition source="11" dest="-1" event="34"/>
+      <Transition source="12" dest="-1" event="34"/>
+      <Transition source="13" dest="0" event="32"/>
       <Transition source="13" dest="18" event="9"/>
-      <Transition source="13" dest="0" event="15"/>
+      <Transition source="13" dest="0" event="17"/>
       <Transition source="13" dest="17" event="3"/>
       <Transition source="13" dest="14" event="12"/>
-      <Transition source="13" dest="0" event="30"/>
+      <Transition source="13" dest="0" event="35"/>
       <Transition source="13" dest="16" event="4"/>
-      <Transition source="13" dest="0" event="20"/>
-      <Transition source="13" dest="0" event="24"/>
-      <Transition source="13" dest="0" event="19"/>
+      <Transition source="13" dest="0" event="22"/>
+      <Transition source="13" dest="0" event="27"/>
+      <Transition source="13" dest="0" event="21"/>
       <Transition source="13" dest="15" event="6"/>
-      <Transition source="14" dest="-1" event="29"/>
-      <Transition source="15" dest="-1" event="29"/>
-      <Transition source="17" dest="-1" event="29"/>
-      <Transition source="16" dest="-1" event="29"/>
-      <Transition source="19" dest="0" event="28"/>
+      <Transition source="14" dest="-1" event="34"/>
+      <Transition source="15" dest="-1" event="34"/>
+      <Transition source="17" dest="-1" event="34"/>
+      <Transition source="16" dest="-1" event="34"/>
+      <Transition source="19" dest="0" event="32"/>
       <Transition source="19" dest="24" event="9"/>
-      <Transition source="19" dest="0" event="15"/>
+      <Transition source="19" dest="0" event="17"/>
       <Transition source="19" dest="23" event="3"/>
       <Transition source="19" dest="20" event="12"/>
       <Transition source="19" dest="22" event="10"/>
-      <Transition source="19" dest="0" event="30"/>
-      <Transition source="19" dest="0" event="20"/>
-      <Transition source="19" dest="0" event="24"/>
-      <Transition source="19" dest="0" event="19"/>
+      <Transition source="19" dest="0" event="35"/>
+      <Transition source="19" dest="0" event="22"/>
+      <Transition source="19" dest="0" event="27"/>
+      <Transition source="19" dest="0" event="21"/>
       <Transition source="19" dest="21" event="6"/>
-      <Transition source="18" dest="-1" event="29"/>
-      <Transition source="21" dest="-1" event="29"/>
-      <Transition source="20" dest="-1" event="29"/>
-      <Transition source="23" dest="-1" event="29"/>
-      <Transition source="22" dest="-1" event="29"/>
-      <Transition source="25" dest="0" event="28"/>
+      <Transition source="18" dest="-1" event="34"/>
+      <Transition source="21" dest="-1" event="34"/>
+      <Transition source="20" dest="-1" event="34"/>
+      <Transition source="23" dest="-1" event="34"/>
+      <Transition source="22" dest="-1" event="34"/>
+      <Transition source="25" dest="0" event="32"/>
       <Transition source="25" dest="30" event="9"/>
-      <Transition source="25" dest="0" event="15"/>
+      <Transition source="25" dest="0" event="17"/>
       <Transition source="25" dest="26" event="12"/>
       <Transition source="25" dest="28" event="10"/>
-      <Transition source="25" dest="0" event="30"/>
+      <Transition source="25" dest="0" event="35"/>
       <Transition source="25" dest="29" event="4"/>
-      <Transition source="25" dest="0" event="20"/>
-      <Transition source="25" dest="0" event="24"/>
-      <Transition source="25" dest="0" event="19"/>
+      <Transition source="25" dest="0" event="22"/>
+      <Transition source="25" dest="0" event="27"/>
+      <Transition source="25" dest="0" event="21"/>
       <Transition source="25" dest="27" event="6"/>
-      <Transition source="24" dest="-1" event="29"/>
-      <Transition source="27" dest="-1" event="29"/>
-      <Transition source="26" dest="-1" event="29"/>
-      <Transition source="29" dest="-1" event="29"/>
-      <Transition source="28" dest="-1" event="29"/>
-      <Transition source="31" dest="0" event="28"/>
-      <Transition source="31" dest="0" event="15"/>
+      <Transition source="24" dest="-1" event="34"/>
+      <Transition source="27" dest="-1" event="34"/>
+      <Transition source="26" dest="-1" event="34"/>
+      <Transition source="29" dest="-1" event="34"/>
+      <Transition source="28" dest="-1" event="34"/>
+      <Transition source="31" dest="0" event="32"/>
+      <Transition source="31" dest="0" event="17"/>
       <Transition source="31" dest="36" event="3"/>
       <Transition source="31" dest="32" event="12"/>
       <Transition source="31" dest="34" event="10"/>
-      <Transition source="31" dest="0" event="30"/>
+      <Transition source="31" dest="0" event="35"/>
       <Transition source="31" dest="35" event="4"/>
-      <Transition source="31" dest="0" event="20"/>
-      <Transition source="31" dest="0" event="24"/>
-      <Transition source="31" dest="0" event="19"/>
+      <Transition source="31" dest="0" event="22"/>
+      <Transition source="31" dest="0" event="27"/>
+      <Transition source="31" dest="0" event="21"/>
       <Transition source="31" dest="33" event="6"/>
-      <Transition source="30" dest="-1" event="29"/>
-      <Transition source="34" dest="-1" event="29"/>
-      <Transition source="35" dest="-1" event="29"/>
-      <Transition source="32" dest="-1" event="29"/>
-      <Transition source="33" dest="-1" event="29"/>
-      <Transition source="36" dest="-1" event="29"/>
+      <Transition source="30" dest="-1" event="34"/>
+      <Transition source="34" dest="-1" event="34"/>
+      <Transition source="35" dest="-1" event="34"/>
+      <Transition source="32" dest="-1" event="34"/>
+      <Transition source="33" dest="-1" event="34"/>
+      <Transition source="36" dest="-1" event="34"/>
     </Transitions>
   </Automaton>
   <Automaton name="ResponseMonitor" type="Plant">
     <Events>
-      <Event id="23" label="approach.1"/>
-      <Event id="31" label="approach.0"/>
-      <Event id="18" label="approach.5"/>
-      <Event id="17" label="requestLand.5" controllable="false"/>
-      <Event id="14" label="approach.4"/>
-      <Event id="13" label="requestLand.4" controllable="false"/>
+      <Event id="26" label="approach.1"/>
+      <Event id="36" label="approach.0"/>
+      <Event id="19" label="requestLand.5" controllable="false"/>
+      <Event id="20" label="approach.5"/>
+      <Event id="15" label="requestLand.4" controllable="false"/>
       <Event id="0" label="descend.1.1"/>
-      <Event id="26" label="approach.3"/>
-      <Event id="21" label="approach.2"/>
-      <Event id="1" label="descend.3.1"/>
+      <Event id="16" label="approach.4"/>
+      <Event id="30" label="approach.3"/>
+      <Event id="23" label="approach.2"/>
       <Event id="2" label="descend.5.1"/>
       <Event id="3" label="descend.4.0"/>
-      <Event id="4" label="descend.3.0"/>
       <Event id="5" label="descend.4.1"/>
+      <Event id="25" label="extendFlight.2" controllable="false"/>
+      <Event id="33" label="extendFlight.3" controllable="false"/>
       <Event id="6" label="descend.5.0"/>
+      <Event id="37" label="extendFlight.0" controllable="false"/>
+      <Event id="29" label="extendFlight.1" controllable="false"/>
+      <Event id="18" label="extendFlight.5" controllable="false"/>
+      <Event id="14" label="extendFlight.4" controllable="false"/>
       <Event id="8" label="descend.2.1"/>
-      <Event id="22" label="requestLand.2" controllable="false"/>
-      <Event id="27" label="requestLand.3" controllable="false"/>
       <Event id="9" label="descend.2.0"/>
-      <Event id="32" label="requestLand.0" controllable="false"/>
       <Event id="10" label="descend.1.0"/>
-      <Event id="25" label="requestLand.1" controllable="false"/>
       <Event id="11" label="descend.0.1"/>
       <Event id="12" label="descend.0.0"/>
+      <Event id="1" label="descend.3.1"/>
+      <Event id="4" label="descend.3.0"/>
+      <Event id="24" label="requestLand.2" controllable="false"/>
+      <Event id="31" label="requestLand.3" controllable="false"/>
+      <Event id="38" label="requestLand.0" controllable="false"/>
+      <Event id="28" label="requestLand.1" controllable="false"/>
     </Events>
     <States>
-      <State id="0" name="ResponseMonitor[0]" initial="true"/>
-      <State id="1" name="ResponseMonitor[1]"/>
-      <State id="2" name="ResponseMonitor[2]"/>
-      <State id="3" name="ResponseMonitor[3]"/>
-      <State id="4" name="ResponseMonitor[4]"/>
-      <State id="5" name="ResponseMonitor[5]"/>
-      <State id="6" name="ResponseMonitor[6]"/>
+      <State id="0" name="ResponseMonitor[0]" accepting="true" initial="true"/>
+      <State id="1" name="ResponseMonitor[1]" accepting="true"/>
+      <State id="2" name="ResponseMonitor[2]" accepting="true"/>
+      <State id="3" name="ResponseMonitor[3]" accepting="true"/>
+      <State id="4" name="ResponseMonitor[4]" accepting="true"/>
+      <State id="5" name="ResponseMonitor[5]" accepting="true"/>
+      <State id="6" name="ResponseMonitor[6]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="25"/>
+      <Transition source="0" dest="1" event="28"/>
       <Transition source="0" dest="0" event="2"/>
-      <Transition source="0" dest="6" event="17"/>
+      <Transition source="0" dest="0" event="37"/>
+      <Transition source="0" dest="6" event="19"/>
       <Transition source="0" dest="0" event="5"/>
-      <Transition source="0" dest="0" event="9"/>
-      <Transition source="0" dest="2" event="32"/>
-      <Transition source="0" dest="0" event="26"/>
-      <Transition source="0" dest="0" event="3"/>
-      <Transition source="0" dest="0" event="23"/>
-      <Transition source="0" dest="5" event="13"/>
-      <Transition source="0" dest="0" event="12"/>
-      <Transition source="0" dest="0" event="10"/>
       <Transition source="0" dest="0" event="18"/>
-      <Transition source="0" dest="0" event="31"/>
-      <Transition source="0" dest="0" event="11"/>
-      <Transition source="0" dest="4" event="22"/>
-      <Transition source="0" dest="0" event="4"/>
+      <Transition source="0" dest="0" event="9"/>
+      <Transition source="0" dest="2" event="38"/>
+      <Transition source="0" dest="0" event="30"/>
+      <Transition source="0" dest="0" event="3"/>
+      <Transition source="0" dest="0" event="26"/>
+      <Transition source="0" dest="0" event="33"/>
+      <Transition source="0" dest="0" event="29"/>
+      <Transition source="0" dest="5" event="15"/>
+      <Transition source="0" dest="0" event="12"/>
       <Transition source="0" dest="0" event="14"/>
+      <Transition source="0" dest="0" event="25"/>
+      <Transition source="0" dest="0" event="36"/>
+      <Transition source="0" dest="0" event="10"/>
+      <Transition source="0" dest="0" event="20"/>
+      <Transition source="0" dest="0" event="11"/>
+      <Transition source="0" dest="4" event="24"/>
+      <Transition source="0" dest="0" event="4"/>
+      <Transition source="0" dest="0" event="16"/>
       <Transition source="0" dest="0" event="0"/>
       <Transition source="0" dest="0" event="1"/>
-      <Transition source="0" dest="3" event="27"/>
-      <Transition source="0" dest="0" event="21"/>
+      <Transition source="0" dest="3" event="31"/>
+      <Transition source="0" dest="0" event="23"/>
       <Transition source="0" dest="0" event="6"/>
       <Transition source="0" dest="0" event="8"/>
       <Transition source="1" dest="0" event="10"/>
@@ -510,156 +562,175 @@
   </Automaton>
   <Automaton name="RampMonitor" type="Plant">
     <Events>
-      <Event id="23" label="approach.1"/>
-      <Event id="31" label="approach.0"/>
-      <Event id="18" label="approach.5"/>
-      <Event id="14" label="approach.4"/>
-      <Event id="26" label="approach.3"/>
-      <Event id="21" label="approach.2"/>
-      <Event id="19" label="land.5" controllable="false"/>
-      <Event id="33" label="land.crash" controllable="false"/>
-      <Event id="28" label="land.3" controllable="false"/>
-      <Event id="15" label="land.4" controllable="false"/>
-      <Event id="20" label="land.2" controllable="false"/>
-      <Event id="24" label="land.1" controllable="false"/>
-      <Event id="30" label="land.0" controllable="false"/>
+      <Event id="26" label="approach.1"/>
+      <Event id="36" label="approach.0"/>
+      <Event id="20" label="approach.5"/>
+      <Event id="16" label="approach.4"/>
+      <Event id="30" label="approach.3"/>
+      <Event id="23" label="approach.2"/>
+      <Event id="21" label="land.5" controllable="false"/>
+      <Event id="39" label="land.crash" controllable="false"/>
+      <Event id="32" label="land.3" controllable="false"/>
+      <Event id="17" label="land.4" controllable="false"/>
+      <Event id="22" label="land.2" controllable="false"/>
+      <Event id="27" label="land.1" controllable="false"/>
+      <Event id="35" label="land.0" controllable="false"/>
     </Events>
     <States>
-      <State id="-1" name="RampMonitor[-1]"/>
-      <State id="0" name="RampMonitor[0]" initial="true"/>
-      <State id="1" name="RampMonitor[1]"/>
-      <State id="2" name="RampMonitor[2]"/>
-      <State id="3" name="RampMonitor[3]"/>
-      <State id="4" name="RampMonitor[4]"/>
-      <State id="5" name="RampMonitor[5]"/>
-      <State id="6" name="RampMonitor[6]"/>
-      <State id="7" name="RampMonitor[7]"/>
+      <State id="-1" name="RampMonitor[-1]" accepting="false"/>
+      <State id="0" name="RampMonitor[0]" accepting="true" initial="true"/>
+      <State id="1" name="RampMonitor[1]" accepting="true"/>
+      <State id="2" name="RampMonitor[2]" accepting="true"/>
+      <State id="3" name="RampMonitor[3]" accepting="true"/>
+      <State id="4" name="RampMonitor[4]" accepting="true"/>
+      <State id="5" name="RampMonitor[5]" accepting="true"/>
+      <State id="6" name="RampMonitor[6]" accepting="true"/>
+      <State id="7" name="RampMonitor[7]" accepting="true"/>
     </States>
     <Transitions>
+      <Transition source="0" dest="1" event="30"/>
       <Transition source="0" dest="1" event="26"/>
+      <Transition source="0" dest="1" event="20"/>
+      <Transition source="0" dest="1" event="36"/>
+      <Transition source="0" dest="1" event="16"/>
       <Transition source="0" dest="1" event="23"/>
-      <Transition source="0" dest="1" event="18"/>
-      <Transition source="0" dest="1" event="31"/>
-      <Transition source="0" dest="1" event="14"/>
-      <Transition source="0" dest="1" event="21"/>
-      <Transition source="1" dest="0" event="28"/>
-      <Transition source="1" dest="3" event="26"/>
-      <Transition source="1" dest="0" event="15"/>
-      <Transition source="1" dest="7" event="23"/>
-      <Transition source="1" dest="5" event="18"/>
-      <Transition source="1" dest="6" event="31"/>
-      <Transition source="1" dest="0" event="30"/>
-      <Transition source="1" dest="4" event="14"/>
-      <Transition source="1" dest="0" event="20"/>
-      <Transition source="1" dest="0" event="24"/>
-      <Transition source="1" dest="0" event="19"/>
-      <Transition source="1" dest="2" event="21"/>
-      <Transition source="2" dest="-1" event="33"/>
-      <Transition source="3" dest="-1" event="33"/>
-      <Transition source="4" dest="-1" event="33"/>
-      <Transition source="5" dest="-1" event="33"/>
-      <Transition source="6" dest="-1" event="33"/>
-      <Transition source="7" dest="-1" event="33"/>
+      <Transition source="1" dest="0" event="32"/>
+      <Transition source="1" dest="3" event="30"/>
+      <Transition source="1" dest="0" event="17"/>
+      <Transition source="1" dest="7" event="26"/>
+      <Transition source="1" dest="5" event="20"/>
+      <Transition source="1" dest="6" event="36"/>
+      <Transition source="1" dest="0" event="35"/>
+      <Transition source="1" dest="4" event="16"/>
+      <Transition source="1" dest="0" event="22"/>
+      <Transition source="1" dest="0" event="27"/>
+      <Transition source="1" dest="0" event="21"/>
+      <Transition source="1" dest="2" event="23"/>
+      <Transition source="2" dest="-1" event="39"/>
+      <Transition source="3" dest="-1" event="39"/>
+      <Transition source="4" dest="-1" event="39"/>
+      <Transition source="5" dest="-1" event="39"/>
+      <Transition source="6" dest="-1" event="39"/>
+      <Transition source="7" dest="-1" event="39"/>
     </Transitions>
   </Automaton>
   <Automaton name="Airplane(0)" type="Plant">
     <Events>
-      <Event id="31" label="approach.0"/>
-      <Event id="30" label="land.0" controllable="false"/>
-      <Event id="32" label="requestLand.0" controllable="false"/>
+      <Event id="36" label="approach.0"/>
+      <Event id="13" label="control.all" controllable="false"/>
+      <Event id="35" label="land.0" controllable="false"/>
+      <Event id="38" label="requestLand.0" controllable="false"/>
       <Event id="11" label="descend.0.1"/>
-      <Event id="16" label="end" controllable="false"/>
+      <Event id="37" label="extendFlight.0" controllable="false"/>
       <Event id="12" label="descend.0.0"/>
     </Events>
     <States>
-      <State id="0" name="Airplane(0)[0]" initial="true"/>
-      <State id="1" name="Airplane(0)[1]"/>
-      <State id="2" name="Airplane(0)[2]"/>
-      <State id="3" name="Airplane(0)[3]"/>
-      <State id="4" name="Airplane(0)[4]"/>
-      <State id="5" name="Airplane(0)[5]"/>
+      <State id="0" name="Airplane(0)[0]" accepting="true" initial="true"/>
+      <State id="1" name="Airplane(0)[1]" accepting="true"/>
+      <State id="2" name="Airplane(0)[2]" accepting="true"/>
+      <State id="3" name="Airplane(0)[3]" accepting="true"/>
+      <State id="4" name="Airplane(0)[4]" accepting="true"/>
+      <State id="5" name="Airplane(0)[5]" accepting="true"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="1" event="32"/>
-      <Transition source="1" dest="2" event="12"/>
-      <Transition source="1" dest="5" event="11"/>
-      <Transition source="2" dest="3" event="31"/>
-      <Transition source="3" dest="4" event="30"/>
-      <Transition source="4" dest="0" event="16"/>
-      <Transition source="5" dest="2" event="12"/>
+      <Transition source="0" dest="1" event="37"/>
+      <Transition source="0" dest="2" event="38"/>
+      <Transition source="1" dest="0" event="13"/>
+      <Transition source="2" dest="3" event="12"/>
+      <Transition source="2" dest="5" event="11"/>
+      <Transition source="3" dest="4" event="36"/>
+      <Transition source="4" dest="1" event="35"/>
+      <Transition source="5" dest="3" event="12"/>
     </Transitions>
   </Automaton>
   <Automaton name="Goal" type="Specification">
     <Events>
-      <Event id="23" label="approach.1"/>
-      <Event id="31" label="approach.0"/>
-      <Event id="18" label="approach.5"/>
-      <Event id="17" label="requestLand.5" controllable="false"/>
+      <Event id="26" label="approach.1"/>
+      <Event id="36" label="approach.0"/>
+      <Event id="20" label="approach.5"/>
+      <Event id="19" label="requestLand.5" controllable="false"/>
       <Event id="0" label="descend.1.1"/>
-      <Event id="13" label="requestLand.4" controllable="false"/>
-      <Event id="14" label="approach.4"/>
-      <Event id="26" label="approach.3"/>
-      <Event id="21" label="approach.2"/>
+      <Event id="15" label="requestLand.4" controllable="false"/>
+      <Event id="16" label="approach.4"/>
+      <Event id="30" label="approach.3"/>
+      <Event id="23" label="approach.2"/>
       <Event id="2" label="descend.5.1"/>
-      <Event id="33" label="land.crash" controllable="false"/>
+      <Event id="39" label="land.crash" controllable="false"/>
       <Event id="3" label="descend.4.0"/>
       <Event id="5" label="descend.4.1"/>
+      <Event id="25" label="extendFlight.2" controllable="false"/>
+      <Event id="33" label="extendFlight.3" controllable="false"/>
+      <Event id="37" label="extendFlight.0" controllable="false"/>
       <Event id="6" label="descend.5.0"/>
+      <Event id="29" label="extendFlight.1" controllable="false"/>
+      <Event id="18" label="extendFlight.5" controllable="false"/>
+      <Event id="14" label="extendFlight.4" controllable="false"/>
       <Event id="8" label="descend.2.1"/>
       <Event id="9" label="descend.2.0"/>
       <Event id="10" label="descend.1.0"/>
       <Event id="11" label="descend.0.1"/>
-      <Event id="16" label="end" controllable="false"/>
       <Event id="12" label="descend.0.0"/>
+      <Event id="13" label="control.all" controllable="false"/>
       <Event id="1" label="descend.3.1"/>
-      <Event id="19" label="land.5" controllable="false"/>
-      <Event id="28" label="land.3" controllable="false"/>
-      <Event id="15" label="land.4" controllable="false"/>
+      <Event id="21" label="land.5" controllable="false"/>
+      <Event id="32" label="land.3" controllable="false"/>
       <Event id="4" label="descend.3.0"/>
-      <Event id="29" label="air.crash.0" controllable="false"/>
+      <Event id="17" label="land.4" controllable="false"/>
+      <Event id="34" label="air.crash.0" controllable="false"/>
       <Event id="7" label="air.crash.1" controllable="false"/>
-      <Event id="20" label="land.2" controllable="false"/>
-      <Event id="24" label="land.1" controllable="false"/>
-      <Event id="30" label="land.0" controllable="false"/>
-      <Event id="22" label="requestLand.2" controllable="false"/>
-      <Event id="27" label="requestLand.3" controllable="false"/>
-      <Event id="32" label="requestLand.0" controllable="false"/>
-      <Event id="25" label="requestLand.1" controllable="false"/>
+      <Event id="22" label="land.2" controllable="false"/>
+      <Event id="27" label="land.1" controllable="false"/>
+      <Event id="35" label="land.0" controllable="false"/>
+      <Event id="24" label="requestLand.2" controllable="false"/>
+      <Event id="31" label="requestLand.3" controllable="false"/>
+      <Event id="38" label="requestLand.0" controllable="false"/>
+      <Event id="28" label="requestLand.1" controllable="false"/>
     </Events>
     <States>
       <State id="0"  name="init" initial="true"/>
       <State id="1"  name="goal" accepting="true"/>
-      <State id="-1" name="error"/>
     </States>
     <Transitions>
-      <Transition source="0" dest="0" event="23"/>
-      <Transition source="1" dest="0" event="23"/>
-      <Transition source="0" dest="0" event="31"/>
-      <Transition source="1" dest="0" event="31"/>
-      <Transition source="0" dest="0" event="18"/>
-      <Transition source="1" dest="0" event="18"/>
-      <Transition source="0" dest="0" event="17"/>
-      <Transition source="1" dest="0" event="17"/>
-      <Transition source="0" dest="0" event="0"/>
-      <Transition source="1" dest="0" event="0"/>
-      <Transition source="0" dest="0" event="13"/>
-      <Transition source="1" dest="0" event="13"/>
-      <Transition source="0" dest="0" event="14"/>
-      <Transition source="1" dest="0" event="14"/>
       <Transition source="0" dest="0" event="26"/>
       <Transition source="1" dest="0" event="26"/>
-      <Transition source="0" dest="0" event="21"/>
-      <Transition source="1" dest="0" event="21"/>
+      <Transition source="0" dest="0" event="36"/>
+      <Transition source="1" dest="0" event="36"/>
+      <Transition source="0" dest="0" event="20"/>
+      <Transition source="1" dest="0" event="20"/>
+      <Transition source="0" dest="0" event="19"/>
+      <Transition source="1" dest="0" event="19"/>
+      <Transition source="0" dest="0" event="0"/>
+      <Transition source="1" dest="0" event="0"/>
+      <Transition source="0" dest="0" event="15"/>
+      <Transition source="1" dest="0" event="15"/>
+      <Transition source="0" dest="0" event="16"/>
+      <Transition source="1" dest="0" event="16"/>
+      <Transition source="0" dest="0" event="30"/>
+      <Transition source="1" dest="0" event="30"/>
+      <Transition source="0" dest="0" event="23"/>
+      <Transition source="1" dest="0" event="23"/>
       <Transition source="0" dest="0" event="2"/>
       <Transition source="1" dest="0" event="2"/>
-      <Transition source="0" dest="0" event="33"/>
-      <Transition source="1" dest="0" event="33"/>
+      <Transition source="0" dest="0" event="39"/>
+      <Transition source="1" dest="0" event="39"/>
       <Transition source="0" dest="0" event="3"/>
       <Transition source="1" dest="0" event="3"/>
       <Transition source="0" dest="0" event="5"/>
       <Transition source="1" dest="0" event="5"/>
+      <Transition source="0" dest="0" event="25"/>
+      <Transition source="1" dest="0" event="25"/>
+      <Transition source="0" dest="0" event="33"/>
+      <Transition source="1" dest="0" event="33"/>
+      <Transition source="0" dest="0" event="37"/>
+      <Transition source="1" dest="0" event="37"/>
       <Transition source="0" dest="0" event="6"/>
       <Transition source="1" dest="0" event="6"/>
+      <Transition source="0" dest="0" event="29"/>
+      <Transition source="1" dest="0" event="29"/>
+      <Transition source="0" dest="0" event="18"/>
+      <Transition source="1" dest="0" event="18"/>
+      <Transition source="0" dest="0" event="14"/>
+      <Transition source="1" dest="0" event="14"/>
       <Transition source="0" dest="0" event="8"/>
       <Transition source="1" dest="0" event="8"/>
       <Transition source="0" dest="0" event="9"/>
@@ -668,38 +739,38 @@
       <Transition source="1" dest="0" event="10"/>
       <Transition source="0" dest="0" event="11"/>
       <Transition source="1" dest="0" event="11"/>
-      <Transition source="0" dest="1" event="16"/>
-      <Transition source="1" dest="1" event="16"/>
       <Transition source="0" dest="0" event="12"/>
       <Transition source="1" dest="0" event="12"/>
+      <Transition source="0" dest="1" event="13"/>
+      <Transition source="1" dest="1" event="13"/>
       <Transition source="0" dest="0" event="1"/>
       <Transition source="1" dest="0" event="1"/>
-      <Transition source="0" dest="0" event="19"/>
-      <Transition source="1" dest="0" event="19"/>
-      <Transition source="0" dest="0" event="28"/>
-      <Transition source="1" dest="0" event="28"/>
-      <Transition source="0" dest="0" event="15"/>
-      <Transition source="1" dest="0" event="15"/>
+      <Transition source="0" dest="0" event="21"/>
+      <Transition source="1" dest="0" event="21"/>
+      <Transition source="0" dest="0" event="32"/>
+      <Transition source="1" dest="0" event="32"/>
       <Transition source="0" dest="0" event="4"/>
       <Transition source="1" dest="0" event="4"/>
-      <Transition source="0" dest="0" event="29"/>
-      <Transition source="1" dest="0" event="29"/>
+      <Transition source="0" dest="0" event="17"/>
+      <Transition source="1" dest="0" event="17"/>
+      <Transition source="0" dest="0" event="34"/>
+      <Transition source="1" dest="0" event="34"/>
       <Transition source="0" dest="0" event="7"/>
       <Transition source="1" dest="0" event="7"/>
-      <Transition source="0" dest="0" event="20"/>
-      <Transition source="1" dest="0" event="20"/>
-      <Transition source="0" dest="0" event="24"/>
-      <Transition source="1" dest="0" event="24"/>
-      <Transition source="0" dest="0" event="30"/>
-      <Transition source="1" dest="0" event="30"/>
       <Transition source="0" dest="0" event="22"/>
       <Transition source="1" dest="0" event="22"/>
       <Transition source="0" dest="0" event="27"/>
       <Transition source="1" dest="0" event="27"/>
-      <Transition source="0" dest="0" event="32"/>
-      <Transition source="1" dest="0" event="32"/>
-      <Transition source="0" dest="0" event="25"/>
-      <Transition source="1" dest="0" event="25"/>
+      <Transition source="0" dest="0" event="35"/>
+      <Transition source="1" dest="0" event="35"/>
+      <Transition source="0" dest="0" event="24"/>
+      <Transition source="1" dest="0" event="24"/>
+      <Transition source="0" dest="0" event="31"/>
+      <Transition source="1" dest="0" event="31"/>
+      <Transition source="0" dest="0" event="38"/>
+      <Transition source="1" dest="0" event="38"/>
+      <Transition source="0" dest="0" event="28"/>
+      <Transition source="1" dest="0" event="28"/>
     </Transitions>
   </Automaton>
 </Automata>

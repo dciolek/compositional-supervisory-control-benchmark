@@ -49,47 +49,46 @@ Service(Sid=0) = (
     if (s>0) then (select[Sid] -> Selection[s-1])
     else Booking,
   Booking  = (
-    committed[Sid]   -> Reserve |
-    uncommitted[Sid] -> Direct  ),
+    committed[Sid]   ->
+      if (Sid==Amenities-1) then Reserve
+      else (query[Sid+1] -> Reserve) |
+    uncommitted[Sid] ->
+      if (Sid==Amenities-1) then Direct
+      else (query[Sid+1] -> Direct) ),
   Reserve  = (
-    reserve[Sid] -> (
-      {agency.succ,agency.fail} -> Service |
-      cancel[Sid]   -> Service |
-      purchase[Sid] ->
-        purchase.succ[Sid] -> Service )),
+    {agency.succ,agency.fail} -> Service |
+    cancel[Sid]   -> Service |
+    purchase[Sid] ->
+    purchase.succ[Sid] -> Service ),
   Direct  = (
-    order[Sid] -> (
-      {agency.succ,agency.fail} -> Service |
-      cancel[Sid]   -> Service |
-      purchase[Sid] -> (
-        purchase.succ[Sid] -> Service |
-        purchase.fail[Sid] -> Service ) )).
+    {agency.succ,agency.fail} -> Service |
+    cancel[Sid]   -> Service |
+    purchase[Sid] -> (
+      purchase.succ[Sid] -> Service |
+      purchase.fail[Sid] -> Service ) ).
 
 
 ServiceMonitor(Sid=0) = (
     query[Sid]  -> InQuery          |
     agency.succ -> ERROR            |
-    agency.fail -> End              ),
+    agency.fail -> ServiceMonitor   ),
   InQuery = (
     query.succ[Sid] -> QuerySucces  |
     query.fail[Sid] -> QueryFail    |
     agency.succ -> ERROR            |
-    agency.fail -> End              ),
+    agency.fail -> ServiceMonitor   ),
   QuerySucces = (
     purchase.succ[Sid] -> Success   |
     purchase.fail[Sid] -> QueryFail |
     cancel[Sid]        -> QueryFail |
     agency.succ -> ERROR            |
-    agency.fail -> End              ),
+    agency.fail -> ServiceMonitor   ),
   QueryFail = (
-    query[Sid]  -> ERROR            |
     agency.succ -> ERROR            |
-    agency.fail -> End              ),
+    agency.fail -> ServiceMonitor   ),
   Success = (
-    query[Sid]  -> ERROR            |
-    agency.succ -> End              |
-    agency.fail -> End              ),
-  End = (end -> ServiceMonitor).
+    agency.succ -> ServiceMonitor   |
+    agency.fail -> ServiceMonitor   ).
     
 
 AgencyMonitor = Disallow[0],
@@ -97,32 +96,26 @@ AgencyMonitor = Disallow[0],
     agency.fail -> ERROR         |
     agency.succ -> AgencyMonitor |
     query.fail[Amenity] -> Allow |
-    order[Amenity] -> if (n==0) then Disallow[1] else Allow |
+    uncommitted[Amenity] -> if (n==0) then Disallow[1] else Allow |
     when (n==1) purchase.fail[Amenity] -> Allow ),
   Allow = (
     {agency.fail,agency.succ} -> AgencyMonitor |
-    {query.fail[Amenity],order[Amenity],purchase.fail[Amenity]} -> Allow ).
+    {query.fail[Amenity],uncommitted[Amenity],purchase.fail[Amenity]} -> Allow ).
 
 
 /*****************************************************************************/
 
-||Environment = (
+||Plant = (
   Agency || AgencyMonitor ||
   forall [a:Amenity] (Service(a) || ServiceMonitor(a)) ).
 
-
-set Controllable = { query[Amenity], select[Amenity], cancel[Amenity],
-                     purchase[Amenity], agency.succ, agency.fail }
-
-/*****************************************************************************/
-
-fluent F_End = <end, Controllable>
-
 controllerSpec Goal = {
-  liveness = {F_End}
-  reach = {end}
-  controllable = {Controllable}
+  controllable = {cancel[Amenity],purchase[Amenity], agency.succ, agency.fail}
+  marking = {agency.succ, agency.fail}
+  nonblocking
 }
 
-controller ||Controller = Environment~{Goal}.
+controller ||MonolithicController = Plant~{Goal}.
+
+heuristic ||DirectedController = Plant~{Goal}.
 

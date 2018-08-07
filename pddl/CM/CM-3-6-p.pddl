@@ -1,12 +1,11 @@
 (define
   (problem Goal)
-  (:domain Controller)
+  (:domain DirectedController)
   (:init
     (at $0 $Mouse-0)
     (at $0 $Cat-2)
     (at $0 $Cat-1)
     (at $0 $Cat-0)
-    (at $0 $Monitor)
     (at $0 $Mouse-2)
     (at $0 $Mouse-1)
   )
@@ -17,7 +16,6 @@
       (hoop $Cat-2)
       (hoop $Cat-1)
       (hoop $Cat-0)
-      (hoop $Monitor)
       (hoop $Mouse-2)
       (hoop $Mouse-1)
     )

@@ -1,6 +1,6 @@
 (define
   (problem Goal)
-  (:domain Controller)
+  (:domain DirectedController)
   (:init
     (at $0 $Machine-3)
     (at $0 $Buffer-1)

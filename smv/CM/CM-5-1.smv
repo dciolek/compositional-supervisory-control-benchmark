@@ -1,0 +1,1568 @@
+MODULE main
+DOMAINNAME DirectedController
+PROBLEMNAME Goal
+IVAR
+  action: {
+    "(choose)",
+    "(default)",
+    "(cat_3_move_1)",
+    "(cat_3_move_0)",
+    "(cat_3_move_2)",
+    "(mouse_2_move_2)",
+    "(mouse_2_move_0)",
+    "(mouse_2_move_1)",
+    "(cat_2_move_0)",
+    "(cat_2_move_2)",
+    "(cat_4_move_2)",
+    "(cat_4_move_1)",
+    "(cat_2_move_1)",
+    "(cat_4_move_0)",
+    "(mouse_0_move_2)",
+    "(mouse_0_move_1)",
+    "(mouse_0_move_0)",
+    "(cat_0_move_0)",
+    "(cat_0_move_1)",
+    "(cat_0_move_2)",
+    "(safe)",
+    "(cat_turn)",
+    "(cat_1_move_1)",
+    "(cat_1_move_0)",
+    "(cat_1_move_2)",
+    "(mouse_3_move_0)",
+    "(mouse_4_move_0)",
+    "(mouse_4_move_1)",
+    "(mouse_1_move_0)",
+    "(mouse_1_move_1)",
+    "(mouse_4_move_2)",
+    "(mouse_turn)",
+    "(mouse_1_move_2)",
+    "(mouse_3_move_1)",
+    "(mouse_3_move_2)"
+  };
+VAR
+  "(at Cat_2)":-1..9;
+  "(at Mouse_0)":-1..10;
+  "(at Cat_1)":-1..9;
+  "(at Cat_4)":-1..9;
+  "(at Cat_0)":-1..9;
+  "(at Mouse_2)":-1..10;
+  "(at Mouse_1)":-1..10;
+  "(at Mouse_3)":-1..10;
+  "(at Cat_3)":-1..9;
+  "(at Mouse_4)":-1..10;
+  "(inprogress safe)":0..1;
+  "(inprogress cat_3_move_1)":0..1;
+  "(inprogress cat_3_move_0)":0..1;
+  "(inprogress cat_turn)":0..1;
+  "(inprogress cat_3_move_2)":0..1;
+  "(inprogress cat_1_move_1)":0..1;
+  "(inprogress cat_1_move_0)":0..1;
+  "(inprogress cat_1_move_2)":0..1;
+  "(inprogress cat_2_move_0)":0..1;
+  "(inprogress cat_2_move_2)":0..1;
+  "(inprogress cat_4_move_2)":0..1;
+  "(inprogress cat_4_move_1)":0..1;
+  "(inprogress cat_2_move_1)":0..1;
+  "(inprogress mouse_turn)":0..1;
+  "(inprogress cat_4_move_0)":0..1;
+  "(inprogress cat_0_move_0)":0..1;
+  "(inprogress cat_0_move_1)":0..1;
+  "(inprogress cat_0_move_2)":0..1;
+  "(status)":-1..2;
+INIT (
+  "(inprogress cat_3_move_1)"=0 &
+  "(at Mouse_1)"=0 &
+  "(at Cat_0)"=0 &
+  "(inprogress cat_2_move_1)"=0 &
+  "(inprogress cat_1_move_0)"=0 &
+  "(inprogress safe)"=0 &
+  "(inprogress cat_3_move_0)"=0 &
+  "(status)"=0 &
+  "(inprogress cat_0_move_1)"=0 &
+  "(inprogress cat_0_move_0)"=0 &
+  "(inprogress cat_2_move_0)"=0 &
+  "(at Mouse_3)"=0 &
+  "(inprogress cat_0_move_2)"=0 &
+  "(inprogress cat_4_move_2)"=0 &
+  "(at Mouse_2)"=0 &
+  "(inprogress cat_2_move_2)"=0 &
+  "(at Cat_2)"=0 &
+  "(inprogress cat_1_move_2)"=0 &
+  "(at Mouse_4)"=0 &
+  "(inprogress cat_4_move_1)"=0 &
+  "(inprogress cat_turn)"=0 &
+  "(inprogress cat_1_move_1)"=0 &
+  "(at Cat_1)"=0 &
+  "(inprogress cat_4_move_0)"=0 &
+  "(at Mouse_0)"=0 &
+  "(at Cat_3)"=0 &
+  "(inprogress cat_3_move_2)"=0 &
+  "(inprogress mouse_turn)"=0 &
+  "(at Cat_4)"=0 
+)
+DEFINE
+  "(@def ready cat_3_move_1 Cat_2)":=(FALSE);
+  "(@def ready cat_3_move_1 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_3_move_1 Cat_1)":=(FALSE);
+  "(@def ready cat_3_move_1 Cat_4)":=(FALSE);
+  "(@def ready cat_3_move_1 Cat_0)":=(FALSE);
+  "(@def ready cat_3_move_1 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_3_move_1 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_3_move_1 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_3_move_1 Cat_3)":=("(at Cat_3)"=2 | "(at Cat_3)"=5 | "(at Cat_3)"=8);
+  "(@def ready cat_3_move_1 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready cat_3_move_0 Cat_2)":=(FALSE);
+  "(@def ready cat_3_move_0 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_3_move_0 Cat_1)":=(FALSE);
+  "(@def ready cat_3_move_0 Cat_4)":=(FALSE);
+  "(@def ready cat_3_move_0 Cat_0)":=(FALSE);
+  "(@def ready cat_3_move_0 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_3_move_0 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_3_move_0 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_3_move_0 Cat_3)":=("(at Cat_3)"=2 | "(at Cat_3)"=5);
+  "(@def ready cat_3_move_0 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready cat_3_move_2 Cat_2)":=(FALSE);
+  "(@def ready cat_3_move_2 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_3_move_2 Cat_1)":=(FALSE);
+  "(@def ready cat_3_move_2 Cat_4)":=(FALSE);
+  "(@def ready cat_3_move_2 Cat_0)":=(FALSE);
+  "(@def ready cat_3_move_2 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_3_move_2 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_3_move_2 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_3_move_2 Cat_3)":=("(at Cat_3)"=5 | "(at Cat_3)"=8);
+  "(@def ready cat_3_move_2 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready mouse_2_move_2 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_2_move_2 Mouse_0)":=(FALSE);
+  "(@def ready mouse_2_move_2 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_2_move_2 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_2_move_2 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_2_move_2 Mouse_2)":=("(at Mouse_2)"=1 | "(at Mouse_2)"=5);
+  "(@def ready mouse_2_move_2 Mouse_1)":=(FALSE);
+  "(@def ready mouse_2_move_2 Mouse_3)":=(FALSE);
+  "(@def ready mouse_2_move_2 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_2_move_2 Mouse_4)":=(FALSE);
+  "(@def ready mouse_2_move_0 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_2_move_0 Mouse_0)":=(FALSE);
+  "(@def ready mouse_2_move_0 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_2_move_0 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_2_move_0 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_2_move_0 Mouse_2)":=("(at Mouse_2)"=5 | "(at Mouse_2)"=8);
+  "(@def ready mouse_2_move_0 Mouse_1)":=(FALSE);
+  "(@def ready mouse_2_move_0 Mouse_3)":=(FALSE);
+  "(@def ready mouse_2_move_0 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_2_move_0 Mouse_4)":=(FALSE);
+  "(@def ready mouse_2_move_1 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_2_move_1 Mouse_0)":=(FALSE);
+  "(@def ready mouse_2_move_1 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_2_move_1 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_2_move_1 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_2_move_1 Mouse_2)":=("(at Mouse_2)"=1 | "(at Mouse_2)"=5 | "(at Mouse_2)"=8);
+  "(@def ready mouse_2_move_1 Mouse_1)":=(FALSE);
+  "(@def ready mouse_2_move_1 Mouse_3)":=(FALSE);
+  "(@def ready mouse_2_move_1 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_2_move_1 Mouse_4)":=(FALSE);
+  "(@def ready cat_2_move_0 Cat_2)":=("(at Cat_2)"=2 | "(at Cat_2)"=5);
+  "(@def ready cat_2_move_0 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_2_move_0 Cat_1)":=(FALSE);
+  "(@def ready cat_2_move_0 Cat_4)":=(FALSE);
+  "(@def ready cat_2_move_0 Cat_0)":=(FALSE);
+  "(@def ready cat_2_move_0 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_2_move_0 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_2_move_0 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_2_move_0 Cat_3)":=(FALSE);
+  "(@def ready cat_2_move_0 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready cat_2_move_2 Cat_2)":=("(at Cat_2)"=5 | "(at Cat_2)"=8);
+  "(@def ready cat_2_move_2 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_2_move_2 Cat_1)":=(FALSE);
+  "(@def ready cat_2_move_2 Cat_4)":=(FALSE);
+  "(@def ready cat_2_move_2 Cat_0)":=(FALSE);
+  "(@def ready cat_2_move_2 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_2_move_2 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_2_move_2 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_2_move_2 Cat_3)":=(FALSE);
+  "(@def ready cat_2_move_2 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready cat_4_move_2 Cat_2)":=(FALSE);
+  "(@def ready cat_4_move_2 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_4_move_2 Cat_1)":=(FALSE);
+  "(@def ready cat_4_move_2 Cat_4)":=("(at Cat_4)"=5 | "(at Cat_4)"=8);
+  "(@def ready cat_4_move_2 Cat_0)":=(FALSE);
+  "(@def ready cat_4_move_2 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_4_move_2 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_4_move_2 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_4_move_2 Cat_3)":=(FALSE);
+  "(@def ready cat_4_move_2 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready cat_4_move_1 Cat_2)":=(FALSE);
+  "(@def ready cat_4_move_1 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_4_move_1 Cat_1)":=(FALSE);
+  "(@def ready cat_4_move_1 Cat_4)":=("(at Cat_4)"=2 | "(at Cat_4)"=5 | "(at Cat_4)"=8);
+  "(@def ready cat_4_move_1 Cat_0)":=(FALSE);
+  "(@def ready cat_4_move_1 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_4_move_1 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_4_move_1 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_4_move_1 Cat_3)":=(FALSE);
+  "(@def ready cat_4_move_1 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready cat_2_move_1 Cat_2)":=("(at Cat_2)"=2 | "(at Cat_2)"=5 | "(at Cat_2)"=8);
+  "(@def ready cat_2_move_1 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_2_move_1 Cat_1)":=(FALSE);
+  "(@def ready cat_2_move_1 Cat_4)":=(FALSE);
+  "(@def ready cat_2_move_1 Cat_0)":=(FALSE);
+  "(@def ready cat_2_move_1 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_2_move_1 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_2_move_1 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_2_move_1 Cat_3)":=(FALSE);
+  "(@def ready cat_2_move_1 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready cat_4_move_0 Cat_2)":=(FALSE);
+  "(@def ready cat_4_move_0 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_4_move_0 Cat_1)":=(FALSE);
+  "(@def ready cat_4_move_0 Cat_4)":=("(at Cat_4)"=2 | "(at Cat_4)"=5);
+  "(@def ready cat_4_move_0 Cat_0)":=(FALSE);
+  "(@def ready cat_4_move_0 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_4_move_0 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_4_move_0 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_4_move_0 Cat_3)":=(FALSE);
+  "(@def ready cat_4_move_0 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready mouse_0_move_2 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_0_move_2 Mouse_0)":=("(at Mouse_0)"=1 | "(at Mouse_0)"=5);
+  "(@def ready mouse_0_move_2 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_0_move_2 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_0_move_2 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_0_move_2 Mouse_2)":=(FALSE);
+  "(@def ready mouse_0_move_2 Mouse_1)":=(FALSE);
+  "(@def ready mouse_0_move_2 Mouse_3)":=(FALSE);
+  "(@def ready mouse_0_move_2 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_0_move_2 Mouse_4)":=(FALSE);
+  "(@def ready mouse_0_move_1 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_0_move_1 Mouse_0)":=("(at Mouse_0)"=1 | "(at Mouse_0)"=5 | "(at Mouse_0)"=8);
+  "(@def ready mouse_0_move_1 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_0_move_1 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_0_move_1 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_0_move_1 Mouse_2)":=(FALSE);
+  "(@def ready mouse_0_move_1 Mouse_1)":=(FALSE);
+  "(@def ready mouse_0_move_1 Mouse_3)":=(FALSE);
+  "(@def ready mouse_0_move_1 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_0_move_1 Mouse_4)":=(FALSE);
+  "(@def ready mouse_0_move_0 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_0_move_0 Mouse_0)":=("(at Mouse_0)"=5 | "(at Mouse_0)"=8);
+  "(@def ready mouse_0_move_0 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_0_move_0 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_0_move_0 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_0_move_0 Mouse_2)":=(FALSE);
+  "(@def ready mouse_0_move_0 Mouse_1)":=(FALSE);
+  "(@def ready mouse_0_move_0 Mouse_3)":=(FALSE);
+  "(@def ready mouse_0_move_0 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_0_move_0 Mouse_4)":=(FALSE);
+  "(@def ready cat_0_move_0 Cat_2)":=(FALSE);
+  "(@def ready cat_0_move_0 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_0_move_0 Cat_1)":=(FALSE);
+  "(@def ready cat_0_move_0 Cat_4)":=(FALSE);
+  "(@def ready cat_0_move_0 Cat_0)":=("(at Cat_0)"=2 | "(at Cat_0)"=5);
+  "(@def ready cat_0_move_0 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_0_move_0 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_0_move_0 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_0_move_0 Cat_3)":=(FALSE);
+  "(@def ready cat_0_move_0 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready cat_0_move_1 Cat_2)":=(FALSE);
+  "(@def ready cat_0_move_1 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_0_move_1 Cat_1)":=(FALSE);
+  "(@def ready cat_0_move_1 Cat_4)":=(FALSE);
+  "(@def ready cat_0_move_1 Cat_0)":=("(at Cat_0)"=2 | "(at Cat_0)"=5 | "(at Cat_0)"=8);
+  "(@def ready cat_0_move_1 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_0_move_1 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_0_move_1 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_0_move_1 Cat_3)":=(FALSE);
+  "(@def ready cat_0_move_1 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready cat_0_move_2 Cat_2)":=(FALSE);
+  "(@def ready cat_0_move_2 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_0_move_2 Cat_1)":=(FALSE);
+  "(@def ready cat_0_move_2 Cat_4)":=(FALSE);
+  "(@def ready cat_0_move_2 Cat_0)":=("(at Cat_0)"=5 | "(at Cat_0)"=8);
+  "(@def ready cat_0_move_2 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_0_move_2 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_0_move_2 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_0_move_2 Cat_3)":=(FALSE);
+  "(@def ready cat_0_move_2 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready safe Cat_2)":=(FALSE);
+  "(@def ready safe Mouse_0)":=("(at Mouse_0)"=2);
+  "(@def ready safe Cat_1)":=(FALSE);
+  "(@def ready safe Cat_4)":=(FALSE);
+  "(@def ready safe Cat_0)":=(FALSE);
+  "(@def ready safe Mouse_2)":=("(at Mouse_2)"=2);
+  "(@def ready safe Mouse_1)":=("(at Mouse_1)"=3);
+  "(@def ready safe Mouse_3)":=("(at Mouse_3)"=3);
+  "(@def ready safe Cat_3)":=(FALSE);
+  "(@def ready safe Mouse_4)":=("(at Mouse_4)"=3);
+  "(@def ready cat_turn Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready cat_turn Mouse_0)":=("(at Mouse_0)"=3 | "(at Mouse_0)"=6 | "(at Mouse_0)"=9);
+  "(@def ready cat_turn Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready cat_turn Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready cat_turn Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready cat_turn Mouse_2)":=("(at Mouse_2)"=3 | "(at Mouse_2)"=6 | "(at Mouse_2)"=9);
+  "(@def ready cat_turn Mouse_1)":=("(at Mouse_1)"=2 | "(at Mouse_1)"=4 | "(at Mouse_1)"=7);
+  "(@def ready cat_turn Mouse_3)":=("(at Mouse_3)"=2 | "(at Mouse_3)"=4 | "(at Mouse_3)"=7);
+  "(@def ready cat_turn Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready cat_turn Mouse_4)":=("(at Mouse_4)"=2 | "(at Mouse_4)"=4 | "(at Mouse_4)"=7);
+  "(@def ready cat_1_move_1 Cat_2)":=(FALSE);
+  "(@def ready cat_1_move_1 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_1_move_1 Cat_1)":=("(at Cat_1)"=2 | "(at Cat_1)"=5 | "(at Cat_1)"=8);
+  "(@def ready cat_1_move_1 Cat_4)":=(FALSE);
+  "(@def ready cat_1_move_1 Cat_0)":=(FALSE);
+  "(@def ready cat_1_move_1 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_1_move_1 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_1_move_1 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_1_move_1 Cat_3)":=(FALSE);
+  "(@def ready cat_1_move_1 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready cat_1_move_0 Cat_2)":=(FALSE);
+  "(@def ready cat_1_move_0 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_1_move_0 Cat_1)":=("(at Cat_1)"=2 | "(at Cat_1)"=5);
+  "(@def ready cat_1_move_0 Cat_4)":=(FALSE);
+  "(@def ready cat_1_move_0 Cat_0)":=(FALSE);
+  "(@def ready cat_1_move_0 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_1_move_0 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_1_move_0 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_1_move_0 Cat_3)":=(FALSE);
+  "(@def ready cat_1_move_0 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready cat_1_move_2 Cat_2)":=(FALSE);
+  "(@def ready cat_1_move_2 Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready cat_1_move_2 Cat_1)":=("(at Cat_1)"=5 | "(at Cat_1)"=8);
+  "(@def ready cat_1_move_2 Cat_4)":=(FALSE);
+  "(@def ready cat_1_move_2 Cat_0)":=(FALSE);
+  "(@def ready cat_1_move_2 Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready cat_1_move_2 Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready cat_1_move_2 Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready cat_1_move_2 Cat_3)":=(FALSE);
+  "(@def ready cat_1_move_2 Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready mouse_3_move_0 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_3_move_0 Mouse_0)":=(FALSE);
+  "(@def ready mouse_3_move_0 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_3_move_0 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_3_move_0 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_3_move_0 Mouse_2)":=(FALSE);
+  "(@def ready mouse_3_move_0 Mouse_1)":=(FALSE);
+  "(@def ready mouse_3_move_0 Mouse_3)":=("(at Mouse_3)"=6 | "(at Mouse_3)"=9);
+  "(@def ready mouse_3_move_0 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_3_move_0 Mouse_4)":=(FALSE);
+  "(@def ready mouse_4_move_0 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_4_move_0 Mouse_0)":=(FALSE);
+  "(@def ready mouse_4_move_0 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_4_move_0 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_4_move_0 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_4_move_0 Mouse_2)":=(FALSE);
+  "(@def ready mouse_4_move_0 Mouse_1)":=(FALSE);
+  "(@def ready mouse_4_move_0 Mouse_3)":=(FALSE);
+  "(@def ready mouse_4_move_0 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_4_move_0 Mouse_4)":=("(at Mouse_4)"=6 | "(at Mouse_4)"=9);
+  "(@def ready mouse_4_move_1 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_4_move_1 Mouse_0)":=(FALSE);
+  "(@def ready mouse_4_move_1 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_4_move_1 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_4_move_1 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_4_move_1 Mouse_2)":=(FALSE);
+  "(@def ready mouse_4_move_1 Mouse_1)":=(FALSE);
+  "(@def ready mouse_4_move_1 Mouse_3)":=(FALSE);
+  "(@def ready mouse_4_move_1 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_4_move_1 Mouse_4)":=("(at Mouse_4)"=1 | "(at Mouse_4)"=6 | "(at Mouse_4)"=9);
+  "(@def ready mouse_1_move_0 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_1_move_0 Mouse_0)":=(FALSE);
+  "(@def ready mouse_1_move_0 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_1_move_0 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_1_move_0 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_1_move_0 Mouse_2)":=(FALSE);
+  "(@def ready mouse_1_move_0 Mouse_1)":=("(at Mouse_1)"=6 | "(at Mouse_1)"=9);
+  "(@def ready mouse_1_move_0 Mouse_3)":=(FALSE);
+  "(@def ready mouse_1_move_0 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_1_move_0 Mouse_4)":=(FALSE);
+  "(@def ready mouse_1_move_1 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_1_move_1 Mouse_0)":=(FALSE);
+  "(@def ready mouse_1_move_1 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_1_move_1 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_1_move_1 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_1_move_1 Mouse_2)":=(FALSE);
+  "(@def ready mouse_1_move_1 Mouse_1)":=("(at Mouse_1)"=1 | "(at Mouse_1)"=6 | "(at Mouse_1)"=9);
+  "(@def ready mouse_1_move_1 Mouse_3)":=(FALSE);
+  "(@def ready mouse_1_move_1 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_1_move_1 Mouse_4)":=(FALSE);
+  "(@def ready mouse_4_move_2 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_4_move_2 Mouse_0)":=(FALSE);
+  "(@def ready mouse_4_move_2 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_4_move_2 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_4_move_2 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_4_move_2 Mouse_2)":=(FALSE);
+  "(@def ready mouse_4_move_2 Mouse_1)":=(FALSE);
+  "(@def ready mouse_4_move_2 Mouse_3)":=(FALSE);
+  "(@def ready mouse_4_move_2 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_4_move_2 Mouse_4)":=("(at Mouse_4)"=1 | "(at Mouse_4)"=6);
+  "(@def ready mouse_turn Cat_2)":=("(at Cat_2)"=0 | "(at Cat_2)"=3 | "(at Cat_2)"=6);
+  "(@def ready mouse_turn Mouse_0)":=("(at Mouse_0)"=0 | "(at Mouse_0)"=4 | "(at Mouse_0)"=7);
+  "(@def ready mouse_turn Cat_1)":=("(at Cat_1)"=0 | "(at Cat_1)"=3 | "(at Cat_1)"=6);
+  "(@def ready mouse_turn Cat_4)":=("(at Cat_4)"=0 | "(at Cat_4)"=3 | "(at Cat_4)"=6);
+  "(@def ready mouse_turn Cat_0)":=("(at Cat_0)"=0 | "(at Cat_0)"=3 | "(at Cat_0)"=6);
+  "(@def ready mouse_turn Mouse_2)":=("(at Mouse_2)"=0 | "(at Mouse_2)"=4 | "(at Mouse_2)"=7);
+  "(@def ready mouse_turn Mouse_1)":=("(at Mouse_1)"=0 | "(at Mouse_1)"=5 | "(at Mouse_1)"=8);
+  "(@def ready mouse_turn Mouse_3)":=("(at Mouse_3)"=0 | "(at Mouse_3)"=5 | "(at Mouse_3)"=8);
+  "(@def ready mouse_turn Cat_3)":=("(at Cat_3)"=0 | "(at Cat_3)"=3 | "(at Cat_3)"=6);
+  "(@def ready mouse_turn Mouse_4)":=("(at Mouse_4)"=0 | "(at Mouse_4)"=5 | "(at Mouse_4)"=8);
+  "(@def ready mouse_1_move_2 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_1_move_2 Mouse_0)":=(FALSE);
+  "(@def ready mouse_1_move_2 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_1_move_2 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_1_move_2 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_1_move_2 Mouse_2)":=(FALSE);
+  "(@def ready mouse_1_move_2 Mouse_1)":=("(at Mouse_1)"=1 | "(at Mouse_1)"=6);
+  "(@def ready mouse_1_move_2 Mouse_3)":=(FALSE);
+  "(@def ready mouse_1_move_2 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_1_move_2 Mouse_4)":=(FALSE);
+  "(@def ready mouse_3_move_1 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_3_move_1 Mouse_0)":=(FALSE);
+  "(@def ready mouse_3_move_1 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_3_move_1 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_3_move_1 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_3_move_1 Mouse_2)":=(FALSE);
+  "(@def ready mouse_3_move_1 Mouse_1)":=(FALSE);
+  "(@def ready mouse_3_move_1 Mouse_3)":=("(at Mouse_3)"=1 | "(at Mouse_3)"=6 | "(at Mouse_3)"=9);
+  "(@def ready mouse_3_move_1 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_3_move_1 Mouse_4)":=(FALSE);
+  "(@def ready mouse_3_move_2 Cat_2)":=("(at Cat_2)"=1 | "(at Cat_2)"=4 | "(at Cat_2)"=7);
+  "(@def ready mouse_3_move_2 Mouse_0)":=(FALSE);
+  "(@def ready mouse_3_move_2 Cat_1)":=("(at Cat_1)"=1 | "(at Cat_1)"=4 | "(at Cat_1)"=7);
+  "(@def ready mouse_3_move_2 Cat_4)":=("(at Cat_4)"=1 | "(at Cat_4)"=4 | "(at Cat_4)"=7);
+  "(@def ready mouse_3_move_2 Cat_0)":=("(at Cat_0)"=1 | "(at Cat_0)"=4 | "(at Cat_0)"=7);
+  "(@def ready mouse_3_move_2 Mouse_2)":=(FALSE);
+  "(@def ready mouse_3_move_2 Mouse_1)":=(FALSE);
+  "(@def ready mouse_3_move_2 Mouse_3)":=("(at Mouse_3)"=1 | "(at Mouse_3)"=6);
+  "(@def ready mouse_3_move_2 Cat_3)":=("(at Cat_3)"=1 | "(at Cat_3)"=4 | "(at Cat_3)"=7);
+  "(@def ready mouse_3_move_2 Mouse_4)":=(FALSE);
+  "(@def enabled cat_3_move_1)":=("(@def ready cat_3_move_1 Mouse_0)" & "(@def ready cat_3_move_1 Mouse_2)" & "(@def ready cat_3_move_1 Mouse_1)" & "(@def ready cat_3_move_1 Mouse_3)" & "(@def ready cat_3_move_1 Cat_3)" & "(@def ready cat_3_move_1 Mouse_4)");
+  "(@def enabled cat_3_move_0)":=("(@def ready cat_3_move_0 Mouse_0)" & "(@def ready cat_3_move_0 Mouse_2)" & "(@def ready cat_3_move_0 Mouse_1)" & "(@def ready cat_3_move_0 Mouse_3)" & "(@def ready cat_3_move_0 Cat_3)" & "(@def ready cat_3_move_0 Mouse_4)");
+  "(@def enabled cat_3_move_2)":=("(@def ready cat_3_move_2 Mouse_0)" & "(@def ready cat_3_move_2 Mouse_2)" & "(@def ready cat_3_move_2 Mouse_1)" & "(@def ready cat_3_move_2 Mouse_3)" & "(@def ready cat_3_move_2 Cat_3)" & "(@def ready cat_3_move_2 Mouse_4)");
+  "(@def enabled mouse_2_move_2)":=("(@def ready mouse_2_move_2 Cat_2)" & "(@def ready mouse_2_move_2 Cat_1)" & "(@def ready mouse_2_move_2 Cat_4)" & "(@def ready mouse_2_move_2 Cat_0)" & "(@def ready mouse_2_move_2 Mouse_2)" & "(@def ready mouse_2_move_2 Cat_3)");
+  "(@def enabled mouse_2_move_0)":=("(@def ready mouse_2_move_0 Cat_2)" & "(@def ready mouse_2_move_0 Cat_1)" & "(@def ready mouse_2_move_0 Cat_4)" & "(@def ready mouse_2_move_0 Cat_0)" & "(@def ready mouse_2_move_0 Mouse_2)" & "(@def ready mouse_2_move_0 Cat_3)");
+  "(@def enabled mouse_2_move_1)":=("(@def ready mouse_2_move_1 Cat_2)" & "(@def ready mouse_2_move_1 Cat_1)" & "(@def ready mouse_2_move_1 Cat_4)" & "(@def ready mouse_2_move_1 Cat_0)" & "(@def ready mouse_2_move_1 Mouse_2)" & "(@def ready mouse_2_move_1 Cat_3)");
+  "(@def enabled cat_2_move_0)":=("(@def ready cat_2_move_0 Cat_2)" & "(@def ready cat_2_move_0 Mouse_0)" & "(@def ready cat_2_move_0 Mouse_2)" & "(@def ready cat_2_move_0 Mouse_1)" & "(@def ready cat_2_move_0 Mouse_3)" & "(@def ready cat_2_move_0 Mouse_4)");
+  "(@def enabled cat_2_move_2)":=("(@def ready cat_2_move_2 Cat_2)" & "(@def ready cat_2_move_2 Mouse_0)" & "(@def ready cat_2_move_2 Mouse_2)" & "(@def ready cat_2_move_2 Mouse_1)" & "(@def ready cat_2_move_2 Mouse_3)" & "(@def ready cat_2_move_2 Mouse_4)");
+  "(@def enabled cat_4_move_2)":=("(@def ready cat_4_move_2 Mouse_0)" & "(@def ready cat_4_move_2 Cat_4)" & "(@def ready cat_4_move_2 Mouse_2)" & "(@def ready cat_4_move_2 Mouse_1)" & "(@def ready cat_4_move_2 Mouse_3)" & "(@def ready cat_4_move_2 Mouse_4)");
+  "(@def enabled cat_4_move_1)":=("(@def ready cat_4_move_1 Mouse_0)" & "(@def ready cat_4_move_1 Cat_4)" & "(@def ready cat_4_move_1 Mouse_2)" & "(@def ready cat_4_move_1 Mouse_1)" & "(@def ready cat_4_move_1 Mouse_3)" & "(@def ready cat_4_move_1 Mouse_4)");
+  "(@def enabled cat_2_move_1)":=("(@def ready cat_2_move_1 Cat_2)" & "(@def ready cat_2_move_1 Mouse_0)" & "(@def ready cat_2_move_1 Mouse_2)" & "(@def ready cat_2_move_1 Mouse_1)" & "(@def ready cat_2_move_1 Mouse_3)" & "(@def ready cat_2_move_1 Mouse_4)");
+  "(@def enabled cat_4_move_0)":=("(@def ready cat_4_move_0 Mouse_0)" & "(@def ready cat_4_move_0 Cat_4)" & "(@def ready cat_4_move_0 Mouse_2)" & "(@def ready cat_4_move_0 Mouse_1)" & "(@def ready cat_4_move_0 Mouse_3)" & "(@def ready cat_4_move_0 Mouse_4)");
+  "(@def enabled mouse_0_move_2)":=("(@def ready mouse_0_move_2 Cat_2)" & "(@def ready mouse_0_move_2 Mouse_0)" & "(@def ready mouse_0_move_2 Cat_1)" & "(@def ready mouse_0_move_2 Cat_4)" & "(@def ready mouse_0_move_2 Cat_0)" & "(@def ready mouse_0_move_2 Cat_3)");
+  "(@def enabled mouse_0_move_1)":=("(@def ready mouse_0_move_1 Cat_2)" & "(@def ready mouse_0_move_1 Mouse_0)" & "(@def ready mouse_0_move_1 Cat_1)" & "(@def ready mouse_0_move_1 Cat_4)" & "(@def ready mouse_0_move_1 Cat_0)" & "(@def ready mouse_0_move_1 Cat_3)");
+  "(@def enabled mouse_0_move_0)":=("(@def ready mouse_0_move_0 Cat_2)" & "(@def ready mouse_0_move_0 Mouse_0)" & "(@def ready mouse_0_move_0 Cat_1)" & "(@def ready mouse_0_move_0 Cat_4)" & "(@def ready mouse_0_move_0 Cat_0)" & "(@def ready mouse_0_move_0 Cat_3)");
+  "(@def enabled cat_0_move_0)":=("(@def ready cat_0_move_0 Mouse_0)" & "(@def ready cat_0_move_0 Cat_0)" & "(@def ready cat_0_move_0 Mouse_2)" & "(@def ready cat_0_move_0 Mouse_1)" & "(@def ready cat_0_move_0 Mouse_3)" & "(@def ready cat_0_move_0 Mouse_4)");
+  "(@def enabled cat_0_move_1)":=("(@def ready cat_0_move_1 Mouse_0)" & "(@def ready cat_0_move_1 Cat_0)" & "(@def ready cat_0_move_1 Mouse_2)" & "(@def ready cat_0_move_1 Mouse_1)" & "(@def ready cat_0_move_1 Mouse_3)" & "(@def ready cat_0_move_1 Mouse_4)");
+  "(@def enabled cat_0_move_2)":=("(@def ready cat_0_move_2 Mouse_0)" & "(@def ready cat_0_move_2 Cat_0)" & "(@def ready cat_0_move_2 Mouse_2)" & "(@def ready cat_0_move_2 Mouse_1)" & "(@def ready cat_0_move_2 Mouse_3)" & "(@def ready cat_0_move_2 Mouse_4)");
+  "(@def enabled safe)":=("(@def ready safe Mouse_0)" & "(@def ready safe Mouse_2)" & "(@def ready safe Mouse_1)" & "(@def ready safe Mouse_3)" & "(@def ready safe Mouse_4)");
+  "(@def enabled cat_turn)":=("(@def ready cat_turn Cat_2)" & "(@def ready cat_turn Mouse_0)" & "(@def ready cat_turn Cat_1)" & "(@def ready cat_turn Cat_4)" & "(@def ready cat_turn Cat_0)" & "(@def ready cat_turn Mouse_2)" & "(@def ready cat_turn Mouse_1)" & "(@def ready cat_turn Mouse_3)" & "(@def ready cat_turn Cat_3)" & "(@def ready cat_turn Mouse_4)");
+  "(@def enabled cat_1_move_1)":=("(@def ready cat_1_move_1 Mouse_0)" & "(@def ready cat_1_move_1 Cat_1)" & "(@def ready cat_1_move_1 Mouse_2)" & "(@def ready cat_1_move_1 Mouse_1)" & "(@def ready cat_1_move_1 Mouse_3)" & "(@def ready cat_1_move_1 Mouse_4)");
+  "(@def enabled cat_1_move_0)":=("(@def ready cat_1_move_0 Mouse_0)" & "(@def ready cat_1_move_0 Cat_1)" & "(@def ready cat_1_move_0 Mouse_2)" & "(@def ready cat_1_move_0 Mouse_1)" & "(@def ready cat_1_move_0 Mouse_3)" & "(@def ready cat_1_move_0 Mouse_4)");
+  "(@def enabled cat_1_move_2)":=("(@def ready cat_1_move_2 Mouse_0)" & "(@def ready cat_1_move_2 Cat_1)" & "(@def ready cat_1_move_2 Mouse_2)" & "(@def ready cat_1_move_2 Mouse_1)" & "(@def ready cat_1_move_2 Mouse_3)" & "(@def ready cat_1_move_2 Mouse_4)");
+  "(@def enabled mouse_3_move_0)":=("(@def ready mouse_3_move_0 Cat_2)" & "(@def ready mouse_3_move_0 Cat_1)" & "(@def ready mouse_3_move_0 Cat_4)" & "(@def ready mouse_3_move_0 Cat_0)" & "(@def ready mouse_3_move_0 Mouse_3)" & "(@def ready mouse_3_move_0 Cat_3)");
+  "(@def enabled mouse_4_move_0)":=("(@def ready mouse_4_move_0 Cat_2)" & "(@def ready mouse_4_move_0 Cat_1)" & "(@def ready mouse_4_move_0 Cat_4)" & "(@def ready mouse_4_move_0 Cat_0)" & "(@def ready mouse_4_move_0 Cat_3)" & "(@def ready mouse_4_move_0 Mouse_4)");
+  "(@def enabled mouse_4_move_1)":=("(@def ready mouse_4_move_1 Cat_2)" & "(@def ready mouse_4_move_1 Cat_1)" & "(@def ready mouse_4_move_1 Cat_4)" & "(@def ready mouse_4_move_1 Cat_0)" & "(@def ready mouse_4_move_1 Cat_3)" & "(@def ready mouse_4_move_1 Mouse_4)");
+  "(@def enabled mouse_1_move_0)":=("(@def ready mouse_1_move_0 Cat_2)" & "(@def ready mouse_1_move_0 Cat_1)" & "(@def ready mouse_1_move_0 Cat_4)" & "(@def ready mouse_1_move_0 Cat_0)" & "(@def ready mouse_1_move_0 Mouse_1)" & "(@def ready mouse_1_move_0 Cat_3)");
+  "(@def enabled mouse_1_move_1)":=("(@def ready mouse_1_move_1 Cat_2)" & "(@def ready mouse_1_move_1 Cat_1)" & "(@def ready mouse_1_move_1 Cat_4)" & "(@def ready mouse_1_move_1 Cat_0)" & "(@def ready mouse_1_move_1 Mouse_1)" & "(@def ready mouse_1_move_1 Cat_3)");
+  "(@def enabled mouse_4_move_2)":=("(@def ready mouse_4_move_2 Cat_2)" & "(@def ready mouse_4_move_2 Cat_1)" & "(@def ready mouse_4_move_2 Cat_4)" & "(@def ready mouse_4_move_2 Cat_0)" & "(@def ready mouse_4_move_2 Cat_3)" & "(@def ready mouse_4_move_2 Mouse_4)");
+  "(@def enabled mouse_turn)":=("(@def ready mouse_turn Cat_2)" & "(@def ready mouse_turn Mouse_0)" & "(@def ready mouse_turn Cat_1)" & "(@def ready mouse_turn Cat_4)" & "(@def ready mouse_turn Cat_0)" & "(@def ready mouse_turn Mouse_2)" & "(@def ready mouse_turn Mouse_1)" & "(@def ready mouse_turn Mouse_3)" & "(@def ready mouse_turn Cat_3)" & "(@def ready mouse_turn Mouse_4)");
+  "(@def enabled mouse_1_move_2)":=("(@def ready mouse_1_move_2 Cat_2)" & "(@def ready mouse_1_move_2 Cat_1)" & "(@def ready mouse_1_move_2 Cat_4)" & "(@def ready mouse_1_move_2 Cat_0)" & "(@def ready mouse_1_move_2 Mouse_1)" & "(@def ready mouse_1_move_2 Cat_3)");
+  "(@def enabled mouse_3_move_1)":=("(@def ready mouse_3_move_1 Cat_2)" & "(@def ready mouse_3_move_1 Cat_1)" & "(@def ready mouse_3_move_1 Cat_4)" & "(@def ready mouse_3_move_1 Cat_0)" & "(@def ready mouse_3_move_1 Mouse_3)" & "(@def ready mouse_3_move_1 Cat_3)");
+  "(@def enabled mouse_3_move_2)":=("(@def ready mouse_3_move_2 Cat_2)" & "(@def ready mouse_3_move_2 Cat_1)" & "(@def ready mouse_3_move_2 Cat_4)" & "(@def ready mouse_3_move_2 Cat_0)" & "(@def ready mouse_3_move_2 Mouse_3)" & "(@def ready mouse_3_move_2 Cat_3)");
+  "(@def event)":=("(@def enabled safe)" | "(@def enabled cat_3_move_1)" | "(@def enabled cat_3_move_0)" | "(@def enabled cat_turn)" | "(@def enabled cat_3_move_2)" | "(@def enabled cat_1_move_1)" | "(@def enabled cat_1_move_0)" | "(@def enabled cat_1_move_2)" | "(@def enabled cat_2_move_0)" | "(@def enabled cat_2_move_2)" | "(@def enabled cat_4_move_2)" | "(@def enabled cat_4_move_1)" | "(@def enabled cat_2_move_1)" | "(@def enabled mouse_turn)" | "(@def enabled cat_4_move_0)" | "(@def enabled cat_0_move_0)" | "(@def enabled cat_0_move_1)" | "(@def enabled cat_0_move_2)");
+  "(@def keep at)":=(next("(at Cat_2)")="(at Cat_2)" & next("(at Mouse_0)")="(at Mouse_0)" & next("(at Cat_1)")="(at Cat_1)" & next("(at Cat_4)")="(at Cat_4)" & next("(at Cat_0)")="(at Cat_0)" & next("(at Mouse_2)")="(at Mouse_2)" & next("(at Mouse_1)")="(at Mouse_1)" & next("(at Mouse_3)")="(at Mouse_3)" & next("(at Cat_3)")="(at Cat_3)" & next("(at Mouse_4)")="(at Mouse_4)");
+  "(@def no inprogress)":=(!"(inprogress safe)" & !"(inprogress cat_3_move_1)" & !"(inprogress cat_3_move_0)" & !"(inprogress cat_turn)" & !"(inprogress cat_3_move_2)" & !"(inprogress cat_1_move_1)" & !"(inprogress cat_1_move_0)" & !"(inprogress cat_1_move_2)" & !"(inprogress cat_2_move_0)" & !"(inprogress cat_2_move_2)" & !"(inprogress cat_4_move_2)" & !"(inprogress cat_4_move_1)" & !"(inprogress cat_2_move_1)" & !"(inprogress mouse_turn)" & !"(inprogress cat_4_move_0)" & !"(inprogress cat_0_move_0)" & !"(inprogress cat_0_move_1)" & !"(inprogress cat_0_move_2)");
+  "(@def reset inprogress)":=(next("(inprogress safe)")=0 & next("(inprogress cat_3_move_1)")=0 & next("(inprogress cat_3_move_0)")=0 & next("(inprogress cat_turn)")=0 & next("(inprogress cat_3_move_2)")=0 & next("(inprogress cat_1_move_1)")=0 & next("(inprogress cat_1_move_0)")=0 & next("(inprogress cat_1_move_2)")=0 & next("(inprogress cat_2_move_0)")=0 & next("(inprogress cat_2_move_2)")=0 & next("(inprogress cat_4_move_2)")=0 & next("(inprogress cat_4_move_1)")=0 & next("(inprogress cat_2_move_1)")=0 & next("(inprogress mouse_turn)")=0 & next("(inprogress cat_4_move_0)")=0 & next("(inprogress cat_0_move_0)")=0 & next("(inprogress cat_0_move_1)")=0 & next("(inprogress cat_0_move_2)")=0);
+TRANS (
+  (
+    (action="(choose)" & !("(status)"=0 & "(@def event)") -> FALSE) &
+    ((action="(choose)" & ("(status)"=0 & "(@def event)"))
+      -> (
+        (!"(@def enabled safe)" -> next("(inprogress safe)")=0) & 
+        (!"(@def enabled cat_3_move_1)" -> next("(inprogress cat_3_move_1)")=0) & 
+        (!"(@def enabled cat_3_move_0)" -> next("(inprogress cat_3_move_0)")=0) & 
+        (!"(@def enabled cat_turn)" -> next("(inprogress cat_turn)")=0) & 
+        (!"(@def enabled cat_3_move_2)" -> next("(inprogress cat_3_move_2)")=0) & 
+        (!"(@def enabled cat_1_move_1)" -> next("(inprogress cat_1_move_1)")=0) & 
+        (!"(@def enabled cat_1_move_0)" -> next("(inprogress cat_1_move_0)")=0) & 
+        (!"(@def enabled cat_1_move_2)" -> next("(inprogress cat_1_move_2)")=0) & 
+        (!"(@def enabled cat_2_move_0)" -> next("(inprogress cat_2_move_0)")=0) & 
+        (!"(@def enabled cat_2_move_2)" -> next("(inprogress cat_2_move_2)")=0) & 
+        (!"(@def enabled cat_4_move_2)" -> next("(inprogress cat_4_move_2)")=0) & 
+        (!"(@def enabled cat_4_move_1)" -> next("(inprogress cat_4_move_1)")=0) & 
+        (!"(@def enabled cat_2_move_1)" -> next("(inprogress cat_2_move_1)")=0) & 
+        (!"(@def enabled mouse_turn)" -> next("(inprogress mouse_turn)")=0) & 
+        (!"(@def enabled cat_4_move_0)" -> next("(inprogress cat_4_move_0)")=0) & 
+        (!"(@def enabled cat_0_move_0)" -> next("(inprogress cat_0_move_0)")=0) & 
+        (!"(@def enabled cat_0_move_1)" -> next("(inprogress cat_0_move_1)")=0) & 
+        (!"(@def enabled cat_0_move_2)" -> next("(inprogress cat_0_move_2)")=0) & 
+        next("(status)")=1 &
+        "(@def keep at)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(default)" & !("(status)"=1 & "(@def no inprogress)") -> FALSE) &
+    ((action="(default)" & ("(status)"=1 & "(@def no inprogress)"))
+      -> (
+        next("(inprogress safe)")=1 &
+        next("(inprogress cat_3_move_1)")=1 &
+        next("(inprogress cat_3_move_0)")=1 &
+        next("(inprogress cat_turn)")=1 &
+        next("(inprogress cat_3_move_2)")=1 &
+        next("(inprogress cat_1_move_1)")=1 &
+        next("(inprogress cat_1_move_0)")=1 &
+        next("(inprogress cat_1_move_2)")=1 &
+        next("(inprogress cat_2_move_0)")=1 &
+        next("(inprogress cat_2_move_2)")=1 &
+        next("(inprogress cat_4_move_2)")=1 &
+        next("(inprogress cat_4_move_1)")=1 &
+        next("(inprogress cat_2_move_1)")=1 &
+        next("(inprogress mouse_turn)")=1 &
+        next("(inprogress cat_4_move_0)")=1 &
+        next("(inprogress cat_0_move_0)")=1 &
+        next("(inprogress cat_0_move_1)")=1 &
+        next("(inprogress cat_0_move_2)")=1 &
+        "(@def keep at)" &
+        next("(status)")="(status)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_3_move_1)" & !("(@def enabled cat_3_move_1)" & "(inprogress cat_3_move_1)") -> FALSE) &
+    ((action="(cat_3_move_1)" & ("(@def enabled cat_3_move_1)" & "(inprogress cat_3_move_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=0) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=7) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=0) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=7) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=0) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=8) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=0) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=8) &
+        ("(at Cat_3)"=2 -> next("(at Cat_3)")=3) &
+        ("(at Cat_3)"=5 -> next("(at Cat_3)")=3) &
+        ("(at Cat_3)"=8 -> next("(at Cat_3)")=3) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=0) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_3_move_0)" & !("(@def enabled cat_3_move_0)" & "(inprogress cat_3_move_0)") -> FALSE) &
+    ((action="(cat_3_move_0)" & ("(@def enabled cat_3_move_0)" & "(inprogress cat_3_move_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=0) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=-1) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=0) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=-1) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=0) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=-1) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=0) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=-1) &
+        ("(at Cat_3)"=2 -> next("(at Cat_3)")=0) &
+        ("(at Cat_3)"=5 -> next("(at Cat_3)")=0) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=0) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_3_move_2)" & !("(@def enabled cat_3_move_2)" & "(inprogress cat_3_move_2)") -> FALSE) &
+    ((action="(cat_3_move_2)" & ("(@def enabled cat_3_move_2)" & "(inprogress cat_3_move_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=-1) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=7) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=-1) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=7) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=-1) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=8) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=-1) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=8) &
+        ("(at Cat_3)"=5 -> next("(at Cat_3)")=6) &
+        ("(at Cat_3)"=8 -> next("(at Cat_3)")=6) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=-1) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_2_move_2)" & !("(@def enabled mouse_2_move_2)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_2_move_2)" & ("(@def enabled mouse_2_move_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=-1) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=-1) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=-1) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=-1) &
+        ("(at Mouse_2)"=1 -> next("(at Mouse_2)")=9) &
+        ("(at Mouse_2)"=5 -> next("(at Mouse_2)")=9) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_1)")="(at Mouse_1)" &
+        next("(at Mouse_3)")="(at Mouse_3)" &
+        next("(at Mouse_4)")="(at Mouse_4)" &
+        next("(at Mouse_0)")="(at Mouse_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_2_move_0)" & !("(@def enabled mouse_2_move_0)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_2_move_0)" & ("(@def enabled mouse_2_move_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=-1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=7) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=-1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=7) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=-1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=7) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=-1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=7) &
+        ("(at Mouse_2)"=5 -> next("(at Mouse_2)")=6) &
+        ("(at Mouse_2)"=8 -> next("(at Mouse_2)")=6) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=-1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=7) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_1)")="(at Mouse_1)" &
+        next("(at Mouse_3)")="(at Mouse_3)" &
+        next("(at Mouse_4)")="(at Mouse_4)" &
+        next("(at Mouse_0)")="(at Mouse_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_2_move_1)" & !("(@def enabled mouse_2_move_1)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_2_move_1)" & ("(@def enabled mouse_2_move_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=7) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=7) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=7) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=7) &
+        ("(at Mouse_2)"=1 -> next("(at Mouse_2)")=2) &
+        ("(at Mouse_2)"=5 -> next("(at Mouse_2)")=2) &
+        ("(at Mouse_2)"=8 -> next("(at Mouse_2)")=2) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=7) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_1)")="(at Mouse_1)" &
+        next("(at Mouse_3)")="(at Mouse_3)" &
+        next("(at Mouse_4)")="(at Mouse_4)" &
+        next("(at Mouse_0)")="(at Mouse_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_2_move_0)" & !("(@def enabled cat_2_move_0)" & "(inprogress cat_2_move_0)") -> FALSE) &
+    ((action="(cat_2_move_0)" & ("(@def enabled cat_2_move_0)" & "(inprogress cat_2_move_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=2 -> next("(at Cat_2)")=0) &
+        ("(at Cat_2)"=5 -> next("(at Cat_2)")=0) &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=0) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=-1) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=0) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=-1) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=0) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=-1) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=0) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=-1) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=0) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_3)")="(at Cat_3)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_2_move_2)" & !("(@def enabled cat_2_move_2)" & "(inprogress cat_2_move_2)") -> FALSE) &
+    ((action="(cat_2_move_2)" & ("(@def enabled cat_2_move_2)" & "(inprogress cat_2_move_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=5 -> next("(at Cat_2)")=6) &
+        ("(at Cat_2)"=8 -> next("(at Cat_2)")=6) &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=-1) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=7) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=-1) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=7) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=-1) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=8) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=-1) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=8) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=-1) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_3)")="(at Cat_3)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_4_move_2)" & !("(@def enabled cat_4_move_2)" & "(inprogress cat_4_move_2)") -> FALSE) &
+    ((action="(cat_4_move_2)" & ("(@def enabled cat_4_move_2)" & "(inprogress cat_4_move_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=-1) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=7) &
+        ("(at Cat_4)"=5 -> next("(at Cat_4)")=6) &
+        ("(at Cat_4)"=8 -> next("(at Cat_4)")=6) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=-1) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=7) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=-1) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=8) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=-1) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=8) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=-1) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_3)")="(at Cat_3)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_4_move_1)" & !("(@def enabled cat_4_move_1)" & "(inprogress cat_4_move_1)") -> FALSE) &
+    ((action="(cat_4_move_1)" & ("(@def enabled cat_4_move_1)" & "(inprogress cat_4_move_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=0) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=7) &
+        ("(at Cat_4)"=2 -> next("(at Cat_4)")=3) &
+        ("(at Cat_4)"=5 -> next("(at Cat_4)")=3) &
+        ("(at Cat_4)"=8 -> next("(at Cat_4)")=3) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=0) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=7) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=0) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=8) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=0) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=8) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=0) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_3)")="(at Cat_3)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_2_move_1)" & !("(@def enabled cat_2_move_1)" & "(inprogress cat_2_move_1)") -> FALSE) &
+    ((action="(cat_2_move_1)" & ("(@def enabled cat_2_move_1)" & "(inprogress cat_2_move_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=2 -> next("(at Cat_2)")=3) &
+        ("(at Cat_2)"=5 -> next("(at Cat_2)")=3) &
+        ("(at Cat_2)"=8 -> next("(at Cat_2)")=3) &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=0) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=7) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=0) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=7) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=0) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=8) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=0) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=8) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=0) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_3)")="(at Cat_3)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_4_move_0)" & !("(@def enabled cat_4_move_0)" & "(inprogress cat_4_move_0)") -> FALSE) &
+    ((action="(cat_4_move_0)" & ("(@def enabled cat_4_move_0)" & "(inprogress cat_4_move_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=0) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=-1) &
+        ("(at Cat_4)"=2 -> next("(at Cat_4)")=0) &
+        ("(at Cat_4)"=5 -> next("(at Cat_4)")=0) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=0) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=-1) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=0) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=-1) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=0) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=-1) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=0) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_3)")="(at Cat_3)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_0_move_2)" & !("(@def enabled mouse_0_move_2)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_0_move_2)" & ("(@def enabled mouse_0_move_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=-1) &
+        ("(at Mouse_0)"=1 -> next("(at Mouse_0)")=9) &
+        ("(at Mouse_0)"=5 -> next("(at Mouse_0)")=9) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=-1) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=-1) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=-1) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_1)")="(at Mouse_1)" &
+        next("(at Mouse_3)")="(at Mouse_3)" &
+        next("(at Mouse_2)")="(at Mouse_2)" &
+        next("(at Mouse_4)")="(at Mouse_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_0_move_1)" & !("(@def enabled mouse_0_move_1)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_0_move_1)" & ("(@def enabled mouse_0_move_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=7) &
+        ("(at Mouse_0)"=1 -> next("(at Mouse_0)")=2) &
+        ("(at Mouse_0)"=5 -> next("(at Mouse_0)")=2) &
+        ("(at Mouse_0)"=8 -> next("(at Mouse_0)")=2) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=7) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=7) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=7) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=7) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_1)")="(at Mouse_1)" &
+        next("(at Mouse_3)")="(at Mouse_3)" &
+        next("(at Mouse_2)")="(at Mouse_2)" &
+        next("(at Mouse_4)")="(at Mouse_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_0_move_0)" & !("(@def enabled mouse_0_move_0)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_0_move_0)" & ("(@def enabled mouse_0_move_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=-1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=7) &
+        ("(at Mouse_0)"=5 -> next("(at Mouse_0)")=6) &
+        ("(at Mouse_0)"=8 -> next("(at Mouse_0)")=6) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=-1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=7) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=-1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=7) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=-1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=7) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=-1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=7) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_1)")="(at Mouse_1)" &
+        next("(at Mouse_3)")="(at Mouse_3)" &
+        next("(at Mouse_2)")="(at Mouse_2)" &
+        next("(at Mouse_4)")="(at Mouse_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_0_move_0)" & !("(@def enabled cat_0_move_0)" & "(inprogress cat_0_move_0)") -> FALSE) &
+    ((action="(cat_0_move_0)" & ("(@def enabled cat_0_move_0)" & "(inprogress cat_0_move_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=0) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=-1) &
+        ("(at Cat_0)"=2 -> next("(at Cat_0)")=0) &
+        ("(at Cat_0)"=5 -> next("(at Cat_0)")=0) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=0) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=-1) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=0) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=-1) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=0) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=-1) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=0) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_3)")="(at Cat_3)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_0_move_1)" & !("(@def enabled cat_0_move_1)" & "(inprogress cat_0_move_1)") -> FALSE) &
+    ((action="(cat_0_move_1)" & ("(@def enabled cat_0_move_1)" & "(inprogress cat_0_move_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=0) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=7) &
+        ("(at Cat_0)"=2 -> next("(at Cat_0)")=3) &
+        ("(at Cat_0)"=5 -> next("(at Cat_0)")=3) &
+        ("(at Cat_0)"=8 -> next("(at Cat_0)")=3) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=0) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=7) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=0) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=8) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=0) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=8) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=0) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_3)")="(at Cat_3)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_0_move_2)" & !("(@def enabled cat_0_move_2)" & "(inprogress cat_0_move_2)") -> FALSE) &
+    ((action="(cat_0_move_2)" & ("(@def enabled cat_0_move_2)" & "(inprogress cat_0_move_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=-1) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=7) &
+        ("(at Cat_0)"=5 -> next("(at Cat_0)")=6) &
+        ("(at Cat_0)"=8 -> next("(at Cat_0)")=6) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=-1) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=7) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=-1) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=8) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=-1) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=8) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=-1) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_3)")="(at Cat_3)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(safe)" & !("(@def enabled safe)" & "(inprogress safe)") -> FALSE) &
+    ((action="(safe)" & ("(@def enabled safe)" & "(inprogress safe)"))
+      -> (
+        next("(status)")=2 &
+        ("(at Mouse_0)"=2 -> next("(at Mouse_0)")=3) &
+        ("(at Mouse_2)"=2 -> next("(at Mouse_2)")=3) &
+        ("(at Mouse_1)"=3 -> next("(at Mouse_1)")=4) &
+        ("(at Mouse_3)"=3 -> next("(at Mouse_3)")=4) &
+        ("(at Mouse_4)"=3 -> next("(at Mouse_4)")=4) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_1)")="(at Cat_1)" &
+        next("(at Cat_3)")="(at Cat_3)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_turn)" & !("(@def enabled cat_turn)" & "(inprogress cat_turn)") -> FALSE) &
+    ((action="(cat_turn)" & ("(@def enabled cat_turn)" & "(inprogress cat_turn)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=2) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=5) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=8) &
+        ("(at Mouse_0)"=3 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=6 -> next("(at Mouse_0)")=7) &
+        ("(at Mouse_0)"=9 -> next("(at Mouse_0)")=0) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=2) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=5) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=8) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=2) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=5) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=8) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=2) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=5) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=8) &
+        ("(at Mouse_2)"=3 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=6 -> next("(at Mouse_2)")=7) &
+        ("(at Mouse_2)"=9 -> next("(at Mouse_2)")=0) &
+        ("(at Mouse_1)"=2 -> next("(at Mouse_1)")=0) &
+        ("(at Mouse_1)"=4 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=7 -> next("(at Mouse_1)")=8) &
+        ("(at Mouse_3)"=2 -> next("(at Mouse_3)")=0) &
+        ("(at Mouse_3)"=4 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=7 -> next("(at Mouse_3)")=8) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=2) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=5) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=8) &
+        ("(at Mouse_4)"=2 -> next("(at Mouse_4)")=0) &
+        ("(at Mouse_4)"=4 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=7 -> next("(at Mouse_4)")=8) &
+        "(@def reset inprogress)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_1_move_1)" & !("(@def enabled cat_1_move_1)" & "(inprogress cat_1_move_1)") -> FALSE) &
+    ((action="(cat_1_move_1)" & ("(@def enabled cat_1_move_1)" & "(inprogress cat_1_move_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=0) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=7) &
+        ("(at Cat_1)"=2 -> next("(at Cat_1)")=3) &
+        ("(at Cat_1)"=5 -> next("(at Cat_1)")=3) &
+        ("(at Cat_1)"=8 -> next("(at Cat_1)")=3) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=0) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=7) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=0) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=8) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=0) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=8) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=0) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_3)")="(at Cat_3)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_1_move_0)" & !("(@def enabled cat_1_move_0)" & "(inprogress cat_1_move_0)") -> FALSE) &
+    ((action="(cat_1_move_0)" & ("(@def enabled cat_1_move_0)" & "(inprogress cat_1_move_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=0) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=-1) &
+        ("(at Cat_1)"=2 -> next("(at Cat_1)")=0) &
+        ("(at Cat_1)"=5 -> next("(at Cat_1)")=0) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=0) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=-1) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=0) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=-1) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=0) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=-1) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=0) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_3)")="(at Cat_3)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(cat_1_move_2)" & !("(@def enabled cat_1_move_2)" & "(inprogress cat_1_move_2)") -> FALSE) &
+    ((action="(cat_1_move_2)" & ("(@def enabled cat_1_move_2)" & "(inprogress cat_1_move_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=-1) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=4) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=7) &
+        ("(at Cat_1)"=5 -> next("(at Cat_1)")=6) &
+        ("(at Cat_1)"=8 -> next("(at Cat_1)")=6) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=-1) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=4) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=7) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=-1) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=5) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=8) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=-1) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=5) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=8) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=-1) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=5) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Cat_0)")="(at Cat_0)" &
+        next("(at Cat_2)")="(at Cat_2)" &
+        next("(at Cat_3)")="(at Cat_3)" &
+        next("(at Cat_4)")="(at Cat_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_3_move_0)" & !("(@def enabled mouse_3_move_0)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_3_move_0)" & ("(@def enabled mouse_3_move_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=-1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=7) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=-1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=7) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=-1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=7) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=-1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=7) &
+        ("(at Mouse_3)"=6 -> next("(at Mouse_3)")=7) &
+        ("(at Mouse_3)"=9 -> next("(at Mouse_3)")=7) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=-1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=7) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_1)")="(at Mouse_1)" &
+        next("(at Mouse_2)")="(at Mouse_2)" &
+        next("(at Mouse_4)")="(at Mouse_4)" &
+        next("(at Mouse_0)")="(at Mouse_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_4_move_0)" & !("(@def enabled mouse_4_move_0)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_4_move_0)" & ("(@def enabled mouse_4_move_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=-1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=7) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=-1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=7) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=-1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=7) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=-1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=7) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=-1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=7) &
+        ("(at Mouse_4)"=6 -> next("(at Mouse_4)")=7) &
+        ("(at Mouse_4)"=9 -> next("(at Mouse_4)")=7) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_1)")="(at Mouse_1)" &
+        next("(at Mouse_3)")="(at Mouse_3)" &
+        next("(at Mouse_2)")="(at Mouse_2)" &
+        next("(at Mouse_0)")="(at Mouse_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_4_move_1)" & !("(@def enabled mouse_4_move_1)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_4_move_1)" & ("(@def enabled mouse_4_move_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=7) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=7) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=7) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=7) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=7) &
+        ("(at Mouse_4)"=1 -> next("(at Mouse_4)")=3) &
+        ("(at Mouse_4)"=6 -> next("(at Mouse_4)")=3) &
+        ("(at Mouse_4)"=9 -> next("(at Mouse_4)")=3) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_1)")="(at Mouse_1)" &
+        next("(at Mouse_3)")="(at Mouse_3)" &
+        next("(at Mouse_2)")="(at Mouse_2)" &
+        next("(at Mouse_0)")="(at Mouse_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_1_move_0)" & !("(@def enabled mouse_1_move_0)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_1_move_0)" & ("(@def enabled mouse_1_move_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=-1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=7) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=-1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=7) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=-1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=7) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=-1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=7) &
+        ("(at Mouse_1)"=6 -> next("(at Mouse_1)")=7) &
+        ("(at Mouse_1)"=9 -> next("(at Mouse_1)")=7) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=-1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=7) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_3)")="(at Mouse_3)" &
+        next("(at Mouse_2)")="(at Mouse_2)" &
+        next("(at Mouse_4)")="(at Mouse_4)" &
+        next("(at Mouse_0)")="(at Mouse_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_1_move_1)" & !("(@def enabled mouse_1_move_1)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_1_move_1)" & ("(@def enabled mouse_1_move_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=7) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=7) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=7) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=7) &
+        ("(at Mouse_1)"=1 -> next("(at Mouse_1)")=3) &
+        ("(at Mouse_1)"=6 -> next("(at Mouse_1)")=3) &
+        ("(at Mouse_1)"=9 -> next("(at Mouse_1)")=3) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=7) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_3)")="(at Mouse_3)" &
+        next("(at Mouse_2)")="(at Mouse_2)" &
+        next("(at Mouse_4)")="(at Mouse_4)" &
+        next("(at Mouse_0)")="(at Mouse_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_4_move_2)" & !("(@def enabled mouse_4_move_2)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_4_move_2)" & ("(@def enabled mouse_4_move_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=-1) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=-1) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=-1) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=-1) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=-1) &
+        ("(at Mouse_4)"=1 -> next("(at Mouse_4)")=2) &
+        ("(at Mouse_4)"=6 -> next("(at Mouse_4)")=2) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_1)")="(at Mouse_1)" &
+        next("(at Mouse_3)")="(at Mouse_3)" &
+        next("(at Mouse_2)")="(at Mouse_2)" &
+        next("(at Mouse_0)")="(at Mouse_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_turn)" & !("(@def enabled mouse_turn)" & "(inprogress mouse_turn)") -> FALSE) &
+    ((action="(mouse_turn)" & ("(@def enabled mouse_turn)" & "(inprogress mouse_turn)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=0 -> next("(at Cat_2)")=1) &
+        ("(at Cat_2)"=3 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=6 -> next("(at Cat_2)")=7) &
+        ("(at Mouse_0)"=0 -> next("(at Mouse_0)")=1) &
+        ("(at Mouse_0)"=4 -> next("(at Mouse_0)")=5) &
+        ("(at Mouse_0)"=7 -> next("(at Mouse_0)")=8) &
+        ("(at Cat_1)"=0 -> next("(at Cat_1)")=1) &
+        ("(at Cat_1)"=3 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=6 -> next("(at Cat_1)")=7) &
+        ("(at Cat_4)"=0 -> next("(at Cat_4)")=1) &
+        ("(at Cat_4)"=3 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=6 -> next("(at Cat_4)")=7) &
+        ("(at Cat_0)"=0 -> next("(at Cat_0)")=1) &
+        ("(at Cat_0)"=3 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=6 -> next("(at Cat_0)")=7) &
+        ("(at Mouse_2)"=0 -> next("(at Mouse_2)")=1) &
+        ("(at Mouse_2)"=4 -> next("(at Mouse_2)")=5) &
+        ("(at Mouse_2)"=7 -> next("(at Mouse_2)")=8) &
+        ("(at Mouse_1)"=0 -> next("(at Mouse_1)")=1) &
+        ("(at Mouse_1)"=5 -> next("(at Mouse_1)")=6) &
+        ("(at Mouse_1)"=8 -> next("(at Mouse_1)")=9) &
+        ("(at Mouse_3)"=0 -> next("(at Mouse_3)")=1) &
+        ("(at Mouse_3)"=5 -> next("(at Mouse_3)")=6) &
+        ("(at Mouse_3)"=8 -> next("(at Mouse_3)")=9) &
+        ("(at Cat_3)"=0 -> next("(at Cat_3)")=1) &
+        ("(at Cat_3)"=3 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=6 -> next("(at Cat_3)")=7) &
+        ("(at Mouse_4)"=0 -> next("(at Mouse_4)")=1) &
+        ("(at Mouse_4)"=5 -> next("(at Mouse_4)")=6) &
+        ("(at Mouse_4)"=8 -> next("(at Mouse_4)")=9) &
+        "(@def reset inprogress)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_1_move_2)" & !("(@def enabled mouse_1_move_2)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_1_move_2)" & ("(@def enabled mouse_1_move_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=-1) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=-1) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=-1) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=-1) &
+        ("(at Mouse_1)"=1 -> next("(at Mouse_1)")=2) &
+        ("(at Mouse_1)"=6 -> next("(at Mouse_1)")=2) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_3)")="(at Mouse_3)" &
+        next("(at Mouse_2)")="(at Mouse_2)" &
+        next("(at Mouse_4)")="(at Mouse_4)" &
+        next("(at Mouse_0)")="(at Mouse_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_3_move_1)" & !("(@def enabled mouse_3_move_1)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_3_move_1)" & ("(@def enabled mouse_3_move_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=7) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=7) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=7) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=7) &
+        ("(at Mouse_3)"=1 -> next("(at Mouse_3)")=3) &
+        ("(at Mouse_3)"=6 -> next("(at Mouse_3)")=3) &
+        ("(at Mouse_3)"=9 -> next("(at Mouse_3)")=3) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=7) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_1)")="(at Mouse_1)" &
+        next("(at Mouse_2)")="(at Mouse_2)" &
+        next("(at Mouse_4)")="(at Mouse_4)" &
+        next("(at Mouse_0)")="(at Mouse_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(mouse_3_move_2)" & !("(@def enabled mouse_3_move_2)" & !"(@def event)") -> FALSE) &
+    ((action="(mouse_3_move_2)" & ("(@def enabled mouse_3_move_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Cat_2)"=1 -> next("(at Cat_2)")=1) &
+        ("(at Cat_2)"=4 -> next("(at Cat_2)")=4) &
+        ("(at Cat_2)"=7 -> next("(at Cat_2)")=-1) &
+        ("(at Cat_1)"=1 -> next("(at Cat_1)")=1) &
+        ("(at Cat_1)"=4 -> next("(at Cat_1)")=4) &
+        ("(at Cat_1)"=7 -> next("(at Cat_1)")=-1) &
+        ("(at Cat_4)"=1 -> next("(at Cat_4)")=1) &
+        ("(at Cat_4)"=4 -> next("(at Cat_4)")=4) &
+        ("(at Cat_4)"=7 -> next("(at Cat_4)")=-1) &
+        ("(at Cat_0)"=1 -> next("(at Cat_0)")=1) &
+        ("(at Cat_0)"=4 -> next("(at Cat_0)")=4) &
+        ("(at Cat_0)"=7 -> next("(at Cat_0)")=-1) &
+        ("(at Mouse_3)"=1 -> next("(at Mouse_3)")=2) &
+        ("(at Mouse_3)"=6 -> next("(at Mouse_3)")=2) &
+        ("(at Cat_3)"=1 -> next("(at Cat_3)")=1) &
+        ("(at Cat_3)"=4 -> next("(at Cat_3)")=4) &
+        ("(at Cat_3)"=7 -> next("(at Cat_3)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Mouse_1)")="(at Mouse_1)" &
+        next("(at Mouse_2)")="(at Mouse_2)" &
+        next("(at Mouse_4)")="(at Mouse_4)" &
+        next("(at Mouse_0)")="(at Mouse_0)" 
+      )
+    )
+  )
+)
+FULL_OBS_STRONG_GOAL ("(status)"=2)

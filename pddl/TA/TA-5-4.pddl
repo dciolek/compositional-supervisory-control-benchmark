@@ -1,5 +1,5 @@
 (define
-  (domain Controller)
+  (domain DirectedController)
   
   (:requirements
     :typing
@@ -17,15 +17,15 @@
   (:constants
     $Service-2 $Service-1 $AgencyMonitor $Service-3 $ServiceMonitor-0 $Service-4 $ServiceMonitor-3 $Service-0 $ServiceMonitor-4 $ServiceMonitor-2 $Agency $ServiceMonitor-1 - LTS
     $-1 $0 $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11 $12 $13 $14 $15 $16 $17 - State
-    $agency-request $unavailable-1 $query-fail-1 $unavailable-0 $order-4 $query-fail-0 $steps-3-2 $unavailable-3 $order-3 $steps-3-3 $unavailable-2 $order-2 $order-1 $steps-4-0 $order-0 $unavailable-4 $committed-0 $committed-1 $query-fail-3 $query-fail-2 $query-fail-4 $steps-0-3 $steps-0-1 $steps-0-2 $steps-1-3 $steps-0-0 $steps-1-2 $steps-1-1 $steps-1-0 $steps-4-1 $steps-4-2 $steps-3-1 $steps-4-3 $steps-3-0 $query-4 $query-3 $purchase-fail-4 $query-2 $purchase-fail-3 $query-1 $query-0 $steps-2-1 $steps-2-2 $steps-2-0 $reserve-1 $reserve-0 $select-4 $select-3 $agency-fail $select-2 $cancel-4 $uncommitted-3 $uncommitted-4 $steps-2-3 $uncommitted-0 $uncommitted-1 $uncommitted-2 $purchase-fail-1 $purchase-fail-2 $purchase-fail-0 $cancel-3 $purchase-2 $purchase-1 $cancel-2 $cancel-1 $purchase-4 $purchase-3 $cancel-0 $purchase-0 $select-0 $select-1 $reserve-3 $reserve-2 $end $reserve-4 $agency-succ $committed-4 $committed-3 $available-0 $committed-2 $available-1 $available-2 $available-3 $available-4 $query-succ-4 $query-succ-3 $purchase-succ-3 $query-succ-2 $purchase-succ-4 $purchase-succ-1 $query-succ-1 $query-succ-0 $purchase-succ-2 $purchase-succ-0 - Label
-    setup idle busy uncontrollable complete looping event - Phase
+    $agency-request $unavailable-1 $query-fail-1 $unavailable-0 $query-fail-0 $steps-3-2 $unavailable-3 $steps-3-3 $unavailable-2 $steps-4-0 $unavailable-4 $committed-0 $committed-1 $query-fail-3 $query-fail-2 $query-fail-4 $steps-0-3 $steps-0-1 $steps-0-2 $steps-1-3 $steps-0-0 $steps-1-2 $steps-1-1 $steps-1-0 $steps-4-1 $steps-4-2 $steps-3-1 $steps-4-3 $steps-3-0 $query-4 $query-3 $purchase-fail-4 $query-2 $purchase-fail-3 $query-1 $query-0 $steps-2-1 $steps-2-2 $steps-2-0 $select-4 $select-3 $agency-fail $select-2 $cancel-4 $uncommitted-3 $uncommitted-4 $steps-2-3 $uncommitted-0 $uncommitted-1 $uncommitted-2 $purchase-fail-1 $purchase-fail-2 $purchase-fail-0 $cancel-3 $purchase-2 $purchase-1 $cancel-2 $cancel-1 $purchase-4 $purchase-3 $cancel-0 $purchase-0 $select-0 $select-1 $agency-succ $committed-4 $committed-3 $available-0 $committed-2 $available-1 $available-2 $available-3 $available-4 $query-succ-4 $query-succ-3 $purchase-succ-3 $query-succ-2 $purchase-succ-4 $purchase-succ-1 $query-succ-1 $query-succ-0 $purchase-succ-2 $purchase-succ-0 - Label
+    setup idle busy complete uncontrollable looping event - Phase
   )
   
   (:predicates
     (at ?s - State ?m - LTS)
+    (ready ?a - Label ?m - LTS)
     (marked ?s - State ?m - LTS)
     (hoop ?m - LTS)
-    (ready ?a - Label ?m - LTS)
     (enabled ?a - Label)
     (inprogress ?a - Label)
     (status ?c - Phase)
@@ -47,17 +47,12 @@
         (not (enabled $unavailable-1))
         (not (enabled $query-fail-1))
         (not (enabled $unavailable-0))
-        (not (enabled $order-4))
         (not (enabled $query-fail-0))
         (not (enabled $steps-3-2))
         (not (enabled $unavailable-3))
-        (not (enabled $order-3))
         (not (enabled $steps-3-3))
         (not (enabled $unavailable-2))
-        (not (enabled $order-2))
-        (not (enabled $order-1))
         (not (enabled $steps-4-0))
-        (not (enabled $order-0))
         (not (enabled $unavailable-4))
         (not (enabled $committed-0))
         (not (enabled $committed-1))
@@ -87,8 +82,6 @@
         (not (enabled $steps-2-1))
         (not (enabled $steps-2-2))
         (not (enabled $steps-2-0))
-        (not (enabled $reserve-1))
-        (not (enabled $reserve-0))
         (not (enabled $select-4))
         (not (enabled $select-3))
         (not (enabled $agency-fail))
@@ -114,10 +107,6 @@
         (not (enabled $purchase-0))
         (not (enabled $select-0))
         (not (enabled $select-1))
-        (not (enabled $reserve-3))
-        (not (enabled $reserve-2))
-        (not (enabled $end))
-        (not (enabled $reserve-4))
         (not (enabled $agency-succ))
         (not (enabled $committed-4))
         (not (enabled $committed-3))
@@ -141,18 +130,13 @@
         (not (inprogress $unavailable-1))
         (not (inprogress $query-fail-1))
         (not (inprogress $unavailable-0))
-        (not (inprogress $order-4))
         (not (inprogress $query-fail-0))
         (not (inprogress $steps-3-2))
         (not (inprogress $unavailable-3))
-        (not (inprogress $order-3))
         (not (inprogress $steps-3-3))
         (not (inprogress $unavailable-2))
-        (not (inprogress $order-2))
         (not (inprogress $steps-4-0))
-        (not (inprogress $order-1))
         (not (inprogress $unavailable-4))
-        (not (inprogress $order-0))
         (not (inprogress $committed-0))
         (not (inprogress $committed-1))
         (not (inprogress $query-fail-3))
@@ -162,8 +146,8 @@
         (not (inprogress $steps-0-1))
         (not (inprogress $steps-0-2))
         (not (inprogress $steps-1-3))
-        (not (inprogress $steps-0-0))
         (not (inprogress $steps-1-2))
+        (not (inprogress $steps-0-0))
         (not (inprogress $steps-1-1))
         (not (inprogress $steps-1-0))
         (not (inprogress $steps-4-1))
@@ -171,13 +155,19 @@
         (not (inprogress $steps-3-1))
         (not (inprogress $steps-4-3))
         (not (inprogress $steps-3-0))
+        (not (inprogress $query-4))
+        (not (inprogress $query-3))
         (not (inprogress $purchase-fail-4))
+        (not (inprogress $query-2))
         (not (inprogress $purchase-fail-3))
+        (not (inprogress $query-1))
+        (not (inprogress $query-0))
         (not (inprogress $steps-2-1))
         (not (inprogress $steps-2-2))
         (not (inprogress $steps-2-0))
-        (not (inprogress $reserve-1))
-        (not (inprogress $reserve-0))
+        (not (inprogress $select-4))
+        (not (inprogress $select-3))
+        (not (inprogress $select-2))
         (not (inprogress $uncommitted-3))
         (not (inprogress $uncommitted-4))
         (not (inprogress $steps-2-3))
@@ -187,10 +177,8 @@
         (not (inprogress $purchase-fail-1))
         (not (inprogress $purchase-fail-2))
         (not (inprogress $purchase-fail-0))
-        (not (inprogress $reserve-3))
-        (not (inprogress $reserve-2))
-        (not (inprogress $end))
-        (not (inprogress $reserve-4))
+        (not (inprogress $select-0))
+        (not (inprogress $select-1))
         (not (inprogress $committed-4))
         (not (inprogress $committed-3))
         (not (inprogress $committed-2))
@@ -209,9 +197,9 @@
         (not (inprogress $purchase-succ-2))
         (not (inprogress $query-succ-0))
         (not (inprogress $purchase-succ-0))
+        (not (ready $query-3 $Service-2))
         (not (ready $query-2 $Service-2))
         (not (ready $agency-succ $Service-2))
-        (not (ready $order-2 $Service-2))
         (not (ready $unavailable-2 $Service-2))
         (not (ready $purchase-2 $Service-2))
         (not (ready $steps-2-1 $Service-2))
@@ -226,21 +214,19 @@
         (not (ready $steps-2-3 $Service-2))
         (not (ready $query-succ-2 $Service-2))
         (not (ready $uncommitted-2 $Service-2))
-        (not (ready $reserve-2 $Service-2))
         (not (ready $purchase-succ-2 $Service-2))
         (not (ready $purchase-fail-2 $Service-2))
         (not (ready $unavailable-1 $Service-1))
         (not (ready $query-fail-1 $Service-1))
+        (not (ready $query-2 $Service-1))
         (not (ready $agency-succ $Service-1))
         (not (ready $query-1 $Service-1))
-        (not (ready $order-1 $Service-1))
         (not (ready $purchase-1 $Service-1))
         (not (ready $cancel-1 $Service-1))
         (not (ready $committed-1 $Service-1))
-        (not (ready $reserve-1 $Service-1))
         (not (ready $agency-fail $Service-1))
-        (not (ready $steps-1-3 $Service-1))
         (not (ready $available-1 $Service-1))
+        (not (ready $steps-1-3 $Service-1))
         (not (ready $steps-1-2 $Service-1))
         (not (ready $steps-1-1 $Service-1))
         (not (ready $select-1 $Service-1))
@@ -253,22 +239,22 @@
         (not (ready $query-fail-1 $AgencyMonitor))
         (not (ready $purchase-fail-3 $AgencyMonitor))
         (not (ready $query-fail-0 $AgencyMonitor))
-        (not (ready $order-4 $AgencyMonitor))
         (not (ready $agency-succ $AgencyMonitor))
-        (not (ready $order-3 $AgencyMonitor))
-        (not (ready $order-2 $AgencyMonitor))
-        (not (ready $order-1 $AgencyMonitor))
-        (not (ready $order-0 $AgencyMonitor))
         (not (ready $query-fail-3 $AgencyMonitor))
         (not (ready $query-fail-2 $AgencyMonitor))
-        (not (ready $query-fail-4 $AgencyMonitor))
         (not (ready $agency-fail $AgencyMonitor))
+        (not (ready $query-fail-4 $AgencyMonitor))
+        (not (ready $uncommitted-3 $AgencyMonitor))
+        (not (ready $uncommitted-4 $AgencyMonitor))
+        (not (ready $uncommitted-0 $AgencyMonitor))
+        (not (ready $uncommitted-1 $AgencyMonitor))
+        (not (ready $uncommitted-2 $AgencyMonitor))
         (not (ready $purchase-fail-1 $AgencyMonitor))
         (not (ready $purchase-fail-2 $AgencyMonitor))
         (not (ready $purchase-fail-0 $AgencyMonitor))
+        (not (ready $query-4 $Service-3))
         (not (ready $query-3 $Service-3))
         (not (ready $purchase-fail-3 $Service-3))
-        (not (ready $order-3 $Service-3))
         (not (ready $agency-succ $Service-3))
         (not (ready $unavailable-3 $Service-3))
         (not (ready $steps-3-2 $Service-3))
@@ -285,19 +271,16 @@
         (not (ready $query-succ-3 $Service-3))
         (not (ready $purchase-succ-3 $Service-3))
         (not (ready $steps-3-0 $Service-3))
-        (not (ready $reserve-3 $Service-3))
         (not (ready $query-fail-0 $ServiceMonitor-0))
         (not (ready $agency-succ $ServiceMonitor-0))
         (not (ready $query-0 $ServiceMonitor-0))
         (not (ready $cancel-0 $ServiceMonitor-0))
         (not (ready $query-succ-0 $ServiceMonitor-0))
-        (not (ready $end $ServiceMonitor-0))
         (not (ready $agency-fail $ServiceMonitor-0))
         (not (ready $purchase-succ-0 $ServiceMonitor-0))
         (not (ready $purchase-fail-0 $ServiceMonitor-0))
         (not (ready $query-4 $Service-4))
         (not (ready $purchase-fail-4 $Service-4))
-        (not (ready $order-4 $Service-4))
         (not (ready $agency-succ $Service-4))
         (not (ready $steps-4-0 $Service-4))
         (not (ready $unavailable-4 $Service-4))
@@ -314,7 +297,6 @@
         (not (ready $query-succ-4 $Service-4))
         (not (ready $steps-4-3 $Service-4))
         (not (ready $purchase-succ-4 $Service-4))
-        (not (ready $reserve-4 $Service-4))
         (not (ready $query-3 $ServiceMonitor-3))
         (not (ready $purchase-fail-3 $ServiceMonitor-3))
         (not (ready $agency-succ $ServiceMonitor-3))
@@ -322,16 +304,14 @@
         (not (ready $query-succ-3 $ServiceMonitor-3))
         (not (ready $purchase-succ-3 $ServiceMonitor-3))
         (not (ready $query-fail-3 $ServiceMonitor-3))
-        (not (ready $end $ServiceMonitor-3))
         (not (ready $agency-fail $ServiceMonitor-3))
         (not (ready $unavailable-0 $Service-0))
         (not (ready $query-fail-0 $Service-0))
+        (not (ready $query-1 $Service-0))
         (not (ready $agency-succ $Service-0))
         (not (ready $query-0 $Service-0))
-        (not (ready $order-0 $Service-0))
         (not (ready $committed-0 $Service-0))
         (not (ready $cancel-0 $Service-0))
-        (not (ready $reserve-0 $Service-0))
         (not (ready $purchase-0 $Service-0))
         (not (ready $agency-fail $Service-0))
         (not (ready $steps-0-3 $Service-0))
@@ -350,7 +330,6 @@
         (not (ready $agency-succ $ServiceMonitor-4))
         (not (ready $query-succ-4 $ServiceMonitor-4))
         (not (ready $purchase-succ-4 $ServiceMonitor-4))
-        (not (ready $end $ServiceMonitor-4))
         (not (ready $agency-fail $ServiceMonitor-4))
         (not (ready $query-fail-4 $ServiceMonitor-4))
         (not (ready $query-2 $ServiceMonitor-2))
@@ -360,7 +339,6 @@
         (not (ready $query-fail-2 $ServiceMonitor-2))
         (not (ready $purchase-succ-2 $ServiceMonitor-2))
         (not (ready $purchase-fail-2 $ServiceMonitor-2))
-        (not (ready $end $ServiceMonitor-2))
         (not (ready $agency-fail $ServiceMonitor-2))
         (not (ready $query-4 $Agency))
         (not (ready $agency-request $Agency))
@@ -377,7 +355,6 @@
         (not (ready $query-succ-1 $ServiceMonitor-1))
         (not (ready $purchase-succ-1 $ServiceMonitor-1))
         (not (ready $purchase-fail-1 $ServiceMonitor-1))
-        (not (ready $end $ServiceMonitor-1))
         (not (ready $agency-fail $ServiceMonitor-1))
         (not (hoop $Service-2))
         (not (hoop $Service-1))
@@ -449,7 +426,7 @@
           )
         )
         (when (at $8 $Service-2)
-          (ready $order-2 $Service-2)
+          (ready $query-3 $Service-2)
         )
         (when (at $9 $Service-2)
           (and
@@ -466,7 +443,7 @@
           )
         )
         (when (at $11 $Service-2)
-          (ready $reserve-2 $Service-2)
+          (ready $query-3 $Service-2)
         )
         (when (at $12 $Service-2)
           (and
@@ -522,7 +499,7 @@
           )
         )
         (when (at $5 $Service-1)
-          (ready $order-1 $Service-1)
+          (ready $query-2 $Service-1)
         )
         (when (at $6 $Service-1)
           (and
@@ -539,7 +516,7 @@
           )
         )
         (when (at $8 $Service-1)
-          (ready $reserve-1 $Service-1)
+          (ready $query-2 $Service-1)
         )
         (when (at $9 $Service-1)
           (and
@@ -571,36 +548,36 @@
           (and
             (ready $query-fail-2 $AgencyMonitor)
             (ready $query-fail-1 $AgencyMonitor)
-            (ready $order-3 $AgencyMonitor)
+            (ready $uncommitted-2 $AgencyMonitor)
+            (ready $uncommitted-1 $AgencyMonitor)
             (ready $query-fail-0 $AgencyMonitor)
-            (ready $order-4 $AgencyMonitor)
-            (ready $order-1 $AgencyMonitor)
+            (ready $uncommitted-4 $AgencyMonitor)
+            (ready $uncommitted-3 $AgencyMonitor)
             (ready $agency-fail $AgencyMonitor)
-            (ready $order-2 $AgencyMonitor)
             (ready $agency-succ $AgencyMonitor)
             (ready $query-fail-4 $AgencyMonitor)
-            (ready $order-0 $AgencyMonitor)
             (ready $query-fail-3 $AgencyMonitor)
+            (ready $uncommitted-0 $AgencyMonitor)
           )
         )
         (when (at $1 $AgencyMonitor)
           (and
             (ready $query-fail-2 $AgencyMonitor)
             (ready $query-fail-1 $AgencyMonitor)
-            (ready $order-3 $AgencyMonitor)
+            (ready $uncommitted-2 $AgencyMonitor)
+            (ready $uncommitted-1 $AgencyMonitor)
             (ready $query-fail-0 $AgencyMonitor)
             (ready $purchase-fail-0 $AgencyMonitor)
-            (ready $order-4 $AgencyMonitor)
-            (ready $order-1 $AgencyMonitor)
+            (ready $uncommitted-4 $AgencyMonitor)
+            (ready $uncommitted-3 $AgencyMonitor)
             (ready $agency-fail $AgencyMonitor)
-            (ready $order-2 $AgencyMonitor)
             (ready $purchase-fail-2 $AgencyMonitor)
             (ready $purchase-fail-1 $AgencyMonitor)
             (ready $agency-succ $AgencyMonitor)
             (ready $query-fail-4 $AgencyMonitor)
             (ready $purchase-fail-3 $AgencyMonitor)
-            (ready $order-0 $AgencyMonitor)
             (ready $query-fail-3 $AgencyMonitor)
+            (ready $uncommitted-0 $AgencyMonitor)
             (ready $purchase-fail-4 $AgencyMonitor)
           )
         )
@@ -608,20 +585,20 @@
           (and
             (ready $query-fail-2 $AgencyMonitor)
             (ready $query-fail-1 $AgencyMonitor)
-            (ready $order-3 $AgencyMonitor)
+            (ready $uncommitted-2 $AgencyMonitor)
+            (ready $uncommitted-1 $AgencyMonitor)
             (ready $query-fail-0 $AgencyMonitor)
             (ready $purchase-fail-0 $AgencyMonitor)
-            (ready $order-4 $AgencyMonitor)
-            (ready $order-1 $AgencyMonitor)
+            (ready $uncommitted-4 $AgencyMonitor)
+            (ready $uncommitted-3 $AgencyMonitor)
             (ready $agency-fail $AgencyMonitor)
-            (ready $order-2 $AgencyMonitor)
             (ready $purchase-fail-2 $AgencyMonitor)
             (ready $purchase-fail-1 $AgencyMonitor)
             (ready $agency-succ $AgencyMonitor)
             (ready $query-fail-4 $AgencyMonitor)
             (ready $purchase-fail-3 $AgencyMonitor)
-            (ready $order-0 $AgencyMonitor)
             (ready $query-fail-3 $AgencyMonitor)
+            (ready $uncommitted-0 $AgencyMonitor)
             (ready $purchase-fail-4 $AgencyMonitor)
           )
         )
@@ -662,7 +639,7 @@
           )
         )
         (when (at $5 $Service-3)
-          (ready $order-3 $Service-3)
+          (ready $query-4 $Service-3)
         )
         (when (at $6 $Service-3)
           (and
@@ -679,7 +656,7 @@
           )
         )
         (when (at $8 $Service-3)
-          (ready $reserve-3 $Service-3)
+          (ready $query-4 $Service-3)
         )
         (when (at $9 $Service-3)
           (and
@@ -715,9 +692,6 @@
           )
         )
         (when (at $1 $ServiceMonitor-0)
-          (ready $end $ServiceMonitor-0)
-        )
-        (when (at $2 $ServiceMonitor-0)
           (and
             (ready $query-fail-0 $ServiceMonitor-0)
             (ready $agency-fail $ServiceMonitor-0)
@@ -725,7 +699,7 @@
             (ready $query-succ-0 $ServiceMonitor-0)
           )
         )
-        (when (at $3 $ServiceMonitor-0)
+        (when (at $2 $ServiceMonitor-0)
           (and
             (ready $purchase-fail-0 $ServiceMonitor-0)
             (ready $agency-fail $ServiceMonitor-0)
@@ -734,22 +708,17 @@
             (ready $cancel-0 $ServiceMonitor-0)
           )
         )
+        (when (at $3 $ServiceMonitor-0)
+          (and
+            (ready $agency-fail $ServiceMonitor-0)
+            (ready $agency-succ $ServiceMonitor-0)
+          )
+        )
         (when (at $4 $ServiceMonitor-0)
           (and
-            (ready $query-0 $ServiceMonitor-0)
             (ready $agency-fail $ServiceMonitor-0)
             (ready $agency-succ $ServiceMonitor-0)
           )
-        )
-        (when (at $5 $ServiceMonitor-0)
-          (and
-            (ready $query-0 $ServiceMonitor-0)
-            (ready $agency-fail $ServiceMonitor-0)
-            (ready $agency-succ $ServiceMonitor-0)
-          )
-        )
-        (when (at $17 $Service-4)
-          (ready $query-fail-4 $Service-4)
         )
         (when (at $0 $Service-4)
           (and
@@ -757,9 +726,6 @@
             (ready $agency-fail $Service-4)
             (ready $agency-succ $Service-4)
           )
-        )
-        (when (at $16 $Service-4)
-          (ready $query-succ-4 $Service-4)
         )
         (when (at $1 $Service-4)
           (and
@@ -794,9 +760,6 @@
           )
         )
         (when (at $8 $Service-4)
-          (ready $order-4 $Service-4)
-        )
-        (when (at $9 $Service-4)
           (and
             (ready $cancel-4 $Service-4)
             (ready $agency-fail $Service-4)
@@ -804,16 +767,13 @@
             (ready $purchase-4 $Service-4)
           )
         )
-        (when (at $10 $Service-4)
+        (when (at $9 $Service-4)
           (and
             (ready $purchase-succ-4 $Service-4)
             (ready $purchase-fail-4 $Service-4)
           )
         )
-        (when (at $11 $Service-4)
-          (ready $reserve-4 $Service-4)
-        )
-        (when (at $12 $Service-4)
+        (when (at $10 $Service-4)
           (and
             (ready $cancel-4 $Service-4)
             (ready $agency-fail $Service-4)
@@ -821,14 +781,20 @@
             (ready $purchase-4 $Service-4)
           )
         )
-        (when (at $13 $Service-4)
+        (when (at $11 $Service-4)
           (ready $purchase-succ-4 $Service-4)
+        )
+        (when (at $12 $Service-4)
+          (ready $query-succ-4 $Service-4)
+        )
+        (when (at $13 $Service-4)
+          (ready $query-succ-4 $Service-4)
         )
         (when (at $14 $Service-4)
           (ready $query-succ-4 $Service-4)
         )
         (when (at $15 $Service-4)
-          (ready $query-succ-4 $Service-4)
+          (ready $query-fail-4 $Service-4)
         )
         (when (at $0 $ServiceMonitor-3)
           (and
@@ -838,9 +804,6 @@
           )
         )
         (when (at $1 $ServiceMonitor-3)
-          (ready $end $ServiceMonitor-3)
-        )
-        (when (at $2 $ServiceMonitor-3)
           (and
             (ready $query-succ-3 $ServiceMonitor-3)
             (ready $agency-fail $ServiceMonitor-3)
@@ -848,14 +811,13 @@
             (ready $query-fail-3 $ServiceMonitor-3)
           )
         )
-        (when (at $3 $ServiceMonitor-3)
+        (when (at $2 $ServiceMonitor-3)
           (and
-            (ready $query-3 $ServiceMonitor-3)
             (ready $agency-fail $ServiceMonitor-3)
             (ready $agency-succ $ServiceMonitor-3)
           )
         )
-        (when (at $4 $ServiceMonitor-3)
+        (when (at $3 $ServiceMonitor-3)
           (and
             (ready $cancel-3 $ServiceMonitor-3)
             (ready $purchase-succ-3 $ServiceMonitor-3)
@@ -864,9 +826,8 @@
             (ready $purchase-fail-3 $ServiceMonitor-3)
           )
         )
-        (when (at $5 $ServiceMonitor-3)
+        (when (at $4 $ServiceMonitor-3)
           (and
-            (ready $query-3 $ServiceMonitor-3)
             (ready $agency-fail $ServiceMonitor-3)
             (ready $agency-succ $ServiceMonitor-3)
           )
@@ -908,7 +869,7 @@
           )
         )
         (when (at $5 $Service-0)
-          (ready $order-0 $Service-0)
+          (ready $query-1 $Service-0)
         )
         (when (at $6 $Service-0)
           (and
@@ -925,7 +886,7 @@
           )
         )
         (when (at $8 $Service-0)
-          (ready $reserve-0 $Service-0)
+          (ready $query-1 $Service-0)
         )
         (when (at $9 $Service-0)
           (and
@@ -961,9 +922,6 @@
           )
         )
         (when (at $1 $ServiceMonitor-4)
-          (ready $end $ServiceMonitor-4)
-        )
-        (when (at $2 $ServiceMonitor-4)
           (and
             (ready $agency-fail $ServiceMonitor-4)
             (ready $query-succ-4 $ServiceMonitor-4)
@@ -971,14 +929,13 @@
             (ready $query-fail-4 $ServiceMonitor-4)
           )
         )
-        (when (at $3 $ServiceMonitor-4)
+        (when (at $2 $ServiceMonitor-4)
           (and
-            (ready $query-4 $ServiceMonitor-4)
             (ready $agency-fail $ServiceMonitor-4)
             (ready $agency-succ $ServiceMonitor-4)
           )
         )
-        (when (at $4 $ServiceMonitor-4)
+        (when (at $3 $ServiceMonitor-4)
           (and
             (ready $cancel-4 $ServiceMonitor-4)
             (ready $purchase-succ-4 $ServiceMonitor-4)
@@ -987,9 +944,8 @@
             (ready $purchase-fail-4 $ServiceMonitor-4)
           )
         )
-        (when (at $5 $ServiceMonitor-4)
+        (when (at $4 $ServiceMonitor-4)
           (and
-            (ready $query-4 $ServiceMonitor-4)
             (ready $agency-fail $ServiceMonitor-4)
             (ready $agency-succ $ServiceMonitor-4)
           )
@@ -1002,9 +958,6 @@
           )
         )
         (when (at $1 $ServiceMonitor-2)
-          (ready $end $ServiceMonitor-2)
-        )
-        (when (at $2 $ServiceMonitor-2)
           (and
             (ready $query-fail-2 $ServiceMonitor-2)
             (ready $query-succ-2 $ServiceMonitor-2)
@@ -1012,14 +965,13 @@
             (ready $agency-succ $ServiceMonitor-2)
           )
         )
-        (when (at $3 $ServiceMonitor-2)
+        (when (at $2 $ServiceMonitor-2)
           (and
             (ready $agency-fail $ServiceMonitor-2)
             (ready $agency-succ $ServiceMonitor-2)
-            (ready $query-2 $ServiceMonitor-2)
           )
         )
-        (when (at $4 $ServiceMonitor-2)
+        (when (at $3 $ServiceMonitor-2)
           (and
             (ready $purchase-succ-2 $ServiceMonitor-2)
             (ready $agency-fail $ServiceMonitor-2)
@@ -1028,11 +980,10 @@
             (ready $cancel-2 $ServiceMonitor-2)
           )
         )
-        (when (at $5 $ServiceMonitor-2)
+        (when (at $4 $ServiceMonitor-2)
           (and
             (ready $agency-fail $ServiceMonitor-2)
             (ready $agency-succ $ServiceMonitor-2)
-            (ready $query-2 $ServiceMonitor-2)
           )
         )
         (when (at $0 $Agency)
@@ -1057,9 +1008,6 @@
           )
         )
         (when (at $1 $ServiceMonitor-1)
-          (ready $end $ServiceMonitor-1)
-        )
-        (when (at $2 $ServiceMonitor-1)
           (and
             (ready $query-fail-1 $ServiceMonitor-1)
             (ready $query-succ-1 $ServiceMonitor-1)
@@ -1067,7 +1015,7 @@
             (ready $agency-succ $ServiceMonitor-1)
           )
         )
-        (when (at $3 $ServiceMonitor-1)
+        (when (at $2 $ServiceMonitor-1)
           (and
             (ready $cancel-1 $ServiceMonitor-1)
             (ready $purchase-succ-1 $ServiceMonitor-1)
@@ -1076,16 +1024,14 @@
             (ready $agency-succ $ServiceMonitor-1)
           )
         )
-        (when (at $4 $ServiceMonitor-1)
+        (when (at $3 $ServiceMonitor-1)
           (and
-            (ready $query-1 $ServiceMonitor-1)
             (ready $agency-fail $ServiceMonitor-1)
             (ready $agency-succ $ServiceMonitor-1)
           )
         )
-        (when (at $5 $ServiceMonitor-1)
+        (when (at $4 $ServiceMonitor-1)
           (and
-            (ready $query-1 $ServiceMonitor-1)
             (ready $agency-fail $ServiceMonitor-1)
             (ready $agency-succ $ServiceMonitor-1)
           )
@@ -1282,16 +1228,7 @@
         (when (and (at $4 $ServiceMonitor-0) (marked $4 $ServiceMonitor-0))
           (hoop $ServiceMonitor-0)
         )
-        (when (and (at $5 $ServiceMonitor-0) (marked $5 $ServiceMonitor-0))
-          (hoop $ServiceMonitor-0)
-        )
-        (when (and (at $17 $Service-4) (marked $17 $Service-4))
-          (hoop $Service-4)
-        )
         (when (and (at $0 $Service-4) (marked $0 $Service-4))
-          (hoop $Service-4)
-        )
-        (when (and (at $16 $Service-4) (marked $16 $Service-4))
           (hoop $Service-4)
         )
         (when (and (at $1 $Service-4) (marked $1 $Service-4))
@@ -1355,9 +1292,6 @@
           (hoop $ServiceMonitor-3)
         )
         (when (and (at $4 $ServiceMonitor-3) (marked $4 $ServiceMonitor-3))
-          (hoop $ServiceMonitor-3)
-        )
-        (when (and (at $5 $ServiceMonitor-3) (marked $5 $ServiceMonitor-3))
           (hoop $ServiceMonitor-3)
         )
         (when (and (at $17 $Service-0) (marked $17 $Service-0))
@@ -1432,9 +1366,6 @@
         (when (and (at $4 $ServiceMonitor-4) (marked $4 $ServiceMonitor-4))
           (hoop $ServiceMonitor-4)
         )
-        (when (and (at $5 $ServiceMonitor-4) (marked $5 $ServiceMonitor-4))
-          (hoop $ServiceMonitor-4)
-        )
         (when (and (at $-1 $ServiceMonitor-2) (marked $-1 $ServiceMonitor-2))
           (hoop $ServiceMonitor-2)
         )
@@ -1451,9 +1382,6 @@
           (hoop $ServiceMonitor-2)
         )
         (when (and (at $4 $ServiceMonitor-2) (marked $4 $ServiceMonitor-2))
-          (hoop $ServiceMonitor-2)
-        )
-        (when (and (at $5 $ServiceMonitor-2) (marked $5 $ServiceMonitor-2))
           (hoop $ServiceMonitor-2)
         )
         (when (and (at $0 $Agency) (marked $0 $Agency))
@@ -1480,9 +1408,6 @@
         (when (and (at $4 $ServiceMonitor-1) (marked $4 $ServiceMonitor-1))
           (hoop $ServiceMonitor-1)
         )
-        (when (and (at $5 $ServiceMonitor-1) (marked $5 $ServiceMonitor-1))
-          (hoop $ServiceMonitor-1)
-        )
       )
   )
   
@@ -1502,19 +1427,13 @@
           (and
             (ready $agency-request $Agency)
           )
-          (and
-            (enabled $agency-request)
-            (status uncontrollable)
-          )
+          (enabled $agency-request)
         )
         (when
           (and
             (ready $unavailable-1 $Service-1)
           )
-          (and
-            (enabled $unavailable-1)
-            (status uncontrollable)
-          )
+          (enabled $unavailable-1)
         )
         (when
           (and
@@ -1522,29 +1441,13 @@
             (ready $query-fail-1 $AgencyMonitor)
             (ready $query-fail-1 $ServiceMonitor-1)
           )
-          (and
-            (enabled $query-fail-1)
-            (status uncontrollable)
-          )
+          (enabled $query-fail-1)
         )
         (when
           (and
             (ready $unavailable-0 $Service-0)
           )
-          (and
-            (enabled $unavailable-0)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $order-4 $AgencyMonitor)
-            (ready $order-4 $Service-4)
-          )
-          (and
-            (enabled $order-4)
-            (status uncontrollable)
-          )
+          (enabled $unavailable-0)
         )
         (when
           (and
@@ -1552,122 +1455,55 @@
             (ready $query-fail-0 $ServiceMonitor-0)
             (ready $query-fail-0 $Service-0)
           )
-          (and
-            (enabled $query-fail-0)
-            (status uncontrollable)
-          )
+          (enabled $query-fail-0)
         )
         (when
           (and
             (ready $steps-3-2 $Service-3)
           )
-          (and
-            (enabled $steps-3-2)
-            (status uncontrollable)
-          )
+          (enabled $steps-3-2)
         )
         (when
           (and
             (ready $unavailable-3 $Service-3)
           )
-          (and
-            (enabled $unavailable-3)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $order-3 $AgencyMonitor)
-            (ready $order-3 $Service-3)
-          )
-          (and
-            (enabled $order-3)
-            (status uncontrollable)
-          )
+          (enabled $unavailable-3)
         )
         (when
           (and
             (ready $steps-3-3 $Service-3)
           )
-          (and
-            (enabled $steps-3-3)
-            (status uncontrollable)
-          )
+          (enabled $steps-3-3)
         )
         (when
           (and
             (ready $unavailable-2 $Service-2)
           )
-          (and
-            (enabled $unavailable-2)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $order-2 $Service-2)
-            (ready $order-2 $AgencyMonitor)
-          )
-          (and
-            (enabled $order-2)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $order-1 $Service-1)
-            (ready $order-1 $AgencyMonitor)
-          )
-          (and
-            (enabled $order-1)
-            (status uncontrollable)
-          )
+          (enabled $unavailable-2)
         )
         (when
           (and
             (ready $steps-4-0 $Service-4)
           )
-          (and
-            (enabled $steps-4-0)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $order-0 $AgencyMonitor)
-            (ready $order-0 $Service-0)
-          )
-          (and
-            (enabled $order-0)
-            (status uncontrollable)
-          )
+          (enabled $steps-4-0)
         )
         (when
           (and
             (ready $unavailable-4 $Service-4)
           )
-          (and
-            (enabled $unavailable-4)
-            (status uncontrollable)
-          )
+          (enabled $unavailable-4)
         )
         (when
           (and
             (ready $committed-0 $Service-0)
           )
-          (and
-            (enabled $committed-0)
-            (status uncontrollable)
-          )
+          (enabled $committed-0)
         )
         (when
           (and
             (ready $committed-1 $Service-1)
           )
-          (and
-            (enabled $committed-1)
-            (status uncontrollable)
-          )
+          (enabled $committed-1)
         )
         (when
           (and
@@ -1675,10 +1511,7 @@
             (ready $query-fail-3 $Service-3)
             (ready $query-fail-3 $ServiceMonitor-3)
           )
-          (and
-            (enabled $query-fail-3)
-            (status uncontrollable)
-          )
+          (enabled $query-fail-3)
         )
         (when
           (and
@@ -1686,10 +1519,7 @@
             (ready $query-fail-2 $AgencyMonitor)
             (ready $query-fail-2 $ServiceMonitor-2)
           )
-          (and
-            (enabled $query-fail-2)
-            (status uncontrollable)
-          )
+          (enabled $query-fail-2)
         )
         (when
           (and
@@ -1697,130 +1527,89 @@
             (ready $query-fail-4 $Service-4)
             (ready $query-fail-4 $ServiceMonitor-4)
           )
-          (and
-            (enabled $query-fail-4)
-            (status uncontrollable)
-          )
+          (enabled $query-fail-4)
         )
         (when
           (and
             (ready $steps-0-3 $Service-0)
           )
-          (and
-            (enabled $steps-0-3)
-            (status uncontrollable)
-          )
+          (enabled $steps-0-3)
         )
         (when
           (and
             (ready $steps-0-1 $Service-0)
           )
-          (and
-            (enabled $steps-0-1)
-            (status uncontrollable)
-          )
+          (enabled $steps-0-1)
         )
         (when
           (and
             (ready $steps-0-2 $Service-0)
           )
-          (and
-            (enabled $steps-0-2)
-            (status uncontrollable)
-          )
+          (enabled $steps-0-2)
         )
         (when
           (and
             (ready $steps-1-3 $Service-1)
           )
-          (and
-            (enabled $steps-1-3)
-            (status uncontrollable)
-          )
+          (enabled $steps-1-3)
         )
         (when
           (and
             (ready $steps-0-0 $Service-0)
           )
-          (and
-            (enabled $steps-0-0)
-            (status uncontrollable)
-          )
+          (enabled $steps-0-0)
         )
         (when
           (and
             (ready $steps-1-2 $Service-1)
           )
-          (and
-            (enabled $steps-1-2)
-            (status uncontrollable)
-          )
+          (enabled $steps-1-2)
         )
         (when
           (and
             (ready $steps-1-1 $Service-1)
           )
-          (and
-            (enabled $steps-1-1)
-            (status uncontrollable)
-          )
+          (enabled $steps-1-1)
         )
         (when
           (and
             (ready $steps-1-0 $Service-1)
           )
-          (and
-            (enabled $steps-1-0)
-            (status uncontrollable)
-          )
+          (enabled $steps-1-0)
         )
         (when
           (and
             (ready $steps-4-1 $Service-4)
           )
-          (and
-            (enabled $steps-4-1)
-            (status uncontrollable)
-          )
+          (enabled $steps-4-1)
         )
         (when
           (and
             (ready $steps-4-2 $Service-4)
           )
-          (and
-            (enabled $steps-4-2)
-            (status uncontrollable)
-          )
+          (enabled $steps-4-2)
         )
         (when
           (and
             (ready $steps-3-1 $Service-3)
           )
-          (and
-            (enabled $steps-3-1)
-            (status uncontrollable)
-          )
+          (enabled $steps-3-1)
         )
         (when
           (and
             (ready $steps-4-3 $Service-4)
           )
-          (and
-            (enabled $steps-4-3)
-            (status uncontrollable)
-          )
+          (enabled $steps-4-3)
         )
         (when
           (and
             (ready $steps-3-0 $Service-3)
           )
-          (and
-            (enabled $steps-3-0)
-            (status uncontrollable)
-          )
+          (enabled $steps-3-0)
         )
         (when
           (and
+            (ready $query-4 $Service-3)
             (ready $query-4 $Service-4)
             (ready $query-4 $ServiceMonitor-4)
             (ready $query-4 $Agency)
@@ -1829,6 +1618,7 @@
         )
         (when
           (and
+            (ready $query-3 $Service-2)
             (ready $query-3 $Service-3)
             (ready $query-3 $ServiceMonitor-3)
             (ready $query-3 $Agency)
@@ -1841,14 +1631,12 @@
             (ready $purchase-fail-4 $Service-4)
             (ready $purchase-fail-4 $ServiceMonitor-4)
           )
-          (and
-            (enabled $purchase-fail-4)
-            (status uncontrollable)
-          )
+          (enabled $purchase-fail-4)
         )
         (when
           (and
             (ready $query-2 $Service-2)
+            (ready $query-2 $Service-1)
             (ready $query-2 $ServiceMonitor-2)
             (ready $query-2 $Agency)
           )
@@ -1860,14 +1648,12 @@
             (ready $purchase-fail-3 $Service-3)
             (ready $purchase-fail-3 $ServiceMonitor-3)
           )
-          (and
-            (enabled $purchase-fail-3)
-            (status uncontrollable)
-          )
+          (enabled $purchase-fail-3)
         )
         (when
           (and
             (ready $query-1 $Service-1)
+            (ready $query-1 $Service-0)
             (ready $query-1 $Agency)
             (ready $query-1 $ServiceMonitor-1)
           )
@@ -1885,46 +1671,19 @@
           (and
             (ready $steps-2-1 $Service-2)
           )
-          (and
-            (enabled $steps-2-1)
-            (status uncontrollable)
-          )
+          (enabled $steps-2-1)
         )
         (when
           (and
             (ready $steps-2-2 $Service-2)
           )
-          (and
-            (enabled $steps-2-2)
-            (status uncontrollable)
-          )
+          (enabled $steps-2-2)
         )
         (when
           (and
             (ready $steps-2-0 $Service-2)
           )
-          (and
-            (enabled $steps-2-0)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $reserve-1 $Service-1)
-          )
-          (and
-            (enabled $reserve-1)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $reserve-0 $Service-0)
-          )
-          (and
-            (enabled $reserve-0)
-            (status uncontrollable)
-          )
+          (enabled $steps-2-0)
         )
         (when
           (and
@@ -1970,57 +1729,44 @@
         )
         (when
           (and
+            (ready $uncommitted-3 $AgencyMonitor)
             (ready $uncommitted-3 $Service-3)
           )
-          (and
-            (enabled $uncommitted-3)
-            (status uncontrollable)
-          )
+          (enabled $uncommitted-3)
         )
         (when
           (and
+            (ready $uncommitted-4 $AgencyMonitor)
             (ready $uncommitted-4 $Service-4)
           )
-          (and
-            (enabled $uncommitted-4)
-            (status uncontrollable)
-          )
+          (enabled $uncommitted-4)
         )
         (when
           (and
             (ready $steps-2-3 $Service-2)
           )
-          (and
-            (enabled $steps-2-3)
-            (status uncontrollable)
-          )
+          (enabled $steps-2-3)
         )
         (when
           (and
+            (ready $uncommitted-0 $AgencyMonitor)
             (ready $uncommitted-0 $Service-0)
           )
-          (and
-            (enabled $uncommitted-0)
-            (status uncontrollable)
-          )
+          (enabled $uncommitted-0)
         )
         (when
           (and
             (ready $uncommitted-1 $Service-1)
+            (ready $uncommitted-1 $AgencyMonitor)
           )
-          (and
-            (enabled $uncommitted-1)
-            (status uncontrollable)
-          )
+          (enabled $uncommitted-1)
         )
         (when
           (and
             (ready $uncommitted-2 $Service-2)
+            (ready $uncommitted-2 $AgencyMonitor)
           )
-          (and
-            (enabled $uncommitted-2)
-            (status uncontrollable)
-          )
+          (enabled $uncommitted-2)
         )
         (when
           (and
@@ -2028,10 +1774,7 @@
             (ready $purchase-fail-1 $AgencyMonitor)
             (ready $purchase-fail-1 $ServiceMonitor-1)
           )
-          (and
-            (enabled $purchase-fail-1)
-            (status uncontrollable)
-          )
+          (enabled $purchase-fail-1)
         )
         (when
           (and
@@ -2039,10 +1782,7 @@
             (ready $purchase-fail-2 $AgencyMonitor)
             (ready $purchase-fail-2 $ServiceMonitor-2)
           )
-          (and
-            (enabled $purchase-fail-2)
-            (status uncontrollable)
-          )
+          (enabled $purchase-fail-2)
         )
         (when
           (and
@@ -2050,10 +1790,7 @@
             (ready $purchase-fail-0 $ServiceMonitor-0)
             (ready $purchase-fail-0 $Service-0)
           )
-          (and
-            (enabled $purchase-fail-0)
-            (status uncontrollable)
-          )
+          (enabled $purchase-fail-0)
         )
         (when
           (and
@@ -2127,46 +1864,6 @@
         )
         (when
           (and
-            (ready $reserve-3 $Service-3)
-          )
-          (and
-            (enabled $reserve-3)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $reserve-2 $Service-2)
-          )
-          (and
-            (enabled $reserve-2)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $end $ServiceMonitor-0)
-            (ready $end $ServiceMonitor-3)
-            (ready $end $ServiceMonitor-4)
-            (ready $end $ServiceMonitor-2)
-            (ready $end $ServiceMonitor-1)
-          )
-          (and
-            (enabled $end)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $reserve-4 $Service-4)
-          )
-          (and
-            (enabled $reserve-4)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
             (ready $agency-succ $Service-2)
             (ready $agency-succ $Service-1)
             (ready $agency-succ $AgencyMonitor)
@@ -2186,173 +1883,119 @@
           (and
             (ready $committed-4 $Service-4)
           )
-          (and
-            (enabled $committed-4)
-            (status uncontrollable)
-          )
+          (enabled $committed-4)
         )
         (when
           (and
             (ready $committed-3 $Service-3)
           )
-          (and
-            (enabled $committed-3)
-            (status uncontrollable)
-          )
+          (enabled $committed-3)
         )
         (when
           (and
             (ready $available-0 $Service-0)
           )
-          (and
-            (enabled $available-0)
-            (status uncontrollable)
-          )
+          (enabled $available-0)
         )
         (when
           (and
             (ready $committed-2 $Service-2)
           )
-          (and
-            (enabled $committed-2)
-            (status uncontrollable)
-          )
+          (enabled $committed-2)
         )
         (when
           (and
             (ready $available-1 $Service-1)
           )
-          (and
-            (enabled $available-1)
-            (status uncontrollable)
-          )
+          (enabled $available-1)
         )
         (when
           (and
             (ready $available-2 $Service-2)
           )
-          (and
-            (enabled $available-2)
-            (status uncontrollable)
-          )
+          (enabled $available-2)
         )
         (when
           (and
             (ready $available-3 $Service-3)
           )
-          (and
-            (enabled $available-3)
-            (status uncontrollable)
-          )
+          (enabled $available-3)
         )
         (when
           (and
             (ready $available-4 $Service-4)
           )
-          (and
-            (enabled $available-4)
-            (status uncontrollable)
-          )
+          (enabled $available-4)
         )
         (when
           (and
             (ready $query-succ-4 $Service-4)
             (ready $query-succ-4 $ServiceMonitor-4)
           )
-          (and
-            (enabled $query-succ-4)
-            (status uncontrollable)
-          )
+          (enabled $query-succ-4)
         )
         (when
           (and
             (ready $query-succ-3 $Service-3)
             (ready $query-succ-3 $ServiceMonitor-3)
           )
-          (and
-            (enabled $query-succ-3)
-            (status uncontrollable)
-          )
+          (enabled $query-succ-3)
         )
         (when
           (and
             (ready $purchase-succ-3 $Service-3)
             (ready $purchase-succ-3 $ServiceMonitor-3)
           )
-          (and
-            (enabled $purchase-succ-3)
-            (status uncontrollable)
-          )
+          (enabled $purchase-succ-3)
         )
         (when
           (and
             (ready $query-succ-2 $Service-2)
             (ready $query-succ-2 $ServiceMonitor-2)
           )
-          (and
-            (enabled $query-succ-2)
-            (status uncontrollable)
-          )
+          (enabled $query-succ-2)
         )
         (when
           (and
             (ready $purchase-succ-4 $Service-4)
             (ready $purchase-succ-4 $ServiceMonitor-4)
           )
-          (and
-            (enabled $purchase-succ-4)
-            (status uncontrollable)
-          )
+          (enabled $purchase-succ-4)
         )
         (when
           (and
             (ready $purchase-succ-1 $Service-1)
             (ready $purchase-succ-1 $ServiceMonitor-1)
           )
-          (and
-            (enabled $purchase-succ-1)
-            (status uncontrollable)
-          )
+          (enabled $purchase-succ-1)
         )
         (when
           (and
             (ready $query-succ-1 $Service-1)
             (ready $query-succ-1 $ServiceMonitor-1)
           )
-          (and
-            (enabled $query-succ-1)
-            (status uncontrollable)
-          )
+          (enabled $query-succ-1)
         )
         (when
           (and
             (ready $query-succ-0 $ServiceMonitor-0)
             (ready $query-succ-0 $Service-0)
           )
-          (and
-            (enabled $query-succ-0)
-            (status uncontrollable)
-          )
+          (enabled $query-succ-0)
         )
         (when
           (and
             (ready $purchase-succ-2 $Service-2)
             (ready $purchase-succ-2 $ServiceMonitor-2)
           )
-          (and
-            (enabled $purchase-succ-2)
-            (status uncontrollable)
-          )
+          (enabled $purchase-succ-2)
         )
         (when
           (and
             (ready $purchase-succ-0 $ServiceMonitor-0)
             (ready $purchase-succ-0 $Service-0)
           )
-          (and
-            (enabled $purchase-succ-0)
-            (status uncontrollable)
-          )
+          (enabled $purchase-succ-0)
         )
       )
   )
@@ -2361,85 +2004,84 @@
     :precondition
       (and
         (status idle)
-        (status uncontrollable)
       )
     :effect
       (and
         (not (status idle))
         (status busy)
         (oneof
-          (when (enabled $agency-request) (inprogress $agency-request))
-          (when (enabled $unavailable-1) (inprogress $unavailable-1))
-          (when (enabled $query-fail-1) (inprogress $query-fail-1))
-          (when (enabled $unavailable-0) (inprogress $unavailable-0))
-          (when (enabled $order-4) (inprogress $order-4))
-          (when (enabled $query-fail-0) (inprogress $query-fail-0))
-          (when (enabled $steps-3-2) (inprogress $steps-3-2))
-          (when (enabled $unavailable-3) (inprogress $unavailable-3))
-          (when (enabled $order-3) (inprogress $order-3))
-          (when (enabled $steps-3-3) (inprogress $steps-3-3))
-          (when (enabled $unavailable-2) (inprogress $unavailable-2))
-          (when (enabled $order-2) (inprogress $order-2))
-          (when (enabled $steps-4-0) (inprogress $steps-4-0))
-          (when (enabled $order-1) (inprogress $order-1))
-          (when (enabled $unavailable-4) (inprogress $unavailable-4))
-          (when (enabled $order-0) (inprogress $order-0))
-          (when (enabled $committed-0) (inprogress $committed-0))
-          (when (enabled $committed-1) (inprogress $committed-1))
-          (when (enabled $query-fail-3) (inprogress $query-fail-3))
-          (when (enabled $query-fail-2) (inprogress $query-fail-2))
-          (when (enabled $query-fail-4) (inprogress $query-fail-4))
-          (when (enabled $steps-0-3) (inprogress $steps-0-3))
-          (when (enabled $steps-0-1) (inprogress $steps-0-1))
-          (when (enabled $steps-0-2) (inprogress $steps-0-2))
-          (when (enabled $steps-1-3) (inprogress $steps-1-3))
-          (when (enabled $steps-0-0) (inprogress $steps-0-0))
-          (when (enabled $steps-1-2) (inprogress $steps-1-2))
-          (when (enabled $steps-1-1) (inprogress $steps-1-1))
-          (when (enabled $steps-1-0) (inprogress $steps-1-0))
-          (when (enabled $steps-4-1) (inprogress $steps-4-1))
-          (when (enabled $steps-4-2) (inprogress $steps-4-2))
-          (when (enabled $steps-3-1) (inprogress $steps-3-1))
-          (when (enabled $steps-4-3) (inprogress $steps-4-3))
-          (when (enabled $steps-3-0) (inprogress $steps-3-0))
-          (when (enabled $purchase-fail-4) (inprogress $purchase-fail-4))
-          (when (enabled $purchase-fail-3) (inprogress $purchase-fail-3))
-          (when (enabled $steps-2-1) (inprogress $steps-2-1))
-          (when (enabled $steps-2-2) (inprogress $steps-2-2))
-          (when (enabled $steps-2-0) (inprogress $steps-2-0))
-          (when (enabled $reserve-1) (inprogress $reserve-1))
-          (when (enabled $reserve-0) (inprogress $reserve-0))
-          (when (enabled $uncommitted-3) (inprogress $uncommitted-3))
-          (when (enabled $uncommitted-4) (inprogress $uncommitted-4))
-          (when (enabled $steps-2-3) (inprogress $steps-2-3))
-          (when (enabled $uncommitted-0) (inprogress $uncommitted-0))
-          (when (enabled $uncommitted-1) (inprogress $uncommitted-1))
-          (when (enabled $uncommitted-2) (inprogress $uncommitted-2))
-          (when (enabled $purchase-fail-1) (inprogress $purchase-fail-1))
-          (when (enabled $purchase-fail-2) (inprogress $purchase-fail-2))
-          (when (enabled $purchase-fail-0) (inprogress $purchase-fail-0))
-          (when (enabled $reserve-3) (inprogress $reserve-3))
-          (when (enabled $reserve-2) (inprogress $reserve-2))
-          (when (enabled $end) (inprogress $end))
-          (when (enabled $reserve-4) (inprogress $reserve-4))
-          (when (enabled $committed-4) (inprogress $committed-4))
-          (when (enabled $committed-3) (inprogress $committed-3))
-          (when (enabled $committed-2) (inprogress $committed-2))
-          (when (enabled $available-0) (inprogress $available-0))
-          (when (enabled $available-1) (inprogress $available-1))
-          (when (enabled $available-2) (inprogress $available-2))
-          (when (enabled $available-3) (inprogress $available-3))
-          (when (enabled $available-4) (inprogress $available-4))
-          (when (enabled $query-succ-4) (inprogress $query-succ-4))
-          (when (enabled $purchase-succ-3) (inprogress $purchase-succ-3))
-          (when (enabled $query-succ-3) (inprogress $query-succ-3))
-          (when (enabled $purchase-succ-4) (inprogress $purchase-succ-4))
-          (when (enabled $query-succ-2) (inprogress $query-succ-2))
-          (when (enabled $query-succ-1) (inprogress $query-succ-1))
-          (when (enabled $purchase-succ-1) (inprogress $purchase-succ-1))
-          (when (enabled $purchase-succ-2) (inprogress $purchase-succ-2))
-          (when (enabled $query-succ-0) (inprogress $query-succ-0))
-          (when (enabled $purchase-succ-0) (inprogress $purchase-succ-0))
+          (when (enabled $agency-request) (and (inprogress $agency-request) (status uncontrollable)))
+          (when (enabled $unavailable-1) (and (inprogress $unavailable-1) (status uncontrollable)))
+          (when (enabled $query-fail-1) (and (inprogress $query-fail-1) (status uncontrollable)))
+          (when (enabled $unavailable-0) (and (inprogress $unavailable-0) (status uncontrollable)))
+          (when (enabled $query-fail-0) (and (inprogress $query-fail-0) (status uncontrollable)))
+          (when (enabled $steps-3-2) (and (inprogress $steps-3-2) (status uncontrollable)))
+          (when (enabled $unavailable-3) (and (inprogress $unavailable-3) (status uncontrollable)))
+          (when (enabled $steps-3-3) (and (inprogress $steps-3-3) (status uncontrollable)))
+          (when (enabled $unavailable-2) (and (inprogress $unavailable-2) (status uncontrollable)))
+          (when (enabled $steps-4-0) (and (inprogress $steps-4-0) (status uncontrollable)))
+          (when (enabled $unavailable-4) (and (inprogress $unavailable-4) (status uncontrollable)))
+          (when (enabled $committed-0) (and (inprogress $committed-0) (status uncontrollable)))
+          (when (enabled $committed-1) (and (inprogress $committed-1) (status uncontrollable)))
+          (when (enabled $query-fail-3) (and (inprogress $query-fail-3) (status uncontrollable)))
+          (when (enabled $query-fail-2) (and (inprogress $query-fail-2) (status uncontrollable)))
+          (when (enabled $query-fail-4) (and (inprogress $query-fail-4) (status uncontrollable)))
+          (when (enabled $steps-0-3) (and (inprogress $steps-0-3) (status uncontrollable)))
+          (when (enabled $steps-0-1) (and (inprogress $steps-0-1) (status uncontrollable)))
+          (when (enabled $steps-0-2) (and (inprogress $steps-0-2) (status uncontrollable)))
+          (when (enabled $steps-1-3) (and (inprogress $steps-1-3) (status uncontrollable)))
+          (when (enabled $steps-1-2) (and (inprogress $steps-1-2) (status uncontrollable)))
+          (when (enabled $steps-0-0) (and (inprogress $steps-0-0) (status uncontrollable)))
+          (when (enabled $steps-1-1) (and (inprogress $steps-1-1) (status uncontrollable)))
+          (when (enabled $steps-1-0) (and (inprogress $steps-1-0) (status uncontrollable)))
+          (when (enabled $steps-4-1) (and (inprogress $steps-4-1) (status uncontrollable)))
+          (when (enabled $steps-4-2) (and (inprogress $steps-4-2) (status uncontrollable)))
+          (when (enabled $steps-3-1) (and (inprogress $steps-3-1) (status uncontrollable)))
+          (when (enabled $steps-4-3) (and (inprogress $steps-4-3) (status uncontrollable)))
+          (when (enabled $steps-3-0) (and (inprogress $steps-3-0) (status uncontrollable)))
+          (when (enabled $query-4) (and (inprogress $query-4) (status uncontrollable)))
+          (when (enabled $query-3) (and (inprogress $query-3) (status uncontrollable)))
+          (when (enabled $purchase-fail-4) (and (inprogress $purchase-fail-4) (status uncontrollable)))
+          (when (enabled $query-2) (and (inprogress $query-2) (status uncontrollable)))
+          (when (enabled $purchase-fail-3) (and (inprogress $purchase-fail-3) (status uncontrollable)))
+          (when (enabled $query-1) (and (inprogress $query-1) (status uncontrollable)))
+          (when (enabled $query-0) (and (inprogress $query-0) (status uncontrollable)))
+          (when (enabled $steps-2-1) (and (inprogress $steps-2-1) (status uncontrollable)))
+          (when (enabled $steps-2-2) (and (inprogress $steps-2-2) (status uncontrollable)))
+          (when (enabled $steps-2-0) (and (inprogress $steps-2-0) (status uncontrollable)))
+          (when (enabled $select-4) (and (inprogress $select-4) (status uncontrollable)))
+          (when (enabled $select-3) (and (inprogress $select-3) (status uncontrollable)))
+          (when (enabled $select-2) (and (inprogress $select-2) (status uncontrollable)))
+          (when (enabled $uncommitted-3) (and (inprogress $uncommitted-3) (status uncontrollable)))
+          (when (enabled $uncommitted-4) (and (inprogress $uncommitted-4) (status uncontrollable)))
+          (when (enabled $steps-2-3) (and (inprogress $steps-2-3) (status uncontrollable)))
+          (when (enabled $uncommitted-0) (and (inprogress $uncommitted-0) (status uncontrollable)))
+          (when (enabled $uncommitted-1) (and (inprogress $uncommitted-1) (status uncontrollable)))
+          (when (enabled $uncommitted-2) (and (inprogress $uncommitted-2) (status uncontrollable)))
+          (when (enabled $purchase-fail-1) (and (inprogress $purchase-fail-1) (status uncontrollable)))
+          (when (enabled $purchase-fail-2) (and (inprogress $purchase-fail-2) (status uncontrollable)))
+          (when (enabled $purchase-fail-0) (and (inprogress $purchase-fail-0) (status uncontrollable)))
+          (when (enabled $select-0) (and (inprogress $select-0) (status uncontrollable)))
+          (when (enabled $select-1) (and (inprogress $select-1) (status uncontrollable)))
+          (when (enabled $committed-4) (and (inprogress $committed-4) (status uncontrollable)))
+          (when (enabled $committed-3) (and (inprogress $committed-3) (status uncontrollable)))
+          (when (enabled $committed-2) (and (inprogress $committed-2) (status uncontrollable)))
+          (when (enabled $available-0) (and (inprogress $available-0) (status uncontrollable)))
+          (when (enabled $available-1) (and (inprogress $available-1) (status uncontrollable)))
+          (when (enabled $available-2) (and (inprogress $available-2) (status uncontrollable)))
+          (when (enabled $available-3) (and (inprogress $available-3) (status uncontrollable)))
+          (when (enabled $available-4) (and (inprogress $available-4) (status uncontrollable)))
+          (when (enabled $query-succ-4) (and (inprogress $query-succ-4) (status uncontrollable)))
+          (when (enabled $purchase-succ-3) (and (inprogress $purchase-succ-3) (status uncontrollable)))
+          (when (enabled $query-succ-3) (and (inprogress $query-succ-3) (status uncontrollable)))
+          (when (enabled $purchase-succ-4) (and (inprogress $purchase-succ-4) (status uncontrollable)))
+          (when (enabled $query-succ-2) (and (inprogress $query-succ-2) (status uncontrollable)))
+          (when (enabled $query-succ-1) (and (inprogress $query-succ-1) (status uncontrollable)))
+          (when (enabled $purchase-succ-1) (and (inprogress $purchase-succ-1) (status uncontrollable)))
+          (when (enabled $purchase-succ-2) (and (inprogress $purchase-succ-2) (status uncontrollable)))
+          (when (enabled $query-succ-0) (and (inprogress $query-succ-0) (status uncontrollable)))
+          (when (enabled $purchase-succ-0) (and (inprogress $purchase-succ-0) (status uncontrollable)))
+          (when (true) (true))
         )
       )
   )
@@ -2453,18 +2095,13 @@
         (not (inprogress $unavailable-1))
         (not (inprogress $query-fail-1))
         (not (inprogress $unavailable-0))
-        (not (inprogress $order-4))
         (not (inprogress $query-fail-0))
         (not (inprogress $steps-3-2))
         (not (inprogress $unavailable-3))
-        (not (inprogress $order-3))
         (not (inprogress $steps-3-3))
         (not (inprogress $unavailable-2))
-        (not (inprogress $order-2))
         (not (inprogress $steps-4-0))
-        (not (inprogress $order-1))
         (not (inprogress $unavailable-4))
-        (not (inprogress $order-0))
         (not (inprogress $committed-0))
         (not (inprogress $committed-1))
         (not (inprogress $query-fail-3))
@@ -2474,8 +2111,8 @@
         (not (inprogress $steps-0-1))
         (not (inprogress $steps-0-2))
         (not (inprogress $steps-1-3))
-        (not (inprogress $steps-0-0))
         (not (inprogress $steps-1-2))
+        (not (inprogress $steps-0-0))
         (not (inprogress $steps-1-1))
         (not (inprogress $steps-1-0))
         (not (inprogress $steps-4-1))
@@ -2483,13 +2120,19 @@
         (not (inprogress $steps-3-1))
         (not (inprogress $steps-4-3))
         (not (inprogress $steps-3-0))
+        (not (inprogress $query-4))
+        (not (inprogress $query-3))
         (not (inprogress $purchase-fail-4))
+        (not (inprogress $query-2))
         (not (inprogress $purchase-fail-3))
+        (not (inprogress $query-1))
+        (not (inprogress $query-0))
         (not (inprogress $steps-2-1))
         (not (inprogress $steps-2-2))
         (not (inprogress $steps-2-0))
-        (not (inprogress $reserve-1))
-        (not (inprogress $reserve-0))
+        (not (inprogress $select-4))
+        (not (inprogress $select-3))
+        (not (inprogress $select-2))
         (not (inprogress $uncommitted-3))
         (not (inprogress $uncommitted-4))
         (not (inprogress $steps-2-3))
@@ -2499,10 +2142,8 @@
         (not (inprogress $purchase-fail-1))
         (not (inprogress $purchase-fail-2))
         (not (inprogress $purchase-fail-0))
-        (not (inprogress $reserve-3))
-        (not (inprogress $reserve-2))
-        (not (inprogress $end))
-        (not (inprogress $reserve-4))
+        (not (inprogress $select-0))
+        (not (inprogress $select-1))
         (not (inprogress $committed-4))
         (not (inprogress $committed-3))
         (not (inprogress $committed-2))
@@ -2528,18 +2169,13 @@
         (inprogress $unavailable-1)
         (inprogress $query-fail-1)
         (inprogress $unavailable-0)
-        (inprogress $order-4)
         (inprogress $query-fail-0)
         (inprogress $steps-3-2)
         (inprogress $unavailable-3)
-        (inprogress $order-3)
         (inprogress $steps-3-3)
         (inprogress $unavailable-2)
-        (inprogress $order-2)
         (inprogress $steps-4-0)
-        (inprogress $order-1)
         (inprogress $unavailable-4)
-        (inprogress $order-0)
         (inprogress $committed-0)
         (inprogress $committed-1)
         (inprogress $query-fail-3)
@@ -2549,8 +2185,8 @@
         (inprogress $steps-0-1)
         (inprogress $steps-0-2)
         (inprogress $steps-1-3)
-        (inprogress $steps-0-0)
         (inprogress $steps-1-2)
+        (inprogress $steps-0-0)
         (inprogress $steps-1-1)
         (inprogress $steps-1-0)
         (inprogress $steps-4-1)
@@ -2558,13 +2194,19 @@
         (inprogress $steps-3-1)
         (inprogress $steps-4-3)
         (inprogress $steps-3-0)
+        (inprogress $query-4)
+        (inprogress $query-3)
         (inprogress $purchase-fail-4)
+        (inprogress $query-2)
         (inprogress $purchase-fail-3)
+        (inprogress $query-1)
+        (inprogress $query-0)
         (inprogress $steps-2-1)
         (inprogress $steps-2-2)
         (inprogress $steps-2-0)
-        (inprogress $reserve-1)
-        (inprogress $reserve-0)
+        (inprogress $select-4)
+        (inprogress $select-3)
+        (inprogress $select-2)
         (inprogress $uncommitted-3)
         (inprogress $uncommitted-4)
         (inprogress $steps-2-3)
@@ -2574,10 +2216,8 @@
         (inprogress $purchase-fail-1)
         (inprogress $purchase-fail-2)
         (inprogress $purchase-fail-0)
-        (inprogress $reserve-3)
-        (inprogress $reserve-2)
-        (inprogress $end)
-        (inprogress $reserve-4)
+        (inprogress $select-0)
+        (inprogress $select-1)
         (inprogress $committed-4)
         (inprogress $committed-3)
         (inprogress $committed-2)
@@ -2674,10 +2314,7 @@
         (when (at $2 $ServiceMonitor-0) (marked $2 $ServiceMonitor-0))
         (when (at $3 $ServiceMonitor-0) (marked $3 $ServiceMonitor-0))
         (when (at $4 $ServiceMonitor-0) (marked $4 $ServiceMonitor-0))
-        (when (at $5 $ServiceMonitor-0) (marked $5 $ServiceMonitor-0))
-        (when (at $17 $Service-4) (marked $17 $Service-4))
         (when (at $0 $Service-4) (marked $0 $Service-4))
-        (when (at $16 $Service-4) (marked $16 $Service-4))
         (when (at $1 $Service-4) (marked $1 $Service-4))
         (when (at $2 $Service-4) (marked $2 $Service-4))
         (when (at $3 $Service-4) (marked $3 $Service-4))
@@ -2699,7 +2336,6 @@
         (when (at $2 $ServiceMonitor-3) (marked $2 $ServiceMonitor-3))
         (when (at $3 $ServiceMonitor-3) (marked $3 $ServiceMonitor-3))
         (when (at $4 $ServiceMonitor-3) (marked $4 $ServiceMonitor-3))
-        (when (at $5 $ServiceMonitor-3) (marked $5 $ServiceMonitor-3))
         (when (at $17 $Service-0) (marked $17 $Service-0))
         (when (at $0 $Service-0) (marked $0 $Service-0))
         (when (at $16 $Service-0) (marked $16 $Service-0))
@@ -2724,14 +2360,12 @@
         (when (at $2 $ServiceMonitor-4) (marked $2 $ServiceMonitor-4))
         (when (at $3 $ServiceMonitor-4) (marked $3 $ServiceMonitor-4))
         (when (at $4 $ServiceMonitor-4) (marked $4 $ServiceMonitor-4))
-        (when (at $5 $ServiceMonitor-4) (marked $5 $ServiceMonitor-4))
         (when (at $-1 $ServiceMonitor-2) (marked $-1 $ServiceMonitor-2))
         (when (at $0 $ServiceMonitor-2) (marked $0 $ServiceMonitor-2))
         (when (at $1 $ServiceMonitor-2) (marked $1 $ServiceMonitor-2))
         (when (at $2 $ServiceMonitor-2) (marked $2 $ServiceMonitor-2))
         (when (at $3 $ServiceMonitor-2) (marked $3 $ServiceMonitor-2))
         (when (at $4 $ServiceMonitor-2) (marked $4 $ServiceMonitor-2))
-        (when (at $5 $ServiceMonitor-2) (marked $5 $ServiceMonitor-2))
         (when (at $0 $Agency) (marked $0 $Agency))
         (when (at $1 $Agency) (marked $1 $Agency))
         (when (at $-1 $ServiceMonitor-1) (marked $-1 $ServiceMonitor-1))
@@ -2740,7 +2374,6 @@
         (when (at $2 $ServiceMonitor-1) (marked $2 $ServiceMonitor-1))
         (when (at $3 $ServiceMonitor-1) (marked $3 $ServiceMonitor-1))
         (when (at $4 $ServiceMonitor-1) (marked $4 $ServiceMonitor-1))
-        (when (at $5 $ServiceMonitor-1) (marked $5 $ServiceMonitor-1))
       )
   )
   
@@ -2748,8 +2381,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $agency-request)
         (enabled $agency-request)
+        (inprogress $agency-request)
       )
     :effect
       (and
@@ -2765,8 +2398,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $unavailable-1)
         (enabled $unavailable-1)
+        (inprogress $unavailable-1)
       )
     :effect
       (and
@@ -2782,8 +2415,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $query-fail-1)
         (enabled $query-fail-1)
+        (inprogress $query-fail-1)
       )
     :effect
       (and
@@ -2793,13 +2426,13 @@
           (and (not (at $17 $Service-1)) (at $0 $Service-1))
         )
         (when (at $0 $AgencyMonitor)
-          (and (not (at $0 $AgencyMonitor)) (at $1 $AgencyMonitor))
+          (and (not (at $0 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $2 $ServiceMonitor-1)
-          (and (not (at $2 $ServiceMonitor-1)) (at $5 $ServiceMonitor-1))
+        (when (at $1 $ServiceMonitor-1)
+          (and (not (at $1 $ServiceMonitor-1)) (at $4 $ServiceMonitor-1))
         )
       )
   )
@@ -2808,8 +2441,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $unavailable-0)
         (enabled $unavailable-0)
+        (inprogress $unavailable-0)
       )
     :effect
       (and
@@ -2821,12 +2454,12 @@
       )
   )
   
-  (:action do$order-4
+  (:action do$query-fail-0
     :precondition
       (and
         (status busy)
-        (inprogress $order-4)
-        (enabled $order-4)
+        (enabled $query-fail-0)
+        (inprogress $query-fail-0)
       )
     :effect
       (and
@@ -2835,34 +2468,11 @@
         (when (at $0 $AgencyMonitor)
           (and (not (at $0 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $8 $Service-4)
-          (and (not (at $8 $Service-4)) (at $9 $Service-4))
-        )
-      )
-  )
-  
-  (:action do$query-fail-0
-    :precondition
-      (and
-        (status busy)
-        (inprogress $query-fail-0)
-        (enabled $query-fail-0)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (when (at $0 $AgencyMonitor)
-          (and (not (at $0 $AgencyMonitor)) (at $1 $AgencyMonitor))
-        )
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
-        )
-        (when (at $2 $ServiceMonitor-0)
-          (and (not (at $2 $ServiceMonitor-0)) (at $5 $ServiceMonitor-0))
+        (when (at $1 $ServiceMonitor-0)
+          (and (not (at $1 $ServiceMonitor-0)) (at $4 $ServiceMonitor-0))
         )
         (when (at $17 $Service-0)
           (and (not (at $17 $Service-0)) (at $0 $Service-0))
@@ -2874,8 +2484,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-3-2)
         (enabled $steps-3-2)
+        (inprogress $steps-3-2)
       )
     :effect
       (and
@@ -2891,8 +2501,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $unavailable-3)
         (enabled $unavailable-3)
+        (inprogress $unavailable-3)
       )
     :effect
       (and
@@ -2904,35 +2514,12 @@
       )
   )
   
-  (:action do$order-3
-    :precondition
-      (and
-        (status busy)
-        (inprogress $order-3)
-        (enabled $order-3)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (when (at $0 $AgencyMonitor)
-          (and (not (at $0 $AgencyMonitor)) (at $2 $AgencyMonitor))
-        )
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
-        )
-        (when (at $5 $Service-3)
-          (and (not (at $5 $Service-3)) (at $6 $Service-3))
-        )
-      )
-  )
-  
   (:action do$steps-3-3
     :precondition
       (and
         (status busy)
-        (inprogress $steps-3-3)
         (enabled $steps-3-3)
+        (inprogress $steps-3-3)
       )
     :effect
       (and
@@ -2948,8 +2535,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $unavailable-2)
         (enabled $unavailable-2)
+        (inprogress $unavailable-2)
       )
     :effect
       (and
@@ -2961,88 +2548,19 @@
       )
   )
   
-  (:action do$order-2
-    :precondition
-      (and
-        (status busy)
-        (inprogress $order-2)
-        (enabled $order-2)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (when (at $8 $Service-2)
-          (and (not (at $8 $Service-2)) (at $9 $Service-2))
-        )
-        (when (at $0 $AgencyMonitor)
-          (and (not (at $0 $AgencyMonitor)) (at $2 $AgencyMonitor))
-        )
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
-        )
-      )
-  )
-  
-  (:action do$order-1
-    :precondition
-      (and
-        (status busy)
-        (inprogress $order-1)
-        (enabled $order-1)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (when (at $5 $Service-1)
-          (and (not (at $5 $Service-1)) (at $6 $Service-1))
-        )
-        (when (at $0 $AgencyMonitor)
-          (and (not (at $0 $AgencyMonitor)) (at $2 $AgencyMonitor))
-        )
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
-        )
-      )
-  )
-  
   (:action do$steps-4-0
     :precondition
       (and
         (status busy)
-        (inprogress $steps-4-0)
         (enabled $steps-4-0)
+        (inprogress $steps-4-0)
       )
     :effect
       (and
         (status event)
         (not (status busy))
         (when (at $2 $Service-4)
-          (and (not (at $2 $Service-4)) (at $16 $Service-4))
-        )
-      )
-  )
-  
-  (:action do$order-0
-    :precondition
-      (and
-        (status busy)
-        (inprogress $order-0)
-        (enabled $order-0)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (when (at $0 $AgencyMonitor)
-          (and (not (at $0 $AgencyMonitor)) (at $2 $AgencyMonitor))
-        )
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
-        )
-        (when (at $5 $Service-0)
-          (and (not (at $5 $Service-0)) (at $6 $Service-0))
+          (and (not (at $2 $Service-4)) (at $14 $Service-4))
         )
       )
   )
@@ -3051,15 +2569,15 @@
     :precondition
       (and
         (status busy)
-        (inprogress $unavailable-4)
         (enabled $unavailable-4)
+        (inprogress $unavailable-4)
       )
     :effect
       (and
         (status event)
         (not (status busy))
         (when (at $1 $Service-4)
-          (and (not (at $1 $Service-4)) (at $17 $Service-4))
+          (and (not (at $1 $Service-4)) (at $15 $Service-4))
         )
       )
   )
@@ -3068,8 +2586,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $committed-0)
         (enabled $committed-0)
+        (inprogress $committed-0)
       )
     :effect
       (and
@@ -3085,8 +2603,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $committed-1)
         (enabled $committed-1)
+        (inprogress $committed-1)
       )
     :effect
       (and
@@ -3102,24 +2620,24 @@
     :precondition
       (and
         (status busy)
-        (inprogress $query-fail-3)
         (enabled $query-fail-3)
+        (inprogress $query-fail-3)
       )
     :effect
       (and
         (status event)
         (not (status busy))
         (when (at $0 $AgencyMonitor)
-          (and (not (at $0 $AgencyMonitor)) (at $1 $AgencyMonitor))
+          (and (not (at $0 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
         (when (at $17 $Service-3)
           (and (not (at $17 $Service-3)) (at $0 $Service-3))
         )
-        (when (at $2 $ServiceMonitor-3)
-          (and (not (at $2 $ServiceMonitor-3)) (at $3 $ServiceMonitor-3))
+        (when (at $1 $ServiceMonitor-3)
+          (and (not (at $1 $ServiceMonitor-3)) (at $2 $ServiceMonitor-3))
         )
       )
   )
@@ -3128,8 +2646,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $query-fail-2)
         (enabled $query-fail-2)
+        (inprogress $query-fail-2)
       )
     :effect
       (and
@@ -3139,13 +2657,13 @@
           (and (not (at $17 $Service-2)) (at $0 $Service-2))
         )
         (when (at $0 $AgencyMonitor)
-          (and (not (at $0 $AgencyMonitor)) (at $1 $AgencyMonitor))
+          (and (not (at $0 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $2 $ServiceMonitor-2)
-          (and (not (at $2 $ServiceMonitor-2)) (at $3 $ServiceMonitor-2))
+        (when (at $1 $ServiceMonitor-2)
+          (and (not (at $1 $ServiceMonitor-2)) (at $2 $ServiceMonitor-2))
         )
       )
   )
@@ -3154,24 +2672,24 @@
     :precondition
       (and
         (status busy)
-        (inprogress $query-fail-4)
         (enabled $query-fail-4)
+        (inprogress $query-fail-4)
       )
     :effect
       (and
         (status event)
         (not (status busy))
         (when (at $0 $AgencyMonitor)
-          (and (not (at $0 $AgencyMonitor)) (at $1 $AgencyMonitor))
+          (and (not (at $0 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $17 $Service-4)
-          (and (not (at $17 $Service-4)) (at $0 $Service-4))
+        (when (at $15 $Service-4)
+          (and (not (at $15 $Service-4)) (at $0 $Service-4))
         )
-        (when (at $2 $ServiceMonitor-4)
-          (and (not (at $2 $ServiceMonitor-4)) (at $3 $ServiceMonitor-4))
+        (when (at $1 $ServiceMonitor-4)
+          (and (not (at $1 $ServiceMonitor-4)) (at $2 $ServiceMonitor-4))
         )
       )
   )
@@ -3180,8 +2698,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-0-3)
         (enabled $steps-0-3)
+        (inprogress $steps-0-3)
       )
     :effect
       (and
@@ -3197,8 +2715,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-0-1)
         (enabled $steps-0-1)
+        (inprogress $steps-0-1)
       )
     :effect
       (and
@@ -3214,8 +2732,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-0-2)
         (enabled $steps-0-2)
+        (inprogress $steps-0-2)
       )
     :effect
       (and
@@ -3231,8 +2749,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-1-3)
         (enabled $steps-1-3)
+        (inprogress $steps-1-3)
       )
     :effect
       (and
@@ -3248,8 +2766,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-0-0)
         (enabled $steps-0-0)
+        (inprogress $steps-0-0)
       )
     :effect
       (and
@@ -3265,8 +2783,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-1-2)
         (enabled $steps-1-2)
+        (inprogress $steps-1-2)
       )
     :effect
       (and
@@ -3282,8 +2800,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-1-1)
         (enabled $steps-1-1)
+        (inprogress $steps-1-1)
       )
     :effect
       (and
@@ -3299,8 +2817,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-1-0)
         (enabled $steps-1-0)
+        (inprogress $steps-1-0)
       )
     :effect
       (and
@@ -3316,15 +2834,15 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-4-1)
         (enabled $steps-4-1)
+        (inprogress $steps-4-1)
       )
     :effect
       (and
         (status event)
         (not (status busy))
         (when (at $2 $Service-4)
-          (and (not (at $2 $Service-4)) (at $15 $Service-4))
+          (and (not (at $2 $Service-4)) (at $13 $Service-4))
         )
       )
   )
@@ -3333,15 +2851,15 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-4-2)
         (enabled $steps-4-2)
+        (inprogress $steps-4-2)
       )
     :effect
       (and
         (status event)
         (not (status busy))
         (when (at $2 $Service-4)
-          (and (not (at $2 $Service-4)) (at $14 $Service-4))
+          (and (not (at $2 $Service-4)) (at $12 $Service-4))
         )
       )
   )
@@ -3350,8 +2868,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-3-1)
         (enabled $steps-3-1)
+        (inprogress $steps-3-1)
       )
     :effect
       (and
@@ -3367,8 +2885,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-4-3)
         (enabled $steps-4-3)
+        (inprogress $steps-4-3)
       )
     :effect
       (and
@@ -3384,8 +2902,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-3-0)
         (enabled $steps-3-0)
+        (inprogress $steps-3-0)
       )
     :effect
       (and
@@ -3400,25 +2918,25 @@
   (:action do$query-4
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $query-4)
+        (inprogress $query-4)
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
+        (when (at $5 $Service-3)
+          (and (not (at $5 $Service-3)) (at $6 $Service-3))
+        )
+        (when (at $8 $Service-3)
+          (and (not (at $8 $Service-3)) (at $9 $Service-3))
+        )
         (when (at $0 $Service-4)
           (and (not (at $0 $Service-4)) (at $1 $Service-4))
         )
         (when (at $0 $ServiceMonitor-4)
-          (and (not (at $0 $ServiceMonitor-4)) (at $2 $ServiceMonitor-4))
-        )
-        (when (at $3 $ServiceMonitor-4)
-          (and (not (at $3 $ServiceMonitor-4)) (at $-1 $ServiceMonitor-4))
-        )
-        (when (at $5 $ServiceMonitor-4)
-          (and (not (at $5 $ServiceMonitor-4)) (at $-1 $ServiceMonitor-4))
+          (and (not (at $0 $ServiceMonitor-4)) (at $1 $ServiceMonitor-4))
         )
       )
   )
@@ -3426,25 +2944,25 @@
   (:action do$query-3
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $query-3)
+        (inprogress $query-3)
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
+        (when (at $8 $Service-2)
+          (and (not (at $8 $Service-2)) (at $9 $Service-2))
+        )
+        (when (at $11 $Service-2)
+          (and (not (at $11 $Service-2)) (at $12 $Service-2))
+        )
         (when (at $0 $Service-3)
           (and (not (at $0 $Service-3)) (at $1 $Service-3))
         )
         (when (at $0 $ServiceMonitor-3)
-          (and (not (at $0 $ServiceMonitor-3)) (at $2 $ServiceMonitor-3))
-        )
-        (when (at $3 $ServiceMonitor-3)
-          (and (not (at $3 $ServiceMonitor-3)) (at $-1 $ServiceMonitor-3))
-        )
-        (when (at $5 $ServiceMonitor-3)
-          (and (not (at $5 $ServiceMonitor-3)) (at $-1 $ServiceMonitor-3))
+          (and (not (at $0 $ServiceMonitor-3)) (at $1 $ServiceMonitor-3))
         )
       )
   )
@@ -3453,21 +2971,21 @@
     :precondition
       (and
         (status busy)
-        (inprogress $purchase-fail-4)
         (enabled $purchase-fail-4)
+        (inprogress $purchase-fail-4)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $10 $Service-4)
-          (and (not (at $10 $Service-4)) (at $0 $Service-4))
+        (when (at $9 $Service-4)
+          (and (not (at $9 $Service-4)) (at $0 $Service-4))
         )
-        (when (at $4 $ServiceMonitor-4)
-          (and (not (at $4 $ServiceMonitor-4)) (at $3 $ServiceMonitor-4))
+        (when (at $3 $ServiceMonitor-4)
+          (and (not (at $3 $ServiceMonitor-4)) (at $2 $ServiceMonitor-4))
         )
       )
   )
@@ -3475,25 +2993,25 @@
   (:action do$query-2
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $query-2)
+        (inprogress $query-2)
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $0 $Service-2)
           (and (not (at $0 $Service-2)) (at $1 $Service-2))
         )
+        (when (at $5 $Service-1)
+          (and (not (at $5 $Service-1)) (at $6 $Service-1))
+        )
+        (when (at $8 $Service-1)
+          (and (not (at $8 $Service-1)) (at $9 $Service-1))
+        )
         (when (at $0 $ServiceMonitor-2)
-          (and (not (at $0 $ServiceMonitor-2)) (at $2 $ServiceMonitor-2))
-        )
-        (when (at $3 $ServiceMonitor-2)
-          (and (not (at $3 $ServiceMonitor-2)) (at $-1 $ServiceMonitor-2))
-        )
-        (when (at $5 $ServiceMonitor-2)
-          (and (not (at $5 $ServiceMonitor-2)) (at $-1 $ServiceMonitor-2))
+          (and (not (at $0 $ServiceMonitor-2)) (at $1 $ServiceMonitor-2))
         )
       )
   )
@@ -3502,21 +3020,21 @@
     :precondition
       (and
         (status busy)
-        (inprogress $purchase-fail-3)
         (enabled $purchase-fail-3)
+        (inprogress $purchase-fail-3)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
         (when (at $7 $Service-3)
           (and (not (at $7 $Service-3)) (at $0 $Service-3))
         )
-        (when (at $4 $ServiceMonitor-3)
-          (and (not (at $4 $ServiceMonitor-3)) (at $3 $ServiceMonitor-3))
+        (when (at $3 $ServiceMonitor-3)
+          (and (not (at $3 $ServiceMonitor-3)) (at $2 $ServiceMonitor-3))
         )
       )
   )
@@ -3524,25 +3042,25 @@
   (:action do$query-1
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $query-1)
+        (inprogress $query-1)
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $0 $Service-1)
           (and (not (at $0 $Service-1)) (at $1 $Service-1))
         )
+        (when (at $5 $Service-0)
+          (and (not (at $5 $Service-0)) (at $6 $Service-0))
+        )
+        (when (at $8 $Service-0)
+          (and (not (at $8 $Service-0)) (at $9 $Service-0))
+        )
         (when (at $0 $ServiceMonitor-1)
-          (and (not (at $0 $ServiceMonitor-1)) (at $2 $ServiceMonitor-1))
-        )
-        (when (at $4 $ServiceMonitor-1)
-          (and (not (at $4 $ServiceMonitor-1)) (at $-1 $ServiceMonitor-1))
-        )
-        (when (at $5 $ServiceMonitor-1)
-          (and (not (at $5 $ServiceMonitor-1)) (at $-1 $ServiceMonitor-1))
+          (and (not (at $0 $ServiceMonitor-1)) (at $1 $ServiceMonitor-1))
         )
       )
   )
@@ -3550,22 +3068,16 @@
   (:action do$query-0
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $query-0)
+        (inprogress $query-0)
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $0 $ServiceMonitor-0)
-          (and (not (at $0 $ServiceMonitor-0)) (at $2 $ServiceMonitor-0))
-        )
-        (when (at $4 $ServiceMonitor-0)
-          (and (not (at $4 $ServiceMonitor-0)) (at $-1 $ServiceMonitor-0))
-        )
-        (when (at $5 $ServiceMonitor-0)
-          (and (not (at $5 $ServiceMonitor-0)) (at $-1 $ServiceMonitor-0))
+          (and (not (at $0 $ServiceMonitor-0)) (at $1 $ServiceMonitor-0))
         )
         (when (at $0 $Service-0)
           (and (not (at $0 $Service-0)) (at $1 $Service-0))
@@ -3577,8 +3089,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-2-1)
         (enabled $steps-2-1)
+        (inprogress $steps-2-1)
       )
     :effect
       (and
@@ -3594,8 +3106,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-2-2)
         (enabled $steps-2-2)
+        (inprogress $steps-2-2)
       )
     :effect
       (and
@@ -3611,8 +3123,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-2-0)
         (enabled $steps-2-0)
+        (inprogress $steps-2-0)
       )
     :effect
       (and
@@ -3624,51 +3136,17 @@
       )
   )
   
-  (:action do$reserve-1
-    :precondition
-      (and
-        (status busy)
-        (inprogress $reserve-1)
-        (enabled $reserve-1)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (when (at $8 $Service-1)
-          (and (not (at $8 $Service-1)) (at $9 $Service-1))
-        )
-      )
-  )
-  
-  (:action do$reserve-0
-    :precondition
-      (and
-        (status busy)
-        (inprogress $reserve-0)
-        (enabled $reserve-0)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (when (at $8 $Service-0)
-          (and (not (at $8 $Service-0)) (at $9 $Service-0))
-        )
-      )
-  )
-  
   (:action do$select-4
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $select-4)
+        (inprogress $select-4)
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $4 $Service-4)
           (and (not (at $4 $Service-4)) (at $5 $Service-4))
         )
@@ -3684,14 +3162,14 @@
   (:action do$select-3
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $select-3)
+        (inprogress $select-3)
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $12 $Service-3)
           (and (not (at $12 $Service-3)) (at $4 $Service-3))
         )
@@ -3707,14 +3185,15 @@
   (:action do$agency-fail
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $agency-fail)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
+        (status complete)
         (when (at $9 $Service-2)
           (and (not (at $9 $Service-2)) (at $0 $Service-2))
         )
@@ -3731,10 +3210,10 @@
           (and (not (at $0 $AgencyMonitor)) (at $-1 $AgencyMonitor))
         )
         (when (at $1 $AgencyMonitor)
-          (and (not (at $1 $AgencyMonitor)) (at $0 $AgencyMonitor))
+          (and (not (at $1 $AgencyMonitor)) (at $-1 $AgencyMonitor))
         )
         (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $-1 $AgencyMonitor))
+          (and (not (at $2 $AgencyMonitor)) (at $0 $AgencyMonitor))
         )
         (when (at $6 $Service-3)
           (and (not (at $6 $Service-3)) (at $0 $Service-3))
@@ -3742,41 +3221,35 @@
         (when (at $9 $Service-3)
           (and (not (at $9 $Service-3)) (at $0 $Service-3))
         )
-        (when (at $0 $ServiceMonitor-0)
-          (and (not (at $0 $ServiceMonitor-0)) (at $1 $ServiceMonitor-0))
+        (when (at $1 $ServiceMonitor-0)
+          (and (not (at $1 $ServiceMonitor-0)) (at $0 $ServiceMonitor-0))
         )
         (when (at $2 $ServiceMonitor-0)
-          (and (not (at $2 $ServiceMonitor-0)) (at $1 $ServiceMonitor-0))
+          (and (not (at $2 $ServiceMonitor-0)) (at $0 $ServiceMonitor-0))
         )
         (when (at $3 $ServiceMonitor-0)
-          (and (not (at $3 $ServiceMonitor-0)) (at $1 $ServiceMonitor-0))
+          (and (not (at $3 $ServiceMonitor-0)) (at $0 $ServiceMonitor-0))
         )
         (when (at $4 $ServiceMonitor-0)
-          (and (not (at $4 $ServiceMonitor-0)) (at $1 $ServiceMonitor-0))
+          (and (not (at $4 $ServiceMonitor-0)) (at $0 $ServiceMonitor-0))
         )
-        (when (at $5 $ServiceMonitor-0)
-          (and (not (at $5 $ServiceMonitor-0)) (at $1 $ServiceMonitor-0))
+        (when (at $8 $Service-4)
+          (and (not (at $8 $Service-4)) (at $0 $Service-4))
         )
-        (when (at $9 $Service-4)
-          (and (not (at $9 $Service-4)) (at $0 $Service-4))
+        (when (at $10 $Service-4)
+          (and (not (at $10 $Service-4)) (at $0 $Service-4))
         )
-        (when (at $12 $Service-4)
-          (and (not (at $12 $Service-4)) (at $0 $Service-4))
-        )
-        (when (at $0 $ServiceMonitor-3)
-          (and (not (at $0 $ServiceMonitor-3)) (at $1 $ServiceMonitor-3))
+        (when (at $1 $ServiceMonitor-3)
+          (and (not (at $1 $ServiceMonitor-3)) (at $0 $ServiceMonitor-3))
         )
         (when (at $2 $ServiceMonitor-3)
-          (and (not (at $2 $ServiceMonitor-3)) (at $1 $ServiceMonitor-3))
+          (and (not (at $2 $ServiceMonitor-3)) (at $0 $ServiceMonitor-3))
         )
         (when (at $3 $ServiceMonitor-3)
-          (and (not (at $3 $ServiceMonitor-3)) (at $1 $ServiceMonitor-3))
+          (and (not (at $3 $ServiceMonitor-3)) (at $0 $ServiceMonitor-3))
         )
         (when (at $4 $ServiceMonitor-3)
-          (and (not (at $4 $ServiceMonitor-3)) (at $1 $ServiceMonitor-3))
-        )
-        (when (at $5 $ServiceMonitor-3)
-          (and (not (at $5 $ServiceMonitor-3)) (at $1 $ServiceMonitor-3))
+          (and (not (at $4 $ServiceMonitor-3)) (at $0 $ServiceMonitor-3))
         )
         (when (at $6 $Service-0)
           (and (not (at $6 $Service-0)) (at $0 $Service-0))
@@ -3784,53 +3257,44 @@
         (when (at $9 $Service-0)
           (and (not (at $9 $Service-0)) (at $0 $Service-0))
         )
-        (when (at $0 $ServiceMonitor-4)
-          (and (not (at $0 $ServiceMonitor-4)) (at $1 $ServiceMonitor-4))
+        (when (at $1 $ServiceMonitor-4)
+          (and (not (at $1 $ServiceMonitor-4)) (at $0 $ServiceMonitor-4))
         )
         (when (at $2 $ServiceMonitor-4)
-          (and (not (at $2 $ServiceMonitor-4)) (at $1 $ServiceMonitor-4))
+          (and (not (at $2 $ServiceMonitor-4)) (at $0 $ServiceMonitor-4))
         )
         (when (at $3 $ServiceMonitor-4)
-          (and (not (at $3 $ServiceMonitor-4)) (at $1 $ServiceMonitor-4))
+          (and (not (at $3 $ServiceMonitor-4)) (at $0 $ServiceMonitor-4))
         )
         (when (at $4 $ServiceMonitor-4)
-          (and (not (at $4 $ServiceMonitor-4)) (at $1 $ServiceMonitor-4))
+          (and (not (at $4 $ServiceMonitor-4)) (at $0 $ServiceMonitor-4))
         )
-        (when (at $5 $ServiceMonitor-4)
-          (and (not (at $5 $ServiceMonitor-4)) (at $1 $ServiceMonitor-4))
-        )
-        (when (at $0 $ServiceMonitor-2)
-          (and (not (at $0 $ServiceMonitor-2)) (at $1 $ServiceMonitor-2))
+        (when (at $1 $ServiceMonitor-2)
+          (and (not (at $1 $ServiceMonitor-2)) (at $0 $ServiceMonitor-2))
         )
         (when (at $2 $ServiceMonitor-2)
-          (and (not (at $2 $ServiceMonitor-2)) (at $1 $ServiceMonitor-2))
+          (and (not (at $2 $ServiceMonitor-2)) (at $0 $ServiceMonitor-2))
         )
         (when (at $3 $ServiceMonitor-2)
-          (and (not (at $3 $ServiceMonitor-2)) (at $1 $ServiceMonitor-2))
+          (and (not (at $3 $ServiceMonitor-2)) (at $0 $ServiceMonitor-2))
         )
         (when (at $4 $ServiceMonitor-2)
-          (and (not (at $4 $ServiceMonitor-2)) (at $1 $ServiceMonitor-2))
-        )
-        (when (at $5 $ServiceMonitor-2)
-          (and (not (at $5 $ServiceMonitor-2)) (at $1 $ServiceMonitor-2))
+          (and (not (at $4 $ServiceMonitor-2)) (at $0 $ServiceMonitor-2))
         )
         (when (at $1 $Agency)
           (and (not (at $1 $Agency)) (at $0 $Agency))
         )
-        (when (at $0 $ServiceMonitor-1)
-          (and (not (at $0 $ServiceMonitor-1)) (at $1 $ServiceMonitor-1))
+        (when (at $1 $ServiceMonitor-1)
+          (and (not (at $1 $ServiceMonitor-1)) (at $0 $ServiceMonitor-1))
         )
         (when (at $2 $ServiceMonitor-1)
-          (and (not (at $2 $ServiceMonitor-1)) (at $1 $ServiceMonitor-1))
+          (and (not (at $2 $ServiceMonitor-1)) (at $0 $ServiceMonitor-1))
         )
         (when (at $3 $ServiceMonitor-1)
-          (and (not (at $3 $ServiceMonitor-1)) (at $1 $ServiceMonitor-1))
+          (and (not (at $3 $ServiceMonitor-1)) (at $0 $ServiceMonitor-1))
         )
         (when (at $4 $ServiceMonitor-1)
-          (and (not (at $4 $ServiceMonitor-1)) (at $1 $ServiceMonitor-1))
-        )
-        (when (at $5 $ServiceMonitor-1)
-          (and (not (at $5 $ServiceMonitor-1)) (at $1 $ServiceMonitor-1))
+          (and (not (at $4 $ServiceMonitor-1)) (at $0 $ServiceMonitor-1))
         )
       )
   )
@@ -3838,14 +3302,14 @@
   (:action do$select-2
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $select-2)
+        (inprogress $select-2)
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $4 $Service-2)
           (and (not (at $4 $Service-2)) (at $5 $Service-2))
         )
@@ -3861,22 +3325,22 @@
   (:action do$cancel-4
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $cancel-4)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
-        (when (at $9 $Service-4)
-          (and (not (at $9 $Service-4)) (at $0 $Service-4))
+        (not (status busy))
+        (when (at $8 $Service-4)
+          (and (not (at $8 $Service-4)) (at $0 $Service-4))
         )
-        (when (at $12 $Service-4)
-          (and (not (at $12 $Service-4)) (at $0 $Service-4))
+        (when (at $10 $Service-4)
+          (and (not (at $10 $Service-4)) (at $0 $Service-4))
         )
-        (when (at $4 $ServiceMonitor-4)
-          (and (not (at $4 $ServiceMonitor-4)) (at $3 $ServiceMonitor-4))
+        (when (at $3 $ServiceMonitor-4)
+          (and (not (at $3 $ServiceMonitor-4)) (at $2 $ServiceMonitor-4))
         )
       )
   )
@@ -3885,13 +3349,19 @@
     :precondition
       (and
         (status busy)
-        (inprogress $uncommitted-3)
         (enabled $uncommitted-3)
+        (inprogress $uncommitted-3)
       )
     :effect
       (and
         (status event)
         (not (status busy))
+        (when (at $0 $AgencyMonitor)
+          (and (not (at $0 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        )
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
+        )
         (when (at $4 $Service-3)
           (and (not (at $4 $Service-3)) (at $5 $Service-3))
         )
@@ -3902,13 +3372,19 @@
     :precondition
       (and
         (status busy)
-        (inprogress $uncommitted-4)
         (enabled $uncommitted-4)
+        (inprogress $uncommitted-4)
       )
     :effect
       (and
         (status event)
         (not (status busy))
+        (when (at $0 $AgencyMonitor)
+          (and (not (at $0 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        )
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
+        )
         (when (at $7 $Service-4)
           (and (not (at $7 $Service-4)) (at $8 $Service-4))
         )
@@ -3919,8 +3395,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $steps-2-3)
         (enabled $steps-2-3)
+        (inprogress $steps-2-3)
       )
     :effect
       (and
@@ -3936,13 +3412,19 @@
     :precondition
       (and
         (status busy)
-        (inprogress $uncommitted-0)
         (enabled $uncommitted-0)
+        (inprogress $uncommitted-0)
       )
     :effect
       (and
         (status event)
         (not (status busy))
+        (when (at $0 $AgencyMonitor)
+          (and (not (at $0 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        )
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
+        )
         (when (at $4 $Service-0)
           (and (not (at $4 $Service-0)) (at $5 $Service-0))
         )
@@ -3953,8 +3435,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $uncommitted-1)
         (enabled $uncommitted-1)
+        (inprogress $uncommitted-1)
       )
     :effect
       (and
@@ -3963,6 +3445,12 @@
         (when (at $4 $Service-1)
           (and (not (at $4 $Service-1)) (at $5 $Service-1))
         )
+        (when (at $0 $AgencyMonitor)
+          (and (not (at $0 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        )
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
+        )
       )
   )
   
@@ -3970,8 +3458,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $uncommitted-2)
         (enabled $uncommitted-2)
+        (inprogress $uncommitted-2)
       )
     :effect
       (and
@@ -3980,6 +3468,12 @@
         (when (at $7 $Service-2)
           (and (not (at $7 $Service-2)) (at $8 $Service-2))
         )
+        (when (at $0 $AgencyMonitor)
+          (and (not (at $0 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        )
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
+        )
       )
   )
   
@@ -3987,8 +3481,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $purchase-fail-1)
         (enabled $purchase-fail-1)
+        (inprogress $purchase-fail-1)
       )
     :effect
       (and
@@ -3997,11 +3491,11 @@
         (when (at $7 $Service-1)
           (and (not (at $7 $Service-1)) (at $0 $Service-1))
         )
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $3 $ServiceMonitor-1)
-          (and (not (at $3 $ServiceMonitor-1)) (at $5 $ServiceMonitor-1))
+        (when (at $2 $ServiceMonitor-1)
+          (and (not (at $2 $ServiceMonitor-1)) (at $4 $ServiceMonitor-1))
         )
       )
   )
@@ -4010,8 +3504,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $purchase-fail-2)
         (enabled $purchase-fail-2)
+        (inprogress $purchase-fail-2)
       )
     :effect
       (and
@@ -4020,11 +3514,11 @@
         (when (at $10 $Service-2)
           (and (not (at $10 $Service-2)) (at $0 $Service-2))
         )
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $4 $ServiceMonitor-2)
-          (and (not (at $4 $ServiceMonitor-2)) (at $3 $ServiceMonitor-2))
+        (when (at $3 $ServiceMonitor-2)
+          (and (not (at $3 $ServiceMonitor-2)) (at $2 $ServiceMonitor-2))
         )
       )
   )
@@ -4033,18 +3527,18 @@
     :precondition
       (and
         (status busy)
-        (inprogress $purchase-fail-0)
         (enabled $purchase-fail-0)
+        (inprogress $purchase-fail-0)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (when (at $2 $AgencyMonitor)
-          (and (not (at $2 $AgencyMonitor)) (at $1 $AgencyMonitor))
+        (when (at $1 $AgencyMonitor)
+          (and (not (at $1 $AgencyMonitor)) (at $2 $AgencyMonitor))
         )
-        (when (at $3 $ServiceMonitor-0)
-          (and (not (at $3 $ServiceMonitor-0)) (at $5 $ServiceMonitor-0))
+        (when (at $2 $ServiceMonitor-0)
+          (and (not (at $2 $ServiceMonitor-0)) (at $4 $ServiceMonitor-0))
         )
         (when (at $7 $Service-0)
           (and (not (at $7 $Service-0)) (at $0 $Service-0))
@@ -4055,22 +3549,22 @@
   (:action do$cancel-3
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $cancel-3)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $6 $Service-3)
           (and (not (at $6 $Service-3)) (at $0 $Service-3))
         )
         (when (at $9 $Service-3)
           (and (not (at $9 $Service-3)) (at $0 $Service-3))
         )
-        (when (at $4 $ServiceMonitor-3)
-          (and (not (at $4 $ServiceMonitor-3)) (at $3 $ServiceMonitor-3))
+        (when (at $3 $ServiceMonitor-3)
+          (and (not (at $3 $ServiceMonitor-3)) (at $2 $ServiceMonitor-3))
         )
       )
   )
@@ -4078,14 +3572,14 @@
   (:action do$purchase-2
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $purchase-2)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $9 $Service-2)
           (and (not (at $9 $Service-2)) (at $10 $Service-2))
         )
@@ -4098,14 +3592,14 @@
   (:action do$purchase-1
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $purchase-1)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $6 $Service-1)
           (and (not (at $6 $Service-1)) (at $7 $Service-1))
         )
@@ -4118,22 +3612,22 @@
   (:action do$cancel-2
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $cancel-2)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $9 $Service-2)
           (and (not (at $9 $Service-2)) (at $0 $Service-2))
         )
         (when (at $12 $Service-2)
           (and (not (at $12 $Service-2)) (at $0 $Service-2))
         )
-        (when (at $4 $ServiceMonitor-2)
-          (and (not (at $4 $ServiceMonitor-2)) (at $3 $ServiceMonitor-2))
+        (when (at $3 $ServiceMonitor-2)
+          (and (not (at $3 $ServiceMonitor-2)) (at $2 $ServiceMonitor-2))
         )
       )
   )
@@ -4141,22 +3635,22 @@
   (:action do$cancel-1
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $cancel-1)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $6 $Service-1)
           (and (not (at $6 $Service-1)) (at $0 $Service-1))
         )
         (when (at $9 $Service-1)
           (and (not (at $9 $Service-1)) (at $0 $Service-1))
         )
-        (when (at $3 $ServiceMonitor-1)
-          (and (not (at $3 $ServiceMonitor-1)) (at $5 $ServiceMonitor-1))
+        (when (at $2 $ServiceMonitor-1)
+          (and (not (at $2 $ServiceMonitor-1)) (at $4 $ServiceMonitor-1))
         )
       )
   )
@@ -4164,19 +3658,19 @@
   (:action do$purchase-4
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $purchase-4)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
-        (when (at $9 $Service-4)
-          (and (not (at $9 $Service-4)) (at $10 $Service-4))
+        (not (status busy))
+        (when (at $8 $Service-4)
+          (and (not (at $8 $Service-4)) (at $9 $Service-4))
         )
-        (when (at $12 $Service-4)
-          (and (not (at $12 $Service-4)) (at $13 $Service-4))
+        (when (at $10 $Service-4)
+          (and (not (at $10 $Service-4)) (at $11 $Service-4))
         )
       )
   )
@@ -4184,14 +3678,14 @@
   (:action do$purchase-3
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $purchase-3)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $6 $Service-3)
           (and (not (at $6 $Service-3)) (at $7 $Service-3))
         )
@@ -4204,16 +3698,16 @@
   (:action do$cancel-0
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $cancel-0)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
-        (when (at $3 $ServiceMonitor-0)
-          (and (not (at $3 $ServiceMonitor-0)) (at $5 $ServiceMonitor-0))
+        (not (status busy))
+        (when (at $2 $ServiceMonitor-0)
+          (and (not (at $2 $ServiceMonitor-0)) (at $4 $ServiceMonitor-0))
         )
         (when (at $6 $Service-0)
           (and (not (at $6 $Service-0)) (at $0 $Service-0))
@@ -4227,14 +3721,14 @@
   (:action do$purchase-0
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $purchase-0)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $6 $Service-0)
           (and (not (at $6 $Service-0)) (at $7 $Service-0))
         )
@@ -4247,14 +3741,14 @@
   (:action do$select-0
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $select-0)
+        (inprogress $select-0)
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $16 $Service-0)
           (and (not (at $16 $Service-0)) (at $12 $Service-0))
         )
@@ -4270,14 +3764,14 @@
   (:action do$select-1
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $select-1)
+        (inprogress $select-1)
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $16 $Service-1)
           (and (not (at $16 $Service-1)) (at $14 $Service-1))
         )
@@ -4290,98 +3784,18 @@
       )
   )
   
-  (:action do$reserve-3
+  (:action do$agency-succ
     :precondition
       (and
         (status busy)
-        (inprogress $reserve-3)
-        (enabled $reserve-3)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (when (at $8 $Service-3)
-          (and (not (at $8 $Service-3)) (at $9 $Service-3))
-        )
-      )
-  )
-  
-  (:action do$reserve-2
-    :precondition
-      (and
-        (status busy)
-        (inprogress $reserve-2)
-        (enabled $reserve-2)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (when (at $11 $Service-2)
-          (and (not (at $11 $Service-2)) (at $12 $Service-2))
-        )
-      )
-  )
-  
-  (:action do$end
-    :precondition
-      (and
-        (status busy)
-        (inprogress $end)
-        (enabled $end)
+        (enabled $agency-succ)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
         (not (status busy))
         (status complete)
-        (when (at $1 $ServiceMonitor-0)
-          (and (not (at $1 $ServiceMonitor-0)) (at $0 $ServiceMonitor-0))
-        )
-        (when (at $1 $ServiceMonitor-3)
-          (and (not (at $1 $ServiceMonitor-3)) (at $0 $ServiceMonitor-3))
-        )
-        (when (at $1 $ServiceMonitor-4)
-          (and (not (at $1 $ServiceMonitor-4)) (at $0 $ServiceMonitor-4))
-        )
-        (when (at $1 $ServiceMonitor-2)
-          (and (not (at $1 $ServiceMonitor-2)) (at $0 $ServiceMonitor-2))
-        )
-        (when (at $1 $ServiceMonitor-1)
-          (and (not (at $1 $ServiceMonitor-1)) (at $0 $ServiceMonitor-1))
-        )
-      )
-  )
-  
-  (:action do$reserve-4
-    :precondition
-      (and
-        (status busy)
-        (inprogress $reserve-4)
-        (enabled $reserve-4)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (when (at $11 $Service-4)
-          (and (not (at $11 $Service-4)) (at $12 $Service-4))
-        )
-      )
-  )
-  
-  (:action do$agency-succ
-    :precondition
-      (and
-        (status idle)
-        (not (status uncontrollable))
-        (enabled $agency-succ)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status idle))
         (when (at $9 $Service-2)
           (and (not (at $9 $Service-2)) (at $0 $Service-2))
         )
@@ -4409,26 +3823,29 @@
         (when (at $0 $ServiceMonitor-0)
           (and (not (at $0 $ServiceMonitor-0)) (at $-1 $ServiceMonitor-0))
         )
+        (when (at $1 $ServiceMonitor-0)
+          (and (not (at $1 $ServiceMonitor-0)) (at $-1 $ServiceMonitor-0))
+        )
         (when (at $2 $ServiceMonitor-0)
           (and (not (at $2 $ServiceMonitor-0)) (at $-1 $ServiceMonitor-0))
         )
         (when (at $3 $ServiceMonitor-0)
-          (and (not (at $3 $ServiceMonitor-0)) (at $-1 $ServiceMonitor-0))
+          (and (not (at $3 $ServiceMonitor-0)) (at $0 $ServiceMonitor-0))
         )
         (when (at $4 $ServiceMonitor-0)
-          (and (not (at $4 $ServiceMonitor-0)) (at $1 $ServiceMonitor-0))
+          (and (not (at $4 $ServiceMonitor-0)) (at $-1 $ServiceMonitor-0))
         )
-        (when (at $5 $ServiceMonitor-0)
-          (and (not (at $5 $ServiceMonitor-0)) (at $-1 $ServiceMonitor-0))
+        (when (at $8 $Service-4)
+          (and (not (at $8 $Service-4)) (at $0 $Service-4))
         )
-        (when (at $9 $Service-4)
-          (and (not (at $9 $Service-4)) (at $0 $Service-4))
-        )
-        (when (at $12 $Service-4)
-          (and (not (at $12 $Service-4)) (at $0 $Service-4))
+        (when (at $10 $Service-4)
+          (and (not (at $10 $Service-4)) (at $0 $Service-4))
         )
         (when (at $0 $ServiceMonitor-3)
           (and (not (at $0 $ServiceMonitor-3)) (at $-1 $ServiceMonitor-3))
+        )
+        (when (at $1 $ServiceMonitor-3)
+          (and (not (at $1 $ServiceMonitor-3)) (at $-1 $ServiceMonitor-3))
         )
         (when (at $2 $ServiceMonitor-3)
           (and (not (at $2 $ServiceMonitor-3)) (at $-1 $ServiceMonitor-3))
@@ -4437,10 +3854,7 @@
           (and (not (at $3 $ServiceMonitor-3)) (at $-1 $ServiceMonitor-3))
         )
         (when (at $4 $ServiceMonitor-3)
-          (and (not (at $4 $ServiceMonitor-3)) (at $-1 $ServiceMonitor-3))
-        )
-        (when (at $5 $ServiceMonitor-3)
-          (and (not (at $5 $ServiceMonitor-3)) (at $1 $ServiceMonitor-3))
+          (and (not (at $4 $ServiceMonitor-3)) (at $0 $ServiceMonitor-3))
         )
         (when (at $6 $Service-0)
           (and (not (at $6 $Service-0)) (at $0 $Service-0))
@@ -4451,6 +3865,9 @@
         (when (at $0 $ServiceMonitor-4)
           (and (not (at $0 $ServiceMonitor-4)) (at $-1 $ServiceMonitor-4))
         )
+        (when (at $1 $ServiceMonitor-4)
+          (and (not (at $1 $ServiceMonitor-4)) (at $-1 $ServiceMonitor-4))
+        )
         (when (at $2 $ServiceMonitor-4)
           (and (not (at $2 $ServiceMonitor-4)) (at $-1 $ServiceMonitor-4))
         )
@@ -4458,13 +3875,13 @@
           (and (not (at $3 $ServiceMonitor-4)) (at $-1 $ServiceMonitor-4))
         )
         (when (at $4 $ServiceMonitor-4)
-          (and (not (at $4 $ServiceMonitor-4)) (at $-1 $ServiceMonitor-4))
-        )
-        (when (at $5 $ServiceMonitor-4)
-          (and (not (at $5 $ServiceMonitor-4)) (at $1 $ServiceMonitor-4))
+          (and (not (at $4 $ServiceMonitor-4)) (at $0 $ServiceMonitor-4))
         )
         (when (at $0 $ServiceMonitor-2)
           (and (not (at $0 $ServiceMonitor-2)) (at $-1 $ServiceMonitor-2))
+        )
+        (when (at $1 $ServiceMonitor-2)
+          (and (not (at $1 $ServiceMonitor-2)) (at $-1 $ServiceMonitor-2))
         )
         (when (at $2 $ServiceMonitor-2)
           (and (not (at $2 $ServiceMonitor-2)) (at $-1 $ServiceMonitor-2))
@@ -4473,10 +3890,7 @@
           (and (not (at $3 $ServiceMonitor-2)) (at $-1 $ServiceMonitor-2))
         )
         (when (at $4 $ServiceMonitor-2)
-          (and (not (at $4 $ServiceMonitor-2)) (at $-1 $ServiceMonitor-2))
-        )
-        (when (at $5 $ServiceMonitor-2)
-          (and (not (at $5 $ServiceMonitor-2)) (at $1 $ServiceMonitor-2))
+          (and (not (at $4 $ServiceMonitor-2)) (at $0 $ServiceMonitor-2))
         )
         (when (at $1 $Agency)
           (and (not (at $1 $Agency)) (at $0 $Agency))
@@ -4484,17 +3898,17 @@
         (when (at $0 $ServiceMonitor-1)
           (and (not (at $0 $ServiceMonitor-1)) (at $-1 $ServiceMonitor-1))
         )
+        (when (at $1 $ServiceMonitor-1)
+          (and (not (at $1 $ServiceMonitor-1)) (at $-1 $ServiceMonitor-1))
+        )
         (when (at $2 $ServiceMonitor-1)
           (and (not (at $2 $ServiceMonitor-1)) (at $-1 $ServiceMonitor-1))
         )
         (when (at $3 $ServiceMonitor-1)
-          (and (not (at $3 $ServiceMonitor-1)) (at $-1 $ServiceMonitor-1))
+          (and (not (at $3 $ServiceMonitor-1)) (at $0 $ServiceMonitor-1))
         )
         (when (at $4 $ServiceMonitor-1)
-          (and (not (at $4 $ServiceMonitor-1)) (at $1 $ServiceMonitor-1))
-        )
-        (when (at $5 $ServiceMonitor-1)
-          (and (not (at $5 $ServiceMonitor-1)) (at $-1 $ServiceMonitor-1))
+          (and (not (at $4 $ServiceMonitor-1)) (at $-1 $ServiceMonitor-1))
         )
       )
   )
@@ -4503,15 +3917,15 @@
     :precondition
       (and
         (status busy)
-        (inprogress $committed-4)
         (enabled $committed-4)
+        (inprogress $committed-4)
       )
     :effect
       (and
         (status event)
         (not (status busy))
         (when (at $7 $Service-4)
-          (and (not (at $7 $Service-4)) (at $11 $Service-4))
+          (and (not (at $7 $Service-4)) (at $10 $Service-4))
         )
       )
   )
@@ -4520,8 +3934,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $committed-3)
         (enabled $committed-3)
+        (inprogress $committed-3)
       )
     :effect
       (and
@@ -4537,8 +3951,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $available-0)
         (enabled $available-0)
+        (inprogress $available-0)
       )
     :effect
       (and
@@ -4554,8 +3968,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $committed-2)
         (enabled $committed-2)
+        (inprogress $committed-2)
       )
     :effect
       (and
@@ -4571,8 +3985,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $available-1)
         (enabled $available-1)
+        (inprogress $available-1)
       )
     :effect
       (and
@@ -4588,8 +4002,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $available-2)
         (enabled $available-2)
+        (inprogress $available-2)
       )
     :effect
       (and
@@ -4605,8 +4019,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $available-3)
         (enabled $available-3)
+        (inprogress $available-3)
       )
     :effect
       (and
@@ -4622,8 +4036,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $available-4)
         (enabled $available-4)
+        (inprogress $available-4)
       )
     :effect
       (and
@@ -4639,27 +4053,27 @@
     :precondition
       (and
         (status busy)
-        (inprogress $query-succ-4)
         (enabled $query-succ-4)
+        (inprogress $query-succ-4)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (when (at $16 $Service-4)
-          (and (not (at $16 $Service-4)) (at $7 $Service-4))
-        )
         (when (at $3 $Service-4)
           (and (not (at $3 $Service-4)) (at $4 $Service-4))
         )
+        (when (at $12 $Service-4)
+          (and (not (at $12 $Service-4)) (at $5 $Service-4))
+        )
+        (when (at $13 $Service-4)
+          (and (not (at $13 $Service-4)) (at $6 $Service-4))
+        )
         (when (at $14 $Service-4)
-          (and (not (at $14 $Service-4)) (at $5 $Service-4))
+          (and (not (at $14 $Service-4)) (at $7 $Service-4))
         )
-        (when (at $15 $Service-4)
-          (and (not (at $15 $Service-4)) (at $6 $Service-4))
-        )
-        (when (at $2 $ServiceMonitor-4)
-          (and (not (at $2 $ServiceMonitor-4)) (at $4 $ServiceMonitor-4))
+        (when (at $1 $ServiceMonitor-4)
+          (and (not (at $1 $ServiceMonitor-4)) (at $3 $ServiceMonitor-4))
         )
       )
   )
@@ -4668,8 +4082,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $query-succ-3)
         (enabled $query-succ-3)
+        (inprogress $query-succ-3)
       )
     :effect
       (and
@@ -4687,8 +4101,8 @@
         (when (at $13 $Service-3)
           (and (not (at $13 $Service-3)) (at $14 $Service-3))
         )
-        (when (at $2 $ServiceMonitor-3)
-          (and (not (at $2 $ServiceMonitor-3)) (at $4 $ServiceMonitor-3))
+        (when (at $1 $ServiceMonitor-3)
+          (and (not (at $1 $ServiceMonitor-3)) (at $3 $ServiceMonitor-3))
         )
       )
   )
@@ -4697,8 +4111,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $purchase-succ-3)
         (enabled $purchase-succ-3)
+        (inprogress $purchase-succ-3)
       )
     :effect
       (and
@@ -4710,8 +4124,8 @@
         (when (at $10 $Service-3)
           (and (not (at $10 $Service-3)) (at $0 $Service-3))
         )
-        (when (at $4 $ServiceMonitor-3)
-          (and (not (at $4 $ServiceMonitor-3)) (at $5 $ServiceMonitor-3))
+        (when (at $3 $ServiceMonitor-3)
+          (and (not (at $3 $ServiceMonitor-3)) (at $4 $ServiceMonitor-3))
         )
       )
   )
@@ -4720,8 +4134,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $query-succ-2)
         (enabled $query-succ-2)
+        (inprogress $query-succ-2)
       )
     :effect
       (and
@@ -4739,8 +4153,8 @@
         (when (at $15 $Service-2)
           (and (not (at $15 $Service-2)) (at $5 $Service-2))
         )
-        (when (at $2 $ServiceMonitor-2)
-          (and (not (at $2 $ServiceMonitor-2)) (at $4 $ServiceMonitor-2))
+        (when (at $1 $ServiceMonitor-2)
+          (and (not (at $1 $ServiceMonitor-2)) (at $3 $ServiceMonitor-2))
         )
       )
   )
@@ -4749,21 +4163,21 @@
     :precondition
       (and
         (status busy)
-        (inprogress $purchase-succ-4)
         (enabled $purchase-succ-4)
+        (inprogress $purchase-succ-4)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (when (at $10 $Service-4)
-          (and (not (at $10 $Service-4)) (at $0 $Service-4))
+        (when (at $9 $Service-4)
+          (and (not (at $9 $Service-4)) (at $0 $Service-4))
         )
-        (when (at $13 $Service-4)
-          (and (not (at $13 $Service-4)) (at $0 $Service-4))
+        (when (at $11 $Service-4)
+          (and (not (at $11 $Service-4)) (at $0 $Service-4))
         )
-        (when (at $4 $ServiceMonitor-4)
-          (and (not (at $4 $ServiceMonitor-4)) (at $5 $ServiceMonitor-4))
+        (when (at $3 $ServiceMonitor-4)
+          (and (not (at $3 $ServiceMonitor-4)) (at $4 $ServiceMonitor-4))
         )
       )
   )
@@ -4772,8 +4186,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $purchase-succ-1)
         (enabled $purchase-succ-1)
+        (inprogress $purchase-succ-1)
       )
     :effect
       (and
@@ -4785,8 +4199,8 @@
         (when (at $10 $Service-1)
           (and (not (at $10 $Service-1)) (at $0 $Service-1))
         )
-        (when (at $3 $ServiceMonitor-1)
-          (and (not (at $3 $ServiceMonitor-1)) (at $4 $ServiceMonitor-1))
+        (when (at $2 $ServiceMonitor-1)
+          (and (not (at $2 $ServiceMonitor-1)) (at $3 $ServiceMonitor-1))
         )
       )
   )
@@ -4795,8 +4209,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $query-succ-1)
         (enabled $query-succ-1)
+        (inprogress $query-succ-1)
       )
     :effect
       (and
@@ -4814,8 +4228,8 @@
         (when (at $15 $Service-1)
           (and (not (at $15 $Service-1)) (at $16 $Service-1))
         )
-        (when (at $2 $ServiceMonitor-1)
-          (and (not (at $2 $ServiceMonitor-1)) (at $3 $ServiceMonitor-1))
+        (when (at $1 $ServiceMonitor-1)
+          (and (not (at $1 $ServiceMonitor-1)) (at $2 $ServiceMonitor-1))
         )
       )
   )
@@ -4824,15 +4238,15 @@
     :precondition
       (and
         (status busy)
-        (inprogress $query-succ-0)
         (enabled $query-succ-0)
+        (inprogress $query-succ-0)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (when (at $2 $ServiceMonitor-0)
-          (and (not (at $2 $ServiceMonitor-0)) (at $3 $ServiceMonitor-0))
+        (when (at $1 $ServiceMonitor-0)
+          (and (not (at $1 $ServiceMonitor-0)) (at $2 $ServiceMonitor-0))
         )
         (when (at $3 $Service-0)
           (and (not (at $3 $Service-0)) (at $4 $Service-0))
@@ -4853,8 +4267,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $purchase-succ-2)
         (enabled $purchase-succ-2)
+        (inprogress $purchase-succ-2)
       )
     :effect
       (and
@@ -4866,8 +4280,8 @@
         (when (at $13 $Service-2)
           (and (not (at $13 $Service-2)) (at $0 $Service-2))
         )
-        (when (at $4 $ServiceMonitor-2)
-          (and (not (at $4 $ServiceMonitor-2)) (at $5 $ServiceMonitor-2))
+        (when (at $3 $ServiceMonitor-2)
+          (and (not (at $3 $ServiceMonitor-2)) (at $4 $ServiceMonitor-2))
         )
       )
   )
@@ -4876,15 +4290,15 @@
     :precondition
       (and
         (status busy)
-        (inprogress $purchase-succ-0)
         (enabled $purchase-succ-0)
+        (inprogress $purchase-succ-0)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (when (at $3 $ServiceMonitor-0)
-          (and (not (at $3 $ServiceMonitor-0)) (at $4 $ServiceMonitor-0))
+        (when (at $2 $ServiceMonitor-0)
+          (and (not (at $2 $ServiceMonitor-0)) (at $3 $ServiceMonitor-0))
         )
         (when (at $7 $Service-0)
           (and (not (at $7 $Service-0)) (at $0 $Service-0))

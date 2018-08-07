@@ -1,7 +1,6 @@
 [INPUT]
 Document_0
 Document_1
-Document_2
 Crew_0_0
 Crew_0_1
 Crew_0_2
@@ -13,46 +12,50 @@ u_2
 [OUTPUT]
 c_0
 c_1
+c_2
 
 [ENV_INIT]
-(!Document_0&&!Document_1&&!Document_2)
-(!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)
+(!Document_0 && !Document_1)
+(!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3)
 
 [ENV_TRANS]
-((!u_0&&!u_1&&!u_2)<->(!((((Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)))||(((!Document_0&&!Document_1&&!Document_2)||(Document_0&&!Document_1&&!Document_2)||(Document_0&&Document_1&&!Document_2))&&((Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)||(Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)||(Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)))||(((Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)))||(((!Document_0&&!Document_1&&!Document_2)||(Document_0&&!Document_1&&!Document_2)||(Document_0&&Document_1&&!Document_2))&&((Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)))||(((!Document_0&&Document_1&&!Document_2))&&((Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3))))))
-(!((!u_0&&u_1&&u_2)||(u_0&&u_1&&u_2)))
-((u_0&&u_1&&!u_2)->((!Document_0&&!Document_1&&!Document_2)||(Document_0&&!Document_1&&!Document_2)||(Document_0&&Document_1&&!Document_2)))
-((!u_0&&!u_1&&u_2)->((!Document_0&&!Document_1&&!Document_2)||(Document_0&&!Document_1&&!Document_2)||(Document_0&&Document_1&&!Document_2)))
-((u_0&&!u_1&&u_2)->((!Document_0&&Document_1&&!Document_2)))
-(((u_0&&!u_1&&!u_2))->((((Document_0)<->X(Document_0))&&((Document_1)<->X(Document_1))&&((Document_2)<->X(Document_2)))))
-(((u_0&&u_1&&!u_2))->(((!Document_0&&!Document_1&&!Document_2)->X((Document_0&&Document_1&&!Document_2)))&&((Document_0&&!Document_1&&!Document_2)->X((Document_0&&!Document_1&&!Document_2)))&&((Document_0&&Document_1&&!Document_2)->X((Document_0&&Document_1&&!Document_2)))))
-(((!u_0&&u_1&&!u_2))->((((Document_0)<->X(Document_0))&&((Document_1)<->X(Document_1))&&((Document_2)<->X(Document_2)))))
-(((!u_0&&!u_1&&u_2))->(((!Document_0&&!Document_1&&!Document_2)->X((Document_0&&!Document_1&&!Document_2)))&&((Document_0&&!Document_1&&!Document_2)->X((Document_0&&!Document_1&&!Document_2)))&&((Document_0&&Document_1&&!Document_2)->X((Document_0&&Document_1&&!Document_2)))))
-(((u_0&&!u_1&&u_2))->(((!Document_0&&Document_1&&!Document_2)->X((!Document_0&&!Document_1&&!Document_2)))))
-(((c_0&&!c_1))->(((!Document_0&&!Document_1&&!Document_2)->X((!Document_0&&Document_1&&!Document_2)))&&((Document_0&&!Document_1&&!Document_2)->X((!Document_0&&Document_1&&!Document_2)))&&((Document_0&&Document_1&&!Document_2)->X((Document_0&&Document_1&&Document_2)))))
-(((c_0&&c_1))->((((Document_0)<->X(Document_0))&&((Document_1)<->X(Document_1))&&((Document_2)<->X(Document_2)))))
-(((!c_0&&c_1))->(((!Document_0&&!Document_1&&!Document_2)->X((Document_0&&Document_1&&Document_2)))&&((Document_0&&!Document_1&&!Document_2)->X((Document_0&&Document_1&&Document_2)))&&((Document_0&&Document_1&&!Document_2)->X((!Document_0&&Document_1&&!Document_2)))))
-((u_0&&!u_1&&!u_2)->((Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)))
-((u_0&&u_1&&!u_2)->((Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)||(Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)||(Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)))
-((!u_0&&u_1&&!u_2)->((Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)))
-((!u_0&&!u_1&&u_2)->((Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)))
-((u_0&&!u_1&&u_2)->((Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)))
-(((u_0&&!u_1&&!u_2))->(((Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)->X((!Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)))))
-(((u_0&&u_1&&!u_2))->(((Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)->X((!Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)))&&((Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)->X((!Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)))&&((Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)->X((!Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)))))
-(((!u_0&&u_1&&!u_2))->(((Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)->X((!Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)))))
-(((!u_0&&!u_1&&u_2))->(((Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)->X((!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&Crew_0_3)))))
-(((u_0&&!u_1&&u_2))->(((Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)->X((!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)))))
-(((c_0&&!c_1))->(((!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)->X((Crew_0_0&&Crew_0_1&&Crew_0_2&&Crew_0_3)))&&((!Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)->X((Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)))&&((!Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)->X((Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)))&&((!Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)->X((Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)))&&((!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&Crew_0_3)->X((Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)))))
-(((c_0&&c_1))->(((!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)->X((Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)))&&((!Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)->X((Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)))&&((!Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)->X((Crew_0_0&&Crew_0_1&&Crew_0_2&&Crew_0_3)))&&((!Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)->X((Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)))&&((!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&Crew_0_3)->X((Crew_0_0&&Crew_0_1&&Crew_0_2&&Crew_0_3)))))
-(((!c_0&&c_1))->(((!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)->X((Crew_0_0&&Crew_0_1&&Crew_0_2&&Crew_0_3)))&&((!Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)->X((Crew_0_0&&Crew_0_1&&Crew_0_2&&Crew_0_3)))&&((!Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)->X((Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)))&&((!Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)->X((Crew_0_0&&Crew_0_1&&Crew_0_2&&Crew_0_3)))&&((!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&Crew_0_3)->X((Crew_0_0&&Crew_0_1&&Crew_0_2&&Crew_0_3)))))
+(!(u_0 && !u_1 && u_2))
+(!(!u_0 && u_1 && u_2))
+(!(u_0 && u_1 && u_2))
+((!u_0 && u_1 && !u_2) -> ((!Document_0 && !Document_1) || (Document_0 && !Document_1) || (!Document_0 && Document_1)))
+((!u_0 && !u_1 && u_2) -> ((!Document_0 && !Document_1) || (Document_0 && !Document_1) || (!Document_0 && Document_1)))
+(((!u_0 && !u_1 && !u_2) || ((!c_0 && !c_1 && !c_2) && (u_0 && !u_1 && !u_2))) -> ((Document_0 -> X(Document_0)) && (!Document_0 -> X(!Document_0)) && (Document_1 -> X(Document_1)) && (!Document_1 -> X(!Document_1))))
+((((c_0 && !c_1 && !c_2) && (u_0 && !u_1 && !u_2))) -> (((!Document_0 && !Document_1) -> X((!Document_0 && !Document_1))) && ((Document_0 && !Document_1) -> X((!Document_0 && !Document_1))) && ((!Document_0 && Document_1) -> X((Document_0 && Document_1)))))
+(((u_0 && u_1 && !u_2) || ((!c_0 && c_1 && !c_2) && (u_0 && !u_1 && !u_2))) -> ((Document_0 -> X(Document_0)) && (!Document_0 -> X(!Document_0)) && (Document_1 -> X(Document_1)) && (!Document_1 -> X(!Document_1))))
+(((!u_0 && u_1 && !u_2) || ((c_0 && c_1 && !c_2) && (u_0 && !u_1 && !u_2))) -> (((!Document_0 && !Document_1) -> X((!Document_0 && Document_1))) && ((Document_0 && !Document_1) -> X((Document_0 && !Document_1))) && ((!Document_0 && Document_1) -> X((!Document_0 && Document_1)))))
+((((!c_0 && !c_1 && c_2) && (u_0 && !u_1 && !u_2))) -> (((!Document_0 && !Document_1) -> X((Document_0 && Document_1))) && ((Document_0 && !Document_1) -> X((Document_0 && Document_1))) && ((!Document_0 && Document_1) -> X((!Document_0 && !Document_1)))))
+((((c_0 && !c_1 && c_2) && (u_0 && !u_1 && !u_2))) -> ((Document_0 -> X(Document_0)) && (!Document_0 -> X(!Document_0)) && (Document_1 -> X(Document_1)) && (!Document_1 -> X(!Document_1))))
+(((!u_0 && !u_1 && u_2) || ((!c_0 && c_1 && c_2) && (u_0 && !u_1 && !u_2))) -> (((!Document_0 && !Document_1) -> X((Document_0 && !Document_1))) && ((Document_0 && !Document_1) -> X((Document_0 && !Document_1))) && ((!Document_0 && Document_1) -> X((!Document_0 && Document_1)))))
+((!u_0 && !u_1 && !u_2) -> ((Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3)))
+((!u_0 && u_1 && !u_2) -> ((Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3) || (Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3) || (!Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3)))
+((u_0 && u_1 && !u_2) -> ((Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3)))
+((!u_0 && !u_1 && u_2) -> ((!Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3)))
+(((!u_0 && !u_1 && !u_2) || ((!c_0 && !c_1 && !c_2) && (u_0 && !u_1 && !u_2))) -> (((Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3) -> X((Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3)))))
+((((c_0 && !c_1 && !c_2) && (u_0 && !u_1 && !u_2))) -> (((!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3) -> X((Crew_0_0 && Crew_0_1 && Crew_0_2 && Crew_0_3))) && ((!Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3) -> X((!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3))) && ((!Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3) -> X((!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3))) && ((Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3) -> X((!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3))) && ((Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3) -> X((!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3)))))
+(((u_0 && u_1 && !u_2) || ((!c_0 && c_1 && !c_2) && (u_0 && !u_1 && !u_2))) -> (((Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3) -> X((!Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3)))))
+(((!u_0 && u_1 && !u_2) || ((c_0 && c_1 && !c_2) && (u_0 && !u_1 && !u_2))) -> (((Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3) -> X((!Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3))) && ((Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3) -> X((!Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3))) && ((!Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3) -> X((!Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3)))))
+((((!c_0 && !c_1 && c_2) && (u_0 && !u_1 && !u_2))) -> (((!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3) -> X((Crew_0_0 && Crew_0_1 && Crew_0_2 && Crew_0_3))) && ((!Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3) -> X((Crew_0_0 && Crew_0_1 && Crew_0_2 && Crew_0_3))) && ((!Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3) -> X((!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3))) && ((Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3) -> X((Crew_0_0 && Crew_0_1 && Crew_0_2 && Crew_0_3))) && ((Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3) -> X((Crew_0_0 && Crew_0_1 && Crew_0_2 && Crew_0_3)))))
+((((c_0 && !c_1 && c_2) && (u_0 && !u_1 && !u_2))) -> (((!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3) -> X((Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3))) && ((!Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3) -> X((Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3))) && ((!Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3) -> X((Crew_0_0 && Crew_0_1 && Crew_0_2 && Crew_0_3))) && ((Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3) -> X((!Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3))) && ((Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3) -> X((Crew_0_0 && Crew_0_1 && Crew_0_2 && Crew_0_3)))))
+(((!u_0 && !u_1 && u_2) || ((!c_0 && c_1 && c_2) && (u_0 && !u_1 && !u_2))) -> (((!Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3) -> X((Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3)))))
 
 [SYS_TRANS]
-((!c_0&&!c_1)<->!(!u_0&&!u_1&&!u_2))
-((c_0&&!c_1)->((!Document_0&&!Document_1&&!Document_2)||(Document_0&&!Document_1&&!Document_2)||(Document_0&&Document_1&&!Document_2)))
-((!c_0&&c_1)->((!Document_0&&!Document_1&&!Document_2)||(Document_0&&!Document_1&&!Document_2)||(Document_0&&Document_1&&!Document_2)))
-((c_0&&!c_1)->((!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)||(!Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)||(!Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)||(!Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)||(!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&Crew_0_3)))
-((c_0&&c_1)->((!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)||(!Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)||(!Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)||(!Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)||(!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&Crew_0_3)))
-((!c_0&&c_1)->((!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&!Crew_0_3)||(!Crew_0_0&&Crew_0_1&&!Crew_0_2&&!Crew_0_3)||(!Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3)||(!Crew_0_0&&Crew_0_1&&Crew_0_2&&!Crew_0_3)||(!Crew_0_0&&!Crew_0_1&&!Crew_0_2&&Crew_0_3)))
+(!(c_0 && c_1 && c_2))
+((c_0 && !c_1 && !c_2) -> ((!Document_0 && !Document_1) || (Document_0 && !Document_1) || (!Document_0 && Document_1)))
+((c_0 && c_1 && !c_2) -> ((!Document_0 && !Document_1) || (Document_0 && !Document_1) || (!Document_0 && Document_1)))
+((!c_0 && !c_1 && c_2) -> ((!Document_0 && !Document_1) || (Document_0 && !Document_1) || (!Document_0 && Document_1)))
+((!c_0 && c_1 && c_2) -> ((!Document_0 && !Document_1) || (Document_0 && !Document_1) || (!Document_0 && Document_1)))
+((!c_0 && !c_1 && !c_2) -> ((Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3)))
+((c_0 && !c_1 && !c_2) -> ((!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3) || (!Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3) || (!Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3) || (Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3) || (Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3)))
+((!c_0 && c_1 && !c_2) -> ((Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3)))
+((c_0 && c_1 && !c_2) -> ((Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3) || (Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3) || (!Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3)))
+((!c_0 && !c_1 && c_2) -> ((!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3) || (!Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3) || (!Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3) || (Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3) || (Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3)))
+((c_0 && !c_1 && c_2) -> ((!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3) || (!Crew_0_0 && Crew_0_1 && !Crew_0_2 && !Crew_0_3) || (!Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3) || (Crew_0_0 && !Crew_0_1 && Crew_0_2 && !Crew_0_3) || (Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3)))
+((!c_0 && c_1 && c_2) -> ((!Crew_0_0 && Crew_0_1 && Crew_0_2 && !Crew_0_3)))
 
 [SYS_LIVENESS]
-((((((!Document_0&&Document_1&&!Document_2))&&((Crew_0_0&&!Crew_0_1&&Crew_0_2&&!Crew_0_3))))))
+(((Document_0 && Document_1) || (!Document_0 && !Document_1)) && ((!Crew_0_0 && !Crew_0_1 && !Crew_0_2 && !Crew_0_3) || (Crew_0_0 && Crew_0_1 && Crew_0_2 && Crew_0_3)))

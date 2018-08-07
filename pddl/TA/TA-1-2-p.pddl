@@ -1,6 +1,6 @@
 (define
   (problem Goal)
-  (:domain Controller)
+  (:domain DirectedController)
   (:init
     (at $0 $AgencyMonitor)
     (at $0 $ServiceMonitor-0)

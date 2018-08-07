@@ -1,0 +1,1216 @@
+MODULE main
+DOMAINNAME DirectedController
+PROBLEMNAME Goal
+IVAR
+  action: {
+    "(choose)",
+    "(default)",
+    "(eat_0)",
+    "(take_2_3)",
+    "(eat_1)",
+    "(take_3_3)",
+    "(eat_2)",
+    "(eat_3)",
+    "(step_3)",
+    "(release_0_1)",
+    "(step_2)",
+    "(release_0_0)",
+    "(step_0)",
+    "(step_1)",
+    "(take_3_0)",
+    "(take_0_0)",
+    "(take_0_1)",
+    "(take_2_2)",
+    "(think_2)",
+    "(think_3)",
+    "(think_0)",
+    "(think_1)",
+    "(take_1_2)",
+    "(take_1_1)",
+    "(release_3_3)",
+    "(eat_all)",
+    "(release_2_3)",
+    "(release_2_2)",
+    "(release_3_0)",
+    "(release_1_2)",
+    "(release_1_1)"
+  };
+VAR
+  "(at Philosopher_0)":-1..11;
+  "(at Monitor_1)":-1..1;
+  "(at Monitor_2)":-1..1;
+  "(at Monitor_0)":-1..1;
+  "(at Philosopher_1)":-1..11;
+  "(at Philosopher_2)":-1..11;
+  "(at Fork_3)":-1..1;
+  "(at Fork_2)":-1..1;
+  "(at Fork_0)":-1..1;
+  "(at Fork_1)":-1..1;
+  "(at Philosopher_3)":-1..11;
+  "(at Monitor_3)":-1..1;
+  "(inprogress eat_0)":0..1;
+  "(inprogress think_2)":0..1;
+  "(inprogress eat_1)":0..1;
+  "(inprogress think_3)":0..1;
+  "(inprogress think_0)":0..1;
+  "(inprogress think_1)":0..1;
+  "(inprogress eat_2)":0..1;
+  "(inprogress eat_3)":0..1;
+  "(inprogress eat_all)":0..1;
+  "(inprogress release_3_3)":0..1;
+  "(inprogress step_3)":0..1;
+  "(inprogress release_0_1)":0..1;
+  "(inprogress step_2)":0..1;
+  "(inprogress release_0_0)":0..1;
+  "(inprogress release_2_3)":0..1;
+  "(inprogress release_2_2)":0..1;
+  "(inprogress step_0)":0..1;
+  "(inprogress step_1)":0..1;
+  "(inprogress release_3_0)":0..1;
+  "(inprogress release_1_2)":0..1;
+  "(inprogress release_1_1)":0..1;
+  "(status)":-1..2;
+INIT (
+  "(inprogress release_0_1)"=0 &
+  "(inprogress release_1_2)"=0 &
+  "(inprogress step_3)"=0 &
+  "(at Monitor_2)"=0 &
+  "(inprogress release_3_0)"=0 &
+  "(inprogress step_0)"=0 &
+  "(at Monitor_1)"=0 &
+  "(inprogress release_3_3)"=0 &
+  "(at Monitor_3)"=0 &
+  "(inprogress eat_0)"=0 &
+  "(inprogress release_0_0)"=0 &
+  "(inprogress eat_1)"=0 &
+  "(status)"=0 &
+  "(inprogress think_0)"=0 &
+  "(at Philosopher_0)"=0 &
+  "(inprogress eat_2)"=0 &
+  "(inprogress step_1)"=0 &
+  "(at Fork_0)"=0 &
+  "(at Fork_1)"=0 &
+  "(at Philosopher_1)"=0 &
+  "(inprogress think_1)"=0 &
+  "(at Fork_2)"=0 &
+  "(at Monitor_0)"=0 &
+  "(inprogress eat_all)"=0 &
+  "(inprogress eat_3)"=0 &
+  "(inprogress release_2_3)"=0 &
+  "(at Fork_3)"=0 &
+  "(inprogress release_1_1)"=0 &
+  "(at Philosopher_3)"=0 &
+  "(inprogress think_3)"=0 &
+  "(inprogress think_2)"=0 &
+  "(at Philosopher_2)"=0 &
+  "(inprogress release_2_2)"=0 &
+  "(inprogress step_2)"=0 
+)
+DEFINE
+  "(@def ready eat_0 Philosopher_0)":=("(at Philosopher_0)"=9);
+  "(@def ready eat_0 Monitor_1)":=(FALSE);
+  "(@def ready eat_0 Monitor_2)":=(FALSE);
+  "(@def ready eat_0 Monitor_0)":=("(at Monitor_0)"=0 | "(at Monitor_0)"=1);
+  "(@def ready eat_0 Philosopher_1)":=(FALSE);
+  "(@def ready eat_0 Philosopher_2)":=(FALSE);
+  "(@def ready eat_0 Fork_3)":=(FALSE);
+  "(@def ready eat_0 Fork_2)":=(FALSE);
+  "(@def ready eat_0 Fork_0)":=(FALSE);
+  "(@def ready eat_0 Fork_1)":=(FALSE);
+  "(@def ready eat_0 Philosopher_3)":=(FALSE);
+  "(@def ready eat_0 Monitor_3)":=(FALSE);
+  "(@def ready take_2_3 Philosopher_0)":=(FALSE);
+  "(@def ready take_2_3 Monitor_1)":=(FALSE);
+  "(@def ready take_2_3 Monitor_2)":=(FALSE);
+  "(@def ready take_2_3 Monitor_0)":=(FALSE);
+  "(@def ready take_2_3 Philosopher_1)":=(FALSE);
+  "(@def ready take_2_3 Philosopher_2)":=("(at Philosopher_2)"=8);
+  "(@def ready take_2_3 Fork_3)":=("(at Fork_3)"=0);
+  "(@def ready take_2_3 Fork_2)":=(FALSE);
+  "(@def ready take_2_3 Fork_0)":=(FALSE);
+  "(@def ready take_2_3 Fork_1)":=(FALSE);
+  "(@def ready take_2_3 Philosopher_3)":=(FALSE);
+  "(@def ready take_2_3 Monitor_3)":=(FALSE);
+  "(@def ready eat_1 Philosopher_0)":=(FALSE);
+  "(@def ready eat_1 Monitor_1)":=("(at Monitor_1)"=0 | "(at Monitor_1)"=1);
+  "(@def ready eat_1 Monitor_2)":=(FALSE);
+  "(@def ready eat_1 Monitor_0)":=(FALSE);
+  "(@def ready eat_1 Philosopher_1)":=("(at Philosopher_1)"=9);
+  "(@def ready eat_1 Philosopher_2)":=(FALSE);
+  "(@def ready eat_1 Fork_3)":=(FALSE);
+  "(@def ready eat_1 Fork_2)":=(FALSE);
+  "(@def ready eat_1 Fork_0)":=(FALSE);
+  "(@def ready eat_1 Fork_1)":=(FALSE);
+  "(@def ready eat_1 Philosopher_3)":=(FALSE);
+  "(@def ready eat_1 Monitor_3)":=(FALSE);
+  "(@def ready take_3_3 Philosopher_0)":=(FALSE);
+  "(@def ready take_3_3 Monitor_1)":=(FALSE);
+  "(@def ready take_3_3 Monitor_2)":=(FALSE);
+  "(@def ready take_3_3 Monitor_0)":=(FALSE);
+  "(@def ready take_3_3 Philosopher_1)":=(FALSE);
+  "(@def ready take_3_3 Philosopher_2)":=(FALSE);
+  "(@def ready take_3_3 Fork_3)":=("(at Fork_3)"=0);
+  "(@def ready take_3_3 Fork_2)":=(FALSE);
+  "(@def ready take_3_3 Fork_0)":=(FALSE);
+  "(@def ready take_3_3 Fork_1)":=(FALSE);
+  "(@def ready take_3_3 Philosopher_3)":=("(at Philosopher_3)"=1);
+  "(@def ready take_3_3 Monitor_3)":=(FALSE);
+  "(@def ready eat_2 Philosopher_0)":=(FALSE);
+  "(@def ready eat_2 Monitor_1)":=(FALSE);
+  "(@def ready eat_2 Monitor_2)":=("(at Monitor_2)"=0 | "(at Monitor_2)"=1);
+  "(@def ready eat_2 Monitor_0)":=(FALSE);
+  "(@def ready eat_2 Philosopher_1)":=(FALSE);
+  "(@def ready eat_2 Philosopher_2)":=("(at Philosopher_2)"=9);
+  "(@def ready eat_2 Fork_3)":=(FALSE);
+  "(@def ready eat_2 Fork_2)":=(FALSE);
+  "(@def ready eat_2 Fork_0)":=(FALSE);
+  "(@def ready eat_2 Fork_1)":=(FALSE);
+  "(@def ready eat_2 Philosopher_3)":=(FALSE);
+  "(@def ready eat_2 Monitor_3)":=(FALSE);
+  "(@def ready eat_3 Philosopher_0)":=(FALSE);
+  "(@def ready eat_3 Monitor_1)":=(FALSE);
+  "(@def ready eat_3 Monitor_2)":=(FALSE);
+  "(@def ready eat_3 Monitor_0)":=(FALSE);
+  "(@def ready eat_3 Philosopher_1)":=(FALSE);
+  "(@def ready eat_3 Philosopher_2)":=(FALSE);
+  "(@def ready eat_3 Fork_3)":=(FALSE);
+  "(@def ready eat_3 Fork_2)":=(FALSE);
+  "(@def ready eat_3 Fork_0)":=(FALSE);
+  "(@def ready eat_3 Fork_1)":=(FALSE);
+  "(@def ready eat_3 Philosopher_3)":=("(at Philosopher_3)"=9);
+  "(@def ready eat_3 Monitor_3)":=("(at Monitor_3)"=0 | "(at Monitor_3)"=1);
+  "(@def ready step_3 Philosopher_0)":=(FALSE);
+  "(@def ready step_3 Monitor_1)":=(FALSE);
+  "(@def ready step_3 Monitor_2)":=(FALSE);
+  "(@def ready step_3 Monitor_0)":=(FALSE);
+  "(@def ready step_3 Philosopher_1)":=(FALSE);
+  "(@def ready step_3 Philosopher_2)":=(FALSE);
+  "(@def ready step_3 Fork_3)":=(FALSE);
+  "(@def ready step_3 Fork_2)":=(FALSE);
+  "(@def ready step_3 Fork_0)":=(FALSE);
+  "(@def ready step_3 Fork_1)":=(FALSE);
+  "(@def ready step_3 Philosopher_3)":=("(at Philosopher_3)"=2 | "(at Philosopher_3)"=3 | "(at Philosopher_3)"=4 | "(at Philosopher_3)"=5 | "(at Philosopher_3)"=6 | "(at Philosopher_3)"=7);
+  "(@def ready step_3 Monitor_3)":=(FALSE);
+  "(@def ready release_0_1 Philosopher_0)":=("(at Philosopher_0)"=11);
+  "(@def ready release_0_1 Monitor_1)":=(FALSE);
+  "(@def ready release_0_1 Monitor_2)":=(FALSE);
+  "(@def ready release_0_1 Monitor_0)":=(FALSE);
+  "(@def ready release_0_1 Philosopher_1)":=(FALSE);
+  "(@def ready release_0_1 Philosopher_2)":=(FALSE);
+  "(@def ready release_0_1 Fork_3)":=(FALSE);
+  "(@def ready release_0_1 Fork_2)":=(FALSE);
+  "(@def ready release_0_1 Fork_0)":=(FALSE);
+  "(@def ready release_0_1 Fork_1)":=("(at Fork_1)"=1);
+  "(@def ready release_0_1 Philosopher_3)":=(FALSE);
+  "(@def ready release_0_1 Monitor_3)":=(FALSE);
+  "(@def ready step_2 Philosopher_0)":=(FALSE);
+  "(@def ready step_2 Monitor_1)":=(FALSE);
+  "(@def ready step_2 Monitor_2)":=(FALSE);
+  "(@def ready step_2 Monitor_0)":=(FALSE);
+  "(@def ready step_2 Philosopher_1)":=(FALSE);
+  "(@def ready step_2 Philosopher_2)":=("(at Philosopher_2)"=2 | "(at Philosopher_2)"=3 | "(at Philosopher_2)"=4 | "(at Philosopher_2)"=5 | "(at Philosopher_2)"=6 | "(at Philosopher_2)"=7);
+  "(@def ready step_2 Fork_3)":=(FALSE);
+  "(@def ready step_2 Fork_2)":=(FALSE);
+  "(@def ready step_2 Fork_0)":=(FALSE);
+  "(@def ready step_2 Fork_1)":=(FALSE);
+  "(@def ready step_2 Philosopher_3)":=(FALSE);
+  "(@def ready step_2 Monitor_3)":=(FALSE);
+  "(@def ready release_0_0 Philosopher_0)":=("(at Philosopher_0)"=10);
+  "(@def ready release_0_0 Monitor_1)":=(FALSE);
+  "(@def ready release_0_0 Monitor_2)":=(FALSE);
+  "(@def ready release_0_0 Monitor_0)":=(FALSE);
+  "(@def ready release_0_0 Philosopher_1)":=(FALSE);
+  "(@def ready release_0_0 Philosopher_2)":=(FALSE);
+  "(@def ready release_0_0 Fork_3)":=(FALSE);
+  "(@def ready release_0_0 Fork_2)":=(FALSE);
+  "(@def ready release_0_0 Fork_0)":=("(at Fork_0)"=1);
+  "(@def ready release_0_0 Fork_1)":=(FALSE);
+  "(@def ready release_0_0 Philosopher_3)":=(FALSE);
+  "(@def ready release_0_0 Monitor_3)":=(FALSE);
+  "(@def ready step_0 Philosopher_0)":=("(at Philosopher_0)"=2 | "(at Philosopher_0)"=3 | "(at Philosopher_0)"=4 | "(at Philosopher_0)"=5 | "(at Philosopher_0)"=6 | "(at Philosopher_0)"=7);
+  "(@def ready step_0 Monitor_1)":=(FALSE);
+  "(@def ready step_0 Monitor_2)":=(FALSE);
+  "(@def ready step_0 Monitor_0)":=(FALSE);
+  "(@def ready step_0 Philosopher_1)":=(FALSE);
+  "(@def ready step_0 Philosopher_2)":=(FALSE);
+  "(@def ready step_0 Fork_3)":=(FALSE);
+  "(@def ready step_0 Fork_2)":=(FALSE);
+  "(@def ready step_0 Fork_0)":=(FALSE);
+  "(@def ready step_0 Fork_1)":=(FALSE);
+  "(@def ready step_0 Philosopher_3)":=(FALSE);
+  "(@def ready step_0 Monitor_3)":=(FALSE);
+  "(@def ready step_1 Philosopher_0)":=(FALSE);
+  "(@def ready step_1 Monitor_1)":=(FALSE);
+  "(@def ready step_1 Monitor_2)":=(FALSE);
+  "(@def ready step_1 Monitor_0)":=(FALSE);
+  "(@def ready step_1 Philosopher_1)":=("(at Philosopher_1)"=2 | "(at Philosopher_1)"=3 | "(at Philosopher_1)"=4 | "(at Philosopher_1)"=5 | "(at Philosopher_1)"=6 | "(at Philosopher_1)"=7);
+  "(@def ready step_1 Philosopher_2)":=(FALSE);
+  "(@def ready step_1 Fork_3)":=(FALSE);
+  "(@def ready step_1 Fork_2)":=(FALSE);
+  "(@def ready step_1 Fork_0)":=(FALSE);
+  "(@def ready step_1 Fork_1)":=(FALSE);
+  "(@def ready step_1 Philosopher_3)":=(FALSE);
+  "(@def ready step_1 Monitor_3)":=(FALSE);
+  "(@def ready take_3_0 Philosopher_0)":=(FALSE);
+  "(@def ready take_3_0 Monitor_1)":=(FALSE);
+  "(@def ready take_3_0 Monitor_2)":=(FALSE);
+  "(@def ready take_3_0 Monitor_0)":=(FALSE);
+  "(@def ready take_3_0 Philosopher_1)":=(FALSE);
+  "(@def ready take_3_0 Philosopher_2)":=(FALSE);
+  "(@def ready take_3_0 Fork_3)":=(FALSE);
+  "(@def ready take_3_0 Fork_2)":=(FALSE);
+  "(@def ready take_3_0 Fork_0)":=("(at Fork_0)"=0);
+  "(@def ready take_3_0 Fork_1)":=(FALSE);
+  "(@def ready take_3_0 Philosopher_3)":=("(at Philosopher_3)"=8);
+  "(@def ready take_3_0 Monitor_3)":=(FALSE);
+  "(@def ready take_0_0 Philosopher_0)":=("(at Philosopher_0)"=1);
+  "(@def ready take_0_0 Monitor_1)":=(FALSE);
+  "(@def ready take_0_0 Monitor_2)":=(FALSE);
+  "(@def ready take_0_0 Monitor_0)":=(FALSE);
+  "(@def ready take_0_0 Philosopher_1)":=(FALSE);
+  "(@def ready take_0_0 Philosopher_2)":=(FALSE);
+  "(@def ready take_0_0 Fork_3)":=(FALSE);
+  "(@def ready take_0_0 Fork_2)":=(FALSE);
+  "(@def ready take_0_0 Fork_0)":=("(at Fork_0)"=0);
+  "(@def ready take_0_0 Fork_1)":=(FALSE);
+  "(@def ready take_0_0 Philosopher_3)":=(FALSE);
+  "(@def ready take_0_0 Monitor_3)":=(FALSE);
+  "(@def ready take_0_1 Philosopher_0)":=("(at Philosopher_0)"=8);
+  "(@def ready take_0_1 Monitor_1)":=(FALSE);
+  "(@def ready take_0_1 Monitor_2)":=(FALSE);
+  "(@def ready take_0_1 Monitor_0)":=(FALSE);
+  "(@def ready take_0_1 Philosopher_1)":=(FALSE);
+  "(@def ready take_0_1 Philosopher_2)":=(FALSE);
+  "(@def ready take_0_1 Fork_3)":=(FALSE);
+  "(@def ready take_0_1 Fork_2)":=(FALSE);
+  "(@def ready take_0_1 Fork_0)":=(FALSE);
+  "(@def ready take_0_1 Fork_1)":=("(at Fork_1)"=0);
+  "(@def ready take_0_1 Philosopher_3)":=(FALSE);
+  "(@def ready take_0_1 Monitor_3)":=(FALSE);
+  "(@def ready take_2_2 Philosopher_0)":=(FALSE);
+  "(@def ready take_2_2 Monitor_1)":=(FALSE);
+  "(@def ready take_2_2 Monitor_2)":=(FALSE);
+  "(@def ready take_2_2 Monitor_0)":=(FALSE);
+  "(@def ready take_2_2 Philosopher_1)":=(FALSE);
+  "(@def ready take_2_2 Philosopher_2)":=("(at Philosopher_2)"=1);
+  "(@def ready take_2_2 Fork_3)":=(FALSE);
+  "(@def ready take_2_2 Fork_2)":=("(at Fork_2)"=0);
+  "(@def ready take_2_2 Fork_0)":=(FALSE);
+  "(@def ready take_2_2 Fork_1)":=(FALSE);
+  "(@def ready take_2_2 Philosopher_3)":=(FALSE);
+  "(@def ready take_2_2 Monitor_3)":=(FALSE);
+  "(@def ready think_2 Philosopher_0)":=(FALSE);
+  "(@def ready think_2 Monitor_1)":=(FALSE);
+  "(@def ready think_2 Monitor_2)":=(FALSE);
+  "(@def ready think_2 Monitor_0)":=(FALSE);
+  "(@def ready think_2 Philosopher_1)":=(FALSE);
+  "(@def ready think_2 Philosopher_2)":=("(at Philosopher_2)"=0);
+  "(@def ready think_2 Fork_3)":=(FALSE);
+  "(@def ready think_2 Fork_2)":=(FALSE);
+  "(@def ready think_2 Fork_0)":=(FALSE);
+  "(@def ready think_2 Fork_1)":=(FALSE);
+  "(@def ready think_2 Philosopher_3)":=(FALSE);
+  "(@def ready think_2 Monitor_3)":=(FALSE);
+  "(@def ready think_3 Philosopher_0)":=(FALSE);
+  "(@def ready think_3 Monitor_1)":=(FALSE);
+  "(@def ready think_3 Monitor_2)":=(FALSE);
+  "(@def ready think_3 Monitor_0)":=(FALSE);
+  "(@def ready think_3 Philosopher_1)":=(FALSE);
+  "(@def ready think_3 Philosopher_2)":=(FALSE);
+  "(@def ready think_3 Fork_3)":=(FALSE);
+  "(@def ready think_3 Fork_2)":=(FALSE);
+  "(@def ready think_3 Fork_0)":=(FALSE);
+  "(@def ready think_3 Fork_1)":=(FALSE);
+  "(@def ready think_3 Philosopher_3)":=("(at Philosopher_3)"=0);
+  "(@def ready think_3 Monitor_3)":=(FALSE);
+  "(@def ready think_0 Philosopher_0)":=("(at Philosopher_0)"=0);
+  "(@def ready think_0 Monitor_1)":=(FALSE);
+  "(@def ready think_0 Monitor_2)":=(FALSE);
+  "(@def ready think_0 Monitor_0)":=(FALSE);
+  "(@def ready think_0 Philosopher_1)":=(FALSE);
+  "(@def ready think_0 Philosopher_2)":=(FALSE);
+  "(@def ready think_0 Fork_3)":=(FALSE);
+  "(@def ready think_0 Fork_2)":=(FALSE);
+  "(@def ready think_0 Fork_0)":=(FALSE);
+  "(@def ready think_0 Fork_1)":=(FALSE);
+  "(@def ready think_0 Philosopher_3)":=(FALSE);
+  "(@def ready think_0 Monitor_3)":=(FALSE);
+  "(@def ready think_1 Philosopher_0)":=(FALSE);
+  "(@def ready think_1 Monitor_1)":=(FALSE);
+  "(@def ready think_1 Monitor_2)":=(FALSE);
+  "(@def ready think_1 Monitor_0)":=(FALSE);
+  "(@def ready think_1 Philosopher_1)":=("(at Philosopher_1)"=0);
+  "(@def ready think_1 Philosopher_2)":=(FALSE);
+  "(@def ready think_1 Fork_3)":=(FALSE);
+  "(@def ready think_1 Fork_2)":=(FALSE);
+  "(@def ready think_1 Fork_0)":=(FALSE);
+  "(@def ready think_1 Fork_1)":=(FALSE);
+  "(@def ready think_1 Philosopher_3)":=(FALSE);
+  "(@def ready think_1 Monitor_3)":=(FALSE);
+  "(@def ready take_1_2 Philosopher_0)":=(FALSE);
+  "(@def ready take_1_2 Monitor_1)":=(FALSE);
+  "(@def ready take_1_2 Monitor_2)":=(FALSE);
+  "(@def ready take_1_2 Monitor_0)":=(FALSE);
+  "(@def ready take_1_2 Philosopher_1)":=("(at Philosopher_1)"=8);
+  "(@def ready take_1_2 Philosopher_2)":=(FALSE);
+  "(@def ready take_1_2 Fork_3)":=(FALSE);
+  "(@def ready take_1_2 Fork_2)":=("(at Fork_2)"=0);
+  "(@def ready take_1_2 Fork_0)":=(FALSE);
+  "(@def ready take_1_2 Fork_1)":=(FALSE);
+  "(@def ready take_1_2 Philosopher_3)":=(FALSE);
+  "(@def ready take_1_2 Monitor_3)":=(FALSE);
+  "(@def ready take_1_1 Philosopher_0)":=(FALSE);
+  "(@def ready take_1_1 Monitor_1)":=(FALSE);
+  "(@def ready take_1_1 Monitor_2)":=(FALSE);
+  "(@def ready take_1_1 Monitor_0)":=(FALSE);
+  "(@def ready take_1_1 Philosopher_1)":=("(at Philosopher_1)"=1);
+  "(@def ready take_1_1 Philosopher_2)":=(FALSE);
+  "(@def ready take_1_1 Fork_3)":=(FALSE);
+  "(@def ready take_1_1 Fork_2)":=(FALSE);
+  "(@def ready take_1_1 Fork_0)":=(FALSE);
+  "(@def ready take_1_1 Fork_1)":=("(at Fork_1)"=0);
+  "(@def ready take_1_1 Philosopher_3)":=(FALSE);
+  "(@def ready take_1_1 Monitor_3)":=(FALSE);
+  "(@def ready release_3_3 Philosopher_0)":=(FALSE);
+  "(@def ready release_3_3 Monitor_1)":=(FALSE);
+  "(@def ready release_3_3 Monitor_2)":=(FALSE);
+  "(@def ready release_3_3 Monitor_0)":=(FALSE);
+  "(@def ready release_3_3 Philosopher_1)":=(FALSE);
+  "(@def ready release_3_3 Philosopher_2)":=(FALSE);
+  "(@def ready release_3_3 Fork_3)":=("(at Fork_3)"=1);
+  "(@def ready release_3_3 Fork_2)":=(FALSE);
+  "(@def ready release_3_3 Fork_0)":=(FALSE);
+  "(@def ready release_3_3 Fork_1)":=(FALSE);
+  "(@def ready release_3_3 Philosopher_3)":=("(at Philosopher_3)"=10);
+  "(@def ready release_3_3 Monitor_3)":=(FALSE);
+  "(@def ready eat_all Philosopher_0)":=(FALSE);
+  "(@def ready eat_all Monitor_1)":=("(at Monitor_1)"=1);
+  "(@def ready eat_all Monitor_2)":=("(at Monitor_2)"=1);
+  "(@def ready eat_all Monitor_0)":=("(at Monitor_0)"=1);
+  "(@def ready eat_all Philosopher_1)":=(FALSE);
+  "(@def ready eat_all Philosopher_2)":=(FALSE);
+  "(@def ready eat_all Fork_3)":=(FALSE);
+  "(@def ready eat_all Fork_2)":=(FALSE);
+  "(@def ready eat_all Fork_0)":=(FALSE);
+  "(@def ready eat_all Fork_1)":=(FALSE);
+  "(@def ready eat_all Philosopher_3)":=(FALSE);
+  "(@def ready eat_all Monitor_3)":=("(at Monitor_3)"=1);
+  "(@def ready release_2_3 Philosopher_0)":=(FALSE);
+  "(@def ready release_2_3 Monitor_1)":=(FALSE);
+  "(@def ready release_2_3 Monitor_2)":=(FALSE);
+  "(@def ready release_2_3 Monitor_0)":=(FALSE);
+  "(@def ready release_2_3 Philosopher_1)":=(FALSE);
+  "(@def ready release_2_3 Philosopher_2)":=("(at Philosopher_2)"=11);
+  "(@def ready release_2_3 Fork_3)":=("(at Fork_3)"=1);
+  "(@def ready release_2_3 Fork_2)":=(FALSE);
+  "(@def ready release_2_3 Fork_0)":=(FALSE);
+  "(@def ready release_2_3 Fork_1)":=(FALSE);
+  "(@def ready release_2_3 Philosopher_3)":=(FALSE);
+  "(@def ready release_2_3 Monitor_3)":=(FALSE);
+  "(@def ready release_2_2 Philosopher_0)":=(FALSE);
+  "(@def ready release_2_2 Monitor_1)":=(FALSE);
+  "(@def ready release_2_2 Monitor_2)":=(FALSE);
+  "(@def ready release_2_2 Monitor_0)":=(FALSE);
+  "(@def ready release_2_2 Philosopher_1)":=(FALSE);
+  "(@def ready release_2_2 Philosopher_2)":=("(at Philosopher_2)"=10);
+  "(@def ready release_2_2 Fork_3)":=(FALSE);
+  "(@def ready release_2_2 Fork_2)":=("(at Fork_2)"=1);
+  "(@def ready release_2_2 Fork_0)":=(FALSE);
+  "(@def ready release_2_2 Fork_1)":=(FALSE);
+  "(@def ready release_2_2 Philosopher_3)":=(FALSE);
+  "(@def ready release_2_2 Monitor_3)":=(FALSE);
+  "(@def ready release_3_0 Philosopher_0)":=(FALSE);
+  "(@def ready release_3_0 Monitor_1)":=(FALSE);
+  "(@def ready release_3_0 Monitor_2)":=(FALSE);
+  "(@def ready release_3_0 Monitor_0)":=(FALSE);
+  "(@def ready release_3_0 Philosopher_1)":=(FALSE);
+  "(@def ready release_3_0 Philosopher_2)":=(FALSE);
+  "(@def ready release_3_0 Fork_3)":=(FALSE);
+  "(@def ready release_3_0 Fork_2)":=(FALSE);
+  "(@def ready release_3_0 Fork_0)":=("(at Fork_0)"=1);
+  "(@def ready release_3_0 Fork_1)":=(FALSE);
+  "(@def ready release_3_0 Philosopher_3)":=("(at Philosopher_3)"=11);
+  "(@def ready release_3_0 Monitor_3)":=(FALSE);
+  "(@def ready release_1_2 Philosopher_0)":=(FALSE);
+  "(@def ready release_1_2 Monitor_1)":=(FALSE);
+  "(@def ready release_1_2 Monitor_2)":=(FALSE);
+  "(@def ready release_1_2 Monitor_0)":=(FALSE);
+  "(@def ready release_1_2 Philosopher_1)":=("(at Philosopher_1)"=11);
+  "(@def ready release_1_2 Philosopher_2)":=(FALSE);
+  "(@def ready release_1_2 Fork_3)":=(FALSE);
+  "(@def ready release_1_2 Fork_2)":=("(at Fork_2)"=1);
+  "(@def ready release_1_2 Fork_0)":=(FALSE);
+  "(@def ready release_1_2 Fork_1)":=(FALSE);
+  "(@def ready release_1_2 Philosopher_3)":=(FALSE);
+  "(@def ready release_1_2 Monitor_3)":=(FALSE);
+  "(@def ready release_1_1 Philosopher_0)":=(FALSE);
+  "(@def ready release_1_1 Monitor_1)":=(FALSE);
+  "(@def ready release_1_1 Monitor_2)":=(FALSE);
+  "(@def ready release_1_1 Monitor_0)":=(FALSE);
+  "(@def ready release_1_1 Philosopher_1)":=("(at Philosopher_1)"=10);
+  "(@def ready release_1_1 Philosopher_2)":=(FALSE);
+  "(@def ready release_1_1 Fork_3)":=(FALSE);
+  "(@def ready release_1_1 Fork_2)":=(FALSE);
+  "(@def ready release_1_1 Fork_0)":=(FALSE);
+  "(@def ready release_1_1 Fork_1)":=("(at Fork_1)"=1);
+  "(@def ready release_1_1 Philosopher_3)":=(FALSE);
+  "(@def ready release_1_1 Monitor_3)":=(FALSE);
+  "(@def enabled eat_0)":=("(@def ready eat_0 Philosopher_0)" & "(@def ready eat_0 Monitor_0)");
+  "(@def enabled take_2_3)":=("(@def ready take_2_3 Philosopher_2)" & "(@def ready take_2_3 Fork_3)");
+  "(@def enabled eat_1)":=("(@def ready eat_1 Monitor_1)" & "(@def ready eat_1 Philosopher_1)");
+  "(@def enabled take_3_3)":=("(@def ready take_3_3 Fork_3)" & "(@def ready take_3_3 Philosopher_3)");
+  "(@def enabled eat_2)":=("(@def ready eat_2 Monitor_2)" & "(@def ready eat_2 Philosopher_2)");
+  "(@def enabled eat_3)":=("(@def ready eat_3 Philosopher_3)" & "(@def ready eat_3 Monitor_3)");
+  "(@def enabled step_3)":=("(@def ready step_3 Philosopher_3)");
+  "(@def enabled release_0_1)":=("(@def ready release_0_1 Philosopher_0)" & "(@def ready release_0_1 Fork_1)");
+  "(@def enabled step_2)":=("(@def ready step_2 Philosopher_2)");
+  "(@def enabled release_0_0)":=("(@def ready release_0_0 Philosopher_0)" & "(@def ready release_0_0 Fork_0)");
+  "(@def enabled step_0)":=("(@def ready step_0 Philosopher_0)");
+  "(@def enabled step_1)":=("(@def ready step_1 Philosopher_1)");
+  "(@def enabled take_3_0)":=("(@def ready take_3_0 Fork_0)" & "(@def ready take_3_0 Philosopher_3)");
+  "(@def enabled take_0_0)":=("(@def ready take_0_0 Philosopher_0)" & "(@def ready take_0_0 Fork_0)");
+  "(@def enabled take_0_1)":=("(@def ready take_0_1 Philosopher_0)" & "(@def ready take_0_1 Fork_1)");
+  "(@def enabled take_2_2)":=("(@def ready take_2_2 Philosopher_2)" & "(@def ready take_2_2 Fork_2)");
+  "(@def enabled think_2)":=("(@def ready think_2 Philosopher_2)");
+  "(@def enabled think_3)":=("(@def ready think_3 Philosopher_3)");
+  "(@def enabled think_0)":=("(@def ready think_0 Philosopher_0)");
+  "(@def enabled think_1)":=("(@def ready think_1 Philosopher_1)");
+  "(@def enabled take_1_2)":=("(@def ready take_1_2 Philosopher_1)" & "(@def ready take_1_2 Fork_2)");
+  "(@def enabled take_1_1)":=("(@def ready take_1_1 Philosopher_1)" & "(@def ready take_1_1 Fork_1)");
+  "(@def enabled release_3_3)":=("(@def ready release_3_3 Fork_3)" & "(@def ready release_3_3 Philosopher_3)");
+  "(@def enabled eat_all)":=("(@def ready eat_all Monitor_1)" & "(@def ready eat_all Monitor_2)" & "(@def ready eat_all Monitor_0)" & "(@def ready eat_all Monitor_3)");
+  "(@def enabled release_2_3)":=("(@def ready release_2_3 Philosopher_2)" & "(@def ready release_2_3 Fork_3)");
+  "(@def enabled release_2_2)":=("(@def ready release_2_2 Philosopher_2)" & "(@def ready release_2_2 Fork_2)");
+  "(@def enabled release_3_0)":=("(@def ready release_3_0 Fork_0)" & "(@def ready release_3_0 Philosopher_3)");
+  "(@def enabled release_1_2)":=("(@def ready release_1_2 Philosopher_1)" & "(@def ready release_1_2 Fork_2)");
+  "(@def enabled release_1_1)":=("(@def ready release_1_1 Philosopher_1)" & "(@def ready release_1_1 Fork_1)");
+  "(@def event)":=("(@def enabled eat_0)" | "(@def enabled think_2)" | "(@def enabled eat_1)" | "(@def enabled think_3)" | "(@def enabled think_0)" | "(@def enabled think_1)" | "(@def enabled eat_2)" | "(@def enabled eat_3)" | "(@def enabled eat_all)" | "(@def enabled release_3_3)" | "(@def enabled step_3)" | "(@def enabled release_0_1)" | "(@def enabled step_2)" | "(@def enabled release_0_0)" | "(@def enabled release_2_3)" | "(@def enabled release_2_2)" | "(@def enabled step_0)" | "(@def enabled step_1)" | "(@def enabled release_3_0)" | "(@def enabled release_1_2)" | "(@def enabled release_1_1)");
+  "(@def keep at)":=(next("(at Philosopher_0)")="(at Philosopher_0)" & next("(at Monitor_1)")="(at Monitor_1)" & next("(at Monitor_2)")="(at Monitor_2)" & next("(at Monitor_0)")="(at Monitor_0)" & next("(at Philosopher_1)")="(at Philosopher_1)" & next("(at Philosopher_2)")="(at Philosopher_2)" & next("(at Fork_3)")="(at Fork_3)" & next("(at Fork_2)")="(at Fork_2)" & next("(at Fork_0)")="(at Fork_0)" & next("(at Fork_1)")="(at Fork_1)" & next("(at Philosopher_3)")="(at Philosopher_3)" & next("(at Monitor_3)")="(at Monitor_3)");
+  "(@def no inprogress)":=(!"(inprogress eat_0)" & !"(inprogress think_2)" & !"(inprogress eat_1)" & !"(inprogress think_3)" & !"(inprogress think_0)" & !"(inprogress think_1)" & !"(inprogress eat_2)" & !"(inprogress eat_3)" & !"(inprogress eat_all)" & !"(inprogress release_3_3)" & !"(inprogress step_3)" & !"(inprogress release_0_1)" & !"(inprogress step_2)" & !"(inprogress release_0_0)" & !"(inprogress release_2_3)" & !"(inprogress release_2_2)" & !"(inprogress step_0)" & !"(inprogress step_1)" & !"(inprogress release_3_0)" & !"(inprogress release_1_2)" & !"(inprogress release_1_1)");
+  "(@def reset inprogress)":=(next("(inprogress eat_0)")=0 & next("(inprogress think_2)")=0 & next("(inprogress eat_1)")=0 & next("(inprogress think_3)")=0 & next("(inprogress think_0)")=0 & next("(inprogress think_1)")=0 & next("(inprogress eat_2)")=0 & next("(inprogress eat_3)")=0 & next("(inprogress eat_all)")=0 & next("(inprogress release_3_3)")=0 & next("(inprogress step_3)")=0 & next("(inprogress release_0_1)")=0 & next("(inprogress step_2)")=0 & next("(inprogress release_0_0)")=0 & next("(inprogress release_2_3)")=0 & next("(inprogress release_2_2)")=0 & next("(inprogress step_0)")=0 & next("(inprogress step_1)")=0 & next("(inprogress release_3_0)")=0 & next("(inprogress release_1_2)")=0 & next("(inprogress release_1_1)")=0);
+TRANS (
+  (
+    (action="(choose)" & !("(status)"=0 & "(@def event)") -> FALSE) &
+    ((action="(choose)" & ("(status)"=0 & "(@def event)"))
+      -> (
+        (!"(@def enabled eat_0)" -> next("(inprogress eat_0)")=0) & 
+        (!"(@def enabled think_2)" -> next("(inprogress think_2)")=0) & 
+        (!"(@def enabled eat_1)" -> next("(inprogress eat_1)")=0) & 
+        (!"(@def enabled think_3)" -> next("(inprogress think_3)")=0) & 
+        (!"(@def enabled think_0)" -> next("(inprogress think_0)")=0) & 
+        (!"(@def enabled think_1)" -> next("(inprogress think_1)")=0) & 
+        (!"(@def enabled eat_2)" -> next("(inprogress eat_2)")=0) & 
+        (!"(@def enabled eat_3)" -> next("(inprogress eat_3)")=0) & 
+        (!"(@def enabled eat_all)" -> next("(inprogress eat_all)")=0) & 
+        (!"(@def enabled release_3_3)" -> next("(inprogress release_3_3)")=0) & 
+        (!"(@def enabled step_3)" -> next("(inprogress step_3)")=0) & 
+        (!"(@def enabled release_0_1)" -> next("(inprogress release_0_1)")=0) & 
+        (!"(@def enabled step_2)" -> next("(inprogress step_2)")=0) & 
+        (!"(@def enabled release_0_0)" -> next("(inprogress release_0_0)")=0) & 
+        (!"(@def enabled release_2_3)" -> next("(inprogress release_2_3)")=0) & 
+        (!"(@def enabled release_2_2)" -> next("(inprogress release_2_2)")=0) & 
+        (!"(@def enabled step_0)" -> next("(inprogress step_0)")=0) & 
+        (!"(@def enabled step_1)" -> next("(inprogress step_1)")=0) & 
+        (!"(@def enabled release_3_0)" -> next("(inprogress release_3_0)")=0) & 
+        (!"(@def enabled release_1_2)" -> next("(inprogress release_1_2)")=0) & 
+        (!"(@def enabled release_1_1)" -> next("(inprogress release_1_1)")=0) & 
+        next("(status)")=1 &
+        "(@def keep at)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(default)" & !("(status)"=1 & "(@def no inprogress)") -> FALSE) &
+    ((action="(default)" & ("(status)"=1 & "(@def no inprogress)"))
+      -> (
+        next("(inprogress eat_0)")=1 &
+        next("(inprogress think_2)")=1 &
+        next("(inprogress eat_1)")=1 &
+        next("(inprogress think_3)")=1 &
+        next("(inprogress think_0)")=1 &
+        next("(inprogress think_1)")=1 &
+        next("(inprogress eat_2)")=1 &
+        next("(inprogress eat_3)")=1 &
+        next("(inprogress eat_all)")=1 &
+        next("(inprogress release_3_3)")=1 &
+        next("(inprogress step_3)")=1 &
+        next("(inprogress release_0_1)")=1 &
+        next("(inprogress step_2)")=1 &
+        next("(inprogress release_0_0)")=1 &
+        next("(inprogress release_2_3)")=1 &
+        next("(inprogress release_2_2)")=1 &
+        next("(inprogress step_0)")=1 &
+        next("(inprogress step_1)")=1 &
+        next("(inprogress release_3_0)")=1 &
+        next("(inprogress release_1_2)")=1 &
+        next("(inprogress release_1_1)")=1 &
+        "(@def keep at)" &
+        next("(status)")="(status)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(eat_0)" & !("(@def enabled eat_0)" & "(inprogress eat_0)") -> FALSE) &
+    ((action="(eat_0)" & ("(@def enabled eat_0)" & "(inprogress eat_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_0)"=9 -> next("(at Philosopher_0)")=10) &
+        ("(at Monitor_0)"=0 -> next("(at Monitor_0)")=1) &
+        ("(at Monitor_0)"=1 -> next("(at Monitor_0)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(take_2_3)" & !("(@def enabled take_2_3)" & !"(@def event)") -> FALSE) &
+    ((action="(take_2_3)" & ("(@def enabled take_2_3)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_2)"=8 -> next("(at Philosopher_2)")=9) &
+        ("(at Fork_3)"=0 -> next("(at Fork_3)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(eat_1)" & !("(@def enabled eat_1)" & "(inprogress eat_1)") -> FALSE) &
+    ((action="(eat_1)" & ("(@def enabled eat_1)" & "(inprogress eat_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Monitor_1)"=0 -> next("(at Monitor_1)")=1) &
+        ("(at Monitor_1)"=1 -> next("(at Monitor_1)")=1) &
+        ("(at Philosopher_1)"=9 -> next("(at Philosopher_1)")=10) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(take_3_3)" & !("(@def enabled take_3_3)" & !"(@def event)") -> FALSE) &
+    ((action="(take_3_3)" & ("(@def enabled take_3_3)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Fork_3)"=0 -> next("(at Fork_3)")=1) &
+        ("(at Philosopher_3)"=1 -> next("(at Philosopher_3)")=2) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(eat_2)" & !("(@def enabled eat_2)" & "(inprogress eat_2)") -> FALSE) &
+    ((action="(eat_2)" & ("(@def enabled eat_2)" & "(inprogress eat_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Monitor_2)"=0 -> next("(at Monitor_2)")=1) &
+        ("(at Monitor_2)"=1 -> next("(at Monitor_2)")=1) &
+        ("(at Philosopher_2)"=9 -> next("(at Philosopher_2)")=10) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(eat_3)" & !("(@def enabled eat_3)" & "(inprogress eat_3)") -> FALSE) &
+    ((action="(eat_3)" & ("(@def enabled eat_3)" & "(inprogress eat_3)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_3)"=9 -> next("(at Philosopher_3)")=10) &
+        ("(at Monitor_3)"=0 -> next("(at Monitor_3)")=1) &
+        ("(at Monitor_3)"=1 -> next("(at Monitor_3)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(step_3)" & !("(@def enabled step_3)" & "(inprogress step_3)") -> FALSE) &
+    ((action="(step_3)" & ("(@def enabled step_3)" & "(inprogress step_3)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_3)"=2 -> next("(at Philosopher_3)")=3) &
+        ("(at Philosopher_3)"=3 -> next("(at Philosopher_3)")=4) &
+        ("(at Philosopher_3)"=4 -> next("(at Philosopher_3)")=5) &
+        ("(at Philosopher_3)"=5 -> next("(at Philosopher_3)")=6) &
+        ("(at Philosopher_3)"=6 -> next("(at Philosopher_3)")=7) &
+        ("(at Philosopher_3)"=7 -> next("(at Philosopher_3)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(release_0_1)" & !("(@def enabled release_0_1)" & "(inprogress release_0_1)") -> FALSE) &
+    ((action="(release_0_1)" & ("(@def enabled release_0_1)" & "(inprogress release_0_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_0)"=11 -> next("(at Philosopher_0)")=0) &
+        ("(at Fork_1)"=1 -> next("(at Fork_1)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(step_2)" & !("(@def enabled step_2)" & "(inprogress step_2)") -> FALSE) &
+    ((action="(step_2)" & ("(@def enabled step_2)" & "(inprogress step_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_2)"=2 -> next("(at Philosopher_2)")=3) &
+        ("(at Philosopher_2)"=3 -> next("(at Philosopher_2)")=4) &
+        ("(at Philosopher_2)"=4 -> next("(at Philosopher_2)")=5) &
+        ("(at Philosopher_2)"=5 -> next("(at Philosopher_2)")=6) &
+        ("(at Philosopher_2)"=6 -> next("(at Philosopher_2)")=7) &
+        ("(at Philosopher_2)"=7 -> next("(at Philosopher_2)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(release_0_0)" & !("(@def enabled release_0_0)" & "(inprogress release_0_0)") -> FALSE) &
+    ((action="(release_0_0)" & ("(@def enabled release_0_0)" & "(inprogress release_0_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_0)"=10 -> next("(at Philosopher_0)")=11) &
+        ("(at Fork_0)"=1 -> next("(at Fork_0)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(step_0)" & !("(@def enabled step_0)" & "(inprogress step_0)") -> FALSE) &
+    ((action="(step_0)" & ("(@def enabled step_0)" & "(inprogress step_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_0)"=2 -> next("(at Philosopher_0)")=3) &
+        ("(at Philosopher_0)"=3 -> next("(at Philosopher_0)")=4) &
+        ("(at Philosopher_0)"=4 -> next("(at Philosopher_0)")=5) &
+        ("(at Philosopher_0)"=5 -> next("(at Philosopher_0)")=6) &
+        ("(at Philosopher_0)"=6 -> next("(at Philosopher_0)")=7) &
+        ("(at Philosopher_0)"=7 -> next("(at Philosopher_0)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(step_1)" & !("(@def enabled step_1)" & "(inprogress step_1)") -> FALSE) &
+    ((action="(step_1)" & ("(@def enabled step_1)" & "(inprogress step_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_1)"=2 -> next("(at Philosopher_1)")=3) &
+        ("(at Philosopher_1)"=3 -> next("(at Philosopher_1)")=4) &
+        ("(at Philosopher_1)"=4 -> next("(at Philosopher_1)")=5) &
+        ("(at Philosopher_1)"=5 -> next("(at Philosopher_1)")=6) &
+        ("(at Philosopher_1)"=6 -> next("(at Philosopher_1)")=7) &
+        ("(at Philosopher_1)"=7 -> next("(at Philosopher_1)")=8) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(take_3_0)" & !("(@def enabled take_3_0)" & !"(@def event)") -> FALSE) &
+    ((action="(take_3_0)" & ("(@def enabled take_3_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Fork_0)"=0 -> next("(at Fork_0)")=1) &
+        ("(at Philosopher_3)"=8 -> next("(at Philosopher_3)")=9) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(take_0_0)" & !("(@def enabled take_0_0)" & !"(@def event)") -> FALSE) &
+    ((action="(take_0_0)" & ("(@def enabled take_0_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_0)"=1 -> next("(at Philosopher_0)")=2) &
+        ("(at Fork_0)"=0 -> next("(at Fork_0)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(take_0_1)" & !("(@def enabled take_0_1)" & !"(@def event)") -> FALSE) &
+    ((action="(take_0_1)" & ("(@def enabled take_0_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_0)"=8 -> next("(at Philosopher_0)")=9) &
+        ("(at Fork_1)"=0 -> next("(at Fork_1)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(take_2_2)" & !("(@def enabled take_2_2)" & !"(@def event)") -> FALSE) &
+    ((action="(take_2_2)" & ("(@def enabled take_2_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_2)"=1 -> next("(at Philosopher_2)")=2) &
+        ("(at Fork_2)"=0 -> next("(at Fork_2)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(think_2)" & !("(@def enabled think_2)" & "(inprogress think_2)") -> FALSE) &
+    ((action="(think_2)" & ("(@def enabled think_2)" & "(inprogress think_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_2)"=0 -> next("(at Philosopher_2)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(think_3)" & !("(@def enabled think_3)" & "(inprogress think_3)") -> FALSE) &
+    ((action="(think_3)" & ("(@def enabled think_3)" & "(inprogress think_3)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_3)"=0 -> next("(at Philosopher_3)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(think_0)" & !("(@def enabled think_0)" & "(inprogress think_0)") -> FALSE) &
+    ((action="(think_0)" & ("(@def enabled think_0)" & "(inprogress think_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_0)"=0 -> next("(at Philosopher_0)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(think_1)" & !("(@def enabled think_1)" & "(inprogress think_1)") -> FALSE) &
+    ((action="(think_1)" & ("(@def enabled think_1)" & "(inprogress think_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_1)"=0 -> next("(at Philosopher_1)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(take_1_2)" & !("(@def enabled take_1_2)" & !"(@def event)") -> FALSE) &
+    ((action="(take_1_2)" & ("(@def enabled take_1_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_1)"=8 -> next("(at Philosopher_1)")=9) &
+        ("(at Fork_2)"=0 -> next("(at Fork_2)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(take_1_1)" & !("(@def enabled take_1_1)" & !"(@def event)") -> FALSE) &
+    ((action="(take_1_1)" & ("(@def enabled take_1_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_1)"=1 -> next("(at Philosopher_1)")=2) &
+        ("(at Fork_1)"=0 -> next("(at Fork_1)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(release_3_3)" & !("(@def enabled release_3_3)" & "(inprogress release_3_3)") -> FALSE) &
+    ((action="(release_3_3)" & ("(@def enabled release_3_3)" & "(inprogress release_3_3)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Fork_3)"=1 -> next("(at Fork_3)")=0) &
+        ("(at Philosopher_3)"=10 -> next("(at Philosopher_3)")=11) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(eat_all)" & !("(@def enabled eat_all)" & "(inprogress eat_all)") -> FALSE) &
+    ((action="(eat_all)" & ("(@def enabled eat_all)" & "(inprogress eat_all)"))
+      -> (
+        next("(status)")=2 &
+        ("(at Monitor_1)"=1 -> next("(at Monitor_1)")=0) &
+        ("(at Monitor_2)"=1 -> next("(at Monitor_2)")=0) &
+        ("(at Monitor_0)"=1 -> next("(at Monitor_0)")=0) &
+        ("(at Monitor_3)"=1 -> next("(at Monitor_3)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(release_2_3)" & !("(@def enabled release_2_3)" & "(inprogress release_2_3)") -> FALSE) &
+    ((action="(release_2_3)" & ("(@def enabled release_2_3)" & "(inprogress release_2_3)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_2)"=11 -> next("(at Philosopher_2)")=0) &
+        ("(at Fork_3)"=1 -> next("(at Fork_3)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(release_2_2)" & !("(@def enabled release_2_2)" & "(inprogress release_2_2)") -> FALSE) &
+    ((action="(release_2_2)" & ("(@def enabled release_2_2)" & "(inprogress release_2_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_2)"=10 -> next("(at Philosopher_2)")=11) &
+        ("(at Fork_2)"=1 -> next("(at Fork_2)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(release_3_0)" & !("(@def enabled release_3_0)" & "(inprogress release_3_0)") -> FALSE) &
+    ((action="(release_3_0)" & ("(@def enabled release_3_0)" & "(inprogress release_3_0)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Fork_0)"=1 -> next("(at Fork_0)")=0) &
+        ("(at Philosopher_3)"=11 -> next("(at Philosopher_3)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Philosopher_1)")="(at Philosopher_1)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(release_1_2)" & !("(@def enabled release_1_2)" & "(inprogress release_1_2)") -> FALSE) &
+    ((action="(release_1_2)" & ("(@def enabled release_1_2)" & "(inprogress release_1_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_1)"=11 -> next("(at Philosopher_1)")=0) &
+        ("(at Fork_2)"=1 -> next("(at Fork_2)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_1)")="(at Fork_1)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(release_1_1)" & !("(@def enabled release_1_1)" & "(inprogress release_1_1)") -> FALSE) &
+    ((action="(release_1_1)" & ("(@def enabled release_1_1)" & "(inprogress release_1_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Philosopher_1)"=10 -> next("(at Philosopher_1)")=11) &
+        ("(at Fork_1)"=1 -> next("(at Fork_1)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Monitor_2)")="(at Monitor_2)" &
+        next("(at Monitor_1)")="(at Monitor_1)" &
+        next("(at Monitor_3)")="(at Monitor_3)" &
+        next("(at Philosopher_0)")="(at Philosopher_0)" &
+        next("(at Fork_0)")="(at Fork_0)" &
+        next("(at Fork_2)")="(at Fork_2)" &
+        next("(at Monitor_0)")="(at Monitor_0)" &
+        next("(at Fork_3)")="(at Fork_3)" &
+        next("(at Philosopher_3)")="(at Philosopher_3)" &
+        next("(at Philosopher_2)")="(at Philosopher_2)" 
+      )
+    )
+  )
+)
+FULL_OBS_STRONG_GOAL ("(status)"=2)

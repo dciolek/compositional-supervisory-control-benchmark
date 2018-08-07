@@ -1,5 +1,5 @@
 (define
-  (domain Controller)
+  (domain DirectedController)
   
   (:requirements
     :typing
@@ -16,16 +16,16 @@
   
   (:constants
     $Buffer-1 $Machine-5 $Machine-4 $Machine-3 $Buffer-5 $Machine-0 $Buffer-2 $Machine-1 $TU $Buffer-6 $Machine-2 $Buffer-3 $Buffer-4 - LTS
-    $-1 $0 $1 $2 $3 - State
-    $return-5 $return-4 $get-6 $get-5 $return-3 $get-4 $return-2 $reject $get-3 $return-1 $get-2 $return-0 $get-1 $accept $get-0 $return-6 $put-4 $put-3 $put-6 $put-5 $put-2 $end $put-1 - Label
-    setup idle busy uncontrollable complete looping event - Phase
+    $-1 $0 $1 $2 - State
+    $return-5 $return-4 $get-6 $get-5 $return-3 $get-4 $return-2 $reject $get-3 $return-1 $get-2 $return-0 $get-1 $accept $get-0 $return-6 $put-4 $put-3 $put-6 $put-5 $put-2 $put-1 - Label
+    setup idle busy complete uncontrollable looping event - Phase
   )
   
   (:predicates
     (at ?s - State ?m - LTS)
+    (ready ?a - Label ?m - LTS)
     (marked ?s - State ?m - LTS)
     (hoop ?m - LTS)
-    (ready ?a - Label ?m - LTS)
     (enabled ?a - Label)
     (inprogress ?a - Label)
     (status ?c - Phase)
@@ -64,7 +64,6 @@
         (not (enabled $put-6))
         (not (enabled $put-5))
         (not (enabled $put-2))
-        (not (enabled $end))
         (not (enabled $put-1))
         (not (inprogress $return-5))
         (not (inprogress $return-4))
@@ -79,7 +78,6 @@
         (not (inprogress $put-3))
         (not (inprogress $put-6))
         (not (inprogress $put-5))
-        (not (inprogress $end))
         (not (inprogress $put-2))
         (not (inprogress $put-1))
         (not (ready $return-1 $Buffer-1))
@@ -110,7 +108,6 @@
         (not (ready $return-1 $TU))
         (not (ready $return-0 $TU))
         (not (ready $accept $TU))
-        (not (ready $end $TU))
         (not (ready $return-6 $TU))
         (not (ready $get-6 $Buffer-6))
         (not (ready $put-6 $Buffer-6))
@@ -281,9 +278,6 @@
           )
         )
         (when (at $2 $TU)
-          (ready $end $TU)
-        )
-        (when (at $3 $TU)
           (ready $reject $TU)
         )
         (when (at $0 $Buffer-6)
@@ -451,9 +445,6 @@
         (when (and (at $2 $TU) (marked $2 $TU))
           (hoop $TU)
         )
-        (when (and (at $3 $TU) (marked $3 $TU))
-          (hoop $TU)
-        )
         (when (and (at $-1 $Buffer-6) (marked $-1 $Buffer-6))
           (hoop $Buffer-6)
         )
@@ -519,20 +510,14 @@
             (ready $return-5 $Buffer-5)
             (ready $return-5 $TU)
           )
-          (and
-            (enabled $return-5)
-            (status uncontrollable)
-          )
+          (enabled $return-5)
         )
         (when
           (and
             (ready $return-4 $TU)
             (ready $return-4 $Buffer-4)
           )
-          (and
-            (enabled $return-4)
-            (status uncontrollable)
-          )
+          (enabled $return-4)
         )
         (when
           (and
@@ -553,10 +538,7 @@
             (ready $return-3 $TU)
             (ready $return-3 $Buffer-3)
           )
-          (and
-            (enabled $return-3)
-            (status uncontrollable)
-          )
+          (enabled $return-3)
         )
         (when
           (and
@@ -570,19 +552,13 @@
             (ready $return-2 $Buffer-2)
             (ready $return-2 $TU)
           )
-          (and
-            (enabled $return-2)
-            (status uncontrollable)
-          )
+          (enabled $return-2)
         )
         (when
           (and
             (ready $reject $TU)
           )
-          (and
-            (enabled $reject)
-            (status uncontrollable)
-          )
+          (enabled $reject)
         )
         (when
           (and
@@ -596,10 +572,7 @@
             (ready $return-1 $Buffer-1)
             (ready $return-1 $TU)
           )
-          (and
-            (enabled $return-1)
-            (status uncontrollable)
-          )
+          (enabled $return-1)
         )
         (when
           (and
@@ -612,10 +585,7 @@
           (and
             (ready $return-0 $TU)
           )
-          (and
-            (enabled $return-0)
-            (status uncontrollable)
-          )
+          (enabled $return-0)
         )
         (when
           (and
@@ -628,10 +598,7 @@
           (and
             (ready $accept $TU)
           )
-          (and
-            (enabled $accept)
-            (status uncontrollable)
-          )
+          (enabled $accept)
         )
         (when
           (and
@@ -644,79 +611,49 @@
             (ready $return-6 $TU)
             (ready $return-6 $Buffer-6)
           )
-          (and
-            (enabled $return-6)
-            (status uncontrollable)
-          )
+          (enabled $return-6)
         )
         (when
           (and
             (ready $put-4 $Machine-3)
             (ready $put-4 $Buffer-4)
           )
-          (and
-            (enabled $put-4)
-            (status uncontrollable)
-          )
+          (enabled $put-4)
         )
         (when
           (and
             (ready $put-3 $Machine-2)
             (ready $put-3 $Buffer-3)
           )
-          (and
-            (enabled $put-3)
-            (status uncontrollable)
-          )
+          (enabled $put-3)
         )
         (when
           (and
             (ready $put-6 $Machine-5)
             (ready $put-6 $Buffer-6)
           )
-          (and
-            (enabled $put-6)
-            (status uncontrollable)
-          )
+          (enabled $put-6)
         )
         (when
           (and
             (ready $put-5 $Machine-4)
             (ready $put-5 $Buffer-5)
           )
-          (and
-            (enabled $put-5)
-            (status uncontrollable)
-          )
+          (enabled $put-5)
         )
         (when
           (and
             (ready $put-2 $Buffer-2)
             (ready $put-2 $Machine-1)
           )
-          (and
-            (enabled $put-2)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $end $TU)
-          )
-          (and
-            (enabled $end)
-            (status uncontrollable)
-          )
+          (enabled $put-2)
         )
         (when
           (and
             (ready $put-1 $Buffer-1)
             (ready $put-1 $Machine-0)
           )
-          (and
-            (enabled $put-1)
-            (status uncontrollable)
-          )
+          (enabled $put-1)
         )
       )
   )
@@ -725,29 +662,28 @@
     :precondition
       (and
         (status idle)
-        (status uncontrollable)
       )
     :effect
       (and
         (not (status idle))
         (status busy)
         (oneof
-          (when (enabled $return-5) (inprogress $return-5))
-          (when (enabled $return-4) (inprogress $return-4))
-          (when (enabled $return-3) (inprogress $return-3))
-          (when (enabled $return-2) (inprogress $return-2))
-          (when (enabled $reject) (inprogress $reject))
-          (when (enabled $return-1) (inprogress $return-1))
-          (when (enabled $return-0) (inprogress $return-0))
-          (when (enabled $accept) (inprogress $accept))
-          (when (enabled $return-6) (inprogress $return-6))
-          (when (enabled $put-4) (inprogress $put-4))
-          (when (enabled $put-3) (inprogress $put-3))
-          (when (enabled $put-6) (inprogress $put-6))
-          (when (enabled $put-5) (inprogress $put-5))
-          (when (enabled $end) (inprogress $end))
-          (when (enabled $put-2) (inprogress $put-2))
-          (when (enabled $put-1) (inprogress $put-1))
+          (when (enabled $return-5) (and (inprogress $return-5) (status uncontrollable)))
+          (when (enabled $return-4) (and (inprogress $return-4) (status uncontrollable)))
+          (when (enabled $return-3) (and (inprogress $return-3) (status uncontrollable)))
+          (when (enabled $return-2) (and (inprogress $return-2) (status uncontrollable)))
+          (when (enabled $reject) (and (inprogress $reject) (status uncontrollable)))
+          (when (enabled $return-1) (and (inprogress $return-1) (status uncontrollable)))
+          (when (enabled $return-0) (and (inprogress $return-0) (status uncontrollable)))
+          (when (enabled $accept) (and (inprogress $accept) (status uncontrollable)))
+          (when (enabled $return-6) (and (inprogress $return-6) (status uncontrollable)))
+          (when (enabled $put-4) (and (inprogress $put-4) (status uncontrollable)))
+          (when (enabled $put-3) (and (inprogress $put-3) (status uncontrollable)))
+          (when (enabled $put-6) (and (inprogress $put-6) (status uncontrollable)))
+          (when (enabled $put-5) (and (inprogress $put-5) (status uncontrollable)))
+          (when (enabled $put-2) (and (inprogress $put-2) (status uncontrollable)))
+          (when (enabled $put-1) (and (inprogress $put-1) (status uncontrollable)))
+          (when (true) (true))
         )
       )
   )
@@ -770,7 +706,6 @@
         (not (inprogress $put-3))
         (not (inprogress $put-6))
         (not (inprogress $put-5))
-        (not (inprogress $end))
         (not (inprogress $put-2))
         (not (inprogress $put-1))
       )
@@ -789,7 +724,6 @@
         (inprogress $put-3)
         (inprogress $put-6)
         (inprogress $put-5)
-        (inprogress $end)
         (inprogress $put-2)
         (inprogress $put-1)
       )
@@ -836,7 +770,6 @@
         (when (at $0 $TU) (marked $0 $TU))
         (when (at $1 $TU) (marked $1 $TU))
         (when (at $2 $TU) (marked $2 $TU))
-        (when (at $3 $TU) (marked $3 $TU))
         (when (at $-1 $Buffer-6) (marked $-1 $Buffer-6))
         (when (at $0 $Buffer-6) (marked $0 $Buffer-6))
         (when (at $1 $Buffer-6) (marked $1 $Buffer-6))
@@ -859,8 +792,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $return-5)
         (enabled $return-5)
+        (inprogress $return-5)
       )
     :effect
       (and
@@ -882,8 +815,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $return-4)
         (enabled $return-4)
+        (inprogress $return-4)
       )
     :effect
       (and
@@ -904,14 +837,14 @@
   (:action do$get-6
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $get-6)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $0 $TU)
           (and (not (at $0 $TU)) (at $1 $TU))
         )
@@ -930,14 +863,14 @@
   (:action do$get-5
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $get-5)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $0 $Machine-5)
           (and (not (at $0 $Machine-5)) (at $1 $Machine-5))
         )
@@ -960,8 +893,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $return-3)
         (enabled $return-3)
+        (inprogress $return-3)
       )
     :effect
       (and
@@ -982,14 +915,14 @@
   (:action do$get-4
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $get-4)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $0 $Machine-4)
           (and (not (at $0 $Machine-4)) (at $1 $Machine-4))
         )
@@ -1012,8 +945,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $return-2)
         (enabled $return-2)
+        (inprogress $return-2)
       )
     :effect
       (and
@@ -1035,15 +968,16 @@
     :precondition
       (and
         (status busy)
-        (inprogress $reject)
         (enabled $reject)
+        (inprogress $reject)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (when (at $3 $TU)
-          (and (not (at $3 $TU)) (at $2 $TU))
+        (status complete)
+        (when (at $2 $TU)
+          (and (not (at $2 $TU)) (at $0 $TU))
         )
       )
   )
@@ -1051,14 +985,14 @@
   (:action do$get-3
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $get-3)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $0 $Machine-3)
           (and (not (at $0 $Machine-3)) (at $1 $Machine-3))
         )
@@ -1081,8 +1015,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $return-1)
         (enabled $return-1)
+        (inprogress $return-1)
       )
     :effect
       (and
@@ -1098,7 +1032,7 @@
           (and (not (at $2 $Buffer-1)) (at $-1 $Buffer-1))
         )
         (when (at $1 $TU)
-          (and (not (at $1 $TU)) (at $3 $TU))
+          (and (not (at $1 $TU)) (at $2 $TU))
         )
       )
   )
@@ -1106,14 +1040,14 @@
   (:action do$get-2
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $get-2)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $0 $Buffer-2)
           (and (not (at $0 $Buffer-2)) (at $-1 $Buffer-2))
         )
@@ -1136,8 +1070,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $return-0)
         (enabled $return-0)
+        (inprogress $return-0)
       )
     :effect
       (and
@@ -1149,14 +1083,14 @@
   (:action do$get-1
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $get-1)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $0 $Buffer-1)
           (and (not (at $0 $Buffer-1)) (at $-1 $Buffer-1))
         )
@@ -1179,15 +1113,16 @@
     :precondition
       (and
         (status busy)
-        (inprogress $accept)
         (enabled $accept)
+        (inprogress $accept)
       )
     :effect
       (and
         (status event)
         (not (status busy))
+        (status complete)
         (when (at $1 $TU)
-          (and (not (at $1 $TU)) (at $2 $TU))
+          (and (not (at $1 $TU)) (at $0 $TU))
         )
       )
   )
@@ -1195,14 +1130,14 @@
   (:action do$get-0
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $get-0)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $0 $Machine-0)
           (and (not (at $0 $Machine-0)) (at $1 $Machine-0))
         )
@@ -1216,8 +1151,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $return-6)
         (enabled $return-6)
+        (inprogress $return-6)
       )
     :effect
       (and
@@ -1239,8 +1174,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $put-4)
         (enabled $put-4)
+        (inprogress $put-4)
       )
     :effect
       (and
@@ -1268,8 +1203,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $put-3)
         (enabled $put-3)
+        (inprogress $put-3)
       )
     :effect
       (and
@@ -1297,8 +1232,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $put-6)
         (enabled $put-6)
+        (inprogress $put-6)
       )
     :effect
       (and
@@ -1326,8 +1261,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $put-5)
         (enabled $put-5)
+        (inprogress $put-5)
       )
     :effect
       (and
@@ -1355,8 +1290,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $put-2)
         (enabled $put-2)
+        (inprogress $put-2)
       )
     :effect
       (and
@@ -1380,30 +1315,12 @@
       )
   )
   
-  (:action do$end
-    :precondition
-      (and
-        (status busy)
-        (inprogress $end)
-        (enabled $end)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (status complete)
-        (when (at $2 $TU)
-          (and (not (at $2 $TU)) (at $0 $TU))
-        )
-      )
-  )
-  
   (:action do$put-1
     :precondition
       (and
         (status busy)
-        (inprogress $put-1)
         (enabled $put-1)
+        (inprogress $put-1)
       )
     :effect
       (and

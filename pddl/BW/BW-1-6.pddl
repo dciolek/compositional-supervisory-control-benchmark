@@ -1,5 +1,5 @@
 (define
-  (domain Controller)
+  (domain DirectedController)
   
   (:requirements
     :typing
@@ -16,16 +16,16 @@
   
   (:constants
     $Document $Crew-0 - LTS
-    $-1 $0 $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11 $12 $13 $14 - State
-    $reject-0-2 $refuse $reject-0-1 $accept-0 $approve $assign-0 $reject-0-4 $reject-0-3 $reject-0-6 $reject-0-5 $end - Label
-    setup idle busy uncontrollable complete looping event - Phase
+    $-1 $0 $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11 $12 $13 - State
+    $reject-0-2 $refuse $reject-0-1 $accept-0 $approve $assign-0 $reject-0-4 $reject-0-3 $reject-0-6 $reject-0-5 - Label
+    setup idle busy complete uncontrollable looping event - Phase
   )
   
   (:predicates
     (at ?s - State ?m - LTS)
+    (ready ?a - Label ?m - LTS)
     (marked ?s - State ?m - LTS)
     (hoop ?m - LTS)
-    (ready ?a - Label ?m - LTS)
     (enabled ?a - Label)
     (inprogress ?a - Label)
     (status ?c - Phase)
@@ -53,7 +53,6 @@
         (not (enabled $reject-0-3))
         (not (enabled $reject-0-6))
         (not (enabled $reject-0-5))
-        (not (enabled $end))
         (not (inprogress $reject-0-2))
         (not (inprogress $accept-0))
         (not (inprogress $reject-0-1))
@@ -61,12 +60,10 @@
         (not (inprogress $reject-0-3))
         (not (inprogress $reject-0-6))
         (not (inprogress $reject-0-5))
-        (not (inprogress $end))
         (not (ready $accept-0 $Document))
         (not (ready $refuse $Document))
         (not (ready $approve $Document))
         (not (ready $reject-0-6 $Document))
-        (not (ready $end $Document))
         (not (ready $reject-0-2 $Crew-0))
         (not (ready $refuse $Crew-0))
         (not (ready $reject-0-1 $Crew-0))
@@ -77,7 +74,6 @@
         (not (ready $reject-0-3 $Crew-0))
         (not (ready $reject-0-6 $Crew-0))
         (not (ready $reject-0-5 $Crew-0))
-        (not (ready $end $Crew-0))
         (not (hoop $Document))
         (not (hoop $Crew-0))
       )
@@ -109,9 +105,6 @@
           )
         )
         (when (at $2 $Document)
-          (ready $end $Document)
-        )
-        (when (at $3 $Document)
           (and
             (ready $accept-0 $Document)
             (ready $reject-0-6 $Document)
@@ -153,61 +146,58 @@
           )
         )
         (when (at $5 $Crew-0)
-          (ready $end $Crew-0)
-        )
-        (when (at $6 $Crew-0)
           (and
             (ready $assign-0 $Crew-0)
             (ready $refuse $Crew-0)
             (ready $approve $Crew-0)
           )
         )
-        (when (at $7 $Crew-0)
+        (when (at $6 $Crew-0)
           (and
             (ready $accept-0 $Crew-0)
             (ready $reject-0-3 $Crew-0)
           )
         )
-        (when (at $8 $Crew-0)
+        (when (at $7 $Crew-0)
           (and
             (ready $assign-0 $Crew-0)
             (ready $refuse $Crew-0)
             (ready $approve $Crew-0)
           )
         )
-        (when (at $9 $Crew-0)
+        (when (at $8 $Crew-0)
           (and
             (ready $accept-0 $Crew-0)
             (ready $reject-0-4 $Crew-0)
           )
         )
-        (when (at $10 $Crew-0)
+        (when (at $9 $Crew-0)
           (and
             (ready $assign-0 $Crew-0)
             (ready $refuse $Crew-0)
             (ready $approve $Crew-0)
           )
         )
-        (when (at $11 $Crew-0)
+        (when (at $10 $Crew-0)
           (and
             (ready $accept-0 $Crew-0)
             (ready $reject-0-5 $Crew-0)
           )
         )
-        (when (at $12 $Crew-0)
+        (when (at $11 $Crew-0)
           (and
             (ready $assign-0 $Crew-0)
             (ready $refuse $Crew-0)
             (ready $approve $Crew-0)
           )
         )
-        (when (at $13 $Crew-0)
+        (when (at $12 $Crew-0)
           (and
             (ready $accept-0 $Crew-0)
             (ready $reject-0-6 $Crew-0)
           )
         )
-        (when (at $14 $Crew-0)
+        (when (at $13 $Crew-0)
           (and
             (ready $assign-0 $Crew-0)
             (ready $refuse $Crew-0)
@@ -224,9 +214,6 @@
           (hoop $Document)
         )
         (when (and (at $2 $Document) (marked $2 $Document))
-          (hoop $Document)
-        )
-        (when (and (at $3 $Document) (marked $3 $Document))
           (hoop $Document)
         )
         (when (and (at $-1 $Crew-0) (marked $-1 $Crew-0))
@@ -274,9 +261,6 @@
         (when (and (at $13 $Crew-0) (marked $13 $Crew-0))
           (hoop $Crew-0)
         )
-        (when (and (at $14 $Crew-0) (marked $14 $Crew-0))
-          (hoop $Crew-0)
-        )
       )
   )
   
@@ -296,10 +280,7 @@
           (and
             (ready $reject-0-2 $Crew-0)
           )
-          (and
-            (enabled $reject-0-2)
-            (status uncontrollable)
-          )
+          (enabled $reject-0-2)
         )
         (when
           (and
@@ -312,20 +293,14 @@
           (and
             (ready $reject-0-1 $Crew-0)
           )
-          (and
-            (enabled $reject-0-1)
-            (status uncontrollable)
-          )
+          (enabled $reject-0-1)
         )
         (when
           (and
             (ready $accept-0 $Document)
             (ready $accept-0 $Crew-0)
           )
-          (and
-            (enabled $accept-0)
-            (status uncontrollable)
-          )
+          (enabled $accept-0)
         )
         (when
           (and
@@ -344,48 +319,26 @@
           (and
             (ready $reject-0-4 $Crew-0)
           )
-          (and
-            (enabled $reject-0-4)
-            (status uncontrollable)
-          )
+          (enabled $reject-0-4)
         )
         (when
           (and
             (ready $reject-0-3 $Crew-0)
           )
-          (and
-            (enabled $reject-0-3)
-            (status uncontrollable)
-          )
+          (enabled $reject-0-3)
         )
         (when
           (and
             (ready $reject-0-6 $Document)
             (ready $reject-0-6 $Crew-0)
           )
-          (and
-            (enabled $reject-0-6)
-            (status uncontrollable)
-          )
+          (enabled $reject-0-6)
         )
         (when
           (and
             (ready $reject-0-5 $Crew-0)
           )
-          (and
-            (enabled $reject-0-5)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $end $Document)
-            (ready $end $Crew-0)
-          )
-          (and
-            (enabled $end)
-            (status uncontrollable)
-          )
+          (enabled $reject-0-5)
         )
       )
   )
@@ -394,21 +347,20 @@
     :precondition
       (and
         (status idle)
-        (status uncontrollable)
       )
     :effect
       (and
         (not (status idle))
         (status busy)
         (oneof
-          (when (enabled $reject-0-2) (inprogress $reject-0-2))
-          (when (enabled $accept-0) (inprogress $accept-0))
-          (when (enabled $reject-0-1) (inprogress $reject-0-1))
-          (when (enabled $reject-0-4) (inprogress $reject-0-4))
-          (when (enabled $reject-0-3) (inprogress $reject-0-3))
-          (when (enabled $reject-0-6) (inprogress $reject-0-6))
-          (when (enabled $reject-0-5) (inprogress $reject-0-5))
-          (when (enabled $end) (inprogress $end))
+          (when (enabled $reject-0-2) (and (inprogress $reject-0-2) (status uncontrollable)))
+          (when (enabled $accept-0) (and (inprogress $accept-0) (status uncontrollable)))
+          (when (enabled $reject-0-1) (and (inprogress $reject-0-1) (status uncontrollable)))
+          (when (enabled $reject-0-4) (and (inprogress $reject-0-4) (status uncontrollable)))
+          (when (enabled $reject-0-3) (and (inprogress $reject-0-3) (status uncontrollable)))
+          (when (enabled $reject-0-6) (and (inprogress $reject-0-6) (status uncontrollable)))
+          (when (enabled $reject-0-5) (and (inprogress $reject-0-5) (status uncontrollable)))
+          (when (true) (true))
         )
       )
   )
@@ -425,7 +377,6 @@
         (not (inprogress $reject-0-3))
         (not (inprogress $reject-0-6))
         (not (inprogress $reject-0-5))
-        (not (inprogress $end))
       )
     :effect
       (and
@@ -436,7 +387,6 @@
         (inprogress $reject-0-3)
         (inprogress $reject-0-6)
         (inprogress $reject-0-5)
-        (inprogress $end)
       )
   )
   
@@ -455,7 +405,6 @@
         (when (at $0 $Document) (marked $0 $Document))
         (when (at $1 $Document) (marked $1 $Document))
         (when (at $2 $Document) (marked $2 $Document))
-        (when (at $3 $Document) (marked $3 $Document))
         (when (at $-1 $Crew-0) (marked $-1 $Crew-0))
         (when (at $0 $Crew-0) (marked $0 $Crew-0))
         (when (at $1 $Crew-0) (marked $1 $Crew-0))
@@ -471,7 +420,6 @@
         (when (at $11 $Crew-0) (marked $11 $Crew-0))
         (when (at $12 $Crew-0) (marked $12 $Crew-0))
         (when (at $13 $Crew-0) (marked $13 $Crew-0))
-        (when (at $14 $Crew-0) (marked $14 $Crew-0))
       )
   )
   
@@ -479,15 +427,15 @@
     :precondition
       (and
         (status busy)
-        (inprogress $reject-0-2)
         (enabled $reject-0-2)
+        (inprogress $reject-0-2)
       )
     :effect
       (and
         (status event)
         (not (status busy))
         (when (at $3 $Crew-0)
-          (and (not (at $3 $Crew-0)) (at $6 $Crew-0))
+          (and (not (at $3 $Crew-0)) (at $5 $Crew-0))
         )
       )
   )
@@ -495,46 +443,44 @@
   (:action do$refuse
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $refuse)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
-        (when (at $0 $Document)
-          (and (not (at $0 $Document)) (at $2 $Document))
-        )
+        (not (status busy))
+        (status complete)
         (when (at $1 $Document)
-          (and (not (at $1 $Document)) (at $2 $Document))
+          (and (not (at $1 $Document)) (at $0 $Document))
         )
-        (when (at $3 $Document)
-          (and (not (at $3 $Document)) (at $-1 $Document))
+        (when (at $2 $Document)
+          (and (not (at $2 $Document)) (at $-1 $Document))
         )
         (when (at $0 $Crew-0)
           (and (not (at $0 $Crew-0)) (at $-1 $Crew-0))
         )
         (when (at $2 $Crew-0)
-          (and (not (at $2 $Crew-0)) (at $5 $Crew-0))
+          (and (not (at $2 $Crew-0)) (at $0 $Crew-0))
         )
         (when (at $4 $Crew-0)
-          (and (not (at $4 $Crew-0)) (at $5 $Crew-0))
+          (and (not (at $4 $Crew-0)) (at $0 $Crew-0))
         )
-        (when (at $6 $Crew-0)
-          (and (not (at $6 $Crew-0)) (at $5 $Crew-0))
+        (when (at $5 $Crew-0)
+          (and (not (at $5 $Crew-0)) (at $0 $Crew-0))
         )
-        (when (at $8 $Crew-0)
-          (and (not (at $8 $Crew-0)) (at $5 $Crew-0))
+        (when (at $7 $Crew-0)
+          (and (not (at $7 $Crew-0)) (at $0 $Crew-0))
         )
-        (when (at $10 $Crew-0)
-          (and (not (at $10 $Crew-0)) (at $5 $Crew-0))
+        (when (at $9 $Crew-0)
+          (and (not (at $9 $Crew-0)) (at $0 $Crew-0))
         )
-        (when (at $12 $Crew-0)
-          (and (not (at $12 $Crew-0)) (at $5 $Crew-0))
+        (when (at $11 $Crew-0)
+          (and (not (at $11 $Crew-0)) (at $0 $Crew-0))
         )
-        (when (at $14 $Crew-0)
-          (and (not (at $14 $Crew-0)) (at $5 $Crew-0))
+        (when (at $13 $Crew-0)
+          (and (not (at $13 $Crew-0)) (at $0 $Crew-0))
         )
       )
   )
@@ -543,8 +489,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $reject-0-1)
         (enabled $reject-0-1)
+        (inprogress $reject-0-1)
       )
     :effect
       (and
@@ -560,15 +506,15 @@
     :precondition
       (and
         (status busy)
-        (inprogress $accept-0)
         (enabled $accept-0)
+        (inprogress $accept-0)
       )
     :effect
       (and
         (status event)
         (not (status busy))
         (when (at $0 $Document)
-          (and (not (at $0 $Document)) (at $3 $Document))
+          (and (not (at $0 $Document)) (at $2 $Document))
         )
         (when (at $1 $Crew-0)
           (and (not (at $1 $Crew-0)) (at $4 $Crew-0))
@@ -576,17 +522,17 @@
         (when (at $3 $Crew-0)
           (and (not (at $3 $Crew-0)) (at $4 $Crew-0))
         )
-        (when (at $7 $Crew-0)
-          (and (not (at $7 $Crew-0)) (at $4 $Crew-0))
+        (when (at $6 $Crew-0)
+          (and (not (at $6 $Crew-0)) (at $4 $Crew-0))
         )
-        (when (at $9 $Crew-0)
-          (and (not (at $9 $Crew-0)) (at $4 $Crew-0))
+        (when (at $8 $Crew-0)
+          (and (not (at $8 $Crew-0)) (at $4 $Crew-0))
         )
-        (when (at $11 $Crew-0)
-          (and (not (at $11 $Crew-0)) (at $4 $Crew-0))
+        (when (at $10 $Crew-0)
+          (and (not (at $10 $Crew-0)) (at $4 $Crew-0))
         )
-        (when (at $13 $Crew-0)
-          (and (not (at $13 $Crew-0)) (at $4 $Crew-0))
+        (when (at $12 $Crew-0)
+          (and (not (at $12 $Crew-0)) (at $4 $Crew-0))
         )
       )
   )
@@ -594,22 +540,23 @@
   (:action do$approve
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $approve)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
+        (status complete)
         (when (at $0 $Document)
           (and (not (at $0 $Document)) (at $-1 $Document))
         )
         (when (at $1 $Document)
           (and (not (at $1 $Document)) (at $-1 $Document))
         )
-        (when (at $3 $Document)
-          (and (not (at $3 $Document)) (at $2 $Document))
+        (when (at $2 $Document)
+          (and (not (at $2 $Document)) (at $0 $Document))
         )
         (when (at $0 $Crew-0)
           (and (not (at $0 $Crew-0)) (at $-1 $Crew-0))
@@ -618,22 +565,22 @@
           (and (not (at $2 $Crew-0)) (at $-1 $Crew-0))
         )
         (when (at $4 $Crew-0)
-          (and (not (at $4 $Crew-0)) (at $5 $Crew-0))
+          (and (not (at $4 $Crew-0)) (at $0 $Crew-0))
         )
-        (when (at $6 $Crew-0)
-          (and (not (at $6 $Crew-0)) (at $-1 $Crew-0))
+        (when (at $5 $Crew-0)
+          (and (not (at $5 $Crew-0)) (at $-1 $Crew-0))
         )
-        (when (at $8 $Crew-0)
-          (and (not (at $8 $Crew-0)) (at $-1 $Crew-0))
+        (when (at $7 $Crew-0)
+          (and (not (at $7 $Crew-0)) (at $-1 $Crew-0))
         )
-        (when (at $10 $Crew-0)
-          (and (not (at $10 $Crew-0)) (at $-1 $Crew-0))
+        (when (at $9 $Crew-0)
+          (and (not (at $9 $Crew-0)) (at $-1 $Crew-0))
         )
-        (when (at $12 $Crew-0)
-          (and (not (at $12 $Crew-0)) (at $-1 $Crew-0))
+        (when (at $11 $Crew-0)
+          (and (not (at $11 $Crew-0)) (at $-1 $Crew-0))
         )
-        (when (at $14 $Crew-0)
-          (and (not (at $14 $Crew-0)) (at $-1 $Crew-0))
+        (when (at $13 $Crew-0)
+          (and (not (at $13 $Crew-0)) (at $-1 $Crew-0))
         )
       )
   )
@@ -641,14 +588,14 @@
   (:action do$assign-0
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $assign-0)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $0 $Crew-0)
           (and (not (at $0 $Crew-0)) (at $1 $Crew-0))
         )
@@ -658,20 +605,20 @@
         (when (at $4 $Crew-0)
           (and (not (at $4 $Crew-0)) (at $-1 $Crew-0))
         )
-        (when (at $6 $Crew-0)
-          (and (not (at $6 $Crew-0)) (at $7 $Crew-0))
+        (when (at $5 $Crew-0)
+          (and (not (at $5 $Crew-0)) (at $6 $Crew-0))
         )
-        (when (at $8 $Crew-0)
-          (and (not (at $8 $Crew-0)) (at $9 $Crew-0))
+        (when (at $7 $Crew-0)
+          (and (not (at $7 $Crew-0)) (at $8 $Crew-0))
         )
-        (when (at $10 $Crew-0)
-          (and (not (at $10 $Crew-0)) (at $11 $Crew-0))
+        (when (at $9 $Crew-0)
+          (and (not (at $9 $Crew-0)) (at $10 $Crew-0))
         )
-        (when (at $12 $Crew-0)
-          (and (not (at $12 $Crew-0)) (at $13 $Crew-0))
+        (when (at $11 $Crew-0)
+          (and (not (at $11 $Crew-0)) (at $12 $Crew-0))
         )
-        (when (at $14 $Crew-0)
-          (and (not (at $14 $Crew-0)) (at $-1 $Crew-0))
+        (when (at $13 $Crew-0)
+          (and (not (at $13 $Crew-0)) (at $-1 $Crew-0))
         )
       )
   )
@@ -680,15 +627,15 @@
     :precondition
       (and
         (status busy)
-        (inprogress $reject-0-4)
         (enabled $reject-0-4)
+        (inprogress $reject-0-4)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (when (at $9 $Crew-0)
-          (and (not (at $9 $Crew-0)) (at $10 $Crew-0))
+        (when (at $8 $Crew-0)
+          (and (not (at $8 $Crew-0)) (at $9 $Crew-0))
         )
       )
   )
@@ -697,15 +644,15 @@
     :precondition
       (and
         (status busy)
-        (inprogress $reject-0-3)
         (enabled $reject-0-3)
+        (inprogress $reject-0-3)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (when (at $7 $Crew-0)
-          (and (not (at $7 $Crew-0)) (at $8 $Crew-0))
+        (when (at $6 $Crew-0)
+          (and (not (at $6 $Crew-0)) (at $7 $Crew-0))
         )
       )
   )
@@ -714,8 +661,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $reject-0-6)
         (enabled $reject-0-6)
+        (inprogress $reject-0-6)
       )
     :effect
       (and
@@ -724,8 +671,8 @@
         (when (at $0 $Document)
           (and (not (at $0 $Document)) (at $1 $Document))
         )
-        (when (at $13 $Crew-0)
-          (and (not (at $13 $Crew-0)) (at $14 $Crew-0))
+        (when (at $12 $Crew-0)
+          (and (not (at $12 $Crew-0)) (at $13 $Crew-0))
         )
       )
   )
@@ -734,36 +681,15 @@
     :precondition
       (and
         (status busy)
-        (inprogress $reject-0-5)
         (enabled $reject-0-5)
+        (inprogress $reject-0-5)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (when (at $11 $Crew-0)
-          (and (not (at $11 $Crew-0)) (at $12 $Crew-0))
-        )
-      )
-  )
-  
-  (:action do$end
-    :precondition
-      (and
-        (status busy)
-        (inprogress $end)
-        (enabled $end)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (status complete)
-        (when (at $2 $Document)
-          (and (not (at $2 $Document)) (at $0 $Document))
-        )
-        (when (at $5 $Crew-0)
-          (and (not (at $5 $Crew-0)) (at $0 $Crew-0))
+        (when (at $10 $Crew-0)
+          (and (not (at $10 $Crew-0)) (at $11 $Crew-0))
         )
       )
   )

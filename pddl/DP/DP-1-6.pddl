@@ -1,5 +1,5 @@
 (define
-  (domain Controller)
+  (domain DirectedController)
   
   (:requirements
     :typing
@@ -15,17 +15,17 @@
   )
   
   (:constants
-    $Philosopher-0 $Fork-0 - LTS
-    $-1 $0 $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11 $12 - State
-    $eat-0 $think-0 $step-0 $take-0-0 $release-0-0 $end - Label
-    setup idle busy uncontrollable complete looping event - Phase
+    $Philosopher-0 $Monitor-0 $Fork-0 - LTS
+    $0 $1 $2 $3 $4 $5 $6 $7 $8 $9 $10 $11 - State
+    $eat-0 $think-0 $step-0 $eat-all $take-0-0 $release-0-0 - Label
+    setup idle busy complete uncontrollable looping event - Phase
   )
   
   (:predicates
     (at ?s - State ?m - LTS)
+    (ready ?a - Label ?m - LTS)
     (marked ?s - State ?m - LTS)
     (hoop ?m - LTS)
-    (ready ?a - Label ?m - LTS)
     (enabled ?a - Label)
     (inprogress ?a - Label)
     (status ?c - Phase)
@@ -46,23 +46,25 @@
         (not (enabled $eat-0))
         (not (enabled $think-0))
         (not (enabled $step-0))
+        (not (enabled $eat-all))
         (not (enabled $take-0-0))
         (not (enabled $release-0-0))
-        (not (enabled $end))
         (not (inprogress $eat-0))
         (not (inprogress $think-0))
         (not (inprogress $step-0))
+        (not (inprogress $eat-all))
         (not (inprogress $release-0-0))
-        (not (inprogress $end))
         (not (ready $eat-0 $Philosopher-0))
         (not (ready $think-0 $Philosopher-0))
         (not (ready $step-0 $Philosopher-0))
         (not (ready $take-0-0 $Philosopher-0))
         (not (ready $release-0-0 $Philosopher-0))
-        (not (ready $end $Philosopher-0))
+        (not (ready $eat-0 $Monitor-0))
+        (not (ready $eat-all $Monitor-0))
         (not (ready $take-0-0 $Fork-0))
         (not (ready $release-0-0 $Fork-0))
         (not (hoop $Philosopher-0))
+        (not (hoop $Monitor-0))
         (not (hoop $Fork-0))
       )
   )
@@ -112,20 +114,20 @@
         (when (at $11 $Philosopher-0)
           (ready $release-0-0 $Philosopher-0)
         )
-        (when (at $12 $Philosopher-0)
-          (ready $end $Philosopher-0)
+        (when (at $0 $Monitor-0)
+          (ready $eat-0 $Monitor-0)
+        )
+        (when (at $1 $Monitor-0)
+          (and
+            (ready $eat-0 $Monitor-0)
+            (ready $eat-all $Monitor-0)
+          )
         )
         (when (at $0 $Fork-0)
-          (and
-            (ready $release-0-0 $Fork-0)
-            (ready $take-0-0 $Fork-0)
-          )
+          (ready $take-0-0 $Fork-0)
         )
         (when (at $1 $Fork-0)
-          (and
-            (ready $release-0-0 $Fork-0)
-            (ready $take-0-0 $Fork-0)
-          )
+          (ready $release-0-0 $Fork-0)
         )
         (when (and (at $0 $Philosopher-0) (marked $0 $Philosopher-0))
           (hoop $Philosopher-0)
@@ -163,11 +165,11 @@
         (when (and (at $11 $Philosopher-0) (marked $11 $Philosopher-0))
           (hoop $Philosopher-0)
         )
-        (when (and (at $12 $Philosopher-0) (marked $12 $Philosopher-0))
-          (hoop $Philosopher-0)
+        (when (and (at $0 $Monitor-0) (marked $0 $Monitor-0))
+          (hoop $Monitor-0)
         )
-        (when (and (at $-1 $Fork-0) (marked $-1 $Fork-0))
-          (hoop $Fork-0)
+        (when (and (at $1 $Monitor-0) (marked $1 $Monitor-0))
+          (hoop $Monitor-0)
         )
         (when (and (at $0 $Fork-0) (marked $0 $Fork-0))
           (hoop $Fork-0)
@@ -193,29 +195,27 @@
         (when
           (and
             (ready $eat-0 $Philosopher-0)
+            (ready $eat-0 $Monitor-0)
           )
-          (and
-            (enabled $eat-0)
-            (status uncontrollable)
-          )
+          (enabled $eat-0)
         )
         (when
           (and
             (ready $think-0 $Philosopher-0)
           )
-          (and
-            (enabled $think-0)
-            (status uncontrollable)
-          )
+          (enabled $think-0)
         )
         (when
           (and
             (ready $step-0 $Philosopher-0)
           )
+          (enabled $step-0)
+        )
+        (when
           (and
-            (enabled $step-0)
-            (status uncontrollable)
+            (ready $eat-all $Monitor-0)
           )
+          (enabled $eat-all)
         )
         (when
           (and
@@ -229,19 +229,7 @@
             (ready $release-0-0 $Philosopher-0)
             (ready $release-0-0 $Fork-0)
           )
-          (and
-            (enabled $release-0-0)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $end $Philosopher-0)
-          )
-          (and
-            (enabled $end)
-            (status uncontrollable)
-          )
+          (enabled $release-0-0)
         )
       )
   )
@@ -250,18 +238,18 @@
     :precondition
       (and
         (status idle)
-        (status uncontrollable)
       )
     :effect
       (and
         (not (status idle))
         (status busy)
         (oneof
-          (when (enabled $eat-0) (inprogress $eat-0))
-          (when (enabled $think-0) (inprogress $think-0))
-          (when (enabled $step-0) (inprogress $step-0))
-          (when (enabled $release-0-0) (inprogress $release-0-0))
-          (when (enabled $end) (inprogress $end))
+          (when (enabled $eat-0) (and (inprogress $eat-0) (status uncontrollable)))
+          (when (enabled $think-0) (and (inprogress $think-0) (status uncontrollable)))
+          (when (enabled $step-0) (and (inprogress $step-0) (status uncontrollable)))
+          (when (enabled $eat-all) (and (inprogress $eat-all) (status uncontrollable)))
+          (when (enabled $release-0-0) (and (inprogress $release-0-0) (status uncontrollable)))
+          (when (true) (true))
         )
       )
   )
@@ -274,16 +262,16 @@
         (not (inprogress $eat-0))
         (not (inprogress $think-0))
         (not (inprogress $step-0))
+        (not (inprogress $eat-all))
         (not (inprogress $release-0-0))
-        (not (inprogress $end))
       )
     :effect
       (and
         (inprogress $eat-0)
         (inprogress $think-0)
         (inprogress $step-0)
+        (inprogress $eat-all)
         (inprogress $release-0-0)
-        (inprogress $end)
       )
   )
   
@@ -310,8 +298,8 @@
         (when (at $9 $Philosopher-0) (marked $9 $Philosopher-0))
         (when (at $10 $Philosopher-0) (marked $10 $Philosopher-0))
         (when (at $11 $Philosopher-0) (marked $11 $Philosopher-0))
-        (when (at $12 $Philosopher-0) (marked $12 $Philosopher-0))
-        (when (at $-1 $Fork-0) (marked $-1 $Fork-0))
+        (when (at $0 $Monitor-0) (marked $0 $Monitor-0))
+        (when (at $1 $Monitor-0) (marked $1 $Monitor-0))
         (when (at $0 $Fork-0) (marked $0 $Fork-0))
         (when (at $1 $Fork-0) (marked $1 $Fork-0))
       )
@@ -321,8 +309,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $eat-0)
         (enabled $eat-0)
+        (inprogress $eat-0)
       )
     :effect
       (and
@@ -331,6 +319,9 @@
         (when (at $9 $Philosopher-0)
           (and (not (at $9 $Philosopher-0)) (at $10 $Philosopher-0))
         )
+        (when (at $0 $Monitor-0)
+          (and (not (at $0 $Monitor-0)) (at $1 $Monitor-0))
+        )
       )
   )
   
@@ -338,8 +329,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $think-0)
         (enabled $think-0)
+        (inprogress $think-0)
       )
     :effect
       (and
@@ -355,8 +346,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $step-0)
         (enabled $step-0)
+        (inprogress $step-0)
       )
     :effect
       (and
@@ -383,17 +374,35 @@
       )
   )
   
-  (:action do$take-0-0
+  (:action do$eat-all
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
-        (enabled $take-0-0)
+        (status busy)
+        (enabled $eat-all)
+        (inprogress $eat-all)
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
+        (status complete)
+        (when (at $1 $Monitor-0)
+          (and (not (at $1 $Monitor-0)) (at $0 $Monitor-0))
+        )
+      )
+  )
+  
+  (:action do$take-0-0
+    :precondition
+      (and
+        (status busy)
+        (enabled $take-0-0)
+        (not (status uncontrollable))
+      )
+    :effect
+      (and
+        (status event)
+        (not (status busy))
         (when (at $1 $Philosopher-0)
           (and (not (at $1 $Philosopher-0)) (at $2 $Philosopher-0))
         )
@@ -403,9 +412,6 @@
         (when (at $0 $Fork-0)
           (and (not (at $0 $Fork-0)) (at $1 $Fork-0))
         )
-        (when (at $1 $Fork-0)
-          (and (not (at $1 $Fork-0)) (at $-1 $Fork-0))
-        )
       )
   )
   
@@ -413,8 +419,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $release-0-0)
         (enabled $release-0-0)
+        (inprogress $release-0-0)
       )
     :effect
       (and
@@ -424,28 +430,10 @@
           (and (not (at $10 $Philosopher-0)) (at $11 $Philosopher-0))
         )
         (when (at $11 $Philosopher-0)
-          (and (not (at $11 $Philosopher-0)) (at $12 $Philosopher-0))
+          (and (not (at $11 $Philosopher-0)) (at $0 $Philosopher-0))
         )
         (when (at $1 $Fork-0)
           (and (not (at $1 $Fork-0)) (at $0 $Fork-0))
-        )
-      )
-  )
-  
-  (:action do$end
-    :precondition
-      (and
-        (status busy)
-        (inprogress $end)
-        (enabled $end)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (status complete)
-        (when (at $12 $Philosopher-0)
-          (and (not (at $12 $Philosopher-0)) (at $0 $Philosopher-0))
         )
       )
   )

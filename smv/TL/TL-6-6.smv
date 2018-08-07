@@ -1,0 +1,1130 @@
+MODULE main
+DOMAINNAME DirectedController
+PROBLEMNAME Goal
+IVAR
+  action: {
+    "(choose)",
+    "(default)",
+    "(return_5)",
+    "(return_4)",
+    "(get_6)",
+    "(get_5)",
+    "(return_3)",
+    "(get_4)",
+    "(return_2)",
+    "(reject)",
+    "(get_3)",
+    "(return_1)",
+    "(get_2)",
+    "(return_0)",
+    "(get_1)",
+    "(accept)",
+    "(get_0)",
+    "(return_6)",
+    "(put_4)",
+    "(put_3)",
+    "(put_6)",
+    "(put_5)",
+    "(put_2)",
+    "(put_1)"
+  };
+VAR
+  "(at Buffer_1)":-1..7;
+  "(at Machine_5)":-1..6;
+  "(at Machine_4)":-1..6;
+  "(at Machine_3)":-1..6;
+  "(at Buffer_5)":-1..7;
+  "(at Machine_0)":-1..6;
+  "(at Buffer_2)":-1..7;
+  "(at Machine_1)":-1..6;
+  "(at TU)":-1..2;
+  "(at Buffer_6)":-1..7;
+  "(at Machine_2)":-1..6;
+  "(at Buffer_3)":-1..7;
+  "(at Buffer_4)":-1..7;
+  "(inprogress return_5)":0..1;
+  "(inprogress return_4)":0..1;
+  "(inprogress return_3)":0..1;
+  "(inprogress return_2)":0..1;
+  "(inprogress reject)":0..1;
+  "(inprogress return_1)":0..1;
+  "(inprogress return_0)":0..1;
+  "(inprogress accept)":0..1;
+  "(inprogress return_6)":0..1;
+  "(inprogress put_4)":0..1;
+  "(inprogress put_3)":0..1;
+  "(inprogress put_6)":0..1;
+  "(inprogress put_5)":0..1;
+  "(inprogress put_2)":0..1;
+  "(inprogress put_1)":0..1;
+  "(status)":-1..2;
+INIT (
+  "(at Buffer_2)"=0 &
+  "(at Machine_3)"=0 &
+  "(at Buffer_3)"=0 &
+  "(at Machine_4)"=0 &
+  "(inprogress return_4)"=0 &
+  "(inprogress reject)"=0 &
+  "(status)"=0 &
+  "(inprogress return_5)"=0 &
+  "(inprogress return_6)"=0 &
+  "(inprogress return_3)"=0 &
+  "(at Machine_0)"=0 &
+  "(at Machine_2)"=0 &
+  "(inprogress accept)"=0 &
+  "(inprogress put_3)"=0 &
+  "(inprogress put_6)"=0 &
+  "(inprogress return_1)"=0 &
+  "(at TU)"=0 &
+  "(inprogress return_2)"=0 &
+  "(inprogress put_5)"=0 &
+  "(at Machine_1)"=0 &
+  "(inprogress put_4)"=0 &
+  "(at Buffer_5)"=0 &
+  "(at Machine_5)"=0 &
+  "(at Buffer_6)"=0 &
+  "(inprogress put_2)"=0 &
+  "(inprogress return_0)"=0 &
+  "(at Buffer_1)"=0 &
+  "(inprogress put_1)"=0 &
+  "(at Buffer_4)"=0 
+)
+DEFINE
+  "(@def ready return_5 Buffer_1)":=(FALSE);
+  "(@def ready return_5 Machine_5)":=(FALSE);
+  "(@def ready return_5 Machine_4)":=(FALSE);
+  "(@def ready return_5 Machine_3)":=(FALSE);
+  "(@def ready return_5 Buffer_5)":=("(at Buffer_5)"=0 | "(at Buffer_5)"=1 | "(at Buffer_5)"=2 | "(at Buffer_5)"=3 | "(at Buffer_5)"=4 | "(at Buffer_5)"=5 | "(at Buffer_5)"=6);
+  "(@def ready return_5 Machine_0)":=(FALSE);
+  "(@def ready return_5 Buffer_2)":=(FALSE);
+  "(@def ready return_5 Machine_1)":=(FALSE);
+  "(@def ready return_5 TU)":=(FALSE);
+  "(@def ready return_5 Buffer_6)":=(FALSE);
+  "(@def ready return_5 Machine_2)":=(FALSE);
+  "(@def ready return_5 Buffer_3)":=(FALSE);
+  "(@def ready return_5 Buffer_4)":=(FALSE);
+  "(@def ready return_4 Buffer_1)":=(FALSE);
+  "(@def ready return_4 Machine_5)":=(FALSE);
+  "(@def ready return_4 Machine_4)":=(FALSE);
+  "(@def ready return_4 Machine_3)":=(FALSE);
+  "(@def ready return_4 Buffer_5)":=(FALSE);
+  "(@def ready return_4 Machine_0)":=(FALSE);
+  "(@def ready return_4 Buffer_2)":=(FALSE);
+  "(@def ready return_4 Machine_1)":=(FALSE);
+  "(@def ready return_4 TU)":=(FALSE);
+  "(@def ready return_4 Buffer_6)":=(FALSE);
+  "(@def ready return_4 Machine_2)":=(FALSE);
+  "(@def ready return_4 Buffer_3)":=(FALSE);
+  "(@def ready return_4 Buffer_4)":=("(at Buffer_4)"=0 | "(at Buffer_4)"=1 | "(at Buffer_4)"=2 | "(at Buffer_4)"=3 | "(at Buffer_4)"=4 | "(at Buffer_4)"=5 | "(at Buffer_4)"=6);
+  "(@def ready get_6 Buffer_1)":=(FALSE);
+  "(@def ready get_6 Machine_5)":=(FALSE);
+  "(@def ready get_6 Machine_4)":=(FALSE);
+  "(@def ready get_6 Machine_3)":=(FALSE);
+  "(@def ready get_6 Buffer_5)":=(FALSE);
+  "(@def ready get_6 Machine_0)":=(FALSE);
+  "(@def ready get_6 Buffer_2)":=(FALSE);
+  "(@def ready get_6 Machine_1)":=(FALSE);
+  "(@def ready get_6 TU)":=("(at TU)"=0);
+  "(@def ready get_6 Buffer_6)":=("(at Buffer_6)"=0 | "(at Buffer_6)"=1 | "(at Buffer_6)"=2 | "(at Buffer_6)"=3 | "(at Buffer_6)"=4 | "(at Buffer_6)"=5 | "(at Buffer_6)"=6);
+  "(@def ready get_6 Machine_2)":=(FALSE);
+  "(@def ready get_6 Buffer_3)":=(FALSE);
+  "(@def ready get_6 Buffer_4)":=(FALSE);
+  "(@def ready get_5 Buffer_1)":=(FALSE);
+  "(@def ready get_5 Machine_5)":=("(at Machine_5)"=0 | "(at Machine_5)"=1 | "(at Machine_5)"=2 | "(at Machine_5)"=3 | "(at Machine_5)"=4 | "(at Machine_5)"=5);
+  "(@def ready get_5 Machine_4)":=(FALSE);
+  "(@def ready get_5 Machine_3)":=(FALSE);
+  "(@def ready get_5 Buffer_5)":=("(at Buffer_5)"=0 | "(at Buffer_5)"=1 | "(at Buffer_5)"=2 | "(at Buffer_5)"=3 | "(at Buffer_5)"=4 | "(at Buffer_5)"=5 | "(at Buffer_5)"=6);
+  "(@def ready get_5 Machine_0)":=(FALSE);
+  "(@def ready get_5 Buffer_2)":=(FALSE);
+  "(@def ready get_5 Machine_1)":=(FALSE);
+  "(@def ready get_5 TU)":=(FALSE);
+  "(@def ready get_5 Buffer_6)":=(FALSE);
+  "(@def ready get_5 Machine_2)":=(FALSE);
+  "(@def ready get_5 Buffer_3)":=(FALSE);
+  "(@def ready get_5 Buffer_4)":=(FALSE);
+  "(@def ready return_3 Buffer_1)":=(FALSE);
+  "(@def ready return_3 Machine_5)":=(FALSE);
+  "(@def ready return_3 Machine_4)":=(FALSE);
+  "(@def ready return_3 Machine_3)":=(FALSE);
+  "(@def ready return_3 Buffer_5)":=(FALSE);
+  "(@def ready return_3 Machine_0)":=(FALSE);
+  "(@def ready return_3 Buffer_2)":=(FALSE);
+  "(@def ready return_3 Machine_1)":=(FALSE);
+  "(@def ready return_3 TU)":=(FALSE);
+  "(@def ready return_3 Buffer_6)":=(FALSE);
+  "(@def ready return_3 Machine_2)":=(FALSE);
+  "(@def ready return_3 Buffer_3)":=("(at Buffer_3)"=0 | "(at Buffer_3)"=1 | "(at Buffer_3)"=2 | "(at Buffer_3)"=3 | "(at Buffer_3)"=4 | "(at Buffer_3)"=5 | "(at Buffer_3)"=6);
+  "(@def ready return_3 Buffer_4)":=(FALSE);
+  "(@def ready get_4 Buffer_1)":=(FALSE);
+  "(@def ready get_4 Machine_5)":=(FALSE);
+  "(@def ready get_4 Machine_4)":=("(at Machine_4)"=0 | "(at Machine_4)"=1 | "(at Machine_4)"=2 | "(at Machine_4)"=3 | "(at Machine_4)"=4 | "(at Machine_4)"=5);
+  "(@def ready get_4 Machine_3)":=(FALSE);
+  "(@def ready get_4 Buffer_5)":=(FALSE);
+  "(@def ready get_4 Machine_0)":=(FALSE);
+  "(@def ready get_4 Buffer_2)":=(FALSE);
+  "(@def ready get_4 Machine_1)":=(FALSE);
+  "(@def ready get_4 TU)":=(FALSE);
+  "(@def ready get_4 Buffer_6)":=(FALSE);
+  "(@def ready get_4 Machine_2)":=(FALSE);
+  "(@def ready get_4 Buffer_3)":=(FALSE);
+  "(@def ready get_4 Buffer_4)":=("(at Buffer_4)"=0 | "(at Buffer_4)"=1 | "(at Buffer_4)"=2 | "(at Buffer_4)"=3 | "(at Buffer_4)"=4 | "(at Buffer_4)"=5 | "(at Buffer_4)"=6);
+  "(@def ready return_2 Buffer_1)":=(FALSE);
+  "(@def ready return_2 Machine_5)":=(FALSE);
+  "(@def ready return_2 Machine_4)":=(FALSE);
+  "(@def ready return_2 Machine_3)":=(FALSE);
+  "(@def ready return_2 Buffer_5)":=(FALSE);
+  "(@def ready return_2 Machine_0)":=(FALSE);
+  "(@def ready return_2 Buffer_2)":=("(at Buffer_2)"=0 | "(at Buffer_2)"=1 | "(at Buffer_2)"=2 | "(at Buffer_2)"=3 | "(at Buffer_2)"=4 | "(at Buffer_2)"=5 | "(at Buffer_2)"=6);
+  "(@def ready return_2 Machine_1)":=(FALSE);
+  "(@def ready return_2 TU)":=(FALSE);
+  "(@def ready return_2 Buffer_6)":=(FALSE);
+  "(@def ready return_2 Machine_2)":=(FALSE);
+  "(@def ready return_2 Buffer_3)":=(FALSE);
+  "(@def ready return_2 Buffer_4)":=(FALSE);
+  "(@def ready reject Buffer_1)":=(FALSE);
+  "(@def ready reject Machine_5)":=(FALSE);
+  "(@def ready reject Machine_4)":=(FALSE);
+  "(@def ready reject Machine_3)":=(FALSE);
+  "(@def ready reject Buffer_5)":=(FALSE);
+  "(@def ready reject Machine_0)":=(FALSE);
+  "(@def ready reject Buffer_2)":=(FALSE);
+  "(@def ready reject Machine_1)":=(FALSE);
+  "(@def ready reject TU)":=("(at TU)"=2);
+  "(@def ready reject Buffer_6)":=(FALSE);
+  "(@def ready reject Machine_2)":=(FALSE);
+  "(@def ready reject Buffer_3)":=(FALSE);
+  "(@def ready reject Buffer_4)":=(FALSE);
+  "(@def ready get_3 Buffer_1)":=(FALSE);
+  "(@def ready get_3 Machine_5)":=(FALSE);
+  "(@def ready get_3 Machine_4)":=(FALSE);
+  "(@def ready get_3 Machine_3)":=("(at Machine_3)"=0 | "(at Machine_3)"=1 | "(at Machine_3)"=2 | "(at Machine_3)"=3 | "(at Machine_3)"=4 | "(at Machine_3)"=5);
+  "(@def ready get_3 Buffer_5)":=(FALSE);
+  "(@def ready get_3 Machine_0)":=(FALSE);
+  "(@def ready get_3 Buffer_2)":=(FALSE);
+  "(@def ready get_3 Machine_1)":=(FALSE);
+  "(@def ready get_3 TU)":=(FALSE);
+  "(@def ready get_3 Buffer_6)":=(FALSE);
+  "(@def ready get_3 Machine_2)":=(FALSE);
+  "(@def ready get_3 Buffer_3)":=("(at Buffer_3)"=0 | "(at Buffer_3)"=1 | "(at Buffer_3)"=2 | "(at Buffer_3)"=3 | "(at Buffer_3)"=4 | "(at Buffer_3)"=5 | "(at Buffer_3)"=6);
+  "(@def ready get_3 Buffer_4)":=(FALSE);
+  "(@def ready return_1 Buffer_1)":=("(at Buffer_1)"=0 | "(at Buffer_1)"=1 | "(at Buffer_1)"=2 | "(at Buffer_1)"=3 | "(at Buffer_1)"=4 | "(at Buffer_1)"=5 | "(at Buffer_1)"=6);
+  "(@def ready return_1 Machine_5)":=(FALSE);
+  "(@def ready return_1 Machine_4)":=(FALSE);
+  "(@def ready return_1 Machine_3)":=(FALSE);
+  "(@def ready return_1 Buffer_5)":=(FALSE);
+  "(@def ready return_1 Machine_0)":=(FALSE);
+  "(@def ready return_1 Buffer_2)":=(FALSE);
+  "(@def ready return_1 Machine_1)":=(FALSE);
+  "(@def ready return_1 TU)":=("(at TU)"=1);
+  "(@def ready return_1 Buffer_6)":=(FALSE);
+  "(@def ready return_1 Machine_2)":=(FALSE);
+  "(@def ready return_1 Buffer_3)":=(FALSE);
+  "(@def ready return_1 Buffer_4)":=(FALSE);
+  "(@def ready get_2 Buffer_1)":=(FALSE);
+  "(@def ready get_2 Machine_5)":=(FALSE);
+  "(@def ready get_2 Machine_4)":=(FALSE);
+  "(@def ready get_2 Machine_3)":=(FALSE);
+  "(@def ready get_2 Buffer_5)":=(FALSE);
+  "(@def ready get_2 Machine_0)":=(FALSE);
+  "(@def ready get_2 Buffer_2)":=("(at Buffer_2)"=0 | "(at Buffer_2)"=1 | "(at Buffer_2)"=2 | "(at Buffer_2)"=3 | "(at Buffer_2)"=4 | "(at Buffer_2)"=5 | "(at Buffer_2)"=6);
+  "(@def ready get_2 Machine_1)":=(FALSE);
+  "(@def ready get_2 TU)":=(FALSE);
+  "(@def ready get_2 Buffer_6)":=(FALSE);
+  "(@def ready get_2 Machine_2)":=("(at Machine_2)"=0 | "(at Machine_2)"=1 | "(at Machine_2)"=2 | "(at Machine_2)"=3 | "(at Machine_2)"=4 | "(at Machine_2)"=5);
+  "(@def ready get_2 Buffer_3)":=(FALSE);
+  "(@def ready get_2 Buffer_4)":=(FALSE);
+  "(@def ready return_0 Buffer_1)":=(FALSE);
+  "(@def ready return_0 Machine_5)":=(FALSE);
+  "(@def ready return_0 Machine_4)":=(FALSE);
+  "(@def ready return_0 Machine_3)":=(FALSE);
+  "(@def ready return_0 Buffer_5)":=(FALSE);
+  "(@def ready return_0 Machine_0)":=(FALSE);
+  "(@def ready return_0 Buffer_2)":=(FALSE);
+  "(@def ready return_0 Machine_1)":=(FALSE);
+  "(@def ready return_0 TU)":=(FALSE);
+  "(@def ready return_0 Buffer_6)":=(FALSE);
+  "(@def ready return_0 Machine_2)":=(FALSE);
+  "(@def ready return_0 Buffer_3)":=(FALSE);
+  "(@def ready return_0 Buffer_4)":=(FALSE);
+  "(@def ready get_1 Buffer_1)":=("(at Buffer_1)"=0 | "(at Buffer_1)"=1 | "(at Buffer_1)"=2 | "(at Buffer_1)"=3 | "(at Buffer_1)"=4 | "(at Buffer_1)"=5 | "(at Buffer_1)"=6);
+  "(@def ready get_1 Machine_5)":=(FALSE);
+  "(@def ready get_1 Machine_4)":=(FALSE);
+  "(@def ready get_1 Machine_3)":=(FALSE);
+  "(@def ready get_1 Buffer_5)":=(FALSE);
+  "(@def ready get_1 Machine_0)":=(FALSE);
+  "(@def ready get_1 Buffer_2)":=(FALSE);
+  "(@def ready get_1 Machine_1)":=("(at Machine_1)"=0 | "(at Machine_1)"=1 | "(at Machine_1)"=2 | "(at Machine_1)"=3 | "(at Machine_1)"=4 | "(at Machine_1)"=5);
+  "(@def ready get_1 TU)":=(FALSE);
+  "(@def ready get_1 Buffer_6)":=(FALSE);
+  "(@def ready get_1 Machine_2)":=(FALSE);
+  "(@def ready get_1 Buffer_3)":=(FALSE);
+  "(@def ready get_1 Buffer_4)":=(FALSE);
+  "(@def ready accept Buffer_1)":=(FALSE);
+  "(@def ready accept Machine_5)":=(FALSE);
+  "(@def ready accept Machine_4)":=(FALSE);
+  "(@def ready accept Machine_3)":=(FALSE);
+  "(@def ready accept Buffer_5)":=(FALSE);
+  "(@def ready accept Machine_0)":=(FALSE);
+  "(@def ready accept Buffer_2)":=(FALSE);
+  "(@def ready accept Machine_1)":=(FALSE);
+  "(@def ready accept TU)":=("(at TU)"=1);
+  "(@def ready accept Buffer_6)":=(FALSE);
+  "(@def ready accept Machine_2)":=(FALSE);
+  "(@def ready accept Buffer_3)":=(FALSE);
+  "(@def ready accept Buffer_4)":=(FALSE);
+  "(@def ready get_0 Buffer_1)":=(FALSE);
+  "(@def ready get_0 Machine_5)":=(FALSE);
+  "(@def ready get_0 Machine_4)":=(FALSE);
+  "(@def ready get_0 Machine_3)":=(FALSE);
+  "(@def ready get_0 Buffer_5)":=(FALSE);
+  "(@def ready get_0 Machine_0)":=("(at Machine_0)"=0 | "(at Machine_0)"=1 | "(at Machine_0)"=2 | "(at Machine_0)"=3 | "(at Machine_0)"=4 | "(at Machine_0)"=5);
+  "(@def ready get_0 Buffer_2)":=(FALSE);
+  "(@def ready get_0 Machine_1)":=(FALSE);
+  "(@def ready get_0 TU)":=(FALSE);
+  "(@def ready get_0 Buffer_6)":=(FALSE);
+  "(@def ready get_0 Machine_2)":=(FALSE);
+  "(@def ready get_0 Buffer_3)":=(FALSE);
+  "(@def ready get_0 Buffer_4)":=(FALSE);
+  "(@def ready return_6 Buffer_1)":=(FALSE);
+  "(@def ready return_6 Machine_5)":=(FALSE);
+  "(@def ready return_6 Machine_4)":=(FALSE);
+  "(@def ready return_6 Machine_3)":=(FALSE);
+  "(@def ready return_6 Buffer_5)":=(FALSE);
+  "(@def ready return_6 Machine_0)":=(FALSE);
+  "(@def ready return_6 Buffer_2)":=(FALSE);
+  "(@def ready return_6 Machine_1)":=(FALSE);
+  "(@def ready return_6 TU)":=(FALSE);
+  "(@def ready return_6 Buffer_6)":=("(at Buffer_6)"=0 | "(at Buffer_6)"=1 | "(at Buffer_6)"=2 | "(at Buffer_6)"=3 | "(at Buffer_6)"=4 | "(at Buffer_6)"=5 | "(at Buffer_6)"=6);
+  "(@def ready return_6 Machine_2)":=(FALSE);
+  "(@def ready return_6 Buffer_3)":=(FALSE);
+  "(@def ready return_6 Buffer_4)":=(FALSE);
+  "(@def ready put_4 Buffer_1)":=(FALSE);
+  "(@def ready put_4 Machine_5)":=(FALSE);
+  "(@def ready put_4 Machine_4)":=(FALSE);
+  "(@def ready put_4 Machine_3)":=("(at Machine_3)"=1 | "(at Machine_3)"=2 | "(at Machine_3)"=3 | "(at Machine_3)"=4 | "(at Machine_3)"=5 | "(at Machine_3)"=6);
+  "(@def ready put_4 Buffer_5)":=(FALSE);
+  "(@def ready put_4 Machine_0)":=(FALSE);
+  "(@def ready put_4 Buffer_2)":=(FALSE);
+  "(@def ready put_4 Machine_1)":=(FALSE);
+  "(@def ready put_4 TU)":=(FALSE);
+  "(@def ready put_4 Buffer_6)":=(FALSE);
+  "(@def ready put_4 Machine_2)":=(FALSE);
+  "(@def ready put_4 Buffer_3)":=(FALSE);
+  "(@def ready put_4 Buffer_4)":=("(at Buffer_4)"=0 | "(at Buffer_4)"=1 | "(at Buffer_4)"=2 | "(at Buffer_4)"=3 | "(at Buffer_4)"=4 | "(at Buffer_4)"=5 | "(at Buffer_4)"=6);
+  "(@def ready put_3 Buffer_1)":=(FALSE);
+  "(@def ready put_3 Machine_5)":=(FALSE);
+  "(@def ready put_3 Machine_4)":=(FALSE);
+  "(@def ready put_3 Machine_3)":=(FALSE);
+  "(@def ready put_3 Buffer_5)":=(FALSE);
+  "(@def ready put_3 Machine_0)":=(FALSE);
+  "(@def ready put_3 Buffer_2)":=(FALSE);
+  "(@def ready put_3 Machine_1)":=(FALSE);
+  "(@def ready put_3 TU)":=(FALSE);
+  "(@def ready put_3 Buffer_6)":=(FALSE);
+  "(@def ready put_3 Machine_2)":=("(at Machine_2)"=1 | "(at Machine_2)"=2 | "(at Machine_2)"=3 | "(at Machine_2)"=4 | "(at Machine_2)"=5 | "(at Machine_2)"=6);
+  "(@def ready put_3 Buffer_3)":=("(at Buffer_3)"=0 | "(at Buffer_3)"=1 | "(at Buffer_3)"=2 | "(at Buffer_3)"=3 | "(at Buffer_3)"=4 | "(at Buffer_3)"=5 | "(at Buffer_3)"=6);
+  "(@def ready put_3 Buffer_4)":=(FALSE);
+  "(@def ready put_6 Buffer_1)":=(FALSE);
+  "(@def ready put_6 Machine_5)":=("(at Machine_5)"=1 | "(at Machine_5)"=2 | "(at Machine_5)"=3 | "(at Machine_5)"=4 | "(at Machine_5)"=5 | "(at Machine_5)"=6);
+  "(@def ready put_6 Machine_4)":=(FALSE);
+  "(@def ready put_6 Machine_3)":=(FALSE);
+  "(@def ready put_6 Buffer_5)":=(FALSE);
+  "(@def ready put_6 Machine_0)":=(FALSE);
+  "(@def ready put_6 Buffer_2)":=(FALSE);
+  "(@def ready put_6 Machine_1)":=(FALSE);
+  "(@def ready put_6 TU)":=(FALSE);
+  "(@def ready put_6 Buffer_6)":=("(at Buffer_6)"=0 | "(at Buffer_6)"=1 | "(at Buffer_6)"=2 | "(at Buffer_6)"=3 | "(at Buffer_6)"=4 | "(at Buffer_6)"=5 | "(at Buffer_6)"=6);
+  "(@def ready put_6 Machine_2)":=(FALSE);
+  "(@def ready put_6 Buffer_3)":=(FALSE);
+  "(@def ready put_6 Buffer_4)":=(FALSE);
+  "(@def ready put_5 Buffer_1)":=(FALSE);
+  "(@def ready put_5 Machine_5)":=(FALSE);
+  "(@def ready put_5 Machine_4)":=("(at Machine_4)"=1 | "(at Machine_4)"=2 | "(at Machine_4)"=3 | "(at Machine_4)"=4 | "(at Machine_4)"=5 | "(at Machine_4)"=6);
+  "(@def ready put_5 Machine_3)":=(FALSE);
+  "(@def ready put_5 Buffer_5)":=("(at Buffer_5)"=0 | "(at Buffer_5)"=1 | "(at Buffer_5)"=2 | "(at Buffer_5)"=3 | "(at Buffer_5)"=4 | "(at Buffer_5)"=5 | "(at Buffer_5)"=6);
+  "(@def ready put_5 Machine_0)":=(FALSE);
+  "(@def ready put_5 Buffer_2)":=(FALSE);
+  "(@def ready put_5 Machine_1)":=(FALSE);
+  "(@def ready put_5 TU)":=(FALSE);
+  "(@def ready put_5 Buffer_6)":=(FALSE);
+  "(@def ready put_5 Machine_2)":=(FALSE);
+  "(@def ready put_5 Buffer_3)":=(FALSE);
+  "(@def ready put_5 Buffer_4)":=(FALSE);
+  "(@def ready put_2 Buffer_1)":=(FALSE);
+  "(@def ready put_2 Machine_5)":=(FALSE);
+  "(@def ready put_2 Machine_4)":=(FALSE);
+  "(@def ready put_2 Machine_3)":=(FALSE);
+  "(@def ready put_2 Buffer_5)":=(FALSE);
+  "(@def ready put_2 Machine_0)":=(FALSE);
+  "(@def ready put_2 Buffer_2)":=("(at Buffer_2)"=0 | "(at Buffer_2)"=1 | "(at Buffer_2)"=2 | "(at Buffer_2)"=3 | "(at Buffer_2)"=4 | "(at Buffer_2)"=5 | "(at Buffer_2)"=6);
+  "(@def ready put_2 Machine_1)":=("(at Machine_1)"=1 | "(at Machine_1)"=2 | "(at Machine_1)"=3 | "(at Machine_1)"=4 | "(at Machine_1)"=5 | "(at Machine_1)"=6);
+  "(@def ready put_2 TU)":=(FALSE);
+  "(@def ready put_2 Buffer_6)":=(FALSE);
+  "(@def ready put_2 Machine_2)":=(FALSE);
+  "(@def ready put_2 Buffer_3)":=(FALSE);
+  "(@def ready put_2 Buffer_4)":=(FALSE);
+  "(@def ready put_1 Buffer_1)":=("(at Buffer_1)"=0 | "(at Buffer_1)"=1 | "(at Buffer_1)"=2 | "(at Buffer_1)"=3 | "(at Buffer_1)"=4 | "(at Buffer_1)"=5 | "(at Buffer_1)"=6);
+  "(@def ready put_1 Machine_5)":=(FALSE);
+  "(@def ready put_1 Machine_4)":=(FALSE);
+  "(@def ready put_1 Machine_3)":=(FALSE);
+  "(@def ready put_1 Buffer_5)":=(FALSE);
+  "(@def ready put_1 Machine_0)":=("(at Machine_0)"=1 | "(at Machine_0)"=2 | "(at Machine_0)"=3 | "(at Machine_0)"=4 | "(at Machine_0)"=5 | "(at Machine_0)"=6);
+  "(@def ready put_1 Buffer_2)":=(FALSE);
+  "(@def ready put_1 Machine_1)":=(FALSE);
+  "(@def ready put_1 TU)":=(FALSE);
+  "(@def ready put_1 Buffer_6)":=(FALSE);
+  "(@def ready put_1 Machine_2)":=(FALSE);
+  "(@def ready put_1 Buffer_3)":=(FALSE);
+  "(@def ready put_1 Buffer_4)":=(FALSE);
+  "(@def enabled return_5)":=("(@def ready return_5 Buffer_5)" & "(@def ready return_5 TU)");
+  "(@def enabled return_4)":=("(@def ready return_4 TU)" & "(@def ready return_4 Buffer_4)");
+  "(@def enabled get_6)":=("(@def ready get_6 TU)" & "(@def ready get_6 Buffer_6)");
+  "(@def enabled get_5)":=("(@def ready get_5 Machine_5)" & "(@def ready get_5 Buffer_5)");
+  "(@def enabled return_3)":=("(@def ready return_3 TU)" & "(@def ready return_3 Buffer_3)");
+  "(@def enabled get_4)":=("(@def ready get_4 Machine_4)" & "(@def ready get_4 Buffer_4)");
+  "(@def enabled return_2)":=("(@def ready return_2 Buffer_2)" & "(@def ready return_2 TU)");
+  "(@def enabled reject)":=("(@def ready reject TU)");
+  "(@def enabled get_3)":=("(@def ready get_3 Machine_3)" & "(@def ready get_3 Buffer_3)");
+  "(@def enabled return_1)":=("(@def ready return_1 Buffer_1)" & "(@def ready return_1 TU)");
+  "(@def enabled get_2)":=("(@def ready get_2 Buffer_2)" & "(@def ready get_2 Machine_2)");
+  "(@def enabled return_0)":=("(@def ready return_0 TU)");
+  "(@def enabled get_1)":=("(@def ready get_1 Buffer_1)" & "(@def ready get_1 Machine_1)");
+  "(@def enabled accept)":=("(@def ready accept TU)");
+  "(@def enabled get_0)":=("(@def ready get_0 Machine_0)");
+  "(@def enabled return_6)":=("(@def ready return_6 TU)" & "(@def ready return_6 Buffer_6)");
+  "(@def enabled put_4)":=("(@def ready put_4 Machine_3)" & "(@def ready put_4 Buffer_4)");
+  "(@def enabled put_3)":=("(@def ready put_3 Machine_2)" & "(@def ready put_3 Buffer_3)");
+  "(@def enabled put_6)":=("(@def ready put_6 Machine_5)" & "(@def ready put_6 Buffer_6)");
+  "(@def enabled put_5)":=("(@def ready put_5 Machine_4)" & "(@def ready put_5 Buffer_5)");
+  "(@def enabled put_2)":=("(@def ready put_2 Buffer_2)" & "(@def ready put_2 Machine_1)");
+  "(@def enabled put_1)":=("(@def ready put_1 Buffer_1)" & "(@def ready put_1 Machine_0)");
+  "(@def event)":=("(@def enabled return_5)" | "(@def enabled return_4)" | "(@def enabled return_3)" | "(@def enabled return_2)" | "(@def enabled reject)" | "(@def enabled return_1)" | "(@def enabled return_0)" | "(@def enabled accept)" | "(@def enabled return_6)" | "(@def enabled put_4)" | "(@def enabled put_3)" | "(@def enabled put_6)" | "(@def enabled put_5)" | "(@def enabled put_2)" | "(@def enabled put_1)");
+  "(@def keep at)":=(next("(at Buffer_1)")="(at Buffer_1)" & next("(at Machine_5)")="(at Machine_5)" & next("(at Machine_4)")="(at Machine_4)" & next("(at Machine_3)")="(at Machine_3)" & next("(at Buffer_5)")="(at Buffer_5)" & next("(at Machine_0)")="(at Machine_0)" & next("(at Buffer_2)")="(at Buffer_2)" & next("(at Machine_1)")="(at Machine_1)" & next("(at TU)")="(at TU)" & next("(at Buffer_6)")="(at Buffer_6)" & next("(at Machine_2)")="(at Machine_2)" & next("(at Buffer_3)")="(at Buffer_3)" & next("(at Buffer_4)")="(at Buffer_4)");
+  "(@def no inprogress)":=(!"(inprogress return_5)" & !"(inprogress return_4)" & !"(inprogress return_3)" & !"(inprogress return_2)" & !"(inprogress reject)" & !"(inprogress return_1)" & !"(inprogress return_0)" & !"(inprogress accept)" & !"(inprogress return_6)" & !"(inprogress put_4)" & !"(inprogress put_3)" & !"(inprogress put_6)" & !"(inprogress put_5)" & !"(inprogress put_2)" & !"(inprogress put_1)");
+  "(@def reset inprogress)":=(next("(inprogress return_5)")=0 & next("(inprogress return_4)")=0 & next("(inprogress return_3)")=0 & next("(inprogress return_2)")=0 & next("(inprogress reject)")=0 & next("(inprogress return_1)")=0 & next("(inprogress return_0)")=0 & next("(inprogress accept)")=0 & next("(inprogress return_6)")=0 & next("(inprogress put_4)")=0 & next("(inprogress put_3)")=0 & next("(inprogress put_6)")=0 & next("(inprogress put_5)")=0 & next("(inprogress put_2)")=0 & next("(inprogress put_1)")=0);
+TRANS (
+  (
+    (action="(choose)" & !("(status)"=0 & "(@def event)") -> FALSE) &
+    ((action="(choose)" & ("(status)"=0 & "(@def event)"))
+      -> (
+        (!"(@def enabled return_5)" -> next("(inprogress return_5)")=0) & 
+        (!"(@def enabled return_4)" -> next("(inprogress return_4)")=0) & 
+        (!"(@def enabled return_3)" -> next("(inprogress return_3)")=0) & 
+        (!"(@def enabled return_2)" -> next("(inprogress return_2)")=0) & 
+        (!"(@def enabled reject)" -> next("(inprogress reject)")=0) & 
+        (!"(@def enabled return_1)" -> next("(inprogress return_1)")=0) & 
+        (!"(@def enabled return_0)" -> next("(inprogress return_0)")=0) & 
+        (!"(@def enabled accept)" -> next("(inprogress accept)")=0) & 
+        (!"(@def enabled return_6)" -> next("(inprogress return_6)")=0) & 
+        (!"(@def enabled put_4)" -> next("(inprogress put_4)")=0) & 
+        (!"(@def enabled put_3)" -> next("(inprogress put_3)")=0) & 
+        (!"(@def enabled put_6)" -> next("(inprogress put_6)")=0) & 
+        (!"(@def enabled put_5)" -> next("(inprogress put_5)")=0) & 
+        (!"(@def enabled put_2)" -> next("(inprogress put_2)")=0) & 
+        (!"(@def enabled put_1)" -> next("(inprogress put_1)")=0) & 
+        next("(status)")=1 &
+        "(@def keep at)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(default)" & !("(status)"=1 & "(@def no inprogress)") -> FALSE) &
+    ((action="(default)" & ("(status)"=1 & "(@def no inprogress)"))
+      -> (
+        next("(inprogress return_5)")=1 &
+        next("(inprogress return_4)")=1 &
+        next("(inprogress return_3)")=1 &
+        next("(inprogress return_2)")=1 &
+        next("(inprogress reject)")=1 &
+        next("(inprogress return_1)")=1 &
+        next("(inprogress return_0)")=1 &
+        next("(inprogress accept)")=1 &
+        next("(inprogress return_6)")=1 &
+        next("(inprogress put_4)")=1 &
+        next("(inprogress put_3)")=1 &
+        next("(inprogress put_6)")=1 &
+        next("(inprogress put_5)")=1 &
+        next("(inprogress put_2)")=1 &
+        next("(inprogress put_1)")=1 &
+        "(@def keep at)" &
+        next("(status)")="(status)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(return_5)" & !("(@def enabled return_5)" & "(inprogress return_5)") -> FALSE) &
+    ((action="(return_5)" & ("(@def enabled return_5)" & "(inprogress return_5)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_5)"=0 -> next("(at Buffer_5)")=1) &
+        ("(at Buffer_5)"=1 -> next("(at Buffer_5)")=2) &
+        ("(at Buffer_5)"=2 -> next("(at Buffer_5)")=3) &
+        ("(at Buffer_5)"=3 -> next("(at Buffer_5)")=4) &
+        ("(at Buffer_5)"=4 -> next("(at Buffer_5)")=5) &
+        ("(at Buffer_5)"=5 -> next("(at Buffer_5)")=6) &
+        ("(at Buffer_5)"=6 -> next("(at Buffer_5)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(return_4)" & !("(@def enabled return_4)" & "(inprogress return_4)") -> FALSE) &
+    ((action="(return_4)" & ("(@def enabled return_4)" & "(inprogress return_4)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_4)"=0 -> next("(at Buffer_4)")=1) &
+        ("(at Buffer_4)"=1 -> next("(at Buffer_4)")=2) &
+        ("(at Buffer_4)"=2 -> next("(at Buffer_4)")=3) &
+        ("(at Buffer_4)"=3 -> next("(at Buffer_4)")=4) &
+        ("(at Buffer_4)"=4 -> next("(at Buffer_4)")=5) &
+        ("(at Buffer_4)"=5 -> next("(at Buffer_4)")=6) &
+        ("(at Buffer_4)"=6 -> next("(at Buffer_4)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(get_6)" & !("(@def enabled get_6)" & !"(@def event)") -> FALSE) &
+    ((action="(get_6)" & ("(@def enabled get_6)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at TU)"=0 -> next("(at TU)")=1) &
+        ("(at Buffer_6)"=0 -> next("(at Buffer_6)")=-1) &
+        ("(at Buffer_6)"=1 -> next("(at Buffer_6)")=0) &
+        ("(at Buffer_6)"=2 -> next("(at Buffer_6)")=1) &
+        ("(at Buffer_6)"=3 -> next("(at Buffer_6)")=2) &
+        ("(at Buffer_6)"=4 -> next("(at Buffer_6)")=3) &
+        ("(at Buffer_6)"=5 -> next("(at Buffer_6)")=4) &
+        ("(at Buffer_6)"=6 -> next("(at Buffer_6)")=5) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(get_5)" & !("(@def enabled get_5)" & !"(@def event)") -> FALSE) &
+    ((action="(get_5)" & ("(@def enabled get_5)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Machine_5)"=0 -> next("(at Machine_5)")=1) &
+        ("(at Machine_5)"=1 -> next("(at Machine_5)")=2) &
+        ("(at Machine_5)"=2 -> next("(at Machine_5)")=3) &
+        ("(at Machine_5)"=3 -> next("(at Machine_5)")=4) &
+        ("(at Machine_5)"=4 -> next("(at Machine_5)")=5) &
+        ("(at Machine_5)"=5 -> next("(at Machine_5)")=6) &
+        ("(at Buffer_5)"=0 -> next("(at Buffer_5)")=-1) &
+        ("(at Buffer_5)"=1 -> next("(at Buffer_5)")=0) &
+        ("(at Buffer_5)"=2 -> next("(at Buffer_5)")=1) &
+        ("(at Buffer_5)"=3 -> next("(at Buffer_5)")=2) &
+        ("(at Buffer_5)"=4 -> next("(at Buffer_5)")=3) &
+        ("(at Buffer_5)"=5 -> next("(at Buffer_5)")=4) &
+        ("(at Buffer_5)"=6 -> next("(at Buffer_5)")=5) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(return_3)" & !("(@def enabled return_3)" & "(inprogress return_3)") -> FALSE) &
+    ((action="(return_3)" & ("(@def enabled return_3)" & "(inprogress return_3)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_3)"=0 -> next("(at Buffer_3)")=1) &
+        ("(at Buffer_3)"=1 -> next("(at Buffer_3)")=2) &
+        ("(at Buffer_3)"=2 -> next("(at Buffer_3)")=3) &
+        ("(at Buffer_3)"=3 -> next("(at Buffer_3)")=4) &
+        ("(at Buffer_3)"=4 -> next("(at Buffer_3)")=5) &
+        ("(at Buffer_3)"=5 -> next("(at Buffer_3)")=6) &
+        ("(at Buffer_3)"=6 -> next("(at Buffer_3)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(get_4)" & !("(@def enabled get_4)" & !"(@def event)") -> FALSE) &
+    ((action="(get_4)" & ("(@def enabled get_4)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Machine_4)"=0 -> next("(at Machine_4)")=1) &
+        ("(at Machine_4)"=1 -> next("(at Machine_4)")=2) &
+        ("(at Machine_4)"=2 -> next("(at Machine_4)")=3) &
+        ("(at Machine_4)"=3 -> next("(at Machine_4)")=4) &
+        ("(at Machine_4)"=4 -> next("(at Machine_4)")=5) &
+        ("(at Machine_4)"=5 -> next("(at Machine_4)")=6) &
+        ("(at Buffer_4)"=0 -> next("(at Buffer_4)")=-1) &
+        ("(at Buffer_4)"=1 -> next("(at Buffer_4)")=0) &
+        ("(at Buffer_4)"=2 -> next("(at Buffer_4)")=1) &
+        ("(at Buffer_4)"=3 -> next("(at Buffer_4)")=2) &
+        ("(at Buffer_4)"=4 -> next("(at Buffer_4)")=3) &
+        ("(at Buffer_4)"=5 -> next("(at Buffer_4)")=4) &
+        ("(at Buffer_4)"=6 -> next("(at Buffer_4)")=5) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(return_2)" & !("(@def enabled return_2)" & "(inprogress return_2)") -> FALSE) &
+    ((action="(return_2)" & ("(@def enabled return_2)" & "(inprogress return_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_2)"=0 -> next("(at Buffer_2)")=1) &
+        ("(at Buffer_2)"=1 -> next("(at Buffer_2)")=2) &
+        ("(at Buffer_2)"=2 -> next("(at Buffer_2)")=3) &
+        ("(at Buffer_2)"=3 -> next("(at Buffer_2)")=4) &
+        ("(at Buffer_2)"=4 -> next("(at Buffer_2)")=5) &
+        ("(at Buffer_2)"=5 -> next("(at Buffer_2)")=6) &
+        ("(at Buffer_2)"=6 -> next("(at Buffer_2)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(reject)" & !("(@def enabled reject)" & "(inprogress reject)") -> FALSE) &
+    ((action="(reject)" & ("(@def enabled reject)" & "(inprogress reject)"))
+      -> (
+        next("(status)")=2 &
+        ("(at TU)"=2 -> next("(at TU)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(get_3)" & !("(@def enabled get_3)" & !"(@def event)") -> FALSE) &
+    ((action="(get_3)" & ("(@def enabled get_3)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Machine_3)"=0 -> next("(at Machine_3)")=1) &
+        ("(at Machine_3)"=1 -> next("(at Machine_3)")=2) &
+        ("(at Machine_3)"=2 -> next("(at Machine_3)")=3) &
+        ("(at Machine_3)"=3 -> next("(at Machine_3)")=4) &
+        ("(at Machine_3)"=4 -> next("(at Machine_3)")=5) &
+        ("(at Machine_3)"=5 -> next("(at Machine_3)")=6) &
+        ("(at Buffer_3)"=0 -> next("(at Buffer_3)")=-1) &
+        ("(at Buffer_3)"=1 -> next("(at Buffer_3)")=0) &
+        ("(at Buffer_3)"=2 -> next("(at Buffer_3)")=1) &
+        ("(at Buffer_3)"=3 -> next("(at Buffer_3)")=2) &
+        ("(at Buffer_3)"=4 -> next("(at Buffer_3)")=3) &
+        ("(at Buffer_3)"=5 -> next("(at Buffer_3)")=4) &
+        ("(at Buffer_3)"=6 -> next("(at Buffer_3)")=5) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(return_1)" & !("(@def enabled return_1)" & "(inprogress return_1)") -> FALSE) &
+    ((action="(return_1)" & ("(@def enabled return_1)" & "(inprogress return_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_1)"=0 -> next("(at Buffer_1)")=1) &
+        ("(at Buffer_1)"=1 -> next("(at Buffer_1)")=2) &
+        ("(at Buffer_1)"=2 -> next("(at Buffer_1)")=3) &
+        ("(at Buffer_1)"=3 -> next("(at Buffer_1)")=4) &
+        ("(at Buffer_1)"=4 -> next("(at Buffer_1)")=5) &
+        ("(at Buffer_1)"=5 -> next("(at Buffer_1)")=6) &
+        ("(at Buffer_1)"=6 -> next("(at Buffer_1)")=-1) &
+        ("(at TU)"=1 -> next("(at TU)")=2) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(get_2)" & !("(@def enabled get_2)" & !"(@def event)") -> FALSE) &
+    ((action="(get_2)" & ("(@def enabled get_2)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_2)"=0 -> next("(at Buffer_2)")=-1) &
+        ("(at Buffer_2)"=1 -> next("(at Buffer_2)")=0) &
+        ("(at Buffer_2)"=2 -> next("(at Buffer_2)")=1) &
+        ("(at Buffer_2)"=3 -> next("(at Buffer_2)")=2) &
+        ("(at Buffer_2)"=4 -> next("(at Buffer_2)")=3) &
+        ("(at Buffer_2)"=5 -> next("(at Buffer_2)")=4) &
+        ("(at Buffer_2)"=6 -> next("(at Buffer_2)")=5) &
+        ("(at Machine_2)"=0 -> next("(at Machine_2)")=1) &
+        ("(at Machine_2)"=1 -> next("(at Machine_2)")=2) &
+        ("(at Machine_2)"=2 -> next("(at Machine_2)")=3) &
+        ("(at Machine_2)"=3 -> next("(at Machine_2)")=4) &
+        ("(at Machine_2)"=4 -> next("(at Machine_2)")=5) &
+        ("(at Machine_2)"=5 -> next("(at Machine_2)")=6) &
+        "(@def reset inprogress)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(return_0)" & !("(@def enabled return_0)" & "(inprogress return_0)") -> FALSE) &
+    ((action="(return_0)" & ("(@def enabled return_0)" & "(inprogress return_0)"))
+      -> (
+        next("(status)")=0 &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(get_1)" & !("(@def enabled get_1)" & !"(@def event)") -> FALSE) &
+    ((action="(get_1)" & ("(@def enabled get_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_1)"=0 -> next("(at Buffer_1)")=-1) &
+        ("(at Buffer_1)"=1 -> next("(at Buffer_1)")=0) &
+        ("(at Buffer_1)"=2 -> next("(at Buffer_1)")=1) &
+        ("(at Buffer_1)"=3 -> next("(at Buffer_1)")=2) &
+        ("(at Buffer_1)"=4 -> next("(at Buffer_1)")=3) &
+        ("(at Buffer_1)"=5 -> next("(at Buffer_1)")=4) &
+        ("(at Buffer_1)"=6 -> next("(at Buffer_1)")=5) &
+        ("(at Machine_1)"=0 -> next("(at Machine_1)")=1) &
+        ("(at Machine_1)"=1 -> next("(at Machine_1)")=2) &
+        ("(at Machine_1)"=2 -> next("(at Machine_1)")=3) &
+        ("(at Machine_1)"=3 -> next("(at Machine_1)")=4) &
+        ("(at Machine_1)"=4 -> next("(at Machine_1)")=5) &
+        ("(at Machine_1)"=5 -> next("(at Machine_1)")=6) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(accept)" & !("(@def enabled accept)" & "(inprogress accept)") -> FALSE) &
+    ((action="(accept)" & ("(@def enabled accept)" & "(inprogress accept)"))
+      -> (
+        next("(status)")=2 &
+        ("(at TU)"=1 -> next("(at TU)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(get_0)" & !("(@def enabled get_0)" & !"(@def event)") -> FALSE) &
+    ((action="(get_0)" & ("(@def enabled get_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Machine_0)"=0 -> next("(at Machine_0)")=1) &
+        ("(at Machine_0)"=1 -> next("(at Machine_0)")=2) &
+        ("(at Machine_0)"=2 -> next("(at Machine_0)")=3) &
+        ("(at Machine_0)"=3 -> next("(at Machine_0)")=4) &
+        ("(at Machine_0)"=4 -> next("(at Machine_0)")=5) &
+        ("(at Machine_0)"=5 -> next("(at Machine_0)")=6) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(return_6)" & !("(@def enabled return_6)" & "(inprogress return_6)") -> FALSE) &
+    ((action="(return_6)" & ("(@def enabled return_6)" & "(inprogress return_6)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_6)"=0 -> next("(at Buffer_6)")=1) &
+        ("(at Buffer_6)"=1 -> next("(at Buffer_6)")=2) &
+        ("(at Buffer_6)"=2 -> next("(at Buffer_6)")=3) &
+        ("(at Buffer_6)"=3 -> next("(at Buffer_6)")=4) &
+        ("(at Buffer_6)"=4 -> next("(at Buffer_6)")=5) &
+        ("(at Buffer_6)"=5 -> next("(at Buffer_6)")=6) &
+        ("(at Buffer_6)"=6 -> next("(at Buffer_6)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(put_4)" & !("(@def enabled put_4)" & "(inprogress put_4)") -> FALSE) &
+    ((action="(put_4)" & ("(@def enabled put_4)" & "(inprogress put_4)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Machine_3)"=1 -> next("(at Machine_3)")=0) &
+        ("(at Machine_3)"=2 -> next("(at Machine_3)")=1) &
+        ("(at Machine_3)"=3 -> next("(at Machine_3)")=2) &
+        ("(at Machine_3)"=4 -> next("(at Machine_3)")=3) &
+        ("(at Machine_3)"=5 -> next("(at Machine_3)")=4) &
+        ("(at Machine_3)"=6 -> next("(at Machine_3)")=5) &
+        ("(at Buffer_4)"=0 -> next("(at Buffer_4)")=1) &
+        ("(at Buffer_4)"=1 -> next("(at Buffer_4)")=2) &
+        ("(at Buffer_4)"=2 -> next("(at Buffer_4)")=3) &
+        ("(at Buffer_4)"=3 -> next("(at Buffer_4)")=4) &
+        ("(at Buffer_4)"=4 -> next("(at Buffer_4)")=5) &
+        ("(at Buffer_4)"=5 -> next("(at Buffer_4)")=6) &
+        ("(at Buffer_4)"=6 -> next("(at Buffer_4)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(put_3)" & !("(@def enabled put_3)" & "(inprogress put_3)") -> FALSE) &
+    ((action="(put_3)" & ("(@def enabled put_3)" & "(inprogress put_3)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Machine_2)"=1 -> next("(at Machine_2)")=0) &
+        ("(at Machine_2)"=2 -> next("(at Machine_2)")=1) &
+        ("(at Machine_2)"=3 -> next("(at Machine_2)")=2) &
+        ("(at Machine_2)"=4 -> next("(at Machine_2)")=3) &
+        ("(at Machine_2)"=5 -> next("(at Machine_2)")=4) &
+        ("(at Machine_2)"=6 -> next("(at Machine_2)")=5) &
+        ("(at Buffer_3)"=0 -> next("(at Buffer_3)")=1) &
+        ("(at Buffer_3)"=1 -> next("(at Buffer_3)")=2) &
+        ("(at Buffer_3)"=2 -> next("(at Buffer_3)")=3) &
+        ("(at Buffer_3)"=3 -> next("(at Buffer_3)")=4) &
+        ("(at Buffer_3)"=4 -> next("(at Buffer_3)")=5) &
+        ("(at Buffer_3)"=5 -> next("(at Buffer_3)")=6) &
+        ("(at Buffer_3)"=6 -> next("(at Buffer_3)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(put_6)" & !("(@def enabled put_6)" & "(inprogress put_6)") -> FALSE) &
+    ((action="(put_6)" & ("(@def enabled put_6)" & "(inprogress put_6)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Machine_5)"=1 -> next("(at Machine_5)")=0) &
+        ("(at Machine_5)"=2 -> next("(at Machine_5)")=1) &
+        ("(at Machine_5)"=3 -> next("(at Machine_5)")=2) &
+        ("(at Machine_5)"=4 -> next("(at Machine_5)")=3) &
+        ("(at Machine_5)"=5 -> next("(at Machine_5)")=4) &
+        ("(at Machine_5)"=6 -> next("(at Machine_5)")=5) &
+        ("(at Buffer_6)"=0 -> next("(at Buffer_6)")=1) &
+        ("(at Buffer_6)"=1 -> next("(at Buffer_6)")=2) &
+        ("(at Buffer_6)"=2 -> next("(at Buffer_6)")=3) &
+        ("(at Buffer_6)"=3 -> next("(at Buffer_6)")=4) &
+        ("(at Buffer_6)"=4 -> next("(at Buffer_6)")=5) &
+        ("(at Buffer_6)"=5 -> next("(at Buffer_6)")=6) &
+        ("(at Buffer_6)"=6 -> next("(at Buffer_6)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(put_5)" & !("(@def enabled put_5)" & "(inprogress put_5)") -> FALSE) &
+    ((action="(put_5)" & ("(@def enabled put_5)" & "(inprogress put_5)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Machine_4)"=1 -> next("(at Machine_4)")=0) &
+        ("(at Machine_4)"=2 -> next("(at Machine_4)")=1) &
+        ("(at Machine_4)"=3 -> next("(at Machine_4)")=2) &
+        ("(at Machine_4)"=4 -> next("(at Machine_4)")=3) &
+        ("(at Machine_4)"=5 -> next("(at Machine_4)")=4) &
+        ("(at Machine_4)"=6 -> next("(at Machine_4)")=5) &
+        ("(at Buffer_5)"=0 -> next("(at Buffer_5)")=1) &
+        ("(at Buffer_5)"=1 -> next("(at Buffer_5)")=2) &
+        ("(at Buffer_5)"=2 -> next("(at Buffer_5)")=3) &
+        ("(at Buffer_5)"=3 -> next("(at Buffer_5)")=4) &
+        ("(at Buffer_5)"=4 -> next("(at Buffer_5)")=5) &
+        ("(at Buffer_5)"=5 -> next("(at Buffer_5)")=6) &
+        ("(at Buffer_5)"=6 -> next("(at Buffer_5)")=-1) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(put_2)" & !("(@def enabled put_2)" & "(inprogress put_2)") -> FALSE) &
+    ((action="(put_2)" & ("(@def enabled put_2)" & "(inprogress put_2)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_2)"=0 -> next("(at Buffer_2)")=1) &
+        ("(at Buffer_2)"=1 -> next("(at Buffer_2)")=2) &
+        ("(at Buffer_2)"=2 -> next("(at Buffer_2)")=3) &
+        ("(at Buffer_2)"=3 -> next("(at Buffer_2)")=4) &
+        ("(at Buffer_2)"=4 -> next("(at Buffer_2)")=5) &
+        ("(at Buffer_2)"=5 -> next("(at Buffer_2)")=6) &
+        ("(at Buffer_2)"=6 -> next("(at Buffer_2)")=-1) &
+        ("(at Machine_1)"=1 -> next("(at Machine_1)")=0) &
+        ("(at Machine_1)"=2 -> next("(at Machine_1)")=1) &
+        ("(at Machine_1)"=3 -> next("(at Machine_1)")=2) &
+        ("(at Machine_1)"=4 -> next("(at Machine_1)")=3) &
+        ("(at Machine_1)"=5 -> next("(at Machine_1)")=4) &
+        ("(at Machine_1)"=6 -> next("(at Machine_1)")=5) &
+        "(@def reset inprogress)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_0)")="(at Machine_0)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(put_1)" & !("(@def enabled put_1)" & "(inprogress put_1)") -> FALSE) &
+    ((action="(put_1)" & ("(@def enabled put_1)" & "(inprogress put_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_1)"=0 -> next("(at Buffer_1)")=1) &
+        ("(at Buffer_1)"=1 -> next("(at Buffer_1)")=2) &
+        ("(at Buffer_1)"=2 -> next("(at Buffer_1)")=3) &
+        ("(at Buffer_1)"=3 -> next("(at Buffer_1)")=4) &
+        ("(at Buffer_1)"=4 -> next("(at Buffer_1)")=5) &
+        ("(at Buffer_1)"=5 -> next("(at Buffer_1)")=6) &
+        ("(at Buffer_1)"=6 -> next("(at Buffer_1)")=-1) &
+        ("(at Machine_0)"=1 -> next("(at Machine_0)")=0) &
+        ("(at Machine_0)"=2 -> next("(at Machine_0)")=1) &
+        ("(at Machine_0)"=3 -> next("(at Machine_0)")=2) &
+        ("(at Machine_0)"=4 -> next("(at Machine_0)")=3) &
+        ("(at Machine_0)"=5 -> next("(at Machine_0)")=4) &
+        ("(at Machine_0)"=6 -> next("(at Machine_0)")=5) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_2)")="(at Buffer_2)" &
+        next("(at Machine_3)")="(at Machine_3)" &
+        next("(at Buffer_3)")="(at Buffer_3)" &
+        next("(at Machine_4)")="(at Machine_4)" &
+        next("(at Machine_2)")="(at Machine_2)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Machine_1)")="(at Machine_1)" &
+        next("(at Buffer_5)")="(at Buffer_5)" &
+        next("(at Machine_5)")="(at Machine_5)" &
+        next("(at Buffer_6)")="(at Buffer_6)" &
+        next("(at Buffer_4)")="(at Buffer_4)" 
+      )
+    )
+  )
+)
+FULL_OBS_STRONG_GOAL ("(status)"=2)

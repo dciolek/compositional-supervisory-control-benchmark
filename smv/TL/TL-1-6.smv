@@ -1,0 +1,220 @@
+MODULE main
+DOMAINNAME DirectedController
+PROBLEMNAME Goal
+IVAR
+  action: {
+    "(choose)",
+    "(default)",
+    "(reject)",
+    "(return_1)",
+    "(return_0)",
+    "(get_1)",
+    "(accept)",
+    "(get_0)",
+    "(put_1)"
+  };
+VAR
+  "(at Buffer_1)":-1..7;
+  "(at Machine_0)":-1..6;
+  "(at TU)":-1..2;
+  "(inprogress reject)":0..1;
+  "(inprogress return_1)":0..1;
+  "(inprogress return_0)":0..1;
+  "(inprogress accept)":0..1;
+  "(inprogress put_1)":0..1;
+  "(status)":-1..2;
+INIT (
+  "(inprogress reject)"=0 &
+  "(status)"=0 &
+  "(inprogress accept)"=0 &
+  "(inprogress return_1)"=0 &
+  "(at TU)"=0 &
+  "(inprogress return_0)"=0 &
+  "(at Buffer_1)"=0 &
+  "(inprogress put_1)"=0 &
+  "(at Machine_0)"=0 
+)
+DEFINE
+  "(@def ready reject Buffer_1)":=(FALSE);
+  "(@def ready reject Machine_0)":=(FALSE);
+  "(@def ready reject TU)":=("(at TU)"=2);
+  "(@def ready return_1 Buffer_1)":=("(at Buffer_1)"=0 | "(at Buffer_1)"=1 | "(at Buffer_1)"=2 | "(at Buffer_1)"=3 | "(at Buffer_1)"=4 | "(at Buffer_1)"=5 | "(at Buffer_1)"=6);
+  "(@def ready return_1 Machine_0)":=(FALSE);
+  "(@def ready return_1 TU)":=("(at TU)"=1);
+  "(@def ready return_0 Buffer_1)":=(FALSE);
+  "(@def ready return_0 Machine_0)":=(FALSE);
+  "(@def ready return_0 TU)":=(FALSE);
+  "(@def ready get_1 Buffer_1)":=("(at Buffer_1)"=0 | "(at Buffer_1)"=1 | "(at Buffer_1)"=2 | "(at Buffer_1)"=3 | "(at Buffer_1)"=4 | "(at Buffer_1)"=5 | "(at Buffer_1)"=6);
+  "(@def ready get_1 Machine_0)":=(FALSE);
+  "(@def ready get_1 TU)":=("(at TU)"=0);
+  "(@def ready accept Buffer_1)":=(FALSE);
+  "(@def ready accept Machine_0)":=(FALSE);
+  "(@def ready accept TU)":=("(at TU)"=1);
+  "(@def ready get_0 Buffer_1)":=(FALSE);
+  "(@def ready get_0 Machine_0)":=("(at Machine_0)"=0 | "(at Machine_0)"=1 | "(at Machine_0)"=2 | "(at Machine_0)"=3 | "(at Machine_0)"=4 | "(at Machine_0)"=5);
+  "(@def ready get_0 TU)":=(FALSE);
+  "(@def ready put_1 Buffer_1)":=("(at Buffer_1)"=0 | "(at Buffer_1)"=1 | "(at Buffer_1)"=2 | "(at Buffer_1)"=3 | "(at Buffer_1)"=4 | "(at Buffer_1)"=5 | "(at Buffer_1)"=6);
+  "(@def ready put_1 Machine_0)":=("(at Machine_0)"=1 | "(at Machine_0)"=2 | "(at Machine_0)"=3 | "(at Machine_0)"=4 | "(at Machine_0)"=5 | "(at Machine_0)"=6);
+  "(@def ready put_1 TU)":=(FALSE);
+  "(@def enabled reject)":=("(@def ready reject TU)");
+  "(@def enabled return_1)":=("(@def ready return_1 Buffer_1)" & "(@def ready return_1 TU)");
+  "(@def enabled return_0)":=("(@def ready return_0 TU)");
+  "(@def enabled get_1)":=("(@def ready get_1 Buffer_1)" & "(@def ready get_1 TU)");
+  "(@def enabled accept)":=("(@def ready accept TU)");
+  "(@def enabled get_0)":=("(@def ready get_0 Machine_0)");
+  "(@def enabled put_1)":=("(@def ready put_1 Buffer_1)" & "(@def ready put_1 Machine_0)");
+  "(@def event)":=("(@def enabled reject)" | "(@def enabled return_1)" | "(@def enabled return_0)" | "(@def enabled accept)" | "(@def enabled put_1)");
+  "(@def keep at)":=(next("(at Buffer_1)")="(at Buffer_1)" & next("(at Machine_0)")="(at Machine_0)" & next("(at TU)")="(at TU)");
+  "(@def no inprogress)":=(!"(inprogress reject)" & !"(inprogress return_1)" & !"(inprogress return_0)" & !"(inprogress accept)" & !"(inprogress put_1)");
+  "(@def reset inprogress)":=(next("(inprogress reject)")=0 & next("(inprogress return_1)")=0 & next("(inprogress return_0)")=0 & next("(inprogress accept)")=0 & next("(inprogress put_1)")=0);
+TRANS (
+  (
+    (action="(choose)" & !("(status)"=0 & "(@def event)") -> FALSE) &
+    ((action="(choose)" & ("(status)"=0 & "(@def event)"))
+      -> (
+        (!"(@def enabled reject)" -> next("(inprogress reject)")=0) & 
+        (!"(@def enabled return_1)" -> next("(inprogress return_1)")=0) & 
+        (!"(@def enabled return_0)" -> next("(inprogress return_0)")=0) & 
+        (!"(@def enabled accept)" -> next("(inprogress accept)")=0) & 
+        (!"(@def enabled put_1)" -> next("(inprogress put_1)")=0) & 
+        next("(status)")=1 &
+        "(@def keep at)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(default)" & !("(status)"=1 & "(@def no inprogress)") -> FALSE) &
+    ((action="(default)" & ("(status)"=1 & "(@def no inprogress)"))
+      -> (
+        next("(inprogress reject)")=1 &
+        next("(inprogress return_1)")=1 &
+        next("(inprogress return_0)")=1 &
+        next("(inprogress accept)")=1 &
+        next("(inprogress put_1)")=1 &
+        "(@def keep at)" &
+        next("(status)")="(status)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(reject)" & !("(@def enabled reject)" & "(inprogress reject)") -> FALSE) &
+    ((action="(reject)" & ("(@def enabled reject)" & "(inprogress reject)"))
+      -> (
+        next("(status)")=2 &
+        ("(at TU)"=2 -> next("(at TU)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Machine_0)")="(at Machine_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(return_1)" & !("(@def enabled return_1)" & "(inprogress return_1)") -> FALSE) &
+    ((action="(return_1)" & ("(@def enabled return_1)" & "(inprogress return_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_1)"=0 -> next("(at Buffer_1)")=1) &
+        ("(at Buffer_1)"=1 -> next("(at Buffer_1)")=2) &
+        ("(at Buffer_1)"=2 -> next("(at Buffer_1)")=3) &
+        ("(at Buffer_1)"=3 -> next("(at Buffer_1)")=4) &
+        ("(at Buffer_1)"=4 -> next("(at Buffer_1)")=5) &
+        ("(at Buffer_1)"=5 -> next("(at Buffer_1)")=6) &
+        ("(at Buffer_1)"=6 -> next("(at Buffer_1)")=-1) &
+        ("(at TU)"=1 -> next("(at TU)")=2) &
+        "(@def reset inprogress)" &
+        next("(at Machine_0)")="(at Machine_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(return_0)" & !("(@def enabled return_0)" & "(inprogress return_0)") -> FALSE) &
+    ((action="(return_0)" & ("(@def enabled return_0)" & "(inprogress return_0)"))
+      -> (
+        next("(status)")=0 &
+        "(@def reset inprogress)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Machine_0)")="(at Machine_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(get_1)" & !("(@def enabled get_1)" & !"(@def event)") -> FALSE) &
+    ((action="(get_1)" & ("(@def enabled get_1)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_1)"=0 -> next("(at Buffer_1)")=-1) &
+        ("(at Buffer_1)"=1 -> next("(at Buffer_1)")=0) &
+        ("(at Buffer_1)"=2 -> next("(at Buffer_1)")=1) &
+        ("(at Buffer_1)"=3 -> next("(at Buffer_1)")=2) &
+        ("(at Buffer_1)"=4 -> next("(at Buffer_1)")=3) &
+        ("(at Buffer_1)"=5 -> next("(at Buffer_1)")=4) &
+        ("(at Buffer_1)"=6 -> next("(at Buffer_1)")=5) &
+        ("(at TU)"=0 -> next("(at TU)")=1) &
+        "(@def reset inprogress)" &
+        next("(at Machine_0)")="(at Machine_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(accept)" & !("(@def enabled accept)" & "(inprogress accept)") -> FALSE) &
+    ((action="(accept)" & ("(@def enabled accept)" & "(inprogress accept)"))
+      -> (
+        next("(status)")=2 &
+        ("(at TU)"=1 -> next("(at TU)")=0) &
+        "(@def reset inprogress)" &
+        next("(at Buffer_1)")="(at Buffer_1)" &
+        next("(at Machine_0)")="(at Machine_0)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(get_0)" & !("(@def enabled get_0)" & !"(@def event)") -> FALSE) &
+    ((action="(get_0)" & ("(@def enabled get_0)" & !"(@def event)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Machine_0)"=0 -> next("(at Machine_0)")=1) &
+        ("(at Machine_0)"=1 -> next("(at Machine_0)")=2) &
+        ("(at Machine_0)"=2 -> next("(at Machine_0)")=3) &
+        ("(at Machine_0)"=3 -> next("(at Machine_0)")=4) &
+        ("(at Machine_0)"=4 -> next("(at Machine_0)")=5) &
+        ("(at Machine_0)"=5 -> next("(at Machine_0)")=6) &
+        "(@def reset inprogress)" &
+        next("(at TU)")="(at TU)" &
+        next("(at Buffer_1)")="(at Buffer_1)" 
+      )
+    )
+  )
+  &
+  (
+    (action="(put_1)" & !("(@def enabled put_1)" & "(inprogress put_1)") -> FALSE) &
+    ((action="(put_1)" & ("(@def enabled put_1)" & "(inprogress put_1)"))
+      -> (
+        next("(status)")=0 &
+        ("(at Buffer_1)"=0 -> next("(at Buffer_1)")=1) &
+        ("(at Buffer_1)"=1 -> next("(at Buffer_1)")=2) &
+        ("(at Buffer_1)"=2 -> next("(at Buffer_1)")=3) &
+        ("(at Buffer_1)"=3 -> next("(at Buffer_1)")=4) &
+        ("(at Buffer_1)"=4 -> next("(at Buffer_1)")=5) &
+        ("(at Buffer_1)"=5 -> next("(at Buffer_1)")=6) &
+        ("(at Buffer_1)"=6 -> next("(at Buffer_1)")=-1) &
+        ("(at Machine_0)"=1 -> next("(at Machine_0)")=0) &
+        ("(at Machine_0)"=2 -> next("(at Machine_0)")=1) &
+        ("(at Machine_0)"=3 -> next("(at Machine_0)")=2) &
+        ("(at Machine_0)"=4 -> next("(at Machine_0)")=3) &
+        ("(at Machine_0)"=5 -> next("(at Machine_0)")=4) &
+        ("(at Machine_0)"=6 -> next("(at Machine_0)")=5) &
+        "(@def reset inprogress)" &
+        next("(at TU)")="(at TU)" 
+      )
+    )
+  )
+)
+FULL_OBS_STRONG_GOAL ("(status)"=2)

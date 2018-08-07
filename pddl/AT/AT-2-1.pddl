@@ -1,5 +1,5 @@
 (define
-  (domain Controller)
+  (domain DirectedController)
   
   (:requirements
     :typing
@@ -17,15 +17,15 @@
   (:constants
     $Airplane-1 $HeightMonitor-0 $RampMonitor $ResponseMonitor $Airplane-0 - LTS
     $-1 $0 $1 $2 $3 $4 - State
-    $air-crash-0 $approach-1 $approach-0 $land-1 $land-0 $land-crash $requestLand-0 $requestLand-1 $descend-1-0 $end $descend-0-0 - Label
-    setup idle busy uncontrollable complete looping event - Phase
+    $approach-1 $control-all $approach-0 $land-crash $extendFlight-0 $extendFlight-1 $air-crash-0 $land-1 $land-0 $requestLand-0 $descend-1-0 $requestLand-1 $descend-0-0 - Label
+    setup idle busy complete uncontrollable looping event - Phase
   )
   
   (:predicates
     (at ?s - State ?m - LTS)
+    (ready ?a - Label ?m - LTS)
     (marked ?s - State ?m - LTS)
     (hoop ?m - LTS)
-    (ready ?a - Label ?m - LTS)
     (enabled ?a - Label)
     (inprogress ?a - Label)
     (status ?c - Phase)
@@ -43,29 +43,34 @@
         (status setup)
         (not (status uncontrollable))
         (not (status complete))
-        (not (enabled $air-crash-0))
         (not (enabled $approach-1))
+        (not (enabled $control-all))
         (not (enabled $approach-0))
+        (not (enabled $land-crash))
+        (not (enabled $extendFlight-0))
+        (not (enabled $extendFlight-1))
+        (not (enabled $air-crash-0))
         (not (enabled $land-1))
         (not (enabled $land-0))
-        (not (enabled $land-crash))
         (not (enabled $requestLand-0))
-        (not (enabled $requestLand-1))
         (not (enabled $descend-1-0))
-        (not (enabled $end))
+        (not (enabled $requestLand-1))
         (not (enabled $descend-0-0))
         (not (inprogress $air-crash-0))
+        (not (inprogress $control-all))
         (not (inprogress $land-1))
         (not (inprogress $land-0))
         (not (inprogress $requestLand-0))
         (not (inprogress $land-crash))
         (not (inprogress $requestLand-1))
-        (not (inprogress $end))
+        (not (inprogress $extendFlight-0))
+        (not (inprogress $extendFlight-1))
         (not (ready $approach-1 $Airplane-1))
+        (not (ready $control-all $Airplane-1))
         (not (ready $land-1 $Airplane-1))
         (not (ready $requestLand-1 $Airplane-1))
         (not (ready $descend-1-0 $Airplane-1))
-        (not (ready $end $Airplane-1))
+        (not (ready $extendFlight-1 $Airplane-1))
         (not (ready $air-crash-0 $HeightMonitor-0))
         (not (ready $land-1 $HeightMonitor-0))
         (not (ready $land-0 $HeightMonitor-0))
@@ -81,11 +86,14 @@
         (not (ready $requestLand-0 $ResponseMonitor))
         (not (ready $requestLand-1 $ResponseMonitor))
         (not (ready $descend-1-0 $ResponseMonitor))
+        (not (ready $extendFlight-0 $ResponseMonitor))
         (not (ready $descend-0-0 $ResponseMonitor))
+        (not (ready $extendFlight-1 $ResponseMonitor))
         (not (ready $approach-0 $Airplane-0))
+        (not (ready $control-all $Airplane-0))
         (not (ready $land-0 $Airplane-0))
         (not (ready $requestLand-0 $Airplane-0))
-        (not (ready $end $Airplane-0))
+        (not (ready $extendFlight-0 $Airplane-0))
         (not (ready $descend-0-0 $Airplane-0))
         (not (hoop $Airplane-1))
         (not (hoop $HeightMonitor-0))
@@ -105,19 +113,22 @@
       (and
         (status busy)
         (when (at $0 $Airplane-1)
-          (ready $requestLand-1 $Airplane-1)
+          (and
+            (ready $requestLand-1 $Airplane-1)
+            (ready $extendFlight-1 $Airplane-1)
+          )
         )
         (when (at $1 $Airplane-1)
-          (ready $descend-1-0 $Airplane-1)
+          (ready $control-all $Airplane-1)
         )
         (when (at $2 $Airplane-1)
-          (ready $approach-1 $Airplane-1)
+          (ready $descend-1-0 $Airplane-1)
         )
         (when (at $3 $Airplane-1)
-          (ready $land-1 $Airplane-1)
+          (ready $approach-1 $Airplane-1)
         )
         (when (at $4 $Airplane-1)
-          (ready $end $Airplane-1)
+          (ready $land-1 $Airplane-1)
         )
         (when (at $0 $HeightMonitor-0)
           (and
@@ -168,8 +179,10 @@
         (when (at $0 $ResponseMonitor)
           (and
             (ready $requestLand-1 $ResponseMonitor)
+            (ready $extendFlight-0 $ResponseMonitor)
             (ready $requestLand-0 $ResponseMonitor)
             (ready $approach-1 $ResponseMonitor)
+            (ready $extendFlight-1 $ResponseMonitor)
             (ready $descend-0-0 $ResponseMonitor)
             (ready $descend-1-0 $ResponseMonitor)
             (ready $approach-0 $ResponseMonitor)
@@ -182,19 +195,22 @@
           (ready $descend-0-0 $ResponseMonitor)
         )
         (when (at $0 $Airplane-0)
-          (ready $requestLand-0 $Airplane-0)
+          (and
+            (ready $extendFlight-0 $Airplane-0)
+            (ready $requestLand-0 $Airplane-0)
+          )
         )
         (when (at $1 $Airplane-0)
-          (ready $descend-0-0 $Airplane-0)
+          (ready $control-all $Airplane-0)
         )
         (when (at $2 $Airplane-0)
-          (ready $approach-0 $Airplane-0)
+          (ready $descend-0-0 $Airplane-0)
         )
         (when (at $3 $Airplane-0)
-          (ready $land-0 $Airplane-0)
+          (ready $approach-0 $Airplane-0)
         )
         (when (at $4 $Airplane-0)
-          (ready $end $Airplane-0)
+          (ready $land-0 $Airplane-0)
         )
         (when (and (at $0 $Airplane-1) (marked $0 $Airplane-1))
           (hoop $Airplane-1)
@@ -285,20 +301,18 @@
         (status idle)
         (when
           (and
-            (ready $air-crash-0 $HeightMonitor-0)
-          )
-          (and
-            (enabled $air-crash-0)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
             (ready $approach-1 $Airplane-1)
             (ready $approach-1 $RampMonitor)
             (ready $approach-1 $ResponseMonitor)
           )
           (enabled $approach-1)
+        )
+        (when
+          (and
+            (ready $control-all $Airplane-1)
+            (ready $control-all $Airplane-0)
+          )
+          (enabled $control-all)
         )
         (when
           (and
@@ -310,14 +324,37 @@
         )
         (when
           (and
+            (ready $land-crash $RampMonitor)
+          )
+          (enabled $land-crash)
+        )
+        (when
+          (and
+            (ready $extendFlight-0 $ResponseMonitor)
+            (ready $extendFlight-0 $Airplane-0)
+          )
+          (enabled $extendFlight-0)
+        )
+        (when
+          (and
+            (ready $extendFlight-1 $Airplane-1)
+            (ready $extendFlight-1 $ResponseMonitor)
+          )
+          (enabled $extendFlight-1)
+        )
+        (when
+          (and
+            (ready $air-crash-0 $HeightMonitor-0)
+          )
+          (enabled $air-crash-0)
+        )
+        (when
+          (and
             (ready $land-1 $Airplane-1)
             (ready $land-1 $HeightMonitor-0)
             (ready $land-1 $RampMonitor)
           )
-          (and
-            (enabled $land-1)
-            (status uncontrollable)
-          )
+          (enabled $land-1)
         )
         (when
           (and
@@ -325,39 +362,14 @@
             (ready $land-0 $RampMonitor)
             (ready $land-0 $Airplane-0)
           )
-          (and
-            (enabled $land-0)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $land-crash $RampMonitor)
-          )
-          (and
-            (enabled $land-crash)
-            (status uncontrollable)
-          )
+          (enabled $land-0)
         )
         (when
           (and
             (ready $requestLand-0 $ResponseMonitor)
             (ready $requestLand-0 $Airplane-0)
           )
-          (and
-            (enabled $requestLand-0)
-            (status uncontrollable)
-          )
-        )
-        (when
-          (and
-            (ready $requestLand-1 $Airplane-1)
-            (ready $requestLand-1 $ResponseMonitor)
-          )
-          (and
-            (enabled $requestLand-1)
-            (status uncontrollable)
-          )
+          (enabled $requestLand-0)
         )
         (when
           (and
@@ -369,13 +381,10 @@
         )
         (when
           (and
-            (ready $end $Airplane-1)
-            (ready $end $Airplane-0)
+            (ready $requestLand-1 $Airplane-1)
+            (ready $requestLand-1 $ResponseMonitor)
           )
-          (and
-            (enabled $end)
-            (status uncontrollable)
-          )
+          (enabled $requestLand-1)
         )
         (when
           (and
@@ -392,20 +401,22 @@
     :precondition
       (and
         (status idle)
-        (status uncontrollable)
       )
     :effect
       (and
         (not (status idle))
         (status busy)
         (oneof
-          (when (enabled $air-crash-0) (inprogress $air-crash-0))
-          (when (enabled $land-1) (inprogress $land-1))
-          (when (enabled $land-0) (inprogress $land-0))
-          (when (enabled $requestLand-0) (inprogress $requestLand-0))
-          (when (enabled $land-crash) (inprogress $land-crash))
-          (when (enabled $requestLand-1) (inprogress $requestLand-1))
-          (when (enabled $end) (inprogress $end))
+          (when (enabled $air-crash-0) (and (inprogress $air-crash-0) (status uncontrollable)))
+          (when (enabled $control-all) (and (inprogress $control-all) (status uncontrollable)))
+          (when (enabled $land-1) (and (inprogress $land-1) (status uncontrollable)))
+          (when (enabled $land-0) (and (inprogress $land-0) (status uncontrollable)))
+          (when (enabled $requestLand-0) (and (inprogress $requestLand-0) (status uncontrollable)))
+          (when (enabled $land-crash) (and (inprogress $land-crash) (status uncontrollable)))
+          (when (enabled $requestLand-1) (and (inprogress $requestLand-1) (status uncontrollable)))
+          (when (enabled $extendFlight-0) (and (inprogress $extendFlight-0) (status uncontrollable)))
+          (when (enabled $extendFlight-1) (and (inprogress $extendFlight-1) (status uncontrollable)))
+          (when (true) (true))
         )
       )
   )
@@ -416,22 +427,26 @@
         (not (status setup))
         (status busy)
         (not (inprogress $air-crash-0))
+        (not (inprogress $control-all))
         (not (inprogress $land-1))
         (not (inprogress $land-0))
         (not (inprogress $requestLand-0))
         (not (inprogress $land-crash))
         (not (inprogress $requestLand-1))
-        (not (inprogress $end))
+        (not (inprogress $extendFlight-0))
+        (not (inprogress $extendFlight-1))
       )
     :effect
       (and
         (inprogress $air-crash-0)
+        (inprogress $control-all)
         (inprogress $land-1)
         (inprogress $land-0)
         (inprogress $requestLand-0)
         (inprogress $land-crash)
         (inprogress $requestLand-1)
-        (inprogress $end)
+        (inprogress $extendFlight-0)
+        (inprogress $extendFlight-1)
       )
   )
   
@@ -473,12 +488,133 @@
       )
   )
   
+  (:action do$approach-1
+    :precondition
+      (and
+        (status busy)
+        (enabled $approach-1)
+        (not (status uncontrollable))
+      )
+    :effect
+      (and
+        (status event)
+        (not (status busy))
+        (when (at $3 $Airplane-1)
+          (and (not (at $3 $Airplane-1)) (at $4 $Airplane-1))
+        )
+        (when (at $0 $RampMonitor)
+          (and (not (at $0 $RampMonitor)) (at $1 $RampMonitor))
+        )
+        (when (at $1 $RampMonitor)
+          (and (not (at $1 $RampMonitor)) (at $3 $RampMonitor))
+        )
+      )
+  )
+  
+  (:action do$control-all
+    :precondition
+      (and
+        (status busy)
+        (enabled $control-all)
+        (inprogress $control-all)
+      )
+    :effect
+      (and
+        (status event)
+        (not (status busy))
+        (status complete)
+        (when (at $1 $Airplane-1)
+          (and (not (at $1 $Airplane-1)) (at $0 $Airplane-1))
+        )
+        (when (at $1 $Airplane-0)
+          (and (not (at $1 $Airplane-0)) (at $0 $Airplane-0))
+        )
+      )
+  )
+  
+  (:action do$approach-0
+    :precondition
+      (and
+        (status busy)
+        (enabled $approach-0)
+        (not (status uncontrollable))
+      )
+    :effect
+      (and
+        (status event)
+        (not (status busy))
+        (when (at $0 $RampMonitor)
+          (and (not (at $0 $RampMonitor)) (at $1 $RampMonitor))
+        )
+        (when (at $1 $RampMonitor)
+          (and (not (at $1 $RampMonitor)) (at $2 $RampMonitor))
+        )
+        (when (at $3 $Airplane-0)
+          (and (not (at $3 $Airplane-0)) (at $4 $Airplane-0))
+        )
+      )
+  )
+  
+  (:action do$land-crash
+    :precondition
+      (and
+        (status busy)
+        (enabled $land-crash)
+        (inprogress $land-crash)
+      )
+    :effect
+      (and
+        (status event)
+        (not (status busy))
+        (when (at $2 $RampMonitor)
+          (and (not (at $2 $RampMonitor)) (at $-1 $RampMonitor))
+        )
+        (when (at $3 $RampMonitor)
+          (and (not (at $3 $RampMonitor)) (at $-1 $RampMonitor))
+        )
+      )
+  )
+  
+  (:action do$extendFlight-0
+    :precondition
+      (and
+        (status busy)
+        (enabled $extendFlight-0)
+        (inprogress $extendFlight-0)
+      )
+    :effect
+      (and
+        (status event)
+        (not (status busy))
+        (when (at $0 $Airplane-0)
+          (and (not (at $0 $Airplane-0)) (at $1 $Airplane-0))
+        )
+      )
+  )
+  
+  (:action do$extendFlight-1
+    :precondition
+      (and
+        (status busy)
+        (enabled $extendFlight-1)
+        (inprogress $extendFlight-1)
+      )
+    :effect
+      (and
+        (status event)
+        (not (status busy))
+        (when (at $0 $Airplane-1)
+          (and (not (at $0 $Airplane-1)) (at $1 $Airplane-1))
+        )
+      )
+  )
+  
   (:action do$air-crash-0
     :precondition
       (and
         (status busy)
-        (inprogress $air-crash-0)
         (enabled $air-crash-0)
+        (inprogress $air-crash-0)
       )
     :effect
       (and
@@ -493,65 +629,19 @@
       )
   )
   
-  (:action do$approach-1
-    :precondition
-      (and
-        (status idle)
-        (not (status uncontrollable))
-        (enabled $approach-1)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status idle))
-        (when (at $2 $Airplane-1)
-          (and (not (at $2 $Airplane-1)) (at $3 $Airplane-1))
-        )
-        (when (at $0 $RampMonitor)
-          (and (not (at $0 $RampMonitor)) (at $1 $RampMonitor))
-        )
-        (when (at $1 $RampMonitor)
-          (and (not (at $1 $RampMonitor)) (at $3 $RampMonitor))
-        )
-      )
-  )
-  
-  (:action do$approach-0
-    :precondition
-      (and
-        (status idle)
-        (not (status uncontrollable))
-        (enabled $approach-0)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status idle))
-        (when (at $0 $RampMonitor)
-          (and (not (at $0 $RampMonitor)) (at $1 $RampMonitor))
-        )
-        (when (at $1 $RampMonitor)
-          (and (not (at $1 $RampMonitor)) (at $2 $RampMonitor))
-        )
-        (when (at $2 $Airplane-0)
-          (and (not (at $2 $Airplane-0)) (at $3 $Airplane-0))
-        )
-      )
-  )
-  
   (:action do$land-1
     :precondition
       (and
         (status busy)
-        (inprogress $land-1)
         (enabled $land-1)
+        (inprogress $land-1)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (when (at $3 $Airplane-1)
-          (and (not (at $3 $Airplane-1)) (at $4 $Airplane-1))
+        (when (at $4 $Airplane-1)
+          (and (not (at $4 $Airplane-1)) (at $1 $Airplane-1))
         )
         (when (at $1 $HeightMonitor-0)
           (and (not (at $1 $HeightMonitor-0)) (at $0 $HeightMonitor-0))
@@ -569,8 +659,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $land-0)
         (enabled $land-0)
+        (inprogress $land-0)
       )
     :effect
       (and
@@ -585,28 +675,8 @@
         (when (at $1 $RampMonitor)
           (and (not (at $1 $RampMonitor)) (at $0 $RampMonitor))
         )
-        (when (at $3 $Airplane-0)
-          (and (not (at $3 $Airplane-0)) (at $4 $Airplane-0))
-        )
-      )
-  )
-  
-  (:action do$land-crash
-    :precondition
-      (and
-        (status busy)
-        (inprogress $land-crash)
-        (enabled $land-crash)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (when (at $2 $RampMonitor)
-          (and (not (at $2 $RampMonitor)) (at $-1 $RampMonitor))
-        )
-        (when (at $3 $RampMonitor)
-          (and (not (at $3 $RampMonitor)) (at $-1 $RampMonitor))
+        (when (at $4 $Airplane-0)
+          (and (not (at $4 $Airplane-0)) (at $1 $Airplane-0))
         )
       )
   )
@@ -615,8 +685,8 @@
     :precondition
       (and
         (status busy)
-        (inprogress $requestLand-0)
         (enabled $requestLand-0)
+        (inprogress $requestLand-0)
       )
     :effect
       (and
@@ -626,27 +696,7 @@
           (and (not (at $0 $ResponseMonitor)) (at $2 $ResponseMonitor))
         )
         (when (at $0 $Airplane-0)
-          (and (not (at $0 $Airplane-0)) (at $1 $Airplane-0))
-        )
-      )
-  )
-  
-  (:action do$requestLand-1
-    :precondition
-      (and
-        (status busy)
-        (inprogress $requestLand-1)
-        (enabled $requestLand-1)
-      )
-    :effect
-      (and
-        (status event)
-        (not (status busy))
-        (when (at $0 $Airplane-1)
-          (and (not (at $0 $Airplane-1)) (at $1 $Airplane-1))
-        )
-        (when (at $0 $ResponseMonitor)
-          (and (not (at $0 $ResponseMonitor)) (at $1 $ResponseMonitor))
+          (and (not (at $0 $Airplane-0)) (at $2 $Airplane-0))
         )
       )
   )
@@ -654,16 +704,16 @@
   (:action do$descend-1-0
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $descend-1-0)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
-        (when (at $1 $Airplane-1)
-          (and (not (at $1 $Airplane-1)) (at $2 $Airplane-1))
+        (not (status busy))
+        (when (at $2 $Airplane-1)
+          (and (not (at $2 $Airplane-1)) (at $3 $Airplane-1))
         )
         (when (at $0 $HeightMonitor-0)
           (and (not (at $0 $HeightMonitor-0)) (at $3 $HeightMonitor-0))
@@ -677,23 +727,22 @@
       )
   )
   
-  (:action do$end
+  (:action do$requestLand-1
     :precondition
       (and
         (status busy)
-        (inprogress $end)
-        (enabled $end)
+        (enabled $requestLand-1)
+        (inprogress $requestLand-1)
       )
     :effect
       (and
         (status event)
         (not (status busy))
-        (status complete)
-        (when (at $4 $Airplane-1)
-          (and (not (at $4 $Airplane-1)) (at $0 $Airplane-1))
+        (when (at $0 $Airplane-1)
+          (and (not (at $0 $Airplane-1)) (at $2 $Airplane-1))
         )
-        (when (at $4 $Airplane-0)
-          (and (not (at $4 $Airplane-0)) (at $0 $Airplane-0))
+        (when (at $0 $ResponseMonitor)
+          (and (not (at $0 $ResponseMonitor)) (at $1 $ResponseMonitor))
         )
       )
   )
@@ -701,14 +750,14 @@
   (:action do$descend-0-0
     :precondition
       (and
-        (status idle)
-        (not (status uncontrollable))
+        (status busy)
         (enabled $descend-0-0)
+        (not (status uncontrollable))
       )
     :effect
       (and
         (status event)
-        (not (status idle))
+        (not (status busy))
         (when (at $0 $HeightMonitor-0)
           (and (not (at $0 $HeightMonitor-0)) (at $1 $HeightMonitor-0))
         )
@@ -718,8 +767,8 @@
         (when (at $2 $ResponseMonitor)
           (and (not (at $2 $ResponseMonitor)) (at $0 $ResponseMonitor))
         )
-        (when (at $1 $Airplane-0)
-          (and (not (at $1 $Airplane-0)) (at $2 $Airplane-0))
+        (when (at $2 $Airplane-0)
+          (and (not (at $2 $Airplane-0)) (at $3 $Airplane-0))
         )
       )
   )
